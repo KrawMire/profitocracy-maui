@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "finance-control-mobile",
+    "slug": "finance-control-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "finance-control-mobile"
+}
