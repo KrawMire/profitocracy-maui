@@ -74,7 +74,7 @@ export function ExpensesBlock(props: ExpensesBlockProps) {
     },
     progressCurrent: {
       width: `${progressPercentage}%`,
-      backgroundColor: "#5BE090",
+      backgroundColor: "#6AD870",
       height: '100%',
       borderRadius: 5
     }

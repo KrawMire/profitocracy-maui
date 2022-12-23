@@ -3,6 +3,7 @@ import LinearGradient from "react-native-linear-gradient";
 
 interface TotalBlockProps {
   totalSum: number;
+  style?: object;
 }
 
 export function TotalBlock(props: TotalBlockProps) {
@@ -19,7 +20,8 @@ export function TotalBlock(props: TotalBlockProps) {
       shadowOffset: {
         height: 5,
         width: 0
-      }
+      },
+      ...props.style
     },
     containerGradient: {
       width: '100%',
@@ -43,7 +45,7 @@ export function TotalBlock(props: TotalBlockProps) {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#00874F', '#B4FFAE']}
+        colors={['#00A661', '#90FF87']}
         style={styles.containerGradient}>
           <Text style={styles.header}>Current total balance</Text>
           <Text style={styles.totalBalance}>${props.totalSum}</Text>

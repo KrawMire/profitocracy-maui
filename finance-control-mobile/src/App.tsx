@@ -15,7 +15,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={({route}) => ({
-        headerShown: false,
+        headerShown: false
         })
       }>
         <Tab.Screen
@@ -34,8 +34,11 @@ export default function App() {
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({focused, size}) => (
-              <Ionicons name={focused ? "stats-chart-sharp" : "stats-chart-outline"} size={size} color={"#424242"} />
-            )
+              <Ionicons name={focused ? "stats-chart-sharp" : "stats-chart-outline"} size={size} color={"#d6d6d6"} />
+            ),
+          }}
+          listeners={{
+            tabPress: (e) => e.preventDefault()
           }}
         />
         <Tab.Screen

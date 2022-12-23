@@ -16,6 +16,7 @@ export function HistoryTypeButtonGroup(props: HistoryTypeButtonGroupProps) {
 
   const styles = StyleSheet.create({
     container: {
+      marginTop: 25,
       flex: 1,
       flexDirection: 'row'
     },
