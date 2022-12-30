@@ -1,12 +1,28 @@
+import { TransactionTypes } from "objectsTypes/transaction/transaction-types";
+import Transaction from "objectsTypes/transaction/transaction";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View, Keyboard, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View, Keyboard } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import Transaction from "../../types/transaction";
+import { connect } from "react-redux";
+import { AppGlobalState } from "appState/store";
+import { TransactionsState } from "appState/transactions/types";
+import { ExpensesState } from "appState/expenses/types";
+import { Dispatch } from "redux";
+import { addTransaction } from "appState/transactions/actions";
+import Expense from "objectsTypes/expense";
+import { specifyExpenses } from "appState/expenses/actions";
 
-export function AddTransactionScreen() {
+interface AddTransactionScreenProps {
+  transactions: TransactionsState;
+  expenses: ExpensesState;
+  onAddTransaction: (transaction: Transaction, expenses: Expense[]) => void;
+}
+
+function AddTransactionScreenBase(props: AddTransactionScreenProps) {
   const [sum, setSum] = useState(0);
-  const [transactionType, setTransactionType] = useState("main");
+  const [transactionType, setTransactionType] = useState(TransactionTypes.Main);
 
   const handleChangeSum = (value: string) => {
     if (value.length === 0) {
@@ -38,10 +54,51 @@ export function AddTransactionScreen() {
         newTransactions = JSON.stringify([transactionToAdd]);
       }
 
-      AsyncStorage.setItem('transactions', newTransactions).then(() => {
-        onClear();
-      });
-    })
+      if (props.expenses && props.expenses.length >= 4) {
+        AsyncStorage.setItem('transactions', newTransactions).then(() => {
+          AsyncStorage.getItem("EXPENSES")
+          .then(value => {
+            if (value) {
+              const expenses = JSON.parse(value) as Expense[];
+              const newExpenses = expenses.map(expense => {
+                if (expense.header === "Main expenses" && transactionToAdd.type === TransactionTypes.Main) {
+                  return {
+                    ...expense,
+                    actualExpenses: expense.actualExpenses + transactionToAdd.sum
+                  }
+                } else if (expense.header === "Secondary expenses" && transactionToAdd.type === TransactionTypes.Secondary) {
+                  return {
+                    ...expense,
+                    actualExpenses: expense.actualExpenses + transactionToAdd.sum
+                  }
+                } else if (expense.header === "Postponed" && transactionToAdd.type === TransactionTypes.Postponed) {
+                  return {
+                    ...expense,
+                    actualExpenses: expense.actualExpenses + transactionToAdd.sum
+                  }
+                } else if (expense.header === "Daily expenses") {
+                  return {
+                    ...expense,
+                    actualExpenses: expense.actualExpenses + transactionToAdd.sum
+                  }
+                }
+
+                return expense;
+              });
+
+              AsyncStorage.setItem("EXPENSES", JSON.stringify(newExpenses)).then(() => {
+                props.onAddTransaction(transactionToAdd, newExpenses);
+                onClear();
+              });
+            } else {
+              throw Error("Expenses was not specified!");
+            }
+
+            onClear();
+          });
+        });
+      }
+    });
   }
 
   return (
@@ -51,30 +108,41 @@ export function AddTransactionScreen() {
         <Text style={styles.amountLabel}>Transaction sum</Text>
         <TextInput style={styles.amountTextInput} value={sum.toString()} onChangeText={handleChangeSum} keyboardType="numeric"/>
         <View style={styles.expenseTypeContainer}>
-          <TouchableOpacity style={styles.expenseTypeButton} onPress={() => setTransactionType("main")}>
-            {transactionType === "main" ?
-            <LinearGradient colors={['#00A661', '#90FF87']} style={styles.expenseTypeButtonGradient}>
-              <Text style={styles.expenseTypeButtonTextActive}>Main</Text>
-            </LinearGradient> :
-            <Text style={styles.expenseTypeButtonText}>Main</Text>}
+          <TouchableOpacity
+            style={transactionType === TransactionTypes.Main ?
+               styles.expenseTypeButtonActive : styles.expenseTypeButton}
+            onPress={() => setTransactionType(TransactionTypes.Main)}
+          >
+            <Text style={transactionType === TransactionTypes.Main ?
+                styles.expenseTypeButtonTextActive :
+                styles.expenseTypeButtonText}
+            >Main</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.expenseTypeButton} onPress={() => setTransactionType("secondary")}>
-            {transactionType === "secondary" ?
-            <LinearGradient colors={['#00A661', '#90FF87']} style={styles.expenseTypeButtonGradient}>
-              <Text style={styles.expenseTypeButtonTextActive}>Secondary</Text>
-            </LinearGradient> :
-            <Text style={styles.expenseTypeButtonText}>Secondary</Text>}
+          <TouchableOpacity
+            style={transactionType === TransactionTypes.Secondary ?
+              styles.expenseTypeButtonActive : styles.expenseTypeButton}
+            onPress={() => setTransactionType(TransactionTypes.Secondary)}
+          >
+            <Text style={transactionType === TransactionTypes.Secondary ?
+              styles.expenseTypeButtonTextActive :
+              styles.expenseTypeButtonText}
+            >Secondary</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.expenseTypeButton} onPress={() => setTransactionType("postponed")}>
-            {transactionType === "postponed" ?
-            <LinearGradient colors={['#00A661', '#90FF87']} style={styles.expenseTypeButtonGradient}>
-              <Text style={styles.expenseTypeButtonTextActive}>Postponed</Text>
-            </LinearGradient> :
-            <Text style={styles.expenseTypeButtonText}>Postponed</Text>}
+          <TouchableOpacity
+            style={transactionType === TransactionTypes.Postponed ?
+              styles.expenseTypeButtonActive : styles.expenseTypeButton}
+            onPress={() => setTransactionType(TransactionTypes.Postponed)}
+          >
+            <Text style={transactionType === TransactionTypes.Postponed ?
+              styles.expenseTypeButtonTextActive :
+              styles.expenseTypeButtonText}
+            >Postponed</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.addButton} onPress={handleAddTransaction}>
-          <Text style={styles.addButtonText}>Add</Text>
+          <LinearGradient colors={['#00A661', '#90FF87']} style={styles.addButtonGradient}>
+            <Text style={styles.addButtonText}>Add</Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
@@ -106,6 +174,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10
   },
+  addButtonGradient: {
+    borderRadius: 10
+  },
   expenseTypeContainer: {
     flex: 1,
     flexDirection: "row",
@@ -119,26 +190,31 @@ const styles = StyleSheet.create({
     backgroundColor: "#c2c0c0",
     width: "30%"
   },
-  expenseTypeButtonGradient: {
-    height: "100%",
-    width: "100%",
-    borderRadius: 10
+  expenseTypeButtonActive: {
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: "#4ecf81",
+    width: "30%"
   },
   expenseTypeButtonText: {
     textAlign: "center",
+    fontSize: 15,
+    fontWeight: "500",
     color: "#5B5B5B",
     padding: 15
   },
   expenseTypeButtonTextActive: {
+    fontSize: 15,
+    fontWeight: "500",
     color: "#FFFFFF",
     padding: 15,
     textAlign: "center"
   },
   addButton: {
-    width: "90%",
+    width: "96%",
     backgroundColor: "#4EBC7A",
-    marginRight: "5%",
-    marginLeft: "5%",
+    marginRight: "2%",
+    marginLeft: "2%",
     marginBottom: 5,
     borderRadius: 10
   },
@@ -150,3 +226,20 @@ const styles = StyleSheet.create({
     color: "#FFFFFF"
   }
 });
+
+const mapStateToProps = (state: AppGlobalState) => ({
+  transactions: state.transactions,
+  expenses: state.expenses
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onAddTransaction: (transaction: Transaction, expenses: Expense[]) => {
+    dispatch(addTransaction(transaction));
+    dispatch(specifyExpenses(expenses))
+  }
+})
+
+export const AddTransactionScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddTransactionScreenBase)

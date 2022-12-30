@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import Transaction from "../../types/transaction";
+import Transaction from "../../types/transaction/transaction";
 import { HistoryTypeButtonGroup } from "./components/history-type-button-group";
 
 export function HistoryScreen() {
@@ -26,24 +26,17 @@ export function HistoryScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>History</Text>
-      <View style={styles.historyContainer}>
+      <View style={styles.historyTypesContainer}>
         <HistoryTypeButtonGroup onChangeType={handleChangeType} currentType={historyType}/>
-        {/* TODO: refactor this */}
-        {/* historyType === "all" &&
-        <Text>All history</Text>}
-        {historyType === "period" &&
-        <Text>Period history</Text>}
-        {historyType === "day" &&
-        <Text>Day history</Text> */}
-        <ScrollView style={styles.transactionsContainer}>
-          {transactions.map((transaction, index) => (
-            <View style={styles.transactionContainer} key={index}>
-              <Text>{transaction.sum}</Text>
-              <Text>{transaction.type}</Text>
-            </View>
-          ))}
-        </ScrollView>
       </View>
+      <ScrollView style={styles.transactionsScrollView}>
+        {transactions.map((transaction, index) => (
+          <View style={styles.transactionContainer} key={index}>
+            <Text>{transaction.sum}</Text>
+            <Text>{transaction.type}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   )
 }
@@ -53,7 +46,6 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#F4F4F4',
     paddingTop: '10%',
-    paddingBottom: '15%',
 
     flex: 1,
     flexDirection: 'column',
@@ -65,18 +57,28 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     marginTop: "5%"
   },
-  historyContainer: {
-    height: '100%',
+  historyTypesContainer: {
+    marginTop: 25,
+    marginBottom: 25,
+    height: 30,
     alignItems: "center",
-    flex: 1,
-    flexDirection: 'column',
   },
-  transactionsContainer: {
-
+  transactionsScrollView: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "#F4F4F4",
+    height: "100%"
   },
   transactionContainer: {
     padding: 20,
     backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+    width: "90%",
+    marginLeft: "5%",
+    marginRight: "5%",
+    height: 100,
+    marginTop: 10,
+
     shadowColor: "#000",
       shadowOpacity: 0.5,
       shadowRadius: 5,
@@ -84,5 +86,5 @@ const styles = StyleSheet.create({
         height: 5,
         width: 0
       },
-  }
+    }
 });
