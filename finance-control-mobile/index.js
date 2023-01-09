@@ -3,21 +3,9 @@ import { Provider } from 'react-redux';
 
 import App from './src/App';
 import { getStore } from 'appState/store';
-import { useState } from 'react';
-import { ActivityIndicator } from 'react-native';
 
 const Root = () => {
-  const [store, setStore] = useState(null);
-
-  getStore().then(loadedStore => {
-    setStore(loadedStore);
-  });
-
-  if (!store) {
-    return (
-      <ActivityIndicator size="large"/>
-    )
-  }
+  const store = getStore();
 
   return (
     <Provider store={store}>

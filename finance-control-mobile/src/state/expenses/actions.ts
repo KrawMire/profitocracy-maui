@@ -1,21 +1,23 @@
-import Expense from "objectsTypes/expense";
-import { AddExpenseAction, SpecifyExpensesAction } from "./types";
+import { Action } from "appState/types";
+import Expense from "src/domain/expense/expense";
 
-export enum ExpensesActionTypes {
-  AddExpense = "ADD_EXPENSE",
-  SpecifyExpenses = "SPECIFY_EXPENSES"
+export enum ExpensesActionsTypes {
+  UpdateExpense = "UPDATE_EXPENSE"
 }
 
-export function addExpense(expense: Expense): AddExpenseAction {
-  return {
-    type: ExpensesActionTypes.AddExpense,
-    payload: expense
-  }
-}
+export type ExpensesActionsReturnTypes = Expense;
 
-export function specifyExpenses(expenses: Expense[]): SpecifyExpensesAction {
+/**
+ * Update existing expense
+ * @param id Identifier of the expense to update
+ * @param expense Payload of the expense to set
+ */
+export function updateExpense(id: string, expense: Expense): Action<Expense> {
   return {
-    type: ExpensesActionTypes.SpecifyExpenses,
-    payload: expenses
+    type: ExpensesActionsTypes.UpdateExpense,
+    payload: {
+      ...expense,
+      id
+    }
   }
 }
