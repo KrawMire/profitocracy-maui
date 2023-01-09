@@ -32,10 +32,9 @@ export function transactionsReducer (
       const changedTransaction = <Transaction>action.payload;
       newState.transactions = state.transactions.map(transaction =>
         transaction.id === changedTransaction.id ? changedTransaction : transaction);
-
       return newState;
 
     default:
-      throw new Error("Invalid action type was given!");
+      return state;
   }
 }

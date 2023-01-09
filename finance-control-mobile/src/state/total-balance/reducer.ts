@@ -23,6 +23,6 @@ export function totalBalanceReducer (
       return newState;
 
     default:
-      throw new Error("Invalid action type was given!");
+      return state;
   }
 }

@@ -5,17 +5,17 @@ enum ThemeSettings {
   /**
    * Dark theme
    */
-  Dark,
+  Dark = "DARK_THEME",
 
   /**
    * Light theme
    */
-  Light,
+  Light = "LIGHT_THEME",
 
   /**
    * Theme which is used in the system
    */
-  System
+  System = "SYSTEM_THEME"
 }
 
 export default ThemeSettings;

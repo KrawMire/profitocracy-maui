@@ -1,10 +1,10 @@
 import { Action } from "appState/types";
 import AppSettingsState from "src/domain/app-state/components/app-settings-state";
-import ThemeSettings from "src/domain/app-settings/components/theme-settings";
 import { AppSettingsActionsReturnTypes, AppSettingsActionsTypes } from "./actions";
 import BillingPeriodSettings from "src/domain/app-settings/components/biiling-period-settings";
 import ExpenseCategory from "src/domain/expense-category/expense-category";
 import ExpenseTypeSettings from "src/domain/app-settings/components/expense-type-settings";
+import ThemeSettings from "../../domain/app-settings/components/theme-settings";
 
 const initialState: AppSettingsState = {
   settings: {
@@ -62,6 +62,6 @@ export async function appSettingsReducer(
 
     // No such action found
     default:
-      throw new Error("Invalid action type was given!");
+      return state;
   }
 }

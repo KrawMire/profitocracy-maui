@@ -3,11 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { HomeScreen } from './screens/home-screen/home-screen';
-import { StatisticsScreen } from './screens/statistics-screen/statistics-screen';
-import { AddTransactionScreen } from './screens/add-transaction-screen/add-transaction-screen';
-import { HistoryScreen } from './screens/history-screen/history-screen';
-import { SettingsScreen } from './screens/settings-screen/settings-screen';
+import { StatisticsScreen } from './ui/screens/statistics-screen/statistics-screen';
+import { HomeScreen } from './ui/screens/home-screen/home-screen';
+import { AddTransactionScreen } from './ui/screens/add-transaction-screen/add-transaction-screen';
+import { TransactionsHisoryScreen } from './ui/screens/transactions-history-screen/transactions-history-screen';
+import { SettingsScreen } from './ui/screens/settings-screen/settings-screen';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,6 +37,8 @@ export default function App() {
               <Ionicons name={focused ? "stats-chart-sharp" : "stats-chart-outline"} size={size} color={"#d6d6d6"} />
             ),
           }}
+
+          /* Temporary solution because feature is disabled */
           listeners={{
             tabPress: (e) => e.preventDefault()
           }}
@@ -63,7 +65,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Profiles"
-          component={HistoryScreen}
+          component={TransactionsHisoryScreen}
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({focused, size}) => (
