@@ -8,10 +8,11 @@ module.exports = function(api) {
         {
           root: ['.'],
           alias: {
-            objectsTypes: "./src/types",
-            appState: "./src/state",
-            screens: "./src/screens",
-            shared: "./src/shared"
+            domain: "./src/domain",
+            state: "./src/state",
+            storage: "./src/storage",
+            screensUI: "./src/ui/screens",
+            sharedUI: "./src/ui/shared"
           },
         },
       ],
