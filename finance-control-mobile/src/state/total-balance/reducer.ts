@@ -1,10 +1,8 @@
-import { Action } from "appState/types";
+
 import TotalBalanceState from "src/domain/app-state/components/total-balance-state";
 import { TotalBalanceActionsReturnTypes, TotalBalanceActionsTypes } from "./actions";
-
-const initialState: TotalBalanceState = {
-  amount: 0
-}
+import { Action } from "state/types";
+import { totalBalanceInitialState } from "state/initial-state";
 
 /**
  * Total balance actions handler
@@ -12,14 +10,18 @@ const initialState: TotalBalanceState = {
  * @param action Total balance action
  */
 export function totalBalanceReducer (
-  state: TotalBalanceState = initialState,
+  state: TotalBalanceState = totalBalanceInitialState,
   action: Action<TotalBalanceActionsReturnTypes>
 ): TotalBalanceState {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
-    case TotalBalanceActionsTypes.SetTotalBalance:
-      newState.amount = action.payload;
+    case TotalBalanceActionsTypes.SetActualBalance:
+      newState.actualBalance = action.payload;
+      return newState;
+
+    case TotalBalanceActionsTypes.SetInitialBalance:
+      newState.initialBalance = action.payload;
       return newState;
 
     default:

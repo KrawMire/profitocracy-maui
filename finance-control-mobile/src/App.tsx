@@ -11,6 +11,9 @@ import { SettingsScreen } from './ui/screens/settings-screen/settings-screen';
 
 const Tab = createBottomTabNavigator();
 
+const getNavIcon = (focused: boolean, iconName: string) =>
+  focused ? `${iconName}-sharp` : `${iconName}-outline`;
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -24,7 +27,7 @@ export default function App() {
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({focused, size}) => (
-              <Ionicons name={focused ? "home-sharp" : "home-outline"} size={size} color={"#424242"} />
+              <Ionicons name={getNavIcon(focused, "home")} size={size} color={"#424242"} />
             )
           }}
         />
@@ -34,7 +37,7 @@ export default function App() {
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({focused, size}) => (
-              <Ionicons name={focused ? "stats-chart-sharp" : "stats-chart-outline"} size={size} color={"#d6d6d6"} />
+              <Ionicons name={getNavIcon(focused, "stats-chart")} size={size} color={"#d6d6d6"} />
             ),
           }}
 
@@ -59,7 +62,7 @@ export default function App() {
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({focused, size}) => (
-              <Ionicons name={focused ? "settings-sharp" : "settings-outline"} size={size} color={"#424242"} />
+              <Ionicons name={getNavIcon(focused, "settings")} size={size} color={"#424242"} />
             )
           }}
         />
@@ -69,7 +72,7 @@ export default function App() {
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({focused, size}) => (
-              <Ionicons name={focused ? "cash-sharp" : "cash-outline"} size={size} color={"#424242"} />
+              <Ionicons name={getNavIcon(focused, "cash")} size={size} color={"#424242"} />
             )
           }}
         />

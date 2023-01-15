@@ -1,4 +1,4 @@
-import { Action } from "appState/types";
+import { Action } from "state/types";
 import { BillingPeriod } from "src/domain/app-state/components/billing-periods-state";
 
 export enum BillingPeriodsActionsTypes {

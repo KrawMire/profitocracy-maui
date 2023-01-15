@@ -1,4 +1,4 @@
-import { Action } from "appState/types";
+import { Action } from "state/types";
 import Transaction from "src/domain/transaction/transaction";
 
 export enum TransactionsActionsTypes {

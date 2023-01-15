@@ -3,9 +3,14 @@
  */
 type TotalBalanceState = {
   /**
+   * Initial balance for billing period
+   */
+  initialBalance: number;
+
+  /**
    * The amount of the current total balance
    */
-  amount: number;
+  actualBalance: number;
 }
 
 export default TotalBalanceState;

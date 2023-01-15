@@ -1,4 +1,4 @@
-import { Action } from "appState/types";
+import { Action } from "state/types";
 import BillingPeriodSettings from "src/domain/app-settings/components/biiling-period-settings";
 import ExpenseTypeSettings from "src/domain/app-settings/components/expense-type-settings";
 import ThemeSettings from "src/domain/app-settings/components/theme-settings";

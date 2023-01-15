@@ -1,11 +1,8 @@
-import { Action } from "appState/types";
+import { Action } from "state/types";
 import TransactionsState from "src/domain/app-state/components/transaction-state";
 import Transaction from "src/domain/transaction/transaction";
 import { TransactionsActionsReturnTypes, TransactionsActionsTypes } from "./actions";
-
-const initialState: TransactionsState = {
-  transactions: []
-}
+import { transactionsInitialState } from "state/initial-state";
 
 /**
  * Transactions actions handler
@@ -13,7 +10,7 @@ const initialState: TransactionsState = {
  * @param action Transactions action
  */
 export function transactionsReducer (
-  state: TransactionsState = initialState,
+  state: TransactionsState = transactionsInitialState,
   action: Action<TransactionsActionsReturnTypes>
 ): TransactionsState {
   const newState = Object.assign({}, state);

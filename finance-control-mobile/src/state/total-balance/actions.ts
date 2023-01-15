@@ -1,18 +1,30 @@
-import { Action } from "appState/types";
+import { Action } from "state/types";
 
 export enum TotalBalanceActionsTypes {
-  SetTotalBalance = "SET_TOTAL_BALANCE"
+  SetActualBalance = "SET_ACTUAL_BALANCE",
+  SetInitialBalance = "SET_INITIAL_BALANCE"
 }
 
 export type TotalBalanceActionsReturnTypes = number;
 
 /**
- * Set new value of total balance
- * @param amount New total balance value
+ * Set new value of actual balance
+ * @param amount New actual balance value
  */
-export function SetTotalBalance(amount: number): Action<TotalBalanceActionsReturnTypes> {
+export function SetCurrentBalance(amount: number): Action<TotalBalanceActionsReturnTypes> {
   return {
-    type: TotalBalanceActionsTypes.SetTotalBalance,
+    type: TotalBalanceActionsTypes.SetActualBalance,
+    payload: amount
+  }
+}
+
+/**
+ * Set new value of initial balance for billing period
+ * @param amount New initial balance value
+ */
+export function SetInitialBalance(amount: number): Action<TotalBalanceActionsReturnTypes> {
+  return {
+    type: TotalBalanceActionsTypes.SetInitialBalance,
     payload: amount
   }
 }

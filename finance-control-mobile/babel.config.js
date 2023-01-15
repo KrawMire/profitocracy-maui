@@ -12,7 +12,8 @@ module.exports = function(api) {
             state: "./src/state",
             storage: "./src/storage",
             screensUI: "./src/ui/screens",
-            sharedUI: "./src/ui/shared"
+            sharedUI: "./src/ui/shared",
+            styles: "./src/ui/styles"
           },
         },
       ],

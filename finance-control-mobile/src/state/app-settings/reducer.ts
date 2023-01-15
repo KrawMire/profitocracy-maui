@@ -1,24 +1,11 @@
-import { Action } from "appState/types";
+import { Action } from "state/types";
 import AppSettingsState from "src/domain/app-state/components/app-settings-state";
 import { AppSettingsActionsReturnTypes, AppSettingsActionsTypes } from "./actions";
 import BillingPeriodSettings from "src/domain/app-settings/components/biiling-period-settings";
 import ExpenseCategory from "src/domain/expense-category/expense-category";
 import ExpenseTypeSettings from "src/domain/app-settings/components/expense-type-settings";
 import ThemeSettings from "../../domain/app-settings/components/theme-settings";
-
-const initialState: AppSettingsState = {
-  settings: {
-    billingPeriodSettings: {
-      dateFrom: new Date(Date.now()),
-      dateTo: new Date(Date.now())
-    },
-    expensesSettings: [],
-    themeSettings: ThemeSettings.Light,
-    expenseCategoriesSettings: {
-      categories: []
-    }
-  }
-}
+import { appSettingsInitialState } from "state/initial-state";
 
 /**
  * App settings actions handler
@@ -26,7 +13,7 @@ const initialState: AppSettingsState = {
  * @param action App settings action
  */
 export async function appSettingsReducer(
-  state: AppSettingsState = initialState,
+  state: AppSettingsState = appSettingsInitialState,
   action: Action<AppSettingsActionsReturnTypes>
 ): Promise<AppSettingsState> {
   const newState = Object.assign({}, state);

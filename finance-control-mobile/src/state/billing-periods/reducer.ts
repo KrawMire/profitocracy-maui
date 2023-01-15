@@ -1,10 +1,7 @@
-import { Action } from "appState/types";
+import { Action } from "state/types";
 import { BillingPeriodsState } from "src/domain/app-state/components/billing-periods-state";
 import { BillingPeriodsActionsReturnTypes, BillingPeriodsActionsTypes } from "./actions";
-
-const initialState: BillingPeriodsState = {
-  periods: []
-}
+import { billingPeriodsInitialState } from "state/initial-state";
 
 /**
  * Billing periods actions handler
@@ -12,7 +9,7 @@ const initialState: BillingPeriodsState = {
  * @param action Billing periods action
  */
 export function billingPeriodsReducer (
-  state: BillingPeriodsState = initialState,
+  state: BillingPeriodsState = billingPeriodsInitialState,
   action: Action<BillingPeriodsActionsReturnTypes>
 ): BillingPeriodsState {
   const newState = Object.assign({}, state);

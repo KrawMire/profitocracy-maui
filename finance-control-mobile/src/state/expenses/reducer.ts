@@ -1,19 +1,15 @@
-import { Action } from "appState/types";
+import { Action } from "state/types";
 import ExpensesState from "src/domain/app-state/components/expenses-state";
 import Expense from "src/domain/expense/expense";
 import { ExpensesActionsReturnTypes, ExpensesActionsTypes } from "./actions";
-
-const initialState: ExpensesState = {
-  expenses: []
-}
-
+import { expensesInitialState } from "state/initial-state";
 /**
  * Expenses actions handler
  * @param state Current state of the expenses
  * @param action Expenses action
  */
 export function expensesReducer (
-  state: ExpensesState = initialState,
+  state: ExpensesState = expensesInitialState,
   action: Action<ExpensesActionsReturnTypes>
 ): ExpensesState {
   const newState = Object.assign({}, state);

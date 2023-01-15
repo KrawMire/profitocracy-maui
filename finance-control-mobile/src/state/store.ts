@@ -5,6 +5,9 @@ import { billingPeriodsReducer } from "./billing-periods/reducer";
 import { expensesReducer } from "./expenses/reducer";
 import { totalBalanceReducer } from "./total-balance/reducer";
 import { transactionsReducer } from "./transactions/reducer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { persistReducer, persistStore } from "redux-persist";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   appSettings: appSettingsReducer,
@@ -14,6 +17,16 @@ const rootReducer = combineReducers({
   transactions: transactionsReducer
 });
 
-export const getStore = () => configureStore({
-  reducer: rootReducer
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage
+};
+
+const persistedRootReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedRootReducer,
+  middleware: [thunk]
 });
+
+export const persistedtStore = persistStore(store);
