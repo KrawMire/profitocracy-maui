@@ -13,7 +13,8 @@ module.exports = function(api) {
             storage: "./src/storage",
             screensUI: "./src/ui/screens",
             sharedUI: "./src/ui/shared",
-            styles: "./src/ui/styles"
+            styles: "./src/ui/styles",
+            utils: "./src/utils"
           },
         },
       ],

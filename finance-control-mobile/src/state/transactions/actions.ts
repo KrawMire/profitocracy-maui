@@ -39,7 +39,7 @@ export function updateTransaction(id: string, transaction: Transaction): Action<
  * Remove existing transaction
  * @param id Identifier of the transactio to remove
  */
-export function RemoveTransaction(id: string): Action<TransactionsActionsReturnTypes> {
+export function removeTransaction(id: string): Action<TransactionsActionsReturnTypes> {
   return {
     type: TransactionsActionsTypes.RemoveTransaction,
     payload: id

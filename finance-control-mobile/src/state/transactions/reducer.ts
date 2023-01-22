@@ -17,8 +17,13 @@ export function transactionsReducer (
 
   switch (action.type) {
     case TransactionsActionsTypes.AddTransaction:
-      newState.transactions.unshift(<Transaction>action.payload);
-      return newState;
+      return {
+        ...state,
+        transactions: [
+          ...state.transactions,
+          <Transaction>action.payload
+        ]
+      };
 
     case TransactionsActionsTypes.RemoveTransaction:
       newState.transactions = state.transactions
