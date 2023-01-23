@@ -1,3 +1,5 @@
+import thunk from "redux-thunk";
+import { initialAppState } from "./initial-state";
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { appSettingsReducer } from "./app-settings/reducer";
@@ -7,15 +9,29 @@ import { totalBalanceReducer } from "./total-balance/reducer";
 import { transactionsReducer } from "./transactions/reducer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persistReducer, persistStore } from "redux-persist";
-import thunk from "redux-thunk";
+import { StoreActionTypes } from "./store/actions";
+import { Action } from "./types";
+import AppState from "src/domain/app-state/app-state";
 
-const rootReducer = combineReducers({
-  appSettings: appSettingsReducer,
+const appReducer = combineReducers({
   billingPeriods: billingPeriodsReducer,
   expenses: expensesReducer,
   totalBalance: totalBalanceReducer,
-  transactions: transactionsReducer
+  transactions: transactionsReducer,
+  settings: appSettingsReducer,
 });
+
+const rootReducer = (
+  state: AppState = initialAppState,
+  action: Action<any>
+) => {
+  if (action.type === StoreActionTypes.Reset) {
+    AsyncStorage.removeItem("persist:root");
+    return appReducer(undefined, action);
+  }
+
+  return appReducer({} as AppState, action);
+}
 
 const persistConfig = {
   key: 'root',
@@ -26,7 +42,8 @@ const persistedRootReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedRootReducer,
-  middleware: [thunk]
+  preloadedState: initialAppState,
+  middleware: [thunk],
 });
 
 export const persistedtStore = persistStore(store);

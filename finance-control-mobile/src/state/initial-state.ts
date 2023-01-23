@@ -4,6 +4,7 @@ import TotalBalanceState from "src/domain/app-state/components/total-balance-sta
 import TransactionsState from "src/domain/app-state/components/transaction-state";
 import ThemeSettings from "../domain/app-settings/components/theme-settings";
 import { BillingPeriodsState } from "src/domain/app-state/components/billing-periods-state";
+import AppState from "src/domain/app-state/app-state";
 
 /**
  * Initial state of the app settings
@@ -11,8 +12,8 @@ import { BillingPeriodsState } from "src/domain/app-state/components/billing-per
 export const appSettingsInitialState: AppSettingsState = {
   settings: {
     billingPeriodSettings: {
-      dateFrom: new Date(Date.now()),
-      dateTo: new Date(Date.now())
+      dateFrom: 0,
+      dateTo: 0,
     },
     expensesSettings: [],
     themeSettings: ThemeSettings.Light,
@@ -49,4 +50,13 @@ export const totalBalanceInitialState: TotalBalanceState = {
  */
 export const transactionsInitialState: TransactionsState = {
   transactions: []
+};
+
+/** Initial state of the whole application */
+export const initialAppState: AppState = {
+  transactions: transactionsInitialState,
+  expenses: expensesInitialState,
+  totalBalance: totalBalanceInitialState,
+  billingPeriods: billingPeriodsInitialState,
+  settings: appSettingsInitialState,
 };

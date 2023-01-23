@@ -32,7 +32,7 @@ export function setTheme(theme: ThemeSettings): Action<ThemeSettings> {
  * @param dateFrom Start date of billing period
  * @param dateTo End date of billing period
  */
-export function setBillingPeriod(dateFrom: Date, dateTo: Date): Action<BillingPeriodSettings> {
+export function setBillingPeriod(dateFrom: number, dateTo: number): Action<BillingPeriodSettings> {
   return {
     type: AppSettingsActionsTypes.SetBillingPeriod,
     payload: {

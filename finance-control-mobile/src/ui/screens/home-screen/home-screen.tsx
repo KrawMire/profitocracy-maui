@@ -12,7 +12,12 @@ export function HomeScreen() {
     <View style={homeScreenStyles.wrapper}>
       <Text>Home</Text>
       <Text>Total balance is: {totalBalance.actualBalance}</Text>
-      <Text></Text>
+      {expenses.map((expense) => (
+      <View>
+        <Text>{expense.name}:</Text>
+        <Text>{expense.actualAmount}</Text>
+      </View>
+      ))}
     </View>
   )
 }

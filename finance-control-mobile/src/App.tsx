@@ -7,6 +7,8 @@ import { HomeScreen } from './ui/screens/home-screen/home-screen';
 import { AddTransactionScreen } from './ui/screens/add-transaction-screen/add-transaction-screen';
 import { TransactionsHisoryScreen } from './ui/screens/transactions-history-screen/transactions-history-screen';
 import { SettingsScreen } from './ui/screens/settings-screen/settings-screen';
+import { useSelector } from 'react-redux';
+import AppState from './domain/app-state/app-state';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,6 +16,8 @@ const getNavIcon = (focused: boolean, iconName: string) =>
   focused ? `${iconName}-sharp` : `${iconName}-outline`;
 
 export default function App() {
+  const appState = useSelector((state: AppState) => state);
+
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={({route}) => ({

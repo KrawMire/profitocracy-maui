@@ -1,5 +1,5 @@
 import { getNewId } from "utils/identifier";
-import { Button, Text, TextInput, View } from "react-native";
+import { Button, Text, TextInput, TouchableWithoutFeedback, View, Keyboard } from "react-native";
 import { useDispatch } from "react-redux";
 import ExpenseType from "../../../domain/expense/components/expense-type";
 import Transaction from "src/domain/transaction/transaction";
@@ -53,31 +53,34 @@ export function AddTransactionScreen(props: any) {
   }
 
   return (
-    <View style={addTransactionScreenStyles.wrapper}>
-      <Text>Add transaction</Text>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={addTransactionScreenStyles.wrapper}>
-        <TextInput
-          placeholder="Enter amount..."
-          onChangeText={changeAmount}
-          value={amount.toString()}
-        />
-        <View style={addTransactionScreenStyles.typeButtonGroup}>
-          <Button title="Main" onPress={() => setExpenseType(ExpenseType.Main)}/>
-          <Button title="Secondary" onPress={() => setExpenseType(ExpenseType.Secondary)}/>
-          <Button title="Postpone" onPress={() => setExpenseType(ExpenseType.Postponed)}/>
+        <Text>Add transaction</Text>
+        <View style={addTransactionScreenStyles.wrapper}>
+          <TextInput
+            placeholder="Enter amount..."
+            onChangeText={changeAmount}
+            value={amount.toString()}
+            keyboardType="numeric"
+          />
+          <View style={addTransactionScreenStyles.typeButtonGroup}>
+            <Button title="Main" onPress={() => setExpenseType(ExpenseType.Main)}/>
+            <Button title="Secondary" onPress={() => setExpenseType(ExpenseType.Secondary)}/>
+            <Button title="Postpone" onPress={() => setExpenseType(ExpenseType.Postponed)}/>
+          </View>
+          <TextInput
+            placeholder="Enter description..."
+            onChangeText={setDescription}
+            value={description}
+          />
+          <TextInput
+            placeholder="Select category..."
+            onChangeText={setCategory}
+            value={category}
+          />
         </View>
-        <TextInput
-          placeholder="Enter description..."
-          onChangeText={setDescription}
-          value={description}
-        />
-        <TextInput
-          placeholder="Select category..."
-          onChangeText={setCategory}
-          value={category}
-        />
+        <Button title="Add transaction" onPress={onAddTransaction} />
       </View>
-      <Button title="Add transaction" onPress={onAddTransaction} />
-    </View>
+    </TouchableWithoutFeedback>
   )
 }

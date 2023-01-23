@@ -3,14 +3,14 @@
  */
 type BillingPeriodSettings = {
   /**
-   * Start date of the period
+   * Start day of month of the period
    */
-  dateFrom: Date;
+  dateFrom: number;
 
   /**
-   * End date of the period
+   * End day of monthof the period
    */
-  dateTo: Date;
+  dateTo: number;
 }
 
 export default BillingPeriodSettings;

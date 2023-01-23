@@ -12,42 +12,36 @@ import { appSettingsInitialState } from "state/initial-state";
  * @param state Current state of the app settings
  * @param action App settings action
  */
-export async function appSettingsReducer(
+export function appSettingsReducer(
   state: AppSettingsState = appSettingsInitialState,
   action: Action<AppSettingsActionsReturnTypes>
-): Promise<AppSettingsState> {
+): AppSettingsState {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
-    // Set theme
     case AppSettingsActionsTypes.SetTheme:
       newState.settings.themeSettings = <ThemeSettings>action.payload;
       return newState;
 
-    // Set billing period
     case AppSettingsActionsTypes.SetBillingPeriod:
       newState.settings.billingPeriodSettings = <BillingPeriodSettings>action.payload;
       return newState;
 
-    // Add expense category
     case AppSettingsActionsTypes.AddExpenseCategory:
       newState.settings.expenseCategoriesSettings.categories
         .push(<ExpenseCategory>action.payload);
       return newState;
 
-    // Remove expense category
     case AppSettingsActionsTypes.RemoveExpenseCategory:
       const newCategories = newState.settings.expenseCategoriesSettings.categories
         .filter(category => category.id !== <string>action.payload);
       newState.settings.expenseCategoriesSettings.categories = newCategories;
       return newState;
 
-    // Set expense settings
     case AppSettingsActionsTypes.SetExpenseSettings:
       newState.settings.expensesSettings = <ExpenseTypeSettings[]>action.payload;
       return newState;
 
-    // No such action found
     default:
       return state;
   }
