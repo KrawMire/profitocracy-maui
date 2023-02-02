@@ -15,7 +15,7 @@ export type BillingPeriod = {
   /**
    * End date of billing period
    */
-  dateTo: Date;
+  dateTo: Date | null;
 }
 
 /**

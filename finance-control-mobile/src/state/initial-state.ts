@@ -5,6 +5,9 @@ import TransactionsState from "src/domain/app-state/components/transaction-state
 import ThemeSettings from "../domain/app-settings/components/theme-settings";
 import { BillingPeriodsState } from "src/domain/app-state/components/billing-periods-state";
 import AppState from "src/domain/app-state/app-state";
+import ExpenseType from "../domain/expense/components/expense-type";
+import { getNewId } from "utils/identifier";
+import "react-native-get-random-values";
 
 /**
  * Initial state of the app settings
@@ -15,7 +18,20 @@ export const appSettingsInitialState: AppSettingsState = {
       dateFrom: 0,
       dateTo: 0,
     },
-    expensesSettings: [],
+    expensesSettings: [
+      {
+        expenseType: ExpenseType.Main,
+        percent: 50
+      },
+      {
+        expenseType: ExpenseType.Secondary,
+        percent: 30
+      },
+      {
+        expenseType: ExpenseType.Postponed,
+        percent: 20
+      },
+    ],
     themeSettings: ThemeSettings.Light,
     expenseCategoriesSettings: {
       categories: []
@@ -34,7 +50,29 @@ export const billingPeriodsInitialState: BillingPeriodsState = {
  * Initial state of the expenses
  */
 export const expensesInitialState: ExpensesState = {
-  expenses: []
+  expenses: [
+    {
+      expenseType: ExpenseType.Main,
+      name: "Main expenses",
+      actualAmount: 0,
+      plannedAmount: 0,
+      billingPeriod: null,
+    },
+    {
+      expenseType: ExpenseType.Secondary,
+      name: "Secondary expenses",
+      actualAmount: 0,
+      plannedAmount: 0,
+      billingPeriod: null,
+    },
+    {
+      expenseType: ExpenseType.Postponed,
+      name: "Postponed",
+      actualAmount: 0,
+      plannedAmount: 0,
+      billingPeriod: null,
+    }
+  ]
 };
 
 /**

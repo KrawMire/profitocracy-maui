@@ -11,8 +11,8 @@ module.exports = function(api) {
             domain: "./src/domain",
             state: "./src/state",
             storage: "./src/storage",
-            screensUI: "./src/ui/screens",
-            sharedUI: "./src/ui/shared",
+            screens: "./src/ui/screens",
+            components: "./src/ui/components",
             styles: "./src/ui/styles",
             utils: "./src/utils"
           },

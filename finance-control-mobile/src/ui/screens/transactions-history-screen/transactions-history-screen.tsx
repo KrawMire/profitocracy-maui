@@ -1,10 +1,12 @@
-import { Button, ScrollView, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AppState from "src/domain/app-state/app-state";
 import { removeTransaction } from "state/transactions/actions";
 
 import { transactionsHistoryScreenStyles } from "styles/screens/transactions-history.style";
-import { Divider } from "sharedUI/divider";
+import { Divider } from "components/shared/divider";
+import { sharedTextStyle } from "styles/shared/text.style";
+import { Button, Layout, Text } from "@ui-kitten/components";
+import { ScrollView } from "react-native";
 
 export function TransactionsHisoryScreen() {
   const transactions = useSelector((state: AppState) => state.transactions.transactions);
@@ -17,12 +19,14 @@ export function TransactionsHisoryScreen() {
   };
 
   return (
-    <View style={transactionsHistoryScreenStyles.wrapper}>
-      <Text>Transactions history</Text>
-      <Button title="Clear all transactions" onPress={clearTransactions}/>
+    <Layout style={transactionsHistoryScreenStyles.wrapper}>
+      <Text style={sharedTextStyle.screenTitle}>Transactions history</Text>
+      <Button onPress={clearTransactions}>
+        Clear all transactions
+      </Button>
       <ScrollView>
         {transactions.map((transaction) => (
-          <View key={transaction.id}>
+          <Layout key={transaction.id}>
             <Divider />
             <Text>
               {transaction.amount}
@@ -36,9 +40,9 @@ export function TransactionsHisoryScreen() {
             <Text>
               {transaction.description}
             </Text>
-          </View>
+          </Layout>
         ))}
       </ScrollView>
-    </View>
+    </Layout>
   )
 }

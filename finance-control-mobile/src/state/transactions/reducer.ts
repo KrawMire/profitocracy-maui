@@ -20,8 +20,8 @@ export function transactionsReducer (
       return {
         ...state,
         transactions: [
+          <Transaction>action.payload,
           ...state.transactions,
-          <Transaction>action.payload
         ]
       };
 

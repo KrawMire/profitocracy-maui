@@ -15,9 +15,6 @@ export type ExpensesActionsReturnTypes = Expense;
 export function updateExpense(id: string, expense: Expense): Action<Expense> {
   return {
     type: ExpensesActionsTypes.UpdateExpense,
-    payload: {
-      ...expense,
-      id
-    }
+    payload: expense
   }
 }

@@ -5,14 +5,14 @@ import ExpenseType from "./components/expense-type";
  */
 type Expense = {
   /**
-   * Identifier of the expense
+   * Type of the expense. Could be main, secondary of postponed
    */
-  id: string;
+  expenseType: ExpenseType;
 
   /**
    * Identifier of the billing period
    */
-  billingPeriod: string;
+  billingPeriod: string | null;
 
   /**
    * The name of the expense
@@ -28,11 +28,6 @@ type Expense = {
    * The planned money amount to spend
    */
   plannedAmount: number;
-
-  /**
-   * Type of the expense. Could be main, secondary of postponed
-   */
-  expenseType: ExpenseType;
 }
 
 export default Expense;

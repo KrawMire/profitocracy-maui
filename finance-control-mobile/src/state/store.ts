@@ -27,10 +27,10 @@ const rootReducer = (
 ) => {
   if (action.type === StoreActionTypes.Reset) {
     AsyncStorage.removeItem("persist:root");
-    return appReducer(undefined, action);
+    return appReducer({} as AppState, action);
   }
 
-  return appReducer({} as AppState, action);
+  return appReducer(state, action);
 }
 
 const persistConfig = {

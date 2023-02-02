@@ -7,6 +7,7 @@ import { addTransaction } from "state/transactions/actions";
 import { addTransactionScreenStyles } from "styles/screens/add-transaction.style";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { sharedTextStyle } from "styles/shared/text.style";
 
 export function AddTransactionScreen(props: any) {
   // Global app state
@@ -55,7 +56,7 @@ export function AddTransactionScreen(props: any) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={addTransactionScreenStyles.wrapper}>
-        <Text>Add transaction</Text>
+        <Text style={sharedTextStyle.screenTitle}>Add transaction</Text>
         <View style={addTransactionScreenStyles.wrapper}>
           <TextInput
             placeholder="Enter amount..."

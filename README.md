@@ -19,3 +19,5 @@ There are 4 active screens in the application:
 3. Add transaction screen. There you can add new transaction
 4. Settings screen. There are all app settings stores. We will consider it closer in next sections
 5. Transactions history screen. There you can find all your added transactions
+
+THE DOCUMENTATION WILL BE ADDED WITH NEW INFO LATER

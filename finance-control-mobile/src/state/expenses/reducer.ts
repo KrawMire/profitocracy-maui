@@ -18,7 +18,7 @@ export function expensesReducer (
     case ExpensesActionsTypes.UpdateExpense:
       const changedExpense = <Expense>action.payload;
       newState.expenses = state.expenses.map(expense =>
-        expense.id === changedExpense.id ? changedExpense : expense);
+        expense.expenseType === changedExpense.expenseType ? changedExpense : expense);
 
       return newState;
 

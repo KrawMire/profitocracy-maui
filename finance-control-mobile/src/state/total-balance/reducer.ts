@@ -17,12 +17,17 @@ export function totalBalanceReducer (
 
   switch (action.type) {
     case TotalBalanceActionsTypes.SetActualBalance:
-      newState.actualBalance = action.payload;
-      return newState;
+      return {
+        ...state,
+        actualBalance: action.payload
+      };
 
     case TotalBalanceActionsTypes.SetInitialBalance:
       newState.initialBalance = action.payload;
-      return newState;
+      return {
+        ...state,
+        initialBalance: action.payload
+      }
 
     default:
       return state;
