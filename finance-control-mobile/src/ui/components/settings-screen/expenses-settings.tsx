@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Text, TextInput, View } from "react-native";
 import { useSelector } from "react-redux";
 
 import AppState from "src/domain/app-state/app-state";
 import ExpenseType from "../../../domain/expense/components/expense-type";
 import { sharedTextStyle } from "styles/shared/text.style";
+import { Input, Layout, Text } from "@ui-kitten/components";
 
 export function ExpensesSettings() {
   const expenseTypeSettings = useSelector((state: AppState) => state.settings.settings.expensesSettings);
@@ -14,14 +14,11 @@ export function ExpensesSettings() {
   const [postponedExpensesPercent, setPostponedExpensesPercent] = useState(expenseTypeSettings.find((exp) => exp.expenseType === ExpenseType.Postponed)?.percent);
 
   return (
-    <View>
+    <Layout>
       <Text style={sharedTextStyle.sectionTitle}>Expenses settings</Text>
-      <Text>Main</Text>
-      <TextInput placeholder="Enter main expenses percent..."/>
-      <Text>Secondary</Text>
-      <TextInput placeholder="Enter secondary expenses percent..." />
-      <Text>Postponed</Text>
-      <TextInput placeholder="Enter percent amount of money to postpone..."/>
-    </View>
+      <Input label="Main" placeholder="Enter main expenses percent..."/>
+      <Input label="Secondary" placeholder="Enter secondary expenses percent..." />
+      <Input label="Postponed" placeholder="Enter percent amount of money to postpone..."/>
+    </Layout>
   )
 }

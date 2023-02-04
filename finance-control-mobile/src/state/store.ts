@@ -9,9 +9,10 @@ import { totalBalanceReducer } from "./total-balance/reducer";
 import { transactionsReducer } from "./transactions/reducer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persistReducer, persistStore } from "redux-persist";
-import { StoreActionTypes } from "./store/actions";
+import { GlobalActionTypes } from "./global/actions";
 import { Action } from "./types";
 import AppState from "src/domain/app-state/app-state";
+import { globalAppReducer } from "./global/reducer";
 
 const appReducer = combineReducers({
   billingPeriods: billingPeriodsReducer,
@@ -19,13 +20,14 @@ const appReducer = combineReducers({
   totalBalance: totalBalanceReducer,
   transactions: transactionsReducer,
   settings: appSettingsReducer,
+  globalState: globalAppReducer
 });
 
 const rootReducer = (
   state: AppState = initialAppState,
   action: Action<any>
 ) => {
-  if (action.type === StoreActionTypes.Reset) {
+  if (action.type === GlobalActionTypes.Reset) {
     AsyncStorage.removeItem("persist:root");
     return appReducer({} as AppState, action);
   }

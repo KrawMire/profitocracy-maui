@@ -1,3 +1,3 @@
-export const isNullOrZero = (value: number): boolean => {
+export const isNullOrZero = (value: number | null): boolean => {
   return value === null || value === 0;
 }

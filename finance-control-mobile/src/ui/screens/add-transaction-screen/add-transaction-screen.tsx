@@ -1,5 +1,4 @@
 import { getNewId } from "utils/identifier";
-import { Button, Text, TextInput, TouchableWithoutFeedback, View, Keyboard } from "react-native";
 import { useDispatch } from "react-redux";
 import ExpenseType from "../../../domain/expense/components/expense-type";
 import Transaction from "src/domain/transaction/transaction";
@@ -8,8 +7,10 @@ import { addTransactionScreenStyles } from "styles/screens/add-transaction.style
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { sharedTextStyle } from "styles/shared/text.style";
+import { Button, ButtonGroup, Input, Layout, Text } from "@ui-kitten/components";
+import { Keyboard, TouchableWithoutFeedback } from "react-native";
 
-export function AddTransactionScreen(props: any) {
+export function AddTransactionScreen() {
   // Global app state
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -43,7 +44,9 @@ export function AddTransactionScreen(props: any) {
 
     dispatch(addTransaction(newTransaction));
     onClear();
-    navigation.navigate("Home" as never);
+    console.log(navigation)
+    navigation.navigate("home" as never);
+
   };
 
   const onClear = () => {
@@ -55,33 +58,33 @@ export function AddTransactionScreen(props: any) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={addTransactionScreenStyles.wrapper}>
+      <Layout style={addTransactionScreenStyles.wrapper}>
         <Text style={sharedTextStyle.screenTitle}>Add transaction</Text>
-        <View style={addTransactionScreenStyles.wrapper}>
-          <TextInput
+        <Layout style={addTransactionScreenStyles.wrapper}>
+          <Input
             placeholder="Enter amount..."
             onChangeText={changeAmount}
             value={amount.toString()}
             keyboardType="numeric"
           />
-          <View style={addTransactionScreenStyles.typeButtonGroup}>
-            <Button title="Main" onPress={() => setExpenseType(ExpenseType.Main)}/>
-            <Button title="Secondary" onPress={() => setExpenseType(ExpenseType.Secondary)}/>
-            <Button title="Postpone" onPress={() => setExpenseType(ExpenseType.Postponed)}/>
-          </View>
-          <TextInput
+          <ButtonGroup>
+            <Button onPress={() => setExpenseType(ExpenseType.Main)}>Main</Button>
+            <Button onPress={() => setExpenseType(ExpenseType.Secondary)}>Secondary</Button>
+            <Button onPress={() => setExpenseType(ExpenseType.Postponed)}>Postpone</Button>
+          </ButtonGroup>
+          <Input
             placeholder="Enter description..."
             onChangeText={setDescription}
             value={description}
           />
-          <TextInput
+          <Input
             placeholder="Select category..."
             onChangeText={setCategory}
             value={category}
           />
-        </View>
-        <Button title="Add transaction" onPress={onAddTransaction} />
-      </View>
+        </Layout>
+        <Button onPress={onAddTransaction}>Add transaction</Button>
+      </Layout>
     </TouchableWithoutFeedback>
   )
 }

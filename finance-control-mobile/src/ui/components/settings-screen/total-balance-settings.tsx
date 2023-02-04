@@ -1,5 +1,5 @@
+import { Button, Input, Layout, Text } from "@ui-kitten/components";
 import { useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import AppState from "src/domain/app-state/app-state";
@@ -25,18 +25,17 @@ export function TotalBalanceSettings() {
   }
 
   return (
-    <View>
+    <Layout>
        <Text style={sharedTextStyle.sectionTitle}>Total balance</Text>
-          <TextInput
+          <Input
             placeholder="Enter new initial total balance..."
             onChangeText={setTotalBalanceValue}
             keyboardType="numeric"
             value={totalBalanceValue?.toString()}
           />
-          <Button
-            title="Set total balance"
-            onPress={onSetTotalBalance}
-          />
-    </View>
+          <Button onPress={onSetTotalBalance}>
+            Set total balance
+          </Button>
+    </Layout>
   )
 }

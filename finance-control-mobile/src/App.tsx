@@ -9,78 +9,9 @@ import { SettingsScreen } from 'screens/settings-screen/settings-screen';
 import { AddTransactionScreen } from 'screens/add-transaction-screen/add-transaction-screen';
 import { TransactionsHisoryScreen } from 'screens/transactions-history-screen/transactions-history-screen';
 import FlashMessage from 'react-native-flash-message';
-
-// const getNavIcon = (focused: boolean, iconName: string) =>
-//   focused ? `${iconName}-sharp` : `${iconName}-outline`;
-
-// export default function App() {
-//   const appState = useSelector((state: AppState) => state);
-
-//   return (
-//     <NavigationContainer>
-//       <Tab.Navigator screenOptions={({route}) => ({
-//         headerShown: false
-//         })
-//       }>
-//         <Tab.Screen
-//           name="Home"
-//           component={HomeScreen}
-//           options={{
-//             tabBarShowLabel: false,
-//             tabBarIcon: ({focused, size}) => (
-//               <Ionicons name={getNavIcon(focused, "home")} size={size} color={"#424242"} />
-//             )
-//           }}
-//         />
-//         <Tab.Screen
-//           name="Statistics"
-//           component={StatisticsScreen}
-//           options={{
-//             tabBarShowLabel: false,
-//             tabBarIcon: ({focused, size}) => (
-//               <Ionicons name={getNavIcon(focused, "stats-chart")} size={size} color={"#d6d6d6"} />
-//             ),
-//           }}
-
-//           /* Temporary solution because feature is disabled */
-//           listeners={{
-//             tabPress: (e) => e.preventDefault()
-//           }}
-//         />
-//         <Tab.Screen
-//           name="Add transaction"
-//           component={AddTransactionScreen}
-//           options={{
-//             tabBarShowLabel: false,
-//             tabBarIcon: ({focused, size}) => (
-//               <Ionicons name="add-circle-sharp" size={size*2} color={focused ? "#4EBC7A" : "#5BE090"} />
-//             )
-//           }}
-//         />
-//         <Tab.Screen
-//           name="Settings"
-//           component={SettingsScreen}
-//           options={{
-//             tabBarShowLabel: false,
-//             tabBarIcon: ({focused, size}) => (
-//               <Ionicons name={getNavIcon(focused, "settings")} size={size} color={"#424242"} />
-//             )
-//           }}
-//         />
-//         <Tab.Screen
-//           name="Profiles"
-//           component={TransactionsHisoryScreen}
-//           options={{
-//             tabBarShowLabel: false,
-//             tabBarIcon: ({focused, size}) => (
-//               <Ionicons name={getNavIcon(focused, "cash")} size={size} color={"#424242"} />
-//             )
-//           }}
-//         />
-//       </Tab.Navigator>
-//     </NavigationContainer>
-//   );
-// }
+import { useSelector } from 'react-redux';
+import AppState from './domain/app-state/app-state';
+import { SetUpScreen } from 'screens/set-up-screen/set-up-screen';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -112,10 +43,16 @@ const AppNavigator = () => (
 )
 
 export default function App() {
+  const isAppReady = useSelector((state: AppState) => state.globalState.isSetUp);
+
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
       <FlashMessage position="top"/>
-      <AppNavigator />
+      { isAppReady ? (
+        <AppNavigator />
+      ) : (
+        <SetUpScreen />
+      )}
     </ApplicationProvider>
   )
 }

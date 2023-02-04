@@ -2,7 +2,7 @@ import { Keyboard, ScrollView, TouchableWithoutFeedback, View } from "react-nati
 import { useDispatch } from "react-redux";
 
 import { AppThemeSettings } from "../../components/settings-screen/app-theme-settings";
-import { resetStore } from "state/store/actions";
+import { resetStore } from "state/global/actions";
 import { settingsScreenStyles } from "styles/screens/settings.style";
 import { sharedTextStyle } from "styles/shared/text.style";
 import { Divider } from "components/shared/divider";

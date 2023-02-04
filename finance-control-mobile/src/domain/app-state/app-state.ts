@@ -3,11 +3,17 @@ import ExpensesState from "./components/expenses-state";
 import AppSettingsState from "./components/app-settings-state";
 import TotalBalanceState from "./components/total-balance-state";
 import TransactionsState from "./components/transaction-state";
+import GlobalState from "./components/global-state";
 
 /**
  * Represents whole app state
  */
 type AppState = {
+  /**
+   * Current state of global app parameters
+   */
+  globalState: GlobalState;
+
   /**
    * Current state of transactions
    */

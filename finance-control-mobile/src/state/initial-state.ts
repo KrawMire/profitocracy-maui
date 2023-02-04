@@ -8,6 +8,7 @@ import AppState from "src/domain/app-state/app-state";
 import ExpenseType from "../domain/expense/components/expense-type";
 import { getNewId } from "utils/identifier";
 import "react-native-get-random-values";
+import GlobalState from "src/domain/app-state/components/global-state";
 
 /**
  * Initial state of the app settings
@@ -90,11 +91,20 @@ export const transactionsInitialState: TransactionsState = {
   transactions: []
 };
 
-/** Initial state of the whole application */
+
+export const globalInitialState: GlobalState = {
+  isSetUp: false
+};
+
+
+/**
+ * Initial state of the whole application
+ */
 export const initialAppState: AppState = {
   transactions: transactionsInitialState,
   expenses: expensesInitialState,
   totalBalance: totalBalanceInitialState,
   billingPeriods: billingPeriodsInitialState,
   settings: appSettingsInitialState,
+  globalState: globalInitialState
 };
