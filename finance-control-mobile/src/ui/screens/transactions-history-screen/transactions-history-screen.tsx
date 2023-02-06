@@ -5,7 +5,7 @@ import { removeTransaction } from "state/transactions/actions";
 import { transactionsHistoryScreenStyles } from "styles/screens/transactions-history.style";
 import { Divider } from "components/shared/divider";
 import { sharedTextStyle } from "styles/shared/text.style";
-import { Button, Layout, Text } from "@ui-kitten/components";
+import { Button, Card, Layout, Text } from "@ui-kitten/components";
 import { ScrollView } from "react-native";
 
 export function TransactionsHisoryScreen() {
@@ -15,19 +15,18 @@ export function TransactionsHisoryScreen() {
   const clearTransactions = () => {
     transactions.forEach(transaction => {
       dispatch(removeTransaction(transaction.id));
-    })
+    });
   };
 
   return (
     <Layout style={transactionsHistoryScreenStyles.wrapper}>
-      <Text style={sharedTextStyle.screenTitle}>Transactions history</Text>
+      <Text category="h1">Transactions history</Text>
       <Button onPress={clearTransactions}>
         Clear all transactions
       </Button>
       <ScrollView>
         {transactions.map((transaction) => (
-          <Layout key={transaction.id}>
-            <Divider />
+          <Card key={transaction.id}>
             <Text>
               {transaction.amount}
             </Text>
@@ -40,7 +39,7 @@ export function TransactionsHisoryScreen() {
             <Text>
               {transaction.description}
             </Text>
-          </Layout>
+          </Card>
         ))}
       </ScrollView>
     </Layout>

@@ -12,20 +12,44 @@ import FlashMessage from 'react-native-flash-message';
 import { useSelector } from 'react-redux';
 import AppState from './domain/app-state/app-state';
 import { SetUpScreen } from 'screens/set-up-screen/set-up-screen';
+import ThemeSettings from './domain/app-settings/components/theme-settings';
+
+const themeRegistry = {
+  [ThemeSettings.Light]: {
+    appTheme: eva.light,
+    tabIconsColor: "#2b2b2b",
+  },
+  [ThemeSettings.Dark]: {
+    appTheme: eva.dark,
+    tabIconsColor: "#b8b8b8",
+  },
+
+  // TODO: Create system theme
+  [ThemeSettings.System]: {
+    appTheme: eva.light,
+    tabIconsColor: "",
+  }
+};
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-const BottomTabBar = ({ navigation, state }: BottomTabBarProps) => (
-  <BottomNavigation
-    selectedIndex={state.index}
-    onSelect={index => navigation.navigate(state.routeNames[index])}
-  >
-    <BottomNavigationTab icon={<Ionicons name="home-outline" size={22} />} />
-    <BottomNavigationTab icon={<Ionicons name="add-circle-outline" size={22} />} />
-    <BottomNavigationTab icon={<Ionicons name="settings-outline" size={22} />} />
-    <BottomNavigationTab icon={<Ionicons name="cash-outline" size={22} />} />
-  </BottomNavigation>
-)
+const BottomTabBar = ({ navigation, state }: BottomTabBarProps) => {
+  const themeState = useSelector((state: AppState) => state.settings.settings.themeSettings);
+
+  const iconsColor = themeRegistry[themeState].tabIconsColor;
+
+  return (
+      <BottomNavigation
+      selectedIndex={state.index}
+      onSelect={index => navigation.navigate(state.routeNames[index])}
+    >
+      <BottomNavigationTab icon={<Ionicons name="home-outline" size={22} color={iconsColor} />} />
+      <BottomNavigationTab icon={<Ionicons name="add-circle-outline" size={22} color={iconsColor} />} />
+      <BottomNavigationTab icon={<Ionicons name="settings-outline" size={22} color={iconsColor} />} />
+      <BottomNavigationTab icon={<Ionicons name="cash-outline" size={22} color={iconsColor} />} />
+    </BottomNavigation>
+  );
+}
 
 const TabNavigator = () => (
   <Navigator tabBar={(props) => <BottomTabBar {...props} />}>
@@ -43,10 +67,11 @@ const AppNavigator = () => (
 )
 
 export default function App() {
+  const themeState = useSelector((state: AppState) => state.settings.settings.themeSettings);
   const isAppReady = useSelector((state: AppState) => state.globalState.isSetUp);
 
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
+    <ApplicationProvider {...eva} theme={themeRegistry[themeState].appTheme}>
       <FlashMessage position="top"/>
       { isAppReady ? (
         <AppNavigator />

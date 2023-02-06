@@ -1,5 +1,5 @@
 import { getNewId } from "utils/identifier";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ExpenseType from "../../../domain/expense/components/expense-type";
 import Transaction from "src/domain/transaction/transaction";
 import { addTransaction } from "state/transactions/actions";
@@ -7,22 +7,24 @@ import { addTransactionScreenStyles } from "styles/screens/add-transaction.style
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { sharedTextStyle } from "styles/shared/text.style";
-import { Button, ButtonGroup, Input, Layout, Text } from "@ui-kitten/components";
+import { Button, ButtonGroup, Input, Layout, Select, SelectItem, Text } from "@ui-kitten/components";
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
+import AppState from "src/domain/app-state/app-state";
+import { isNullOrZero } from "utils/null-check";
+import { showMessage } from "react-native-flash-message";
 
 export function AddTransactionScreen() {
-  // Global app state
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  // Local state
+  const categories = useSelector((state: AppState) => state.settings.settings.expenseCategoriesSettings.categories);
+
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [expenseType, setExpenseType] = useState(ExpenseType.Main);
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(new Date(Date.now()));
 
-  // Input handlers
   const changeAmount = (value: string) => {
     const numAmount = Number(value);
 
@@ -32,7 +34,16 @@ export function AddTransactionScreen() {
   };
 
   const onAddTransaction = () => {
-    const transactionAmount = Number(amount) ?? 0;
+    const transactionAmount = Number(amount);
+
+    if (isNullOrZero(transactionAmount)) {
+      showMessage({
+        message: "Transaction amount is invalid!",
+        type: "danger"
+      })
+      return;
+    }
+
     const newTransaction: Transaction = {
       id: getNewId(),
       description,
@@ -44,7 +55,6 @@ export function AddTransactionScreen() {
 
     dispatch(addTransaction(newTransaction));
     onClear();
-    console.log(navigation)
     navigation.navigate("home" as never);
 
   };
@@ -59,7 +69,7 @@ export function AddTransactionScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Layout style={addTransactionScreenStyles.wrapper}>
-        <Text style={sharedTextStyle.screenTitle}>Add transaction</Text>
+        <Text category="h1">Add transaction</Text>
         <Layout style={addTransactionScreenStyles.wrapper}>
           <Input
             placeholder="Enter amount..."
@@ -67,21 +77,43 @@ export function AddTransactionScreen() {
             value={amount.toString()}
             keyboardType="numeric"
           />
-          <ButtonGroup>
-            <Button onPress={() => setExpenseType(ExpenseType.Main)}>Main</Button>
-            <Button onPress={() => setExpenseType(ExpenseType.Secondary)}>Secondary</Button>
-            <Button onPress={() => setExpenseType(ExpenseType.Postponed)}>Postpone</Button>
-          </ButtonGroup>
+          <Layout style={addTransactionScreenStyles.typeButtonGroup}>
+            <Button
+              onPress={() => setExpenseType(ExpenseType.Main)}
+              appearance={expenseType === ExpenseType.Main ? "outline" : "filled"}
+            >
+              Main
+            </Button>
+            <Button
+              onPress={() => setExpenseType(ExpenseType.Secondary)}
+              appearance={expenseType === ExpenseType.Secondary ? "outline" : "filled"}
+            >
+              Secondary
+            </Button>
+            <Button
+              onPress={() => setExpenseType(ExpenseType.Postponed)}
+              appearance={expenseType === ExpenseType.Postponed ? "outline" : "filled"}
+            >
+              Postpone
+            </Button>
+          </Layout>
           <Input
             placeholder="Enter description..."
             onChangeText={setDescription}
             value={description}
           />
-          <Input
-            placeholder="Select category..."
-            onChangeText={setCategory}
-            value={category}
-          />
+          <Select>
+            {categories.length ?
+              categories.map((category) => (
+                <SelectItem title={category.name} />
+              )) : (
+                <SelectItem
+                  disabled
+                  title="No categories exists"
+                />
+              )
+            }
+          </Select>
         </Layout>
         <Button onPress={onAddTransaction}>Add transaction</Button>
       </Layout>

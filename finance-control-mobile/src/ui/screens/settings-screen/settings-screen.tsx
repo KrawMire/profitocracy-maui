@@ -10,7 +10,7 @@ import { TotalBalanceSettings } from "components/settings-screen/total-balance-s
 import { BillingPeriodsSettings } from "components/settings-screen/billing-periods-settings";
 import { ExpensesSettings } from "components/settings-screen/expenses-settings";
 import { ExpensesCategoriesSettings } from "components/settings-screen/expenses-categories-settings";
-import { Button, Text } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 
 export function SettingsScreen() {
   const dispatch = useDispatch();
@@ -22,8 +22,8 @@ export function SettingsScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ScrollView>
-        <View style={settingsScreenStyles.wrapper}>
-          <Text style={sharedTextStyle.screenTitle}>Settings</Text>
+        <Layout style={settingsScreenStyles.wrapper}>
+          <Text category="h1">Settings</Text>
           <TotalBalanceSettings />
           <Divider />
           <BillingPeriodsSettings />
@@ -34,10 +34,17 @@ export function SettingsScreen() {
           <Divider />
           <ExpensesCategoriesSettings />
           <Divider />
-          <Button onPress={onResetApp}>
+          <Button
+            onPress={onResetApp}
+            status="danger"
+            style={{
+              // TODO: Temporary solution
+              marginTop: 25
+            }}
+          >
             Reset app
           </Button>
-        </View>
+        </Layout>
       </ScrollView>
     </TouchableWithoutFeedback>
   )

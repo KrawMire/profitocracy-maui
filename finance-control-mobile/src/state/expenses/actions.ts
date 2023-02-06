@@ -12,7 +12,7 @@ export type ExpensesActionsReturnTypes = Expense;
  * @param id Identifier of the expense to update
  * @param expense Payload of the expense to set
  */
-export function updateExpense(id: string, expense: Expense): Action<Expense> {
+export function updateExpense(expense: Expense): Action<Expense> {
   return {
     type: ExpensesActionsTypes.UpdateExpense,
     payload: expense
