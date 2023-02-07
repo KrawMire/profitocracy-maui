@@ -6,8 +6,7 @@ import { addTransaction } from "state/transactions/actions";
 import { addTransactionScreenStyles } from "styles/screens/add-transaction.style";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { sharedTextStyle } from "styles/shared/text.style";
-import { Button, ButtonGroup, Input, Layout, Select, SelectItem, Text } from "@ui-kitten/components";
+import { Button, Input, Layout, Select, SelectItem, Text } from "@ui-kitten/components";
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
 import AppState from "src/domain/app-state/app-state";
 import { isNullOrZero } from "utils/null-check";
@@ -35,7 +34,13 @@ export function AddTransactionScreen() {
 
   const onAddTransaction = () => {
     const transactionAmount = Number(amount);
+    processAddTransaction(transactionAmount);
 
+    onClear();
+    navigation.navigate("home" as never);
+  };
+
+  const processAddTransaction = (transactionAmount: number) => {
     if (isNullOrZero(transactionAmount)) {
       showMessage({
         message: "Transaction amount is invalid!",
@@ -54,10 +59,7 @@ export function AddTransactionScreen() {
     };
 
     dispatch(addTransaction(newTransaction));
-    onClear();
-    navigation.navigate("home" as never);
-
-  };
+  }
 
   const onClear = () => {
     setAmount("");

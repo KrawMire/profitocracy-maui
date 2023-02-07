@@ -21,8 +21,8 @@ export function SettingsScreen() {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <ScrollView>
-        <Layout style={settingsScreenStyles.wrapper}>
+      <Layout style={settingsScreenStyles.wrapper}>
+        <ScrollView>
           <Text category="h1">Settings</Text>
           <TotalBalanceSettings />
           <Divider />
@@ -44,8 +44,8 @@ export function SettingsScreen() {
           >
             Reset app
           </Button>
-        </Layout>
-      </ScrollView>
+        </ScrollView>
+      </Layout>
     </TouchableWithoutFeedback>
   )
 }

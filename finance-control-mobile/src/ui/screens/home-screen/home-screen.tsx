@@ -18,8 +18,8 @@ export function HomeScreen() {
   )
 
   return (
-    <ScrollView>
-      <Layout style={homeScreenStyles.wrapper}>
+    <Layout style={homeScreenStyles.wrapper}>
+      <ScrollView style={homeScreenStyles.scrollWrapper}>
         <Text category="h1">Home</Text>
 
         <Card
@@ -48,7 +48,7 @@ export function HomeScreen() {
             <Text>{category.plannedAmount}</Text>
           </Card>
         ))}
-      </Layout>
-    </ScrollView>
+      </ScrollView>
+    </Layout>
   )
 }
