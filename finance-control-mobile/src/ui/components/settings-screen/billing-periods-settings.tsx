@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import AppState from "src/domain/app-state/app-state";
 import { setBillingPeriod } from "state/app-settings/actions";
-import { sharedTextStyle } from "styles/shared/text.style";
 import { isNullOrZero } from "utils/null-check";
 
 export function BillingPeriodsSettings() {
@@ -36,7 +35,6 @@ export function BillingPeriodsSettings() {
 
   return (
     <Layout>
-      <Text style={sharedTextStyle.sectionTitle}>Billing periods</Text>
       {isBillingPeriodSet ? (
         <Layout>
           <Text>Start date: {startDay}</Text>

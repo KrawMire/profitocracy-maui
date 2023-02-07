@@ -2,7 +2,6 @@ import { Button, Layout, Text } from "@ui-kitten/components";
 import { useDispatch, useSelector } from "react-redux";
 import AppState from "src/domain/app-state/app-state";
 import { setTheme } from "state/app-settings/actions";
-import { sharedTextStyle } from "styles/shared/text.style";
 import ThemeSettings from "../../../domain/app-settings/components/theme-settings";
 
 export function AppThemeSettings() {
@@ -16,16 +15,16 @@ export function AppThemeSettings() {
 
   return (
     <Layout>
-      <Text style={sharedTextStyle.sectionTitle}>App Theme</Text>
       <Layout>
         <Button
           onPress={() => onChangeTheme(ThemeSettings.Light)}
-
+          appearance={currentTheme === ThemeSettings.Light ? "outline" : "filled"}
         >
           Light
         </Button>
         <Button
           onPress={() => onChangeTheme(ThemeSettings.Dark)}
+          appearance={currentTheme === ThemeSettings.Dark ? "outline" : "filled"}
         >
           Dark
         </Button>

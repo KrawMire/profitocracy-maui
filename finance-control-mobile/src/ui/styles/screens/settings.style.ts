@@ -10,4 +10,7 @@ export const settingsScreenStyles = StyleSheet.create({
   addCategoryModalBackdrop: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
+  settingsCard: {
+    marginBottom: 10,
+  }
 });

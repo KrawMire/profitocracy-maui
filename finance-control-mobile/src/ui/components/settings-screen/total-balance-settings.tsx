@@ -26,16 +26,15 @@ export function TotalBalanceSettings() {
 
   return (
     <Layout>
-       <Text style={sharedTextStyle.sectionTitle}>Total balance</Text>
-          <Input
-            placeholder="Enter new initial total balance..."
-            onChangeText={setTotalBalanceValue}
-            keyboardType="numeric"
-            value={totalBalanceValue?.toString()}
-          />
-          <Button onPress={onSetTotalBalance}>
-            Set total balance
-          </Button>
+      <Input
+        placeholder="Enter new initial total balance..."
+        onChangeText={setTotalBalanceValue}
+        keyboardType="numeric"
+        value={totalBalanceValue?.toString()}
+      />
+      <Button onPress={onSetTotalBalance}>
+        Set total balance
+      </Button>
     </Layout>
   )
 }

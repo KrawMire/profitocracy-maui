@@ -56,7 +56,6 @@ export function ExpensesCategoriesSettings() {
   const isCategoriesExists = categories && categories.length > 0;
   return (
     <Layout>
-      <Text style={sharedTextStyle.sectionTitle}>Expenses categories</Text>
       {isCategoriesExists ? categories.map((category) => (
         <Card key={category.id}>
           <Text>{category.name}</Text>
