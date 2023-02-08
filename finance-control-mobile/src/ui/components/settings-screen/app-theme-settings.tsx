@@ -15,21 +15,19 @@ export function AppThemeSettings() {
 
   return (
     <Layout>
-      <Layout>
-        <Button
-          onPress={() => onChangeTheme(ThemeSettings.Light)}
-          appearance={currentTheme === ThemeSettings.Light ? "outline" : "filled"}
-        >
-          Light
-        </Button>
-        <Button
-          onPress={() => onChangeTheme(ThemeSettings.Dark)}
-          appearance={currentTheme === ThemeSettings.Dark ? "outline" : "filled"}
-        >
-          Dark
-        </Button>
-        <Button disabled>System</Button>
-      </Layout>
+      <Button
+        onPress={() => onChangeTheme(ThemeSettings.Light)}
+        appearance={currentTheme === ThemeSettings.Light ? "outline" : "filled"}
+      >
+        Light
+      </Button>
+      <Button
+        onPress={() => onChangeTheme(ThemeSettings.Dark)}
+        appearance={currentTheme === ThemeSettings.Dark ? "outline" : "filled"}
+      >
+        Dark
+      </Button>
+      <Button disabled>System</Button>
     </Layout>
   )
 }

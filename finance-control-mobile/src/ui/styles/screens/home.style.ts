@@ -13,5 +13,15 @@ export const homeScreenStyles = StyleSheet.create({
   amountWrapper: {
     flexDirection: "row",
     justifyContent: "space-around"
+  },
+  infoCard: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  categoriesWrapper: {
+  },
+  categoriesLineWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-around"
   }
 });

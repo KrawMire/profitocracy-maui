@@ -96,7 +96,6 @@ export const globalInitialState: GlobalState = {
   isSetUp: false
 };
 
-
 /**
  * Initial state of the whole application
  */

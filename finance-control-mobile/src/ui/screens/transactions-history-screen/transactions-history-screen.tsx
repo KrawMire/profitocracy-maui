@@ -19,7 +19,10 @@ export function TransactionsHisoryScreen() {
   };
 
   return (
-    <Layout style={transactionsHistoryScreenStyles.wrapper}>
+    <Layout
+      style={transactionsHistoryScreenStyles.wrapper}
+      level="4"
+    >
       <Text category="h1">Transactions history</Text>
       <Button onPress={clearTransactions}>
         Clear all transactions

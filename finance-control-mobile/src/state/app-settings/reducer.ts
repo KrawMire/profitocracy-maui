@@ -28,9 +28,17 @@ export function appSettingsReducer(
       return newState;
 
     case AppSettingsActionsTypes.AddExpenseCategory:
-      newState.settings.expenseCategoriesSettings.categories
-        .push(<ExpenseCategory>action.payload);
-      return newState;
+      return {
+        settings: {
+          ...state.settings,
+          expenseCategoriesSettings: {
+            categories: [
+              ...state.settings.expenseCategoriesSettings.categories,
+              <ExpenseCategory>action.payload
+            ]
+          }
+        }
+      };
 
     case AppSettingsActionsTypes.RemoveExpenseCategory:
       const newCategories = newState.settings.expenseCategoriesSettings.categories

@@ -25,12 +25,15 @@ export function SettingsScreen() {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Layout style={settingsScreenStyles.wrapper}>
+      <Layout
+        style={settingsScreenStyles.wrapper}
+        level="4"
+      >
         <ScrollView>
           <Text category="h1">Settings</Text>
           <Card
             header={renderHeader("Total balance")}
-            style={settingsScreenStyles.settingsCard}
+            style={settingsScreenStyles.totalBalanceSettingsCard}
           >
             <TotalBalanceSettings />
           </Card>

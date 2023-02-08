@@ -12,5 +12,9 @@ export const settingsScreenStyles = StyleSheet.create({
   },
   settingsCard: {
     marginBottom: 10,
+  },
+  totalBalanceSettingsCard: {
+    marginTop: 20,
+    marginBottom: 10,
   }
 });
