@@ -23,5 +23,12 @@ export const homeScreenStyles = StyleSheet.create({
   categoriesLineWrapper: {
     flexDirection: "row",
     justifyContent: "space-around"
+  },
+  dailyCashWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  dailyCashCard: {
+    width: "45%"
   }
 });
