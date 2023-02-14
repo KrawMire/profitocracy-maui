@@ -3,14 +3,15 @@ import AppState from "src/domain/app-state/app-state";
 import { removeTransaction } from "state/transactions/actions";
 
 import { transactionsHistoryScreenStyles } from "styles/screens/transactions-history.style";
-import { Divider } from "components/shared/divider";
-import { sharedTextStyle } from "styles/shared/text.style";
 import { Button, Card, Layout, Text } from "@ui-kitten/components";
 import { ScrollView } from "react-native";
+import { getCategoryName } from "./actions/expense-category";
 
 export function TransactionsHisoryScreen() {
-  const transactions = useSelector((state: AppState) => state.transactions.transactions);
   const dispatch = useDispatch();
+
+  const transactions = useSelector((state: AppState) => state.transactions.transactions);
+  const categories = useSelector((state: AppState) => state.settings.settings.expenseCategoriesSettings.categories);
 
   const clearTransactions = () => {
     transactions.forEach(transaction => {
@@ -37,7 +38,7 @@ export function TransactionsHisoryScreen() {
               {transaction.type}
             </Text>
             <Text>
-              {transaction.category}
+              {getCategoryName(transaction.category, categories)}
             </Text>
             <Text>
               {transaction.description}

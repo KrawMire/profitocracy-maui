@@ -35,25 +35,34 @@ export function AddTransactionScreen() {
 
   const onAddTransaction = () => {
     const transactionAmount = Number(amount);
-    processAddTransaction(transactionAmount);
+    const isValidated = validateTransaction(transactionAmount);
 
+    if (!isValidated) {
+      return;
+    }
+
+    processAddTransaction(transactionAmount);
     onClear();
     navigation.navigate("home" as never);
   };
 
-  const processAddTransaction = (transactionAmount: number) => {
+  const validateTransaction = (transactionAmount: number): boolean => {
     if (isNullOrZero(transactionAmount)) {
       showMessage({
         message: "Transaction amount is invalid!",
         type: "danger"
       })
-      return;
+      return false;
     }
 
+    return true;
+  }
+
+  const processAddTransaction = (transactionAmount: number) => {
     const newTransaction: Transaction = {
       id: getNewId(),
       description,
-      category: expenseCategory!.name,
+      category: expenseCategory ? expenseCategory.id : "",
       date,
       amount: transactionAmount,
       type: expenseType,
@@ -107,7 +116,10 @@ export function AddTransactionScreen() {
           onChangeText={setDescription}
           value={description}
         />
-        <Select value={expenseCategory?.name}>
+        <Select
+          value={expenseCategory?.name}
+          placeholder="Select category..."
+        >
           {categories.length ?
             categories.map((category) => (
               <SelectItem

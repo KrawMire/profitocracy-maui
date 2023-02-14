@@ -5,26 +5,25 @@ import AppState from 'src/domain/app-state/app-state';
 import ExpenseCategory from "src/domain/expense-category/expense-category";
 import { homeScreenStyles } from "styles/screens/home.style";
 import { convertArrayToTwoDimensional } from "utils/array-converter";
+import { converCategories, getTrackingCategories } from "./actions/expense-categories";
+import { calculateActualBalance } from "./actions/balance";
+import { calculateExpenseType } from "./actions/expense-type";
 
 export function HomeScreen() {
   const initialTotalBalance = useSelector((state: AppState) => state.totalBalance.initialBalance) ?? 0;
-  const actualTotalBalance = useSelector((state: AppState) => state.totalBalance.actualBalance);
   const expenses = useSelector((state: AppState) => state.expenses.expenses);
   const expenseCategories = useSelector((state: AppState) => state.settings.settings.expenseCategoriesSettings.categories);
+  const transactions = useSelector((state: AppState) => state.transactions.transactions);
   const startBillingPeriodDay = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateFrom);
   const endBillingPeriodDay = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateTo);
 
   const currentDay = new Date(Date.now()).getDate();
+  const trackingCategories = getTrackingCategories(expenseCategories);
 
-  const trackingCategories = expenseCategories.filter((category) => category.trackExpenses);
-  let expenseCategoriesParsed: ExpenseCategory[][] = [];
-
-  if (expenseCategories.length > 0) {
-    expenseCategoriesParsed = convertArrayToTwoDimensional<ExpenseCategory>(trackingCategories);
-  }
-
+  const actualBalance = calculateActualBalance(initialTotalBalance, transactions);
+  const parsedCategories = converCategories(trackingCategories);
   const initialDailyAmount = initialTotalBalance / (endBillingPeriodDay - startBillingPeriodDay);
-  const actualDailyAmount = actualTotalBalance / (endBillingPeriodDay - currentDay);
+  const actualDailyAmount = actualBalance / (endBillingPeriodDay - currentDay);
 
   const renderHeader = (header: string) => (
     <Layout>
@@ -46,7 +45,7 @@ export function HomeScreen() {
           style={homeScreenStyles.infoCard}
         >
           <Text>Initial total balance is: {initialTotalBalance ?? 0}</Text>
-          <Text>Actual total balance is: {actualTotalBalance ?? 0}</Text>
+          <Text>Actual total balance is: {actualBalance ?? 0}</Text>
         </Card>
 
         <Text category="h4">
@@ -86,7 +85,7 @@ export function HomeScreen() {
             style={homeScreenStyles.infoCard}
             status="info"
           >
-            <Text>{expense.actualAmount}</Text>
+            <Text>{calculateExpenseType(expense.expenseType, transactions)}</Text>
             <Text>{expense.plannedAmount}</Text>
           </Card>
         ))}
@@ -99,7 +98,7 @@ export function HomeScreen() {
           level="4"
           style={homeScreenStyles.categoriesWrapper}
         >
-          {expenseCategoriesParsed.map((expenseLine) => (
+          {parsedCategories.map((expenseLine) => (
             <Layout
               style={homeScreenStyles.categoriesLineWrapper}
               level="4"

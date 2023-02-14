@@ -33,9 +33,9 @@ export function TotalBalanceStep(props: TotalBalanceStepProps) {
     const secondaryExpenseSum = balance * secondaryExpenseSettings!.percent / 100;
     const postponedSum = balance * postponedExpenseSettings!.percent / 100;
 
-    mainExpense!.actualAmount = mainExpenseSum;
-    secondaryExpense!.actualAmount = secondaryExpenseSum;
-    postponed!.actualAmount = postponedSum;
+    mainExpense!.plannedAmount = mainExpenseSum;
+    secondaryExpense!.plannedAmount = secondaryExpenseSum;
+    postponed!.plannedAmount = postponedSum;
 
     dispatch(setInitialBalance(balance));
     dispatch(updateExpense(mainExpense!));

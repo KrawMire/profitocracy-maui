@@ -1,5 +1,6 @@
 import { Button, Input, Layout, Text } from "@ui-kitten/components";
 import { useState } from "react";
+import { showMessage } from "react-native-flash-message";
 import { useDispatch, useSelector } from "react-redux";
 
 import AppState from "src/domain/app-state/app-state";
@@ -16,9 +17,12 @@ export function TotalBalanceSettings() {
     const newTotalBalance = Number(totalBalanceValue);
 
     if (!newTotalBalance) {
-      // TODO: Show some alert message
-      console.log("New total balance value is invalid!");
-      return
+      showMessage({
+        type: "danger",
+        message: "New total balance value is invalid!"
+      });
+
+      return;
     }
 
     dispatch(setInitialBalance(newTotalBalance));
