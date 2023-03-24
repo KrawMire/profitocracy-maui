@@ -5,15 +5,17 @@ export function convertArrayToTwoDimensional<T>(array: T[]): T[][] {
     return [];
   }
 
-  for (let i = 0; i < array.length / 2; i++) {
+  for (let i = 0; i < Math.ceil(array.length / 2); i++) {
     result.push([]);
 
-    for (let j = 0; j <= 1; j++) {
-      if (!array[i + j + 1]) {
+    for (let j = 0; j < 2; j++) {
+      const index = i > 0 ? i*2 + j : i + j ;
+
+      if (!array[index]) {
         break;
       }
 
-      result[i].push(array[i*2 + j] as T);
+      result[i].push(array[index] as T);
     }
   }
 
