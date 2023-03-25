@@ -49,12 +49,12 @@ export function SettingsScreen() {
           >
             <AppThemeSettings />
           </Card>
-          <Card
+          {/* <Card
             header={renderHeader("Expense settings")}
             style={settingsScreenStyles.settingsCard}
           >
             <ExpensesSettings />
-          </Card>
+          </Card> */}
           <Card
             header={renderHeader("Expense categories")}
             style={settingsScreenStyles.settingsCard}

@@ -1,33 +1,34 @@
 import { Card, Layout, Text } from "@ui-kitten/components";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useSelector } from 'react-redux';
 import AppState from 'src/domain/app-state/app-state';
 import { homeScreenStyles } from "styles/screens/home.style";
 import { converCategories, getTrackingCategories } from "./actions/expense-categories";
-import { calculateActualBalance } from "./actions/balance";
+import { calculateActualBalance, calculateDailyCash } from "./actions/balance";
 import { calculateExpenseType } from "./actions/expense-type";
 
 export function HomeScreen() {
   const initialTotalBalance = useSelector((state: AppState) => state.totalBalance.initialBalance) ?? 0;
+  const transactions = useSelector((state: AppState) => state.transactions.transactions);
+
   const expenses = useSelector((state: AppState) => state.expenses.expenses);
   const expenseCategories = useSelector((state: AppState) => state.settings.settings.expenseCategoriesSettings.categories);
-  const transactions = useSelector((state: AppState) => state.transactions.transactions);
+
   const startBillingPeriodDay = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateFrom);
   const endBillingPeriodDay = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateTo);
 
-  const currentDay = new Date(Date.now()).getDate();
   const trackingCategories = getTrackingCategories(expenseCategories);
-
   const actualBalance = calculateActualBalance(initialTotalBalance, transactions);
   const parsedCategories = converCategories(trackingCategories);
+
   const initialDailyAmount = initialTotalBalance / (endBillingPeriodDay - startBillingPeriodDay);
-  const actualDailyAmount = actualBalance / (endBillingPeriodDay - currentDay);
+  const actualDailyAmount = calculateDailyCash(actualBalance, startBillingPeriodDay, endBillingPeriodDay);
 
   const renderHeader = (header: string) => (
     <Layout>
       <Text category="h6">{header}</Text>
     </Layout>
-  )
+  );
 
   return (
     <Layout
@@ -40,10 +41,10 @@ export function HomeScreen() {
         <Card
           header={renderHeader("Total balance")}
           status="success"
-          style={homeScreenStyles.infoCard}
+          style={homeScreenStyles.balanceCard}
         >
-          <Text>Initial total balance is: {initialTotalBalance ?? 0}</Text>
-          <Text>Actual total balance is: {actualBalance ?? 0}</Text>
+          <Text>Initial balance: {initialTotalBalance ?? 0}</Text>
+          <Text>Actual balance: {actualBalance ?? 0}</Text>
         </Card>
 
         <Text category="h4">
@@ -54,7 +55,7 @@ export function HomeScreen() {
           level="4"
         >
           <Card
-            header={renderHeader("Initial")}
+            header={renderHeader("From initial")}
             status="success"
             style={homeScreenStyles.dailyCashCard}
           >
@@ -63,7 +64,7 @@ export function HomeScreen() {
             </Text>
           </Card>
           <Card
-            header={renderHeader("Actual")}
+            header={renderHeader("From actual")}
             status="success"
             style={homeScreenStyles.dailyCashCard}
           >
@@ -76,17 +77,19 @@ export function HomeScreen() {
         <Text category="h4">
           Expense types
         </Text>
-        {expenses.map((expense) => (
-          <Card
-            key={expense.expenseType}
-            header={renderHeader(expense.name)}
-            style={homeScreenStyles.infoCard}
-            status="info"
-          >
-            <Text>{calculateExpenseType(expense.expenseType, transactions)}</Text>
-            <Text>{expense.plannedAmount}</Text>
-          </Card>
-        ))}
+        <ScrollView horizontal>
+          {expenses.map((expense) => (
+            <Card
+              key={expense.expenseType}
+              header={renderHeader(expense.name)}
+              style={homeScreenStyles.infoCard}
+              status="info"
+            >
+              <Text>{calculateExpenseType(expense.expenseType, transactions)}</Text>
+              <Text>{expense.plannedAmount}</Text>
+            </Card>
+          ))}
+        </ScrollView>
 
 
         <Text category="h4">
@@ -105,7 +108,7 @@ export function HomeScreen() {
                 <Card
                   key={category.id}
                   header={renderHeader(category.name)}
-                  style={homeScreenStyles.infoCard}
+                  style={homeScreenStyles.categoryCard}
                   status="danger"
                 >
                   <Text>{category.plannedAmount}</Text>
