@@ -4,6 +4,7 @@ import AppSettingsState from "./components/app-settings-state";
 import TotalBalanceState from "./components/total-balance-state";
 import TransactionsState from "./components/transaction-state";
 import GlobalState from "./components/global-state";
+import CurrencyState from "./components/currency-state";
 
 /**
  * Represents whole app state
@@ -38,6 +39,11 @@ type AppState = {
    * Current state of billing periods
    */
   billingPeriods: BillingPeriodsState;
+
+  /**
+   * Current state of currencies
+   */
+  currencies: CurrencyState;
 }
 
 export default AppState;

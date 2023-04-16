@@ -6,6 +6,7 @@ import { WelcomeStep } from "components/set-up-screen/welcome-step";
 import { useState } from "react";
 import StepIndicator from "react-native-step-indicator";
 import { setUpScreenStyles } from "styles/screens/set-up.style";
+import {CurrencyStep} from "components/set-up-screen/currency-step";
 
 const renderCurrentStep = (
   stepIndex: number,
@@ -16,10 +17,12 @@ const renderCurrentStep = (
     case 0:
       return (<WelcomeStep onMoveNext={moveNext} />);
     case 1:
-      return (<TotalBalanceStep onMoveBack={moveBack} onMoveNext={moveNext}/>)
+      return (<CurrencyStep onMoveBack={moveBack} onMoveNext={moveNext}/>)
     case 2:
-      return (<BillingPeriodsStep onMoveBack={moveBack} onMoveNext={moveNext}/>)
+      return (<TotalBalanceStep onMoveBack={moveBack} onMoveNext={moveNext}/>)
     case 3:
+      return (<BillingPeriodsStep onMoveBack={moveBack} onMoveNext={moveNext}/>)
+    case 4:
       return (<FinishStep onMoveBack={moveBack}/>)
     default:
       return (<Layout></Layout>);
@@ -31,6 +34,7 @@ export function SetUpScreen() {
 
   const stepsLabels = [
     "Welcome",
+    "Set currency",
     "Set total balance",
     "Set billing periods",
     "Finish"
@@ -48,7 +52,7 @@ export function SetUpScreen() {
     <Layout style={setUpScreenStyles.wrapper}>
       <StepIndicator
         labels={stepsLabels}
-        stepCount={4}
+        stepCount={5}
         currentPosition={currentStep}
       />
       {renderCurrentStep(currentStep, onMoveNextStep, onMovePreviousStep)}

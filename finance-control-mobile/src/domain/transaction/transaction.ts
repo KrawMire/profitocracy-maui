@@ -30,6 +30,11 @@ type Transaction = {
   category: string;
 
   /**
+   * Transaction currency code
+   */
+  currencyCode: string;
+
+  /**
    * Date of the creating of transaction
    */
   date: Date;

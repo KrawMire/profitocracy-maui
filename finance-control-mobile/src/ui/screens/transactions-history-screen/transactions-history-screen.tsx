@@ -6,10 +6,16 @@ import { transactionsHistoryScreenStyles } from "styles/screens/transactions-his
 import { Button, Card, Layout, Text } from "@ui-kitten/components";
 import { ScrollView } from "react-native";
 import { getCategoryName } from "./actions/expense-category";
+import {
+  convertToBaseCurrency,
+  getCurrencySymbolByCode
+} from "screens/transactions-history-screen/actions/currency-operations";
 
-export function TransactionsHisoryScreen() {
+export function TransactionsHistoryScreen() {
   const dispatch = useDispatch();
 
+  const currencyRates = useSelector((state: AppState) => state.currencies.availableCurrencies);
+  const mainCurrency = useSelector((state: AppState) => state.currencies.baseCurrency);
   const transactions = useSelector((state: AppState) => state.transactions.transactions);
   const categories = useSelector((state: AppState) => state.settings.settings.expenseCategoriesSettings.categories);
 
@@ -32,7 +38,10 @@ export function TransactionsHisoryScreen() {
         {transactions.map((transaction) => (
           <Card key={transaction.id}>
             <Text>
-              {transaction.amount}
+              {transaction.amount}{getCurrencySymbolByCode(transaction.currencyCode, currencyRates)}
+            </Text>
+            <Text>
+              {convertToBaseCurrency(transaction, currencyRates)}{mainCurrency.symbol}
             </Text>
             <Text>
               {transaction.type}

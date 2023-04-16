@@ -18,12 +18,16 @@ export function AddTransactionScreen() {
   const navigation = useNavigation();
 
   const categories = useSelector((state: AppState) => state.settings.settings.expenseCategoriesSettings.categories);
+  const mainCurrency = useSelector((state: AppState) => state.currencies.baseCurrency);
+  const currencies = useSelector((state: AppState) => state.currencies.availableCurrencies);
 
+  const [currency, setCurrency] = useState(mainCurrency);
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [expenseType, setExpenseType] = useState(ExpenseType.Main);
   const [expenseCategory, setCategory] = useState<ExpenseCategory | null>(null);
-  const [date, setDate] = useState(new Date(Date.now()));
+
+  const date = new Date(Date.now());
 
   const changeAmount = (value: string) => {
     const numAmount = Number(value);
@@ -64,11 +68,16 @@ export function AddTransactionScreen() {
       description,
       category: expenseCategory ? expenseCategory.id : "",
       date,
+      currencyCode: currency.code,
       amount: transactionAmount,
       type: expenseType,
     };
 
     dispatch(addTransaction(newTransaction));
+  }
+
+  const onClearCategory = () => {
+    setCategory(null);
   }
 
   const onClear = () => {
@@ -85,57 +94,100 @@ export function AddTransactionScreen() {
         level="4"
       >
         <Text category="h1">Add transaction</Text>
-        <Input
-          placeholder="Enter amount..."
-          onChangeText={changeAmount}
-          value={amount.toString()}
-          keyboardType="numeric"
-        />
-        <Layout style={addTransactionScreenStyles.typeButtonGroup}>
-          <Button
-            onPress={() => setExpenseType(ExpenseType.Main)}
-            appearance={expenseType === ExpenseType.Main ? "outline" : "filled"}
+        <Layout
+          style={addTransactionScreenStyles.transactionFormWrapper}
+          level="4"
+        >
+          <Layout
+            style={addTransactionScreenStyles.amountWrapper}
+            level="4"
           >
-            Main
-          </Button>
-          <Button
-            onPress={() => setExpenseType(ExpenseType.Secondary)}
-            appearance={expenseType === ExpenseType.Secondary ? "outline" : "filled"}
+            <Input
+              placeholder="Enter amount..."
+              onChangeText={changeAmount}
+              value={amount.toString()}
+              keyboardType="numeric"
+              style={addTransactionScreenStyles.amountInput}
+            />
+            <Select
+              style={addTransactionScreenStyles.currencySelect}
+              value={currency.symbol}
+            >
+              {currencies.map((availableCurrency) => (
+                <SelectItem
+                  title={availableCurrency.currency.name}
+                  onPress={() => setCurrency(availableCurrency.currency)}
+                />
+              ))}
+            </Select>
+          </Layout>
+          <Layout
+            style={addTransactionScreenStyles.typeButtonGroup}
+            level="4"
           >
-            Secondary
-          </Button>
-          <Button
-            onPress={() => setExpenseType(ExpenseType.Postponed)}
-            appearance={expenseType === ExpenseType.Postponed ? "outline" : "filled"}
+            <Button
+              onPress={() => setExpenseType(ExpenseType.Main)}
+              appearance={expenseType === ExpenseType.Main ? "outline" : "filled"}
+            >
+              Main
+            </Button>
+            <Button
+              onPress={() => setExpenseType(ExpenseType.Secondary)}
+              appearance={expenseType === ExpenseType.Secondary ? "outline" : "filled"}
+            >
+              Secondary
+            </Button>
+            <Button
+              onPress={() => setExpenseType(ExpenseType.Postponed)}
+              appearance={expenseType === ExpenseType.Postponed ? "outline" : "filled"}
+            >
+              Postpone
+            </Button>
+          </Layout>
+          <Input
+            placeholder="Enter description..."
+            onChangeText={setDescription}
+            value={description}
+            style={addTransactionScreenStyles.descriptionInput}
+          />
+          <Layout
+            level="4"
+            style={addTransactionScreenStyles.categorySelectWrapper}
           >
-            Postpone
+            <Select
+              value={expenseCategory?.name}
+              placeholder="Select category..."
+              style={addTransactionScreenStyles.categorySelect}
+            >
+              {categories.length ?
+                categories.map((category) => (
+                  <SelectItem
+                    key={category.id}
+                    title={category.name}
+                    onPress={() => setCategory(category)}
+                  />
+                )) : (
+                  <SelectItem
+                    disabled
+                    title="No categories exists"
+                  />
+                )
+              }
+            </Select>
+            <Button
+              style={addTransactionScreenStyles.clearCategorySelectButton}
+              onPress={onClearCategory}
+            >
+              Clear
+            </Button>
+          </Layout>
+          <Button
+            onPress={onAddTransaction}
+            style={addTransactionScreenStyles.addButton}
+          >
+            Add transaction
           </Button>
         </Layout>
-        <Input
-          placeholder="Enter description..."
-          onChangeText={setDescription}
-          value={description}
-        />
-        <Select
-          value={expenseCategory?.name}
-          placeholder="Select category..."
-        >
-          {categories.length ?
-            categories.map((category) => (
-              <SelectItem
-                key={category.id}
-                title={category.name}
-                onPress={() => setCategory(category)}
-              />
-            )) : (
-              <SelectItem
-                disabled
-                title="No categories exists"
-              />
-            )
-          }
-        </Select>
-        <Button onPress={onAddTransaction}>Add transaction</Button>
       </Layout>
     </TouchableWithoutFeedback>
   )

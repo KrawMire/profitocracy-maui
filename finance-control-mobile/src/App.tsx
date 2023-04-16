@@ -7,7 +7,7 @@ import { HomeScreen } from 'screens/home-screen/home-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { SettingsScreen } from 'screens/settings-screen/settings-screen';
 import { AddTransactionScreen } from 'screens/add-transaction-screen/add-transaction-screen';
-import { TransactionsHisoryScreen } from 'screens/transactions-history-screen/transactions-history-screen';
+import { TransactionsHistoryScreen } from 'screens/transactions-history-screen/transactions-history-screen';
 import FlashMessage from 'react-native-flash-message';
 import { useSelector } from 'react-redux';
 import AppState from './domain/app-state/app-state';
@@ -56,7 +56,7 @@ const TabNavigator = () => (
     <Screen name="home" component={HomeScreen} options={{headerShown: false}}/>
     <Screen name="add-transaction" component={AddTransactionScreen} options={{headerShown: false}}/>
     <Screen name="settings" component={SettingsScreen} options={{headerShown: false}}/>
-    <Screen name="transactions-history" component={TransactionsHisoryScreen} options={{headerShown: false}}/>
+    <Screen name="transactions-history" component={TransactionsHistoryScreen} options={{headerShown: false}}/>
   </Navigator>
 )
 

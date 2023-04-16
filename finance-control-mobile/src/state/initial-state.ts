@@ -1,14 +1,14 @@
+import "react-native-get-random-values";
+import { BillingPeriodsState } from "src/domain/app-state/components/billing-periods-state";
 import AppSettingsState from "src/domain/app-state/components/app-settings-state";
 import ExpensesState from "src/domain/app-state/components/expenses-state";
 import TotalBalanceState from "src/domain/app-state/components/total-balance-state";
 import TransactionsState from "src/domain/app-state/components/transaction-state";
 import ThemeSettings from "../domain/app-settings/components/theme-settings";
-import { BillingPeriodsState } from "src/domain/app-state/components/billing-periods-state";
 import AppState from "src/domain/app-state/app-state";
 import ExpenseType from "../domain/expense/components/expense-type";
-import { getNewId } from "utils/identifier";
-import "react-native-get-random-values";
 import GlobalState from "src/domain/app-state/components/global-state";
+import CurrencyState from "../domain/app-state/components/currency-state";
 
 /**
  * Initial state of the app settings
@@ -81,7 +81,6 @@ export const expensesInitialState: ExpensesState = {
  */
 export const totalBalanceInitialState: TotalBalanceState = {
   initialBalance: 0,
-  actualBalance: 0
 };
 
 /**
@@ -91,7 +90,54 @@ export const transactionsInitialState: TransactionsState = {
   transactions: []
 };
 
+/**
+ * Initial state of the app currencies state
+ */
+export const currencyInitialState: CurrencyState = {
+  baseCurrency: {
+    name: "US Dollar",
+    code: "USD",
+    symbol: "$"
+  },
+  availableCurrencies: [
+    {
+      currency: {
+        name: "US Dollar",
+        code: "USD",
+        symbol: "$"
+      },
+      rate: 0,
+    },
+    {
+      currency: {
+        name: "Russian Ruble",
+        code: "RUB",
+        symbol: "₽",
+      },
+      rate: 81.55,
+    },
+    {
+      currency: {
+        name: "Euro",
+        code: "EUR",
+        symbol: "€",
+      },
+      rate: 0.9,
+    },
+    {
+      currency: {
+        name: "Armenian dram",
+        code: "AMD",
+        symbol: "֏",
+      },
+      rate: 390.97,
+    }
+  ],
+};
 
+/**
+ * Initial state of the global variables
+ */
 export const globalInitialState: GlobalState = {
   isSetUp: false
 };
@@ -105,5 +151,6 @@ export const initialAppState: AppState = {
   totalBalance: totalBalanceInitialState,
   billingPeriods: billingPeriodsInitialState,
   settings: appSettingsInitialState,
+  currencies: currencyInitialState,
   globalState: globalInitialState
 };

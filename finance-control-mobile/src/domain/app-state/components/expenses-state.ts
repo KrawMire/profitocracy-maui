@@ -1,7 +1,7 @@
 import Expense from "src/domain/expense/expense";
 
 /**
- * Represents state of the existing expnses
+ * Represents state of the existing expenses
  */
 type ExpensesState = {
   /**

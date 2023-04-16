@@ -13,6 +13,7 @@ import { GlobalActionTypes } from "./global/actions";
 import { Action } from "./types";
 import AppState from "src/domain/app-state/app-state";
 import { globalAppReducer } from "./global/reducer";
+import { currencyReducer } from "state/currency/reducer";
 
 const appReducer = combineReducers({
   billingPeriods: billingPeriodsReducer,
@@ -20,13 +21,14 @@ const appReducer = combineReducers({
   totalBalance: totalBalanceReducer,
   transactions: transactionsReducer,
   settings: appSettingsReducer,
-  globalState: globalAppReducer
+  globalState: globalAppReducer,
+  currencies: currencyReducer,
 });
 
 const rootReducer = (
   state: AppState = initialAppState,
   action: Action<any>
-) => {
+): AppState => {
   if (action.type === GlobalActionTypes.Reset) {
     AsyncStorage.removeItem("persist:root");
     return appReducer({} as AppState, action);
@@ -48,4 +50,4 @@ export const store = configureStore({
   middleware: [thunk],
 });
 
-export const persistedtStore = persistStore(store);
+export const persistedStore = persistStore(store);

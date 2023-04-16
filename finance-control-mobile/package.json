@@ -7,6 +7,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",
+    "ios-device:release": "npx react-native run-ios --configuration Release --device",
     "web": "expo start -web"
   },
   "dependencies": {

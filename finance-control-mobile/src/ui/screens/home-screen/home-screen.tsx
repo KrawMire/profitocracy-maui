@@ -1,9 +1,9 @@
 import { Card, Layout, Text } from "@ui-kitten/components";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { useSelector } from 'react-redux';
 import AppState from 'src/domain/app-state/app-state';
 import { homeScreenStyles } from "styles/screens/home.style";
-import { converCategories, getTrackingCategories } from "./actions/expense-categories";
+import { convertCategories, getTrackingCategories } from "./actions/expense-categories";
 import { calculateActualBalance, calculateDailyCash } from "./actions/balance";
 import { calculateExpenseType } from "./actions/expense-type";
 
@@ -17,9 +17,12 @@ export function HomeScreen() {
   const startBillingPeriodDay = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateFrom);
   const endBillingPeriodDay = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateTo);
 
+  const baseCurrency = useSelector((state: AppState) => state.currencies.baseCurrency);
+  const availableCurrencies = useSelector((state: AppState) => state.currencies.availableCurrencies);
+
   const trackingCategories = getTrackingCategories(expenseCategories);
   const actualBalance = calculateActualBalance(initialTotalBalance, transactions);
-  const parsedCategories = converCategories(trackingCategories);
+  const parsedCategories = convertCategories(trackingCategories);
 
   const initialDailyAmount = initialTotalBalance / (endBillingPeriodDay - startBillingPeriodDay);
   const actualDailyAmount = calculateDailyCash(actualBalance, startBillingPeriodDay, endBillingPeriodDay);
@@ -43,8 +46,8 @@ export function HomeScreen() {
           status="success"
           style={homeScreenStyles.balanceCard}
         >
-          <Text>Initial balance: {initialTotalBalance ?? 0}</Text>
-          <Text>Actual balance: {actualBalance ?? 0}</Text>
+          <Text>Initial balance: {initialTotalBalance ?? 0}{baseCurrency.symbol}</Text>
+          <Text>Actual balance: {actualBalance ?? 0}{baseCurrency.symbol}</Text>
         </Card>
 
         <Text category="h4">
@@ -60,7 +63,7 @@ export function HomeScreen() {
             style={homeScreenStyles.dailyCashCard}
           >
             <Text>
-              {initialDailyAmount}
+              {initialDailyAmount}{baseCurrency.symbol}
             </Text>
           </Card>
           <Card
@@ -69,7 +72,7 @@ export function HomeScreen() {
             style={homeScreenStyles.dailyCashCard}
           >
             <Text>
-              {actualDailyAmount}
+              {actualDailyAmount}{baseCurrency.symbol}
             </Text>
           </Card>
         </Layout>
@@ -85,8 +88,8 @@ export function HomeScreen() {
               style={homeScreenStyles.infoCard}
               status="info"
             >
-              <Text>{calculateExpenseType(expense.expenseType, transactions)}</Text>
-              <Text>{expense.plannedAmount}</Text>
+              <Text>{calculateExpenseType(expense.expenseType, transactions)}{baseCurrency.symbol}</Text>
+              <Text>{expense.plannedAmount}{baseCurrency.symbol}</Text>
             </Card>
           ))}
         </ScrollView>

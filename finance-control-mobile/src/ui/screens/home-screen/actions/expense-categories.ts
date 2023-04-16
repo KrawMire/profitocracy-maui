@@ -1,7 +1,7 @@
 import ExpenseCategory from "src/domain/expense-category/expense-category";
 import { convertArrayToTwoDimensional } from "utils/array-converter";
 
-export function converCategories(categories: ExpenseCategory[]) {
+export function convertCategories(categories: ExpenseCategory[]) {
   let parsedCategories: ExpenseCategory[][] = [];
 
   if (categories.length > 0) {
