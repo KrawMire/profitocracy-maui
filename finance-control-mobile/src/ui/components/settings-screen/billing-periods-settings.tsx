@@ -26,12 +26,12 @@ export function BillingPeriodsSettings() {
         message: "Billing period dates are invalid!",
         position: "top",
         type: "danger"
-      })
+      });
       return;
     }
 
     dispatch(setBillingPeriod(numStart, numEnd));
-  }
+  };
 
   return (
     <Layout>
@@ -58,5 +58,5 @@ export function BillingPeriodsSettings() {
         Set billing period
       </Button>
     </Layout>
-  )
+  );
 }

@@ -19,6 +19,8 @@
     "plugin:react-native/all"
   ],
   "rules": {
-    "semi": "error"
+    "semi": "error",
+    "react-native/no-raw-text": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }

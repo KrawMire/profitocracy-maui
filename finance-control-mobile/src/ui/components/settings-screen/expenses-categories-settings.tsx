@@ -22,7 +22,7 @@ export function ExpensesCategoriesSettings() {
 
   const toggleModal = () => {
     setShowAddModal(!showAddModal);
-  }
+  };
 
   const addNewCategory = () => {
     const parsedAmount = Number(newCategoryAmount);
@@ -52,7 +52,7 @@ export function ExpensesCategoriesSettings() {
 
     dispatch(addExpenseCategory(newCategory));
     toggleModal();
-  }
+  };
 
   const isCategoriesExists = categories && categories.length > 0;
   return (
@@ -118,5 +118,5 @@ export function ExpensesCategoriesSettings() {
         </Card>
       </Modal>
     </Layout>
-  )
+  );
 }

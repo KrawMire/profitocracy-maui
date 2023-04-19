@@ -19,15 +19,17 @@ export function appSettingsReducer(
   const newState = Object.assign({}, state);
 
   switch (action.type) {
-    case AppSettingsActionsTypes.SetTheme:
+    case AppSettingsActionsTypes.SetTheme: {
       newState.settings.themeSettings = <ThemeSettings>action.payload;
       return newState;
+    }
 
-    case AppSettingsActionsTypes.SetBillingPeriod:
+    case AppSettingsActionsTypes.SetBillingPeriod: {
       newState.settings.billingPeriodSettings = <BillingPeriodSettings>action.payload;
       return newState;
+    }
 
-    case AppSettingsActionsTypes.AddExpenseCategory:
+    case AppSettingsActionsTypes.AddExpenseCategory: {
       return {
         settings: {
           ...state.settings,
@@ -39,16 +41,18 @@ export function appSettingsReducer(
           }
         }
       };
+    }
 
-    case AppSettingsActionsTypes.RemoveExpenseCategory:
-      const newCategories = newState.settings.expenseCategoriesSettings.categories
+    case AppSettingsActionsTypes.RemoveExpenseCategory: {
+      newState.settings.expenseCategoriesSettings.categories = newState.settings.expenseCategoriesSettings.categories
         .filter(category => category.id !== <string>action.payload);
-      newState.settings.expenseCategoriesSettings.categories = newCategories;
       return newState;
+    }
 
-    case AppSettingsActionsTypes.SetExpenseSettings:
+    case AppSettingsActionsTypes.SetExpenseSettings: {
       newState.settings.expensesSettings = <ExpenseTypeSettings[]>action.payload;
       return newState;
+    }
 
     default:
       return state;
