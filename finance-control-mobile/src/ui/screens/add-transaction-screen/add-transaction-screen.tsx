@@ -22,7 +22,7 @@ export function AddTransactionScreen() {
   const currencies = useSelector((state: AppState) => state.currencies.availableCurrencies);
 
   const [currency, setCurrency] = useState(mainCurrency);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState<number | null>(null);
   const [description, setDescription] = useState("");
   const [expenseType, setExpenseType] = useState(ExpenseType.Main);
   const [expenseCategory, setCategory] = useState<ExpenseCategory | null>(null);
@@ -30,27 +30,35 @@ export function AddTransactionScreen() {
   const date = new Date(Date.now());
 
   const changeAmount = (value: string) => {
+    if (value === "") {
+      setAmount(null);
+      return;
+    }
+
     const numAmount = Number(value);
 
-    if (numAmount || value === "") {
-      setAmount(value);
+    if (numAmount) {
+      setAmount(numAmount);
     }
   };
 
   const onAddTransaction = () => {
-    const transactionAmount = Number(amount);
-    const isValidated = validateTransaction(transactionAmount);
+    const isValidated = validateTransaction(amount);
 
-    if (!isValidated) {
+    if (!isValidated || !amount) {
       return;
     }
 
-    processAddTransaction(transactionAmount);
+    processAddTransaction(amount);
     onClear();
     navigation.navigate("home" as never);
   };
 
-  const validateTransaction = (transactionAmount: number): boolean => {
+  const onClearCategory = () => {
+    setCategory(null);
+  }
+
+  const validateTransaction = (transactionAmount: number | null): boolean => {
     if (isNullOrZero(transactionAmount)) {
       showMessage({
         message: "Transaction amount is invalid!",
@@ -62,6 +70,28 @@ export function AddTransactionScreen() {
     return true;
   }
 
+  const getBaseCurrencyAmount = () => {
+    const transactionCurrency = currencies
+      .find((currencyRate) => currencyRate.currency.code === currency.code);
+
+    if (!transactionCurrency) {
+      showMessage({
+        message: "Invalid currency code was given!",
+        type: "danger"
+      });
+
+      return 0;
+    }
+
+    if (!amount) {
+      return 0;
+    }
+
+    const convertedAmount = amount / transactionCurrency.rate;
+
+    return Number(convertedAmount.toFixed(2));
+  }
+
   const processAddTransaction = (transactionAmount: number) => {
     const newTransaction: Transaction = {
       id: getNewId(),
@@ -70,18 +100,15 @@ export function AddTransactionScreen() {
       date,
       currencyCode: currency.code,
       amount: transactionAmount,
+      baseCurrencyAmount: getBaseCurrencyAmount(),
       type: expenseType,
     };
 
     dispatch(addTransaction(newTransaction));
   }
 
-  const onClearCategory = () => {
-    setCategory(null);
-  }
-
   const onClear = () => {
-    setAmount("");
+    setAmount(null);
     setDescription("");
     setExpenseType(ExpenseType.Main);
     setCategory(null);
@@ -105,7 +132,7 @@ export function AddTransactionScreen() {
             <Input
               placeholder="Enter amount..."
               onChangeText={changeAmount}
-              value={amount.toString()}
+              value={amount?.toString()}
               keyboardType="numeric"
               style={addTransactionScreenStyles.amountInput}
             />
@@ -128,18 +155,21 @@ export function AddTransactionScreen() {
             <Button
               onPress={() => setExpenseType(ExpenseType.Main)}
               appearance={expenseType === ExpenseType.Main ? "outline" : "filled"}
+              style={addTransactionScreenStyles.typeButton}
             >
               Main
             </Button>
             <Button
               onPress={() => setExpenseType(ExpenseType.Secondary)}
               appearance={expenseType === ExpenseType.Secondary ? "outline" : "filled"}
+              style={addTransactionScreenStyles.typeButton}
             >
               Secondary
             </Button>
             <Button
               onPress={() => setExpenseType(ExpenseType.Postponed)}
               appearance={expenseType === ExpenseType.Postponed ? "outline" : "filled"}
+              style={addTransactionScreenStyles.typeButton}
             >
               Postpone
             </Button>

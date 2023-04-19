@@ -1,12 +1,10 @@
-import { Keyboard, ScrollView, TouchableWithoutFeedback, View } from "react-native";
+import { Keyboard, ScrollView, TouchableWithoutFeedback } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { AppThemeSettings } from "../../components/settings-screen/app-theme-settings";
+import { AppThemeSettings } from "components/settings-screen/app-theme-settings";
 import { resetStore } from "state/global/actions";
 import { settingsScreenStyles } from "styles/screens/settings.style";
-import { TotalBalanceSettings } from "components/settings-screen/total-balance-settings";
 import { BillingPeriodsSettings } from "components/settings-screen/billing-periods-settings";
-import { ExpensesSettings } from "components/settings-screen/expenses-settings";
 import { ExpensesCategoriesSettings } from "components/settings-screen/expenses-categories-settings";
 import { Button, Card, Layout, Text } from "@ui-kitten/components";
 
@@ -32,12 +30,6 @@ export function SettingsScreen() {
         <ScrollView>
           <Text category="h1">Settings</Text>
           <Card
-            header={renderHeader("Total balance")}
-            style={settingsScreenStyles.totalBalanceSettingsCard}
-          >
-            <TotalBalanceSettings />
-          </Card>
-          <Card
             header={renderHeader("Billing periods")}
             style={settingsScreenStyles.settingsCard}
           >
@@ -49,12 +41,6 @@ export function SettingsScreen() {
           >
             <AppThemeSettings />
           </Card>
-          {/* <Card
-            header={renderHeader("Expense settings")}
-            style={settingsScreenStyles.settingsCard}
-          >
-            <ExpensesSettings />
-          </Card> */}
           <Card
             header={renderHeader("Expense categories")}
             style={settingsScreenStyles.settingsCard}

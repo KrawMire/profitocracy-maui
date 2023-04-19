@@ -25,6 +25,7 @@ export const addTransactionScreenStyles = StyleSheet.create({
     justifyContent: "space-around",
     marginTop: 10,
   },
+  typeButton: {},
   descriptionInput: {
     marginTop: 10,
   },

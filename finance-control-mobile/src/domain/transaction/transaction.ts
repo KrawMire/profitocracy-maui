@@ -15,6 +15,11 @@ type Transaction = {
   amount: number;
 
   /**
+   * Amount of money in base user currency
+   */
+  baseCurrencyAmount: number;
+
+  /**
    * Optional description about transaction
    */
   description: string;

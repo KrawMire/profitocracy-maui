@@ -13,23 +13,22 @@ export const homeScreenStyles = StyleSheet.create({
     paddingLeft: "2%",
     paddingRight: "2%",
   },
-
+  sectionHeader: {
+    marginTop: 10,
+    marginBottom: 5,
+  },
   amountWrapper: {
     flexDirection: "row",
     justifyContent: "space-around"
   },
-
   balanceCard: {
-    marginVertical: 10,
+    marginTop: 10,
   },
   infoCard: {
-    marginVertical: 10,
     marginRight: 10,
     width: screenWidth * 0.9,
   },
-
   categoriesWrapper: {
-    marginTop: 10,
   },
   categoriesLineWrapper: {
     marginTop: 10,
@@ -39,7 +38,16 @@ export const homeScreenStyles = StyleSheet.create({
   categoryCard: {
     width: "49%"
   },
-
+  noCategoriesWrapper: {
+    width: "100%",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  noCategoriesHint: {
+    width: "85%",
+    textAlign: "center",
+    marginTop: 30
+  },
   dailyCashWrapper: {
     flexDirection: "row",
     justifyContent: "space-around"

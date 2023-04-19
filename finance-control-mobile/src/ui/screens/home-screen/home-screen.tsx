@@ -18,7 +18,7 @@ export function HomeScreen() {
   const endBillingPeriodDay = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateTo);
 
   const baseCurrency = useSelector((state: AppState) => state.currencies.baseCurrency);
-  const availableCurrencies = useSelector((state: AppState) => state.currencies.availableCurrencies);
+  // const availableCurrencies = useSelector((state: AppState) => state.currencies.availableCurrencies);
 
   const trackingCategories = getTrackingCategories(expenseCategories);
   const actualBalance = calculateActualBalance(initialTotalBalance, transactions);
@@ -50,7 +50,10 @@ export function HomeScreen() {
           <Text>Actual balance: {actualBalance ?? 0}{baseCurrency.symbol}</Text>
         </Card>
 
-        <Text category="h4">
+        <Text
+          category="h4"
+          style={homeScreenStyles.sectionHeader}
+        >
           Cash for the day
         </Text>
         <Layout
@@ -63,7 +66,7 @@ export function HomeScreen() {
             style={homeScreenStyles.dailyCashCard}
           >
             <Text>
-              {initialDailyAmount}{baseCurrency.symbol}
+              {initialDailyAmount.toFixed(2)}{baseCurrency.symbol}
             </Text>
           </Card>
           <Card
@@ -72,15 +75,21 @@ export function HomeScreen() {
             style={homeScreenStyles.dailyCashCard}
           >
             <Text>
-              {actualDailyAmount}{baseCurrency.symbol}
+              {actualDailyAmount.toFixed(2)}{baseCurrency.symbol}
             </Text>
           </Card>
         </Layout>
 
-        <Text category="h4">
+        <Text
+          category="h4"
+          style={homeScreenStyles.sectionHeader}
+        >
           Expense types
         </Text>
-        <ScrollView horizontal>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
           {expenses.map((expense) => (
             <Card
               key={expense.expenseType}
@@ -95,14 +104,18 @@ export function HomeScreen() {
         </ScrollView>
 
 
-        <Text category="h4">
+        <Text
+          category="h4"
+          style={homeScreenStyles.sectionHeader}
+        >
           Expense categories
         </Text>
         <Layout
           level="4"
           style={homeScreenStyles.categoriesWrapper}
         >
-          {parsedCategories.map((expenseLine) => (
+          {parsedCategories.length > 0 &&
+            parsedCategories.map((expenseLine) => (
             <Layout
               style={homeScreenStyles.categoriesLineWrapper}
               level="4"
@@ -119,6 +132,20 @@ export function HomeScreen() {
               ))}
             </Layout>
           ))}
+          {parsedCategories.length <= 0 && (
+            <Layout
+              level="4"
+              style={homeScreenStyles.noCategoriesWrapper}
+            >
+              <Text
+                appearance="hint"
+                style={homeScreenStyles.noCategoriesHint}
+              >
+                There is no expense categories yet.
+                You can add them in Settings
+              </Text>
+            </Layout>
+          )}
         </Layout>
       </ScrollView>
     </Layout>

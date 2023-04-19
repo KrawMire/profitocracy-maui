@@ -6,5 +6,11 @@ export const transactionsHistoryScreenStyles = StyleSheet.create({
     paddingTop: 50,
     paddingLeft: "2%",
     paddingRight: "2%",
-  }
+  },
+  clearButton: {
+    marginTop: 10,
+  },
+  transactionsListWrapper: {
+    marginTop: 10,
+  },
 });

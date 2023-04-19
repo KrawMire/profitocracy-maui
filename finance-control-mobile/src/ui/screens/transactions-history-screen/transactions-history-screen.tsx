@@ -3,13 +3,9 @@ import AppState from "src/domain/app-state/app-state";
 import { removeTransaction } from "state/transactions/actions";
 
 import { transactionsHistoryScreenStyles } from "styles/screens/transactions-history.style";
-import { Button, Card, Layout, Text } from "@ui-kitten/components";
+import { Button, Layout, Text } from "@ui-kitten/components";
 import { ScrollView } from "react-native";
-import { getCategoryName } from "./actions/expense-category";
-import {
-  convertToBaseCurrency,
-  getCurrencySymbolByCode
-} from "screens/transactions-history-screen/actions/currency-operations";
+import { TransactionCard } from "components/transactions-history-screen/transaction-card";
 
 export function TransactionsHistoryScreen() {
   const dispatch = useDispatch();
@@ -31,28 +27,22 @@ export function TransactionsHistoryScreen() {
       level="4"
     >
       <Text category="h1">Transactions history</Text>
-      <Button onPress={clearTransactions}>
+      <Button
+        onPress={clearTransactions}
+        style={transactionsHistoryScreenStyles.clearButton}
+      >
         Clear all transactions
       </Button>
-      <ScrollView>
+      <ScrollView
+        style={transactionsHistoryScreenStyles.transactionsListWrapper}
+      >
         {transactions.map((transaction) => (
-          <Card key={transaction.id}>
-            <Text>
-              {transaction.amount}{getCurrencySymbolByCode(transaction.currencyCode, currencyRates)}
-            </Text>
-            <Text>
-              {convertToBaseCurrency(transaction, currencyRates)}{mainCurrency.symbol}
-            </Text>
-            <Text>
-              {transaction.type}
-            </Text>
-            <Text>
-              {getCategoryName(transaction.category, categories)}
-            </Text>
-            <Text>
-              {transaction.description}
-            </Text>
-          </Card>
+          <TransactionCard
+            transaction={transaction}
+            mainCurrency={mainCurrency}
+            currencyRates={currencyRates}
+            categories={categories}
+          />
         ))}
       </ScrollView>
     </Layout>

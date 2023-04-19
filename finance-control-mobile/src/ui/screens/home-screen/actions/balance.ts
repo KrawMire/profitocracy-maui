@@ -7,16 +7,16 @@ export function calculateActualBalance(initialBalance: number, transactions: Tra
   }
 
   const totalTransaction = transactions.reduce((prevValue, curValue) => {
-    const curAmount = curValue.amount + prevValue.amount;
+    const curAmount = curValue.baseCurrencyAmount + prevValue.baseCurrencyAmount;
     const nextTransaction: Transaction = {
       ...prevValue,
-      amount: curAmount
+      baseCurrencyAmount: curAmount
     }
 
     return nextTransaction;
   });
 
-  return initialBalance - totalTransaction.amount;
+  return initialBalance - totalTransaction.baseCurrencyAmount;
 }
 
 export function calculateDailyCash(amount: number, startDay: number, endDay: number): number {

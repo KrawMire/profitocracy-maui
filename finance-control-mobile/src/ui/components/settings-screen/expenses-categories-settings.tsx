@@ -1,4 +1,4 @@
-import { Layout, ListItem, Text, Modal, Input, Toggle, Button, Card } from "@ui-kitten/components";
+import { Layout, Text, Modal, Input, Toggle, Button, Card } from "@ui-kitten/components";
 import { useState } from "react";
 import { showMessage } from "react-native-flash-message";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,9 +6,10 @@ import AppState from "src/domain/app-state/app-state";
 import ExpenseCategory from "src/domain/expense-category/expense-category";
 import { addExpenseCategory } from "state/app-settings/actions";
 import { settingsScreenStyles } from "styles/screens/settings.style";
-import { sharedTextStyle } from "styles/shared/text.style";
 import { getNewId } from "utils/identifier";
 import { isNullOrZero } from "utils/null-check";
+import {expensesCategoriesSettingsStyle} from "styles/components/settings-screen/expenses-categories-settings";
+import {View} from "react-native";
 
 export function ExpensesCategoriesSettings() {
   const dispatch = useDispatch();
@@ -76,11 +77,19 @@ export function ExpensesCategoriesSettings() {
         backdropStyle={settingsScreenStyles.addCategoryModalBackdrop}
         onBackdropPress={toggleModal}
       >
-        <Card>
+        <Card
+          header={
+          <Text category="h3">
+            Add new category
+          </Text>
+          }
+          style={expensesCategoriesSettingsStyle.addCategoryCard}
+        >
           <Input
-            label="Category name..."
+            label="Category name"
             placeholder="Enter new category name..."
             value={newCategoryName}
+            style={expensesCategoriesSettingsStyle.addCategoryInput}
             onChangeText={setNewCategoryName}
           />
           <Input
@@ -88,14 +97,22 @@ export function ExpensesCategoriesSettings() {
             placeholder="Enter new category amount..."
             keyboardType="numeric"
             value={newCategoryAmount}
+            style={expensesCategoriesSettingsStyle.addCategoryInput}
             onChangeText={setNewCategoryAmount}
           />
-          <Text>Track expenses:</Text>
-          <Toggle
-            checked={trackNewCategory}
-            onChange={setTrackNewCategory}
-          />
-          <Button onPress={addNewCategory}>
+          <View
+            style={expensesCategoriesSettingsStyle.trackExpensesToggle}
+          >
+            <Text>Track expenses:</Text>
+            <Toggle
+              checked={trackNewCategory}
+              onChange={setTrackNewCategory}
+            />
+          </View>
+          <Button
+            onPress={addNewCategory}
+            style={expensesCategoriesSettingsStyle.addCategoryButton}
+          >
             Add category
           </Button>
         </Card>
