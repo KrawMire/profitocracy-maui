@@ -25,21 +25,18 @@ const appReducer = combineReducers({
   currencies: currencyReducer,
 });
 
-const rootReducer = (
-  state: AppState = initialAppState,
-  action: Action<any>
-): AppState => {
+const rootReducer = (state: AppState = initialAppState, action: Action<never>): AppState => {
   if (action.type === GlobalActionTypes.Reset) {
     AsyncStorage.removeItem("persist:root");
     return appReducer({} as AppState, action);
   }
 
   return appReducer(state, action);
-}
+};
 
 const persistConfig = {
-  key: 'root',
-  storage: AsyncStorage
+  key: "root",
+  storage: AsyncStorage,
 };
 
 const persistedRootReducer = persistReducer(persistConfig, rootReducer);

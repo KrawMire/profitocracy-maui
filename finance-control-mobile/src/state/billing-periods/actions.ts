@@ -15,5 +15,5 @@ export function addBillingPeriod(billingPeriod: BillingPeriod): Action<BillingPe
   return {
     type: BillingPeriodsActionsTypes.AddBillingPeriod,
     payload: billingPeriod
-  }
+  };
 }

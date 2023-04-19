@@ -22,29 +22,29 @@ export const appSettingsInitialState: AppSettingsState = {
     expensesSettings: [
       {
         expenseType: ExpenseType.Main,
-        percent: 50
+        percent: 50,
       },
       {
         expenseType: ExpenseType.Secondary,
-        percent: 30
+        percent: 30,
       },
       {
         expenseType: ExpenseType.Postponed,
-        percent: 20
+        percent: 20,
       },
     ],
     themeSettings: ThemeSettings.Light,
     expenseCategoriesSettings: {
-      categories: []
-    }
-  }
+      categories: [],
+    },
+  },
 };
 
 /**
  * Initial state of the billing periods
  */
 export const billingPeriodsInitialState: BillingPeriodsState = {
-  periods: []
+  periods: [],
 };
 
 /**
@@ -72,8 +72,8 @@ export const expensesInitialState: ExpensesState = {
       actualAmount: 0,
       plannedAmount: 0,
       billingPeriod: null,
-    }
-  ]
+    },
+  ],
 };
 
 /**
@@ -87,7 +87,7 @@ export const totalBalanceInitialState: TotalBalanceState = {
  * Initial state of the transactions
  */
 export const transactionsInitialState: TransactionsState = {
-  transactions: []
+  transactions: [],
 };
 
 /**
@@ -97,14 +97,14 @@ export const currencyInitialState: CurrencyState = {
   baseCurrency: {
     name: "US Dollar",
     code: "USD",
-    symbol: "$"
+    symbol: "$",
   },
   availableCurrencies: [
     {
       currency: {
         name: "US Dollar",
         code: "USD",
-        symbol: "$"
+        symbol: "$",
       },
       rate: 0,
     },
@@ -131,7 +131,7 @@ export const currencyInitialState: CurrencyState = {
         symbol: "֏",
       },
       rate: 390.97,
-    }
+    },
   ],
 };
 
@@ -139,7 +139,7 @@ export const currencyInitialState: CurrencyState = {
  * Initial state of the global variables
  */
 export const globalInitialState: GlobalState = {
-  isSetUp: false
+  isSetUp: false,
 };
 
 /**
@@ -152,5 +152,5 @@ export const initialAppState: AppState = {
   billingPeriods: billingPeriodsInitialState,
   settings: appSettingsInitialState,
   currencies: currencyInitialState,
-  globalState: globalInitialState
+  globalState: globalInitialState,
 };

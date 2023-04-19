@@ -24,7 +24,7 @@ export function setTheme(theme: ThemeSettings): Action<ThemeSettings> {
   return {
     type: AppSettingsActionsTypes.SetTheme,
     payload: theme
-  }
+  };
 }
 
 /**
@@ -39,7 +39,7 @@ export function setBillingPeriod(dateFrom: number, dateTo: number): Action<Billi
       dateFrom,
       dateTo
     }
-  }
+  };
 }
 
 /**
@@ -50,7 +50,7 @@ export function addExpenseCategory(category: ExpenseCategory): Action<ExpenseCat
   return {
     type: AppSettingsActionsTypes.AddExpenseCategory,
     payload: category
-  }
+  };
 }
 
 /**
@@ -61,7 +61,7 @@ export function removeExpenseCategory(id: string): Action<string> {
   return {
     type: AppSettingsActionsTypes.RemoveExpenseCategory,
     payload: id
-  }
+  };
 }
 
 /**
@@ -76,5 +76,5 @@ export function setExpenseSettings(expenseType: ExpenseType, percent: number): A
       expenseType,
       percent
     }
-  }
+  };
 }

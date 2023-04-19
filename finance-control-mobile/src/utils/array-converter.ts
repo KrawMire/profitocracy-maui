@@ -9,7 +9,7 @@ export function convertArrayToTwoDimensional<T>(array: T[]): T[][] {
     result.push([]);
 
     for (let j = 0; j < 2; j++) {
-      const index = i > 0 ? i*2 + j : i + j ;
+      const index = i > 0 ? i * 2 + j : i + j;
 
       if (!array[index]) {
         break;
