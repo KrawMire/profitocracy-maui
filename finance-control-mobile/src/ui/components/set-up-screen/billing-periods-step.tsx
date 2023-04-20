@@ -1,4 +1,4 @@
-import { Button, Input, Layout, Text } from "@ui-kitten/components";
+import { Button, Input, Layout } from "@ui-kitten/components";
 import { useState } from "react";
 import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
@@ -21,7 +21,7 @@ export function BillingPeriodsStep(props: BillingPeriodsStepProps) {
     if (isNullOrZero(startDay) || isNullOrZero(endDay)) {
       showMessage({
         message: "Invalid value of start day or end day!",
-        type: "danger"
+        type: "danger",
       });
       return false;
     }
@@ -29,7 +29,7 @@ export function BillingPeriodsStep(props: BillingPeriodsStepProps) {
     if (startDay >= endDay) {
       showMessage({
         message: "Start day must be less than end day!",
-        type: "danger"
+        type: "danger",
       });
       return false;
     }
@@ -37,13 +37,13 @@ export function BillingPeriodsStep(props: BillingPeriodsStepProps) {
     if (startDay > 31 || endDay > 31) {
       showMessage({
         message: "Day must be less than 31!",
-        type: "danger"
+        type: "danger",
       });
       return false;
     }
 
     return true;
-  }
+  };
 
   const onMoveNextClick = () => {
     const parsedStartDay = Number(startDay);
@@ -55,30 +55,20 @@ export function BillingPeriodsStep(props: BillingPeriodsStepProps) {
 
     dispatch(setBillingPeriod(parsedStartDay, parsedEndDay));
     props.onMoveNext();
-  }
+  };
 
   return (
     <Layout>
-      <Input
-        label="Start day"
-        placeholder="Enter start day..."
-        keyboardType="numeric"
-        onChangeText={setStartDay}
-      />
-      <Input
-        label="End day"
-        placeholder="Enter end day..."
-        keyboardType="numeric"
-        onChangeText={setEndDay}
-      />
+      <Input label="Start day" placeholder="Enter start day..." keyboardType="numeric" onChangeText={setStartDay} />
+      <Input label="End day" placeholder="Enter end day..." keyboardType="numeric" onChangeText={setEndDay} />
       <Layout style={billingPeriodsStepStyles.moveButtonsContainer}>
-        <Button onPress={props.onMoveBack}>
+        <Button style={billingPeriodsStepStyles.moveButton} onPress={props.onMoveBack}>
           Back
         </Button>
-        <Button onPress={onMoveNextClick}>
+        <Button style={billingPeriodsStepStyles.moveButton} onPress={onMoveNextClick}>
           Next
         </Button>
       </Layout>
     </Layout>
-  )
+  );
 }

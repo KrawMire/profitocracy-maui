@@ -132,6 +132,14 @@ export const currencyInitialState: CurrencyState = {
       },
       rate: 390.97,
     },
+    {
+      currency: {
+        name: "Chinese Yuan",
+        code: "CNY",
+        symbol: "¥",
+      },
+      rate: 6.87,
+    },
   ],
 };
 

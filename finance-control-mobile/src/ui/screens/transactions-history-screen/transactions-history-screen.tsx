@@ -16,28 +16,21 @@ export function TransactionsHistoryScreen() {
   const categories = useSelector((state: AppState) => state.settings.settings.expenseCategoriesSettings.categories);
 
   const clearTransactions = () => {
-    transactions.forEach(transaction => {
+    transactions.forEach((transaction) => {
       dispatch(removeTransaction(transaction.id));
     });
   };
 
   return (
-    <Layout
-      style={transactionsHistoryScreenStyles.wrapper}
-      level="4"
-    >
+    <Layout style={transactionsHistoryScreenStyles.wrapper} level="4">
       <Text category="h1">Transactions history</Text>
-      <Button
-        onPress={clearTransactions}
-        style={transactionsHistoryScreenStyles.clearButton}
-      >
+      <Button onPress={clearTransactions} style={transactionsHistoryScreenStyles.clearButton}>
         Clear all transactions
       </Button>
-      <ScrollView
-        style={transactionsHistoryScreenStyles.transactionsListWrapper}
-      >
+      <ScrollView style={transactionsHistoryScreenStyles.transactionsListWrapper}>
         {transactions.map((transaction) => (
           <TransactionCard
+            key={transaction.id}
             transaction={transaction}
             mainCurrency={mainCurrency}
             currencyRates={currencyRates}
@@ -46,5 +39,5 @@ export function TransactionsHistoryScreen() {
         ))}
       </ScrollView>
     </Layout>
-  )
+  );
 }
