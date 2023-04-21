@@ -131,7 +131,7 @@ export function TotalBalanceStep(props: TotalBalanceStepProps) {
         message: "Invalid value of balance!",
         type: "danger",
       });
-      Vibration.vibrate();
+      Vibration.vibrate(0.1);
 
       return;
     }
@@ -143,7 +143,7 @@ export function TotalBalanceStep(props: TotalBalanceStepProps) {
         message: "Invalid value of the balance!",
         type: "danger",
       });
-      Vibration.vibrate();
+      Vibration.vibrate(0.1);
 
       return;
     }
@@ -156,7 +156,7 @@ export function TotalBalanceStep(props: TotalBalanceStepProps) {
         message: (e as Error).message,
         type: "danger",
       });
-      Vibration.vibrate();
+      Vibration.vibrate(0.1);
 
       return;
     }

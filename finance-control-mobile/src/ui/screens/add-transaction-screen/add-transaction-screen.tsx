@@ -49,7 +49,7 @@ export function AddTransactionScreen() {
       return;
     }
 
-    Vibration.vibrate();
+    Vibration.vibrate(0.1);
     processAddTransaction(amount);
     onClear();
     navigation.navigate("home" as never);
@@ -65,7 +65,7 @@ export function AddTransactionScreen() {
         message: "Transaction amount is invalid!",
         type: "danger",
       });
-      Vibration.vibrate();
+      Vibration.vibrate(0.1);
 
       return false;
     }
@@ -81,7 +81,7 @@ export function AddTransactionScreen() {
         message: "Invalid currency code was given!",
         type: "danger",
       });
-      Vibration.vibrate();
+      Vibration.vibrate(0.1);
 
       return 0;
     }

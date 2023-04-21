@@ -32,7 +32,7 @@ export function ExpensesCategoriesSettings() {
         message: "Invalid category name!",
         type: "danger",
       });
-      Vibration.vibrate();
+      Vibration.vibrate(0.1);
 
       return;
     }
@@ -42,7 +42,7 @@ export function ExpensesCategoriesSettings() {
         message: "Invalid new category amount!",
         type: "danger",
       });
-      Vibration.vibrate();
+      Vibration.vibrate(0.1);
 
       return;
     }
@@ -54,7 +54,7 @@ export function ExpensesCategoriesSettings() {
       trackExpenses: trackNewCategory,
     };
 
-    Vibration.vibrate();
+    Vibration.vibrate(0.1);
     dispatch(addExpenseCategory(newCategory));
     toggleModal();
   };
