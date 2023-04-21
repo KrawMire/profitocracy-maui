@@ -1,20 +1,24 @@
 import { Action } from "state/types";
-import BillingPeriodSettings from "src/domain/app-settings/components/biiling-period-settings";
 import ExpenseTypeSettings from "src/domain/app-settings/components/expense-type-settings";
 import ThemeSettings from "src/domain/app-settings/components/theme-settings";
 import ExpenseCategory from "src/domain/expense-category/expense-category";
 import ExpenseType from "src/domain/expense/components/expense-type";
+import AnchorDaysSettings from "domain/app-settings/components/anchor-days-settings";
 
 export enum AppSettingsActionsTypes {
   SetTheme = "SET_THEME",
-  SetBillingPeriod = "SET_BILLING_PERIOD",
+  SetAnchorDays = "SET_ANCHOR_DAYS",
   AddExpenseCategory = "ADD_EXPENSE_CATEGORY",
   RemoveExpenseCategory = "REMOVE_EXPENSE_CATEGORY",
-  SetExpenseSettings = "SET_EXPENSE_SETTINGS"
+  SetExpenseSettings = "SET_EXPENSE_SETTINGS",
 }
 
 export type AppSettingsActionsReturnTypes =
-  ThemeSettings | BillingPeriodSettings | ExpenseCategory | string | ExpenseTypeSettings[];
+  | ThemeSettings
+  | AnchorDaysSettings
+  | ExpenseCategory
+  | string
+  | ExpenseTypeSettings[];
 
 /**
  * Set app theme
@@ -23,22 +27,20 @@ export type AppSettingsActionsReturnTypes =
 export function setTheme(theme: ThemeSettings): Action<ThemeSettings> {
   return {
     type: AppSettingsActionsTypes.SetTheme,
-    payload: theme
+    payload: theme,
   };
 }
 
 /**
- * Set billing period of the application
- * @param dateFrom Start date of billing period
- * @param dateTo End date of billing period
+ * Set anchor days settings
+ * @param days Anchor days
  */
-export function setBillingPeriod(dateFrom: number, dateTo: number): Action<BillingPeriodSettings> {
+export function setAnchorDaysSettings(days: number[]): Action<AnchorDaysSettings> {
   return {
-    type: AppSettingsActionsTypes.SetBillingPeriod,
+    type: AppSettingsActionsTypes.SetAnchorDays,
     payload: {
-      dateFrom,
-      dateTo
-    }
+      days: days,
+    },
   };
 }
 
@@ -49,7 +51,7 @@ export function setBillingPeriod(dateFrom: number, dateTo: number): Action<Billi
 export function addExpenseCategory(category: ExpenseCategory): Action<ExpenseCategory> {
   return {
     type: AppSettingsActionsTypes.AddExpenseCategory,
-    payload: category
+    payload: category,
   };
 }
 
@@ -60,7 +62,7 @@ export function addExpenseCategory(category: ExpenseCategory): Action<ExpenseCat
 export function removeExpenseCategory(id: string): Action<string> {
   return {
     type: AppSettingsActionsTypes.RemoveExpenseCategory,
-    payload: id
+    payload: id,
   };
 }
 
@@ -74,7 +76,7 @@ export function setExpenseSettings(expenseType: ExpenseType, percent: number): A
     type: AppSettingsActionsTypes.SetExpenseSettings,
     payload: {
       expenseType,
-      percent
-    }
+      percent,
+    },
   };
 }

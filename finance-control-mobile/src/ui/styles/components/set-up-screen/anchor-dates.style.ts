@@ -1,18 +1,18 @@
 import { StyleSheet } from "react-native";
 
-export const totalBalanceStepStyles = StyleSheet.create({
-  addNewBalanceButton: {
+export const anchorDatesStepStyles = StyleSheet.create({
+  addNewDayButton: {
     width: "90%",
   },
-  addNewBalanceButtonWrapper: {
+  addNewDayButtonWrapper: {
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 20,
   },
-  balanceInput: {
-    width: "60%",
+  dayInput: {
+    width: "100%",
   },
-  balanceInputWrapper: {
+  dayInputWrapper: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginLeft: "5%",
@@ -30,8 +30,5 @@ export const totalBalanceStepStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
-  },
-  selectCurrency: {
-    width: "30%",
   },
 });

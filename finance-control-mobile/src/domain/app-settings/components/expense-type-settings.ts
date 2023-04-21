@@ -1,13 +1,13 @@
-import ExpenseType from "src/domain/expense/components/expense-type"
+import ExpenseType from "src/domain/expense/components/expense-type";
 
 /**
  * Settings of the expenses type
  */
-type ExpenseTypeSettings = {
+interface ExpenseTypeSettings {
   /**
    * Type of the expense
    */
-  expenseType: ExpenseType
+  expenseType: ExpenseType;
 
   /**
    * Percentage of the expense

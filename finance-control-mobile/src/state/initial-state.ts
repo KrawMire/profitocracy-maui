@@ -1,5 +1,4 @@
 import "react-native-get-random-values";
-import { BillingPeriodsState } from "src/domain/app-state/components/billing-periods-state";
 import AppSettingsState from "src/domain/app-state/components/app-settings-state";
 import ExpensesState from "src/domain/app-state/components/expenses-state";
 import TotalBalanceState from "src/domain/app-state/components/total-balance-state";
@@ -9,15 +8,15 @@ import AppState from "src/domain/app-state/app-state";
 import ExpenseType from "../domain/expense/components/expense-type";
 import GlobalState from "src/domain/app-state/components/global-state";
 import CurrencyState from "../domain/app-state/components/currency-state";
+import AnchorDatesState from "domain/app-state/components/anchor-dates-state";
 
 /**
  * Initial state of the app settings
  */
 export const appSettingsInitialState: AppSettingsState = {
   settings: {
-    billingPeriodSettings: {
-      dateFrom: 0,
-      dateTo: 0,
+    anchorDatesSettings: {
+      days: [],
     },
     expensesSettings: [
       {
@@ -41,10 +40,10 @@ export const appSettingsInitialState: AppSettingsState = {
 };
 
 /**
- * Initial state of the billing periods
+ * Initial state of the anchor dates
  */
-export const billingPeriodsInitialState: BillingPeriodsState = {
-  periods: [],
+export const anchorDatesInitialState: AnchorDatesState = {
+  dates: [],
 };
 
 /**
@@ -132,6 +131,14 @@ export const currencyInitialState: CurrencyState = {
       },
       rate: 390.97,
     },
+    {
+      currency: {
+        name: "Chinese Yuan",
+        code: "CNY",
+        symbol: "¥",
+      },
+      rate: 6.87,
+    },
   ],
 };
 
@@ -149,7 +156,7 @@ export const initialAppState: AppState = {
   transactions: transactionsInitialState,
   expenses: expensesInitialState,
   totalBalance: totalBalanceInitialState,
-  billingPeriods: billingPeriodsInitialState,
+  anchorDates: anchorDatesInitialState,
   settings: appSettingsInitialState,
   currencies: currencyInitialState,
   globalState: globalInitialState,

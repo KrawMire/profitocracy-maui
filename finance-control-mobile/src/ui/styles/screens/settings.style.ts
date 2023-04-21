@@ -1,20 +1,25 @@
 import { StyleSheet } from "react-native";
 
+const $modalBackdropColor = "#0000007F";
+
 export const settingsScreenStyles = StyleSheet.create({
-  wrapper: {
-    height: "100%",
-    paddingTop: 50,
-    paddingLeft: "2%",
-    paddingRight: "2%",
-  },
   addCategoryModalBackdrop: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: $modalBackdropColor,
+  },
+  resetAppButton: {
+    marginTop: 25,
   },
   settingsCard: {
     marginBottom: 10,
   },
   totalBalanceSettingsCard: {
-    marginTop: 20,
     marginBottom: 10,
-  }
+    marginTop: 20,
+  },
+  wrapper: {
+    height: "100%",
+    paddingLeft: "2%",
+    paddingRight: "2%",
+    paddingTop: 50,
+  },
 });

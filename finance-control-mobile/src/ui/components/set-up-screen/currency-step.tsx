@@ -1,11 +1,11 @@
 import { Button, Layout, Select, SelectItem } from "@ui-kitten/components";
 import { useDispatch, useSelector } from "react-redux";
-import { totalBalanceStepStyles } from "styles/components/set-up-screen/total-balance.style";
-import {useEffect, useState} from "react";
-import AppState from "../../../domain/app-state/app-state";
+import { useEffect, useState } from "react";
+import AppState from "src/domain/app-state/app-state";
 import { showMessage } from "react-native-flash-message";
-import {setAvailableCurrencies, setMainCurrency} from "state/currency/actions";
-import {CurrencyRate} from "../../../domain/app-state/components/currency-state";
+import { setAvailableCurrencies, setMainCurrency } from "state/currency/actions";
+import { CurrencyRate } from "domain/app-state/components/currency-state";
+import { currencyStepStyles } from "styles/components/set-up-screen/currency.style";
 
 export interface CurrencyStepProps {
   onMoveNext: () => void;
@@ -16,24 +16,23 @@ export function CurrencyStep(props: CurrencyStepProps) {
   const dispatch = useDispatch();
 
   const availableCurrencies = useSelector((state: AppState) => state.currencies.availableCurrencies);
-  const baseCurrencyInitial = useSelector((state: AppState) => state.currencies.baseCurrency)
+  const baseCurrencyInitial = useSelector((state: AppState) => state.currencies.baseCurrency);
 
-  const [ baseCurrency, setBaseCurrency ] = useState(baseCurrencyInitial);
-  const [ currenciesLoaded, setCurrencyLoaded ] = useState(false);
+  const [baseCurrency, setBaseCurrency] = useState(baseCurrencyInitial);
+  const [currenciesLoaded, setCurrencyLoaded] = useState(false);
 
   useEffect(() => loadCurrencies, [baseCurrency]);
 
-
   const loadCurrencies = () => {
     fetch(`https://api.exchangerate.host/latest?base=${baseCurrency.code}`, {
-      method: "GET"
+      method: "GET",
     })
       .then((response) => response.json())
       .then((response: any) => {
         if (!response.success) {
           showMessage({
             message: "Cannot load currencies data. Try again later.",
-            type: "danger"
+            type: "warning",
           });
           return;
         }
@@ -45,24 +44,24 @@ export function CurrencyStep(props: CurrencyStepProps) {
             code: currency.currency.code,
             symbol: currency.currency.symbol,
           },
-          rate: rates[currency.currency.code]
+          rate: rates[currency.currency.code],
         }));
-        console.log(updatedAvailableCurrencies);
+
         dispatch(setAvailableCurrencies(updatedAvailableCurrencies));
         setCurrencyLoaded(true);
       })
       .catch(() => {
         showMessage({
           message: "Cannot load currencies data. Try again later.",
-          type: "danger"
+          type: "warning",
         });
       });
-  }
+  };
 
   const onMoveNextClick = () => {
     dispatch(setMainCurrency(baseCurrency));
     props.onMoveNext();
-  }
+  };
 
   if (!currenciesLoaded) {
     loadCurrencies();
@@ -75,30 +74,30 @@ export function CurrencyStep(props: CurrencyStepProps) {
         placeholder="Select main currency..."
         value={baseCurrency.name}
         onLayout={loadCurrencies}
+        style={currencyStepStyles.selectCurrency}
       >
-        {currenciesLoaded ?
+        {currenciesLoaded ? (
           availableCurrencies.map((currency) => {
             return (
-            <SelectItem
-              key={currency.currency.code}
-              title={currency.currency.name}
-              onPress={() => setBaseCurrency(currency.currency)}
-            />
-          )}) : (
-            <SelectItem
-              title={baseCurrency.name}
-            />
-          )
-        }
+              <SelectItem
+                key={currency.currency.code}
+                title={currency.currency.name}
+                onPress={() => setBaseCurrency(currency.currency)}
+              />
+            );
+          })
+        ) : (
+          <SelectItem title={baseCurrency.name} />
+        )}
       </Select>
-      <Layout style={totalBalanceStepStyles.moveButtonsContainer}>
-        <Button onPress={props.onMoveBack}>
+      <Layout style={currencyStepStyles.moveButtonsContainer}>
+        <Button style={currencyStepStyles.moveButton} onPress={props.onMoveBack}>
           Back
         </Button>
-        <Button onPress={onMoveNextClick}>
+        <Button style={currencyStepStyles.moveButton} onPress={onMoveNextClick}>
           Next
         </Button>
       </Layout>
     </Layout>
-  )
+  );
 }

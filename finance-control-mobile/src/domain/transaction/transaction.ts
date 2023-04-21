@@ -3,7 +3,7 @@ import ExpenseType from "../expense/components/expense-type";
 /**
  * Represents transaction made by user
  */
-type Transaction = {
+interface Transaction {
   /**
    * Identifier of the transaction
    */
@@ -43,7 +43,6 @@ type Transaction = {
    * Date of the creating of transaction
    */
   date: Date;
-
 }
 
 export default Transaction;

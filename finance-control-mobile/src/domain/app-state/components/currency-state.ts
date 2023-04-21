@@ -3,7 +3,7 @@ import Currency from "../../currency/currency";
 /**
  * Represents state of currencies
  */
-type CurrencyState = {
+interface CurrencyState {
   /**
    * Main currency used as base
    */
@@ -18,7 +18,7 @@ type CurrencyState = {
 /**
  * Currency rate
  */
-export type CurrencyRate = {
+export interface CurrencyRate {
   /**
    * Currency
    */

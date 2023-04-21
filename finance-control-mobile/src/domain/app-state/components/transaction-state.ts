@@ -3,7 +3,7 @@ import Transaction from "src/domain/transaction/transaction";
 /**
  * Represents state of the current transactions
  */
-type TransactionsState = {
+interface TransactionsState {
   /**
    * Current transactions
    */
