@@ -9,7 +9,7 @@ import { totalBalanceStepStyles } from "styles/components/set-up-screen/total-ba
 import { isNullOrZero } from "utils/null-check";
 import { updateExpense } from "state/expenses/actions";
 import { CurrencyRate } from "domain/app-state/components/currency-state";
-import { ScrollView } from "react-native";
+import { ScrollView, Vibration } from "react-native";
 
 interface CurrencyBalance {
   balance: number;
@@ -37,10 +37,11 @@ export function TotalBalanceStep(props: TotalBalanceStepProps) {
   const expensesSettings = useSelector((state: AppState) => state.settings.settings.expensesSettings);
   const currencyRates = useSelector((state: AppState) => state.currencies.availableCurrencies);
   const mainCurrency = useSelector((state: AppState) => state.currencies.baseCurrency);
+  const totalBalance = useSelector((state: AppState) => state.totalBalance.initialBalance);
 
   const [currencyBalances, setCurrencyBalance] = useState<CurrencyBalance[]>([
     {
-      balance: 0,
+      balance: totalBalance ?? 0,
       currencyCode: mainCurrency.code,
       currencySymbol: mainCurrency.symbol,
     },
@@ -130,11 +131,22 @@ export function TotalBalanceStep(props: TotalBalanceStepProps) {
         message: "Invalid value of balance!",
         type: "danger",
       });
+      Vibration.vibrate();
 
       return;
     }
 
     const roundedBalance = Number(balance.toFixed(2));
+
+    if (isNaN(roundedBalance)) {
+      showMessage({
+        message: "Invalid value of the balance!",
+        type: "danger",
+      });
+      Vibration.vibrate();
+
+      return;
+    }
 
     try {
       setInitialBalanceOperation(roundedBalance);
@@ -144,6 +156,8 @@ export function TotalBalanceStep(props: TotalBalanceStepProps) {
         message: (e as Error).message,
         type: "danger",
       });
+      Vibration.vibrate();
+
       return;
     }
   };

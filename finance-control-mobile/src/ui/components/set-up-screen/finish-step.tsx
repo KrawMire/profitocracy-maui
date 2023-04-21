@@ -13,27 +13,27 @@ export function FinishStep(props: FinishStepProps) {
 
   const initialBalance = useSelector((state: AppState) => state.totalBalance.initialBalance);
   const baseCurrency = useSelector((state: AppState) => state.currencies.baseCurrency);
-  const startDate = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateFrom);
-  const endDate = useSelector((state: AppState) => state.settings.settings.billingPeriodSettings.dateTo);
+  const anchorDays = useSelector((state: AppState) => state.settings.settings.anchorDatesSettings.days);
+
+  const joinedAnchorDays = anchorDays.join(", ");
 
   const onFinish = () => {
     dispatch(setAppReady(true));
-  }
+  };
 
   return (
     <Layout>
       <Text>Finish. Check your initial data</Text>
       <Text>Main currency: {baseCurrency.name}</Text>
-      <Text>Initial balance: {initialBalance ?? 0}{baseCurrency.symbol}</Text>
-      <Text>Billing period days: {startDate ?? 0} - {endDate ?? 0}</Text>
+      <Text>
+        Initial balance: {initialBalance ?? 0}
+        {baseCurrency.symbol}
+      </Text>
+      <Text>Anchor days: {joinedAnchorDays}</Text>
       <Layout style={finishStepStyles.moveButtonsContainer}>
-        <Button onPress={props.onMoveBack}>
-          Back
-        </Button>
-        <Button onPress={onFinish}>
-          Finish
-        </Button>
+        <Button onPress={props.onMoveBack}>Back</Button>
+        <Button onPress={onFinish}>Finish</Button>
       </Layout>
     </Layout>
-  )
+  );
 }

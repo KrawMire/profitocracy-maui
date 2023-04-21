@@ -13,9 +13,9 @@ enum ExpenseType {
   Secondary = "SECONDARY_EXPENSES",
 
   /**
-   * Posponed money. For example on deposit
+   * Postponed money. For example on deposit
    */
-  Postponed = "POSTPONED_EXPENSES"
+  Postponed = "POSTPONED_EXPENSES",
 }
 
 export default ExpenseType;

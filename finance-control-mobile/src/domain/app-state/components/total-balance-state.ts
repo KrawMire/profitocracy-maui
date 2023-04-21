@@ -1,7 +1,7 @@
 /**
  * Represents current state of the current total balance
  */
-type TotalBalanceState = {
+interface TotalBalanceState {
   /**
    * Initial balance for billing period
    */

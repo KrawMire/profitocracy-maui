@@ -1,7 +1,7 @@
 /**
  * Represents currency used in application
  */
-type Currency = {
+interface Currency {
   /**
    * Name of the currency
    */

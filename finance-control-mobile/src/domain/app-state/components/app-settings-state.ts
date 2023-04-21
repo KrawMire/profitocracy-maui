@@ -1,9 +1,9 @@
-import AppSettings from "src/domain/app-settings/app-settings"
+import AppSettings from "src/domain/app-settings/app-settings";
 
 /**
  * Represents current state of app settings
  */
-type AppSettingsState = {
+interface AppSettingsState {
   /**
    * Settings of the application
    */

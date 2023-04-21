@@ -3,7 +3,6 @@ import { initialAppState } from "./initial-state";
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { appSettingsReducer } from "./app-settings/reducer";
-import { billingPeriodsReducer } from "./billing-periods/reducer";
 import { expensesReducer } from "./expenses/reducer";
 import { totalBalanceReducer } from "./total-balance/reducer";
 import { transactionsReducer } from "./transactions/reducer";
@@ -14,9 +13,10 @@ import { Action } from "./types";
 import AppState from "src/domain/app-state/app-state";
 import { globalAppReducer } from "./global/reducer";
 import { currencyReducer } from "state/currency/reducer";
+import { anchorDatesReducer } from "state/anchor-dates/reducer";
 
 const appReducer = combineReducers({
-  billingPeriods: billingPeriodsReducer,
+  anchorDates: anchorDatesReducer,
   expenses: expensesReducer,
   totalBalance: totalBalanceReducer,
   transactions: transactionsReducer,

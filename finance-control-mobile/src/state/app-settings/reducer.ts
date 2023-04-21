@@ -1,11 +1,11 @@
 import { Action } from "state/types";
 import AppSettingsState from "src/domain/app-state/components/app-settings-state";
 import { AppSettingsActionsReturnTypes, AppSettingsActionsTypes } from "./actions";
-import BillingPeriodSettings from "src/domain/app-settings/components/biiling-period-settings";
 import ExpenseCategory from "src/domain/expense-category/expense-category";
 import ExpenseTypeSettings from "src/domain/app-settings/components/expense-type-settings";
 import ThemeSettings from "../../domain/app-settings/components/theme-settings";
 import { appSettingsInitialState } from "state/initial-state";
+import AnchorDaysSettings from "domain/app-settings/components/anchor-days-settings";
 
 /**
  * App settings actions handler
@@ -14,7 +14,7 @@ import { appSettingsInitialState } from "state/initial-state";
  */
 export function appSettingsReducer(
   state: AppSettingsState = appSettingsInitialState,
-  action: Action<AppSettingsActionsReturnTypes>
+  action: Action<AppSettingsActionsReturnTypes>,
 ): AppSettingsState {
   const newState = Object.assign({}, state);
 
@@ -24,9 +24,15 @@ export function appSettingsReducer(
       return newState;
     }
 
-    case AppSettingsActionsTypes.SetBillingPeriod: {
-      newState.settings.billingPeriodSettings = <BillingPeriodSettings>action.payload;
-      return newState;
+    case AppSettingsActionsTypes.SetAnchorDays: {
+      const newAnchorDaysSettings = <AnchorDaysSettings>action.payload;
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          anchorDatesSettings: newAnchorDaysSettings,
+        },
+      };
     }
 
     case AppSettingsActionsTypes.AddExpenseCategory: {
@@ -34,18 +40,17 @@ export function appSettingsReducer(
         settings: {
           ...state.settings,
           expenseCategoriesSettings: {
-            categories: [
-              ...state.settings.expenseCategoriesSettings.categories,
-              <ExpenseCategory>action.payload
-            ]
-          }
-        }
+            categories: [...state.settings.expenseCategoriesSettings.categories, <ExpenseCategory>action.payload],
+          },
+        },
       };
     }
 
     case AppSettingsActionsTypes.RemoveExpenseCategory: {
-      newState.settings.expenseCategoriesSettings.categories = newState.settings.expenseCategoriesSettings.categories
-        .filter(category => category.id !== <string>action.payload);
+      newState.settings.expenseCategoriesSettings.categories =
+        newState.settings.expenseCategoriesSettings.categories.filter(
+          (category) => category.id !== <string>action.payload,
+        );
       return newState;
     }
 

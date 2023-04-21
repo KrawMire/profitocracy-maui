@@ -1,15 +1,15 @@
-import { BillingPeriodsState } from "./components/billing-periods-state";
 import ExpensesState from "./components/expenses-state";
 import AppSettingsState from "./components/app-settings-state";
 import TotalBalanceState from "./components/total-balance-state";
 import TransactionsState from "./components/transaction-state";
 import GlobalState from "./components/global-state";
 import CurrencyState from "./components/currency-state";
+import AnchorDatesState from "domain/app-state/components/anchor-dates-state";
 
 /**
  * Represents whole app state
  */
-type AppState = {
+interface AppState {
   /**
    * Current state of global app parameters
    */
@@ -36,9 +36,9 @@ type AppState = {
   settings: AppSettingsState;
 
   /**
-   * Current state of billing periods
+   * Current state of anchor dates
    */
-  billingPeriods: BillingPeriodsState;
+  anchorDates: AnchorDatesState;
 
   /**
    * Current state of currencies

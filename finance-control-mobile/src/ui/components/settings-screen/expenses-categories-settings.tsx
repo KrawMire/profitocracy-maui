@@ -8,8 +8,8 @@ import { addExpenseCategory } from "state/app-settings/actions";
 import { settingsScreenStyles } from "styles/screens/settings.style";
 import { getNewId } from "utils/identifier";
 import { isNullOrZero } from "utils/null-check";
-import {expensesCategoriesSettingsStyle} from "styles/components/settings-screen/expenses-categories-settings";
-import {View} from "react-native";
+import { expensesCategoriesSettingsStyle } from "styles/components/settings-screen/expenses-categories-settings";
+import { Vibration, View } from "react-native";
 
 export function ExpensesCategoriesSettings() {
   const dispatch = useDispatch();
@@ -30,16 +30,20 @@ export function ExpensesCategoriesSettings() {
     if (!newCategoryName || newCategoryName === "") {
       showMessage({
         message: "Invalid category name!",
-        type: "danger"
+        type: "danger",
       });
+      Vibration.vibrate();
+
       return;
     }
 
     if (isNullOrZero(parsedAmount)) {
       showMessage({
         message: "Invalid new category amount!",
-        type: "danger"
+        type: "danger",
       });
+      Vibration.vibrate();
+
       return;
     }
 
@@ -47,9 +51,10 @@ export function ExpensesCategoriesSettings() {
       id: getNewId(),
       name: newCategoryName,
       plannedAmount: parsedAmount,
-      trackExpenses: trackNewCategory
+      trackExpenses: trackNewCategory,
     };
 
+    Vibration.vibrate();
     dispatch(addExpenseCategory(newCategory));
     toggleModal();
   };
@@ -57,20 +62,18 @@ export function ExpensesCategoriesSettings() {
   const isCategoriesExists = categories && categories.length > 0;
   return (
     <Layout>
-      {isCategoriesExists ? categories.map((category) => (
-        <Card key={category.id}>
-          <Text>{category.name}</Text>
-          <Text>Planned amount: {category.plannedAmount}</Text>
-          <Text>Track: {category.trackExpenses ? "Yes" : "No"}</Text>
-        </Card>
-      )) : (
+      {isCategoriesExists ? (
+        categories.map((category) => (
+          <Card key={category.id}>
+            <Text>{category.name}</Text>
+            <Text>Planned amount: {category.plannedAmount}</Text>
+            <Text>Track: {category.trackExpenses ? "Yes" : "No"}</Text>
+          </Card>
+        ))
+      ) : (
         <Text>No expenses categories</Text>
       )}
-      <Button
-        onPress={toggleModal}
-      >
-        Add new category
-      </Button>
+      <Button onPress={toggleModal}>Add new category</Button>
 
       <Modal
         visible={showAddModal}
@@ -78,11 +81,7 @@ export function ExpensesCategoriesSettings() {
         onBackdropPress={toggleModal}
       >
         <Card
-          header={
-          <Text category="h3">
-            Add new category
-          </Text>
-          }
+          header={<Text category="h3">Add new category</Text>}
           style={expensesCategoriesSettingsStyle.addCategoryCard}
         >
           <Input
@@ -100,19 +99,11 @@ export function ExpensesCategoriesSettings() {
             style={expensesCategoriesSettingsStyle.addCategoryInput}
             onChangeText={setNewCategoryAmount}
           />
-          <View
-            style={expensesCategoriesSettingsStyle.trackExpensesToggle}
-          >
+          <View style={expensesCategoriesSettingsStyle.trackExpensesToggle}>
             <Text>Track expenses:</Text>
-            <Toggle
-              checked={trackNewCategory}
-              onChange={setTrackNewCategory}
-            />
+            <Toggle checked={trackNewCategory} onChange={setTrackNewCategory} />
           </View>
-          <Button
-            onPress={addNewCategory}
-            style={expensesCategoriesSettingsStyle.addCategoryButton}
-          >
+          <Button onPress={addNewCategory} style={expensesCategoriesSettingsStyle.addCategoryButton}>
             Add category
           </Button>
         </Card>
