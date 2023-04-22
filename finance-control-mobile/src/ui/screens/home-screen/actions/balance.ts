@@ -45,7 +45,8 @@ export function calculateActualBalance(initialBalance: number, transactions: Tra
   }
 
   const transactionsAfterDate = transactions.filter((transaction) => {
-    const transactionDate = transaction.date.getTime();
+    const parsedTransactionDate = new Date(transaction.date);
+    const transactionDate = parsedTransactionDate.getTime();
     const anchorDate = dateFrom.getTime();
 
     return transactionDate > anchorDate;

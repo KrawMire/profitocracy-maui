@@ -42,7 +42,7 @@ interface Transaction {
   /**
    * Date of the creating of transaction
    */
-  date: Date;
+  date: string;
 }
 
 export default Transaction;

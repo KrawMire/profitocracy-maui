@@ -9,6 +9,7 @@ import { calculateExpenseType } from "./actions/expense-type";
 import { addAnchorDate } from "state/anchor-dates/actions";
 import AnchorDate from "domain/anchor-date/anchor-date";
 import { createDateForCurrentMonth, getCurrentDay } from "utils/dates-helpers";
+import { useMemo } from "react";
 
 export function HomeScreen() {
   const dispatch = useDispatch();
@@ -48,19 +49,24 @@ export function HomeScreen() {
   const trackingCategories = getTrackingCategories(expenseCategories);
   const parsedCategories = convertCategories(trackingCategories);
   const currentAnchorDate = anchorDates[anchorDates.length - 1] ?? null;
+  const parsedCurrentAnchorDate = currentAnchorDate ? new Date(currentAnchorDate.date) : null;
 
-  let initialDailyAmount = 0;
-  let actualDailyAmount = 0;
-  let actualBalance = initialDisplayBalance;
+  const actualBalance = useMemo(() => {
+    if (!parsedCurrentAnchorDate) {
+      return 0;
+    }
 
-  if (currentAnchorDate) {
-    const parsedCurrentAnchorDate = new Date(currentAnchorDate.date);
-    actualBalance = calculateActualBalance(initialDisplayBalance, transactions, parsedCurrentAnchorDate);
-    initialDailyAmount = currentAnchorDate
-      ? calculateDailyCash(initialDisplayBalance, parsedCurrentAnchorDate.getDate(), anchorDays)
-      : 0;
-    actualDailyAmount = calculateDailyCash(actualBalance, getCurrentDay(), anchorDays);
-  }
+    return calculateActualBalance(initialDisplayBalance, transactions, parsedCurrentAnchorDate);
+  }, [transactions, parsedCurrentAnchorDate]);
+
+  const initialDailyAmount = useMemo(() => {
+    if (!parsedCurrentAnchorDate) {
+      return 0;
+    }
+
+    return calculateDailyCash(initialDisplayBalance, parsedCurrentAnchorDate.getDate(), anchorDays);
+  }, [parsedCurrentAnchorDate]);
+  const actualDailyAmount = calculateDailyCash(actualBalance, getCurrentDay(), anchorDays);
 
   const renderHeader = (header: string) => (
     <Layout>

@@ -34,7 +34,7 @@ export function TransactionCard(props: TransactionCardProps) {
         {amountCurrencySymbol}
       </Text>
       <Text category="h6" appearance="hint">
-        {props.transaction.date.toLocaleString()}
+        {props.transaction.date.toString()}
       </Text>
       <Text category="h6" appearance="hint">
         {expenseTypeName}

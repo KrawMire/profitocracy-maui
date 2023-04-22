@@ -100,7 +100,7 @@ export function AddTransactionScreen() {
       id: getNewId(),
       description,
       category: expenseCategory ? expenseCategory.id : "",
-      date,
+      date: date.toDateString(),
       currencyCode: currency.code,
       amount: transactionAmount,
       baseCurrencyAmount: getBaseCurrencyAmount(),
