@@ -13,7 +13,7 @@ import { createDateForCurrentMonth, getCurrentDay } from "utils/dates-helpers";
 export function HomeScreen() {
   const dispatch = useDispatch();
 
-  const initialBalance = useSelector((state: AppState) => state.totalBalance.initialBalance) ?? 0;
+  const initialBalance = useSelector((state: AppState) => state.totalBalance.initialBalance);
   const transactions = useSelector((state: AppState) => state.transactions.transactions);
 
   const baseCurrency = useSelector((state: AppState) => state.currencies.baseCurrency);
@@ -26,30 +26,41 @@ export function HomeScreen() {
   );
 
   const hasAnchorDays = anchorDays.length > 0;
-  let initialTotalBalance = initialBalance;
+  let initialDisplayBalance = initialBalance;
 
   if (hasAnchorDays) {
     const { nearestAnchorDay, anchorDate } = getCurrentAnchorDate(anchorDays, anchorDates);
 
     if (!anchorDate) {
+      const newDate = createDateForCurrentMonth(nearestAnchorDay);
+
       const newAnchorDate: AnchorDate = {
-        date: createDateForCurrentMonth(nearestAnchorDay),
-        balance: initialTotalBalance,
+        date: newDate.toString(),
+        balance: initialDisplayBalance,
       };
 
       dispatch(addAnchorDate(newAnchorDate));
     } else {
-      initialTotalBalance = anchorDate.balance;
+      initialDisplayBalance = anchorDate.balance;
     }
   }
 
-  const currentAnchorDate = anchorDates[anchorDates.length - 1];
   const trackingCategories = getTrackingCategories(expenseCategories);
-  const actualBalance = calculateActualBalance(initialTotalBalance, transactions, currentAnchorDate.date);
   const parsedCategories = convertCategories(trackingCategories);
+  const currentAnchorDate = anchorDates[anchorDates.length - 1] ?? null;
 
-  const initialDailyAmount = calculateDailyCash(initialTotalBalance, currentAnchorDate.date.getDate(), anchorDays);
-  const actualDailyAmount = calculateDailyCash(actualBalance, getCurrentDay(), anchorDays);
+  let initialDailyAmount = 0;
+  let actualDailyAmount = 0;
+  let actualBalance = initialDisplayBalance;
+
+  if (currentAnchorDate) {
+    const parsedCurrentAnchorDate = new Date(currentAnchorDate.date);
+    actualBalance = calculateActualBalance(initialDisplayBalance, transactions, parsedCurrentAnchorDate);
+    initialDailyAmount = currentAnchorDate
+      ? calculateDailyCash(initialDisplayBalance, parsedCurrentAnchorDate.getDate(), anchorDays)
+      : 0;
+    actualDailyAmount = calculateDailyCash(actualBalance, getCurrentDay(), anchorDays);
+  }
 
   const renderHeader = (header: string) => (
     <Layout>
@@ -64,7 +75,7 @@ export function HomeScreen() {
 
         <Card header={renderHeader("Total balance")} status="success" style={homeScreenStyles.balanceCard}>
           <Text>
-            Initial balance: {initialTotalBalance ?? 0}
+            Initial balance: {initialBalance ?? 0}
             {baseCurrency.symbol}
           </Text>
           <Text>
@@ -81,13 +92,13 @@ export function HomeScreen() {
             <Layout style={homeScreenStyles.dailyCashWrapper} level="4">
               <Card header={renderHeader("From initial")} status="success" style={homeScreenStyles.dailyCashCard}>
                 <Text>
-                  {initialDailyAmount.toFixed(2)}
+                  {initialDailyAmount}
                   {baseCurrency.symbol}
                 </Text>
               </Card>
               <Card header={renderHeader("From actual")} status="success" style={homeScreenStyles.dailyCashCard}>
                 <Text>
-                  {actualDailyAmount.toFixed(2)}
+                  {actualDailyAmount}
                   {baseCurrency.symbol}
                 </Text>
               </Card>

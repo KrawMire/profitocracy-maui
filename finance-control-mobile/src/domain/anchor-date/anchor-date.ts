@@ -11,7 +11,7 @@ interface AnchorDate {
   /**
    * Creation date of balance state
    */
-  date: Date;
+  date: string;
 }
 
 export default AnchorDate;

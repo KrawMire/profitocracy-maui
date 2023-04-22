@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function getDaysInMonth(year: number, month: number) {
   return new Date(year, month, 0).getDate();
 }
@@ -11,5 +13,8 @@ export function getCurrentDay() {
 }
 
 export function createDateForCurrentMonth(day: number) {
-  return new Date(new Date().getFullYear(), new Date().getMonth(), day);
+  const today = moment();
+  const date = today.date(day);
+
+  return date.toDate();
 }

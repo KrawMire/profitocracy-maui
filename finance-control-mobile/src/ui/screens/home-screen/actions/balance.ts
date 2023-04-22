@@ -22,11 +22,13 @@ export function getCurrentAnchorDate(
   }
 
   const anchorDate = anchorDates.find((date) => {
+    const parsedDate = new Date(date.date);
+
     if (!date || !date.date) {
       return false;
     }
 
-    const anchorDayOfMonth = date.date?.getDate();
+    const anchorDayOfMonth = parsedDate.getDate();
 
     return anchorDayOfMonth === nearestAnchorDay;
   });

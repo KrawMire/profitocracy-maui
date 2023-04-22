@@ -10,11 +10,6 @@ interface Expense {
   expenseType: ExpenseType;
 
   /**
-   * Identifier of the billing period
-   */
-  billingPeriod: string | null;
-
-  /**
    * The name of the expense
    */
   name: string;

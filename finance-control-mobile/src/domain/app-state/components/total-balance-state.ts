@@ -5,7 +5,7 @@ interface TotalBalanceState {
   /**
    * Initial balance for billing period
    */
-  initialBalance: number | null;
+  initialBalance: number;
 }
 
 export default TotalBalanceState;

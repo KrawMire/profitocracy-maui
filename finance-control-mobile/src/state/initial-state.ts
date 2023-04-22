@@ -56,21 +56,18 @@ export const expensesInitialState: ExpensesState = {
       name: "Main expenses",
       actualAmount: 0,
       plannedAmount: 0,
-      billingPeriod: null,
     },
     {
       expenseType: ExpenseType.Secondary,
       name: "Secondary expenses",
       actualAmount: 0,
       plannedAmount: 0,
-      billingPeriod: null,
     },
     {
       expenseType: ExpenseType.Postponed,
       name: "Postponed",
       actualAmount: 0,
       plannedAmount: 0,
-      billingPeriod: null,
     },
   ],
 };
