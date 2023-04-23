@@ -5,13 +5,23 @@ import { AppThemeSettings } from "components/settings-screen/app-theme-settings"
 import { resetStore } from "state/global/actions";
 import { settingsScreenStyles } from "styles/screens/settings.style";
 import { ExpensesCategoriesSettings } from "components/settings-screen/expenses-categories-settings";
-import { Button, Card, Layout, Text } from "@ui-kitten/components";
+import { Button, Card, Layout, Modal, Text } from "@ui-kitten/components";
+import { useState } from "react";
 
 export function SettingsScreen() {
   const dispatch = useDispatch();
+  const [showResetModal, setShowResetModal] = useState(false);
 
   const onResetApp = () => {
     dispatch(resetStore());
+  };
+
+  const onShowModal = () => {
+    setShowResetModal(true);
+  };
+
+  const onHideModal = () => {
+    setShowResetModal(false);
   };
 
   const renderHeader = (header: string) => <Text category="h5">{header}</Text>;
@@ -27,10 +37,25 @@ export function SettingsScreen() {
           <Card header={renderHeader("Expense categories")} style={settingsScreenStyles.settingsCard}>
             <ExpensesCategoriesSettings />
           </Card>
-          <Button onPress={onResetApp} status="danger" style={settingsScreenStyles.resetAppButton}>
+          <Button onPress={onShowModal} status="danger" style={settingsScreenStyles.resetAppButton}>
             Reset app
           </Button>
         </ScrollView>
+
+        <Modal
+          visible={showResetModal}
+          onBackdropPress={onHideModal}
+          backdropStyle={settingsScreenStyles.resetModalBackdrop}
+        >
+          <Card header={<Text category="h4">Are you sure?</Text>}>
+            <Button status="danger" onPress={onResetApp}>
+              Reset
+            </Button>
+            <Button status="primary" style={settingsScreenStyles.resetAppButton} onPress={onHideModal}>
+              Cancel
+            </Button>
+          </Card>
+        </Modal>
       </Layout>
     </TouchableWithoutFeedback>
   );
