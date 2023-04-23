@@ -105,3 +105,6 @@ dist
 
 # OS-sprcific files
 .DS_Store
+
+# JetBrains IDE
+.idea/*

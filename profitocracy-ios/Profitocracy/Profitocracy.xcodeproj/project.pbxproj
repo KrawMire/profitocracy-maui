@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */; };
+		97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB729F5282E00D5C2DE /* ContentView.swift */; };
+		97732FBA29F5282F00D5C2DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97732FB929F5282F00D5C2DE /* Assets.xcassets */; };
+		97732FBD29F5282F00D5C2DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97732FBC29F5282F00D5C2DE /* Preview Assets.xcassets */; };
+		97732FC729F5282F00D5C2DE /* ProfitocracyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FC629F5282F00D5C2DE /* ProfitocracyTests.swift */; };
+		97732FD129F5282F00D5C2DE /* ProfitocracyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FD029F5282F00D5C2DE /* ProfitocracyUITests.swift */; };
+		97732FD329F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FD229F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		97732FC329F5282F00D5C2DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97732FAA29F5282E00D5C2DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97732FB129F5282E00D5C2DE;
+			remoteInfo = Profitocracy;
+		};
+		97732FCD29F5282F00D5C2DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97732FAA29F5282E00D5C2DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97732FB129F5282E00D5C2DE;
+			remoteInfo = Profitocracy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		97732FB229F5282E00D5C2DE /* Profitocracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Profitocracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyApp.swift; sourceTree = "<group>"; };
+		97732FB729F5282E00D5C2DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		97732FB929F5282F00D5C2DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		97732FBC29F5282F00D5C2DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		97732FC229F5282F00D5C2DE /* ProfitocracyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProfitocracyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97732FC629F5282F00D5C2DE /* ProfitocracyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyTests.swift; sourceTree = "<group>"; };
+		97732FCC29F5282F00D5C2DE /* ProfitocracyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProfitocracyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97732FD029F5282F00D5C2DE /* ProfitocracyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyUITests.swift; sourceTree = "<group>"; };
+		97732FD229F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		97732FAF29F5282E00D5C2DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97732FBF29F5282F00D5C2DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97732FC929F5282F00D5C2DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		97732FA929F5282E00D5C2DE = {
+			isa = PBXGroup;
+			children = (
+				97732FB429F5282E00D5C2DE /* Profitocracy */,
+				97732FC529F5282F00D5C2DE /* ProfitocracyTests */,
+				97732FCF29F5282F00D5C2DE /* ProfitocracyUITests */,
+				97732FB329F5282E00D5C2DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		97732FB329F5282E00D5C2DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97732FB229F5282E00D5C2DE /* Profitocracy.app */,
+				97732FC229F5282F00D5C2DE /* ProfitocracyTests.xctest */,
+				97732FCC29F5282F00D5C2DE /* ProfitocracyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97732FB429F5282E00D5C2DE /* Profitocracy */ = {
+			isa = PBXGroup;
+			children = (
+				97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */,
+				97732FB729F5282E00D5C2DE /* ContentView.swift */,
+				97732FB929F5282F00D5C2DE /* Assets.xcassets */,
+				97732FBB29F5282F00D5C2DE /* Preview Content */,
+			);
+			path = Profitocracy;
+			sourceTree = "<group>";
+		};
+		97732FBB29F5282F00D5C2DE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				97732FBC29F5282F00D5C2DE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		97732FC529F5282F00D5C2DE /* ProfitocracyTests */ = {
+			isa = PBXGroup;
+			children = (
+				97732FC629F5282F00D5C2DE /* ProfitocracyTests.swift */,
+			);
+			path = ProfitocracyTests;
+			sourceTree = "<group>";
+		};
+		97732FCF29F5282F00D5C2DE /* ProfitocracyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				97732FD029F5282F00D5C2DE /* ProfitocracyUITests.swift */,
+				97732FD229F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift */,
+			);
+			path = ProfitocracyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97732FB129F5282E00D5C2DE /* Profitocracy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97732FD629F5282F00D5C2DE /* Build configuration list for PBXNativeTarget "Profitocracy" */;
+			buildPhases = (
+				97732FAE29F5282E00D5C2DE /* Sources */,
+				97732FAF29F5282E00D5C2DE /* Frameworks */,
+				97732FB029F5282E00D5C2DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Profitocracy;
+			productName = Profitocracy;
+			productReference = 97732FB229F5282E00D5C2DE /* Profitocracy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		97732FC129F5282F00D5C2DE /* ProfitocracyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97732FD929F5282F00D5C2DE /* Build configuration list for PBXNativeTarget "ProfitocracyTests" */;
+			buildPhases = (
+				97732FBE29F5282F00D5C2DE /* Sources */,
+				97732FBF29F5282F00D5C2DE /* Frameworks */,
+				97732FC029F5282F00D5C2DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97732FC429F5282F00D5C2DE /* PBXTargetDependency */,
+			);
+			name = ProfitocracyTests;
+			productName = ProfitocracyTests;
+			productReference = 97732FC229F5282F00D5C2DE /* ProfitocracyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		97732FCB29F5282F00D5C2DE /* ProfitocracyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97732FDC29F5282F00D5C2DE /* Build configuration list for PBXNativeTarget "ProfitocracyUITests" */;
+			buildPhases = (
+				97732FC829F5282F00D5C2DE /* Sources */,
+				97732FC929F5282F00D5C2DE /* Frameworks */,
+				97732FCA29F5282F00D5C2DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97732FCE29F5282F00D5C2DE /* PBXTargetDependency */,
+			);
+			name = ProfitocracyUITests;
+			productName = ProfitocracyUITests;
+			productReference = 97732FCC29F5282F00D5C2DE /* ProfitocracyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		97732FAA29F5282E00D5C2DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					97732FB129F5282E00D5C2DE = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					97732FC129F5282F00D5C2DE = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 97732FB129F5282E00D5C2DE;
+					};
+					97732FCB29F5282F00D5C2DE = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 97732FB129F5282E00D5C2DE;
+					};
+				};
+			};
+			buildConfigurationList = 97732FAD29F5282E00D5C2DE /* Build configuration list for PBXProject "Profitocracy" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 97732FA929F5282E00D5C2DE;
+			productRefGroup = 97732FB329F5282E00D5C2DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97732FB129F5282E00D5C2DE /* Profitocracy */,
+				97732FC129F5282F00D5C2DE /* ProfitocracyTests */,
+				97732FCB29F5282F00D5C2DE /* ProfitocracyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97732FB029F5282E00D5C2DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97732FBD29F5282F00D5C2DE /* Preview Assets.xcassets in Resources */,
+				97732FBA29F5282F00D5C2DE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97732FC029F5282F00D5C2DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97732FCA29F5282F00D5C2DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		97732FAE29F5282E00D5C2DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */,
+				97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97732FBE29F5282F00D5C2DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97732FC729F5282F00D5C2DE /* ProfitocracyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97732FC829F5282F00D5C2DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97732FD129F5282F00D5C2DE /* ProfitocracyUITests.swift in Sources */,
+				97732FD329F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		97732FC429F5282F00D5C2DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97732FB129F5282E00D5C2DE /* Profitocracy */;
+			targetProxy = 97732FC329F5282F00D5C2DE /* PBXContainerItemProxy */;
+		};
+		97732FCE29F5282F00D5C2DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97732FB129F5282E00D5C2DE /* Profitocracy */;
+			targetProxy = 97732FCD29F5282F00D5C2DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		97732FD429F5282F00D5C2DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		97732FD529F5282F00D5C2DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		97732FD729F5282F00D5C2DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Profitocracy/Preview Content\"";
+				DEVELOPMENT_TEAM = LLQT5AQ7W2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krawmire.Profitocracy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		97732FD829F5282F00D5C2DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Profitocracy/Preview Content\"";
+				DEVELOPMENT_TEAM = LLQT5AQ7W2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krawmire.Profitocracy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		97732FDA29F5282F00D5C2DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LLQT5AQ7W2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krawmire.ProfitocracyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Profitocracy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Profitocracy";
+			};
+			name = Debug;
+		};
+		97732FDB29F5282F00D5C2DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LLQT5AQ7W2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krawmire.ProfitocracyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Profitocracy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Profitocracy";
+			};
+			name = Release;
+		};
+		97732FDD29F5282F00D5C2DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LLQT5AQ7W2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krawmire.ProfitocracyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Profitocracy;
+			};
+			name = Debug;
+		};
+		97732FDE29F5282F00D5C2DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LLQT5AQ7W2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krawmire.ProfitocracyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Profitocracy;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		97732FAD29F5282E00D5C2DE /* Build configuration list for PBXProject "Profitocracy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97732FD429F5282F00D5C2DE /* Debug */,
+				97732FD529F5282F00D5C2DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97732FD629F5282F00D5C2DE /* Build configuration list for PBXNativeTarget "Profitocracy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97732FD729F5282F00D5C2DE /* Debug */,
+				97732FD829F5282F00D5C2DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97732FD929F5282F00D5C2DE /* Build configuration list for PBXNativeTarget "ProfitocracyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97732FDA29F5282F00D5C2DE /* Debug */,
+				97732FDB29F5282F00D5C2DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97732FDC29F5282F00D5C2DE /* Build configuration list for PBXNativeTarget "ProfitocracyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97732FDD29F5282F00D5C2DE /* Debug */,
+				97732FDE29F5282F00D5C2DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 97732FAA29F5282E00D5C2DE /* Project object */;
+}
