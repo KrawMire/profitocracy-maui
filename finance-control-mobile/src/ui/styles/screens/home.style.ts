@@ -1,4 +1,7 @@
 import { StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
+
+const screenWidth = Dimensions.get("window").width;
 
 export const homeScreenStyles = StyleSheet.create({
   scrollWrapper: {
@@ -10,19 +13,40 @@ export const homeScreenStyles = StyleSheet.create({
     paddingLeft: "2%",
     paddingRight: "2%",
   },
+  sectionHeader: {
+    marginTop: 10,
+    marginBottom: 5,
+  },
   amountWrapper: {
     flexDirection: "row",
     justifyContent: "space-around"
   },
-  infoCard: {
+  balanceCard: {
     marginTop: 10,
-    marginBottom: 10,
+  },
+  infoCard: {
+    marginRight: 10,
+    width: screenWidth * 0.9,
   },
   categoriesWrapper: {
   },
   categoriesLineWrapper: {
+    marginTop: 10,
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-between"
+  },
+  categoryCard: {
+    width: "49%"
+  },
+  noCategoriesWrapper: {
+    width: "100%",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  noCategoriesHint: {
+    width: "85%",
+    textAlign: "center",
+    marginTop: 30
   },
   dailyCashWrapper: {
     flexDirection: "row",

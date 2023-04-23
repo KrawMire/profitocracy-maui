@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-native",
+    "prettier"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-native/all"
+  ],
+  "rules": {
+    "semi": "error",
+    "react-native/no-raw-text": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}

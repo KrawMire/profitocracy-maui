@@ -1,7 +1,7 @@
 /**
  * Category of expenses
  */
-type ExpenseCategory = {
+interface ExpenseCategory {
   /**
    *  Identifier of expense category
    */

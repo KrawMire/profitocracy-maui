@@ -1,4 +1,5 @@
 import { Button, Layout, Text } from "@ui-kitten/components";
+import { welcomeStepStyles } from "styles/components/set-up-screen/welcome.style";
 
 export interface WelcomeStepProps {
   onMoveNext: () => void;
@@ -7,10 +8,10 @@ export interface WelcomeStepProps {
 export function WelcomeStep(props: WelcomeStepProps) {
   return (
     <Layout>
-      <Text>Welcome</Text>
-      <Button onPress={props.onMoveNext}>
+      <Text style={welcomeStepStyles.welcomeText}>Welcome</Text>
+      <Button style={welcomeStepStyles.moveNextButton} onPress={props.onMoveNext}>
         Move to next step
       </Button>
     </Layout>
-  )
+  );
 }

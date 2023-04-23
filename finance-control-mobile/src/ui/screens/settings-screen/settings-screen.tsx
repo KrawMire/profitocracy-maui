@@ -1,78 +1,62 @@
-import { Keyboard, ScrollView, TouchableWithoutFeedback, View } from "react-native";
+import { Keyboard, ScrollView, TouchableWithoutFeedback } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { AppThemeSettings } from "../../components/settings-screen/app-theme-settings";
+import { AppThemeSettings } from "components/settings-screen/app-theme-settings";
 import { resetStore } from "state/global/actions";
 import { settingsScreenStyles } from "styles/screens/settings.style";
-import { TotalBalanceSettings } from "components/settings-screen/total-balance-settings";
-import { BillingPeriodsSettings } from "components/settings-screen/billing-periods-settings";
-import { ExpensesSettings } from "components/settings-screen/expenses-settings";
 import { ExpensesCategoriesSettings } from "components/settings-screen/expenses-categories-settings";
-import { Button, Card, Layout, Text } from "@ui-kitten/components";
+import { Button, Card, Layout, Modal, Text } from "@ui-kitten/components";
+import { useState } from "react";
 
 export function SettingsScreen() {
   const dispatch = useDispatch();
+  const [showResetModal, setShowResetModal] = useState(false);
 
   const onResetApp = () => {
     dispatch(resetStore());
-  }
+  };
 
-  const renderHeader = (header: string) => (
-    <Text category="h5">
-      {header}
-    </Text>
-  )
+  const onShowModal = () => {
+    setShowResetModal(true);
+  };
+
+  const onHideModal = () => {
+    setShowResetModal(false);
+  };
+
+  const renderHeader = (header: string) => <Text category="h5">{header}</Text>;
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Layout
-        style={settingsScreenStyles.wrapper}
-        level="4"
-      >
+      <Layout style={settingsScreenStyles.wrapper} level="4">
         <ScrollView>
           <Text category="h1">Settings</Text>
-          <Card
-            header={renderHeader("Total balance")}
-            style={settingsScreenStyles.totalBalanceSettingsCard}
-          >
-            <TotalBalanceSettings />
-          </Card>
-          <Card
-            header={renderHeader("Billing periods")}
-            style={settingsScreenStyles.settingsCard}
-          >
-            <BillingPeriodsSettings />
-          </Card>
-          <Card
-            header={renderHeader("App theme")}
-            style={settingsScreenStyles.settingsCard}
-          >
+          <Card header={renderHeader("App theme")} style={settingsScreenStyles.settingsCard}>
             <AppThemeSettings />
           </Card>
-          <Card
-            header={renderHeader("Expense settings")}
-            style={settingsScreenStyles.settingsCard}
-          >
-            <ExpensesSettings />
-          </Card>
-          <Card
-            header={renderHeader("Expense categories")}
-            style={settingsScreenStyles.settingsCard}
-          >
+          <Card header={renderHeader("Expense categories")} style={settingsScreenStyles.settingsCard}>
             <ExpensesCategoriesSettings />
           </Card>
-          <Button
-            onPress={onResetApp}
-            status="danger"
-            style={{
-              // TODO: Temporary solution
-              marginTop: 25
-            }}
-          >
+          <Button onPress={onShowModal} status="danger" style={settingsScreenStyles.resetAppButton}>
             Reset app
           </Button>
         </ScrollView>
+
+        <Modal
+          visible={showResetModal}
+          onBackdropPress={onHideModal}
+          backdropStyle={settingsScreenStyles.resetModalBackdrop}
+        >
+          <Card header={<Text category="h4">Are you sure?</Text>}>
+            <Button status="danger" onPress={onResetApp}>
+              Reset
+            </Button>
+            <Button status="primary" style={settingsScreenStyles.resetAppButton} onPress={onHideModal}>
+              Cancel
+            </Button>
+          </Card>
+        </Modal>
       </Layout>
     </TouchableWithoutFeedback>
-  )
+  );
 }

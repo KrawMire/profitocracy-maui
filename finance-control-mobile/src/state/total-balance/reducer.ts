@@ -16,12 +16,6 @@ export function totalBalanceReducer (
   const newState = Object.assign({}, state);
 
   switch (action.type) {
-    case TotalBalanceActionsTypes.SetActualBalance:
-      return {
-        ...state,
-        actualBalance: action.payload
-      };
-
     case TotalBalanceActionsTypes.SetInitialBalance:
       newState.initialBalance = action.payload;
       return {

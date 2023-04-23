@@ -3,4 +3,3 @@ export interface Action<T> {
   payload: T;
   error?: string;
 }
-

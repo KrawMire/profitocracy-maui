@@ -1,4 +1,4 @@
-import { Button, Layout, Text } from "@ui-kitten/components";
+import { Button, Layout } from "@ui-kitten/components";
 import { useDispatch, useSelector } from "react-redux";
 import AppState from "src/domain/app-state/app-state";
 import { setTheme } from "state/app-settings/actions";
@@ -11,7 +11,7 @@ export function AppThemeSettings() {
 
   const onChangeTheme = (theme: ThemeSettings) => {
     dispatch(setTheme(theme));
-  }
+  };
 
   return (
     <Layout>
@@ -29,5 +29,5 @@ export function AppThemeSettings() {
       </Button>
       <Button disabled>System</Button>
     </Layout>
-  )
+  );
 }

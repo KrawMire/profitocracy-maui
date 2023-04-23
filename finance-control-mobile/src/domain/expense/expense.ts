@@ -3,16 +3,11 @@ import ExpenseType from "./components/expense-type";
 /**
  * Represents planned expenses i.e. amount of money that is planned to spend
  */
-type Expense = {
+interface Expense {
   /**
    * Type of the expense. Could be main, secondary of postponed
    */
   expenseType: ExpenseType;
-
-  /**
-   * Identifier of the billing period
-   */
-  billingPeriod: string | null;
 
   /**
    * The name of the expense

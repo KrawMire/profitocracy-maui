@@ -1,7 +1,7 @@
 /**
  * Represents global parameters of application
  */
-type GlobalState = {
+interface GlobalState {
   /**
    * Is application fully set up to use
    */

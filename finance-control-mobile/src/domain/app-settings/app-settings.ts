@@ -1,16 +1,16 @@
-import BillingPeriodSettings from "./components/biiling-period-settings"
 import ExpenseCategoriesSettings from "./components/expense-categories-settings";
 import ThemeSettings from "./components/theme-settings";
 import ExpenseTypeSettings from "./components/expense-type-settings";
+import AnchorDatesSettings from "domain/app-settings/components/anchor-days-settings";
 
 /**
  * All settings of the application
  */
-type AppSettings = {
+interface AppSettings {
   /**
-   * Period of the tracking expenses
+   * Contain list of anchor dates
    */
-  billingPeriodSettings: BillingPeriodSettings;
+  anchorDatesSettings: AnchorDatesSettings;
 
   /**
    * Settings of the expenses types
@@ -25,7 +25,7 @@ type AppSettings = {
   /**
    * Settings of the expenses categories
    */
-  expenseCategoriesSettings: ExpenseCategoriesSettings
+  expenseCategoriesSettings: ExpenseCategoriesSettings;
 }
 
 export default AppSettings;
