@@ -22,7 +22,6 @@
     "@reduxjs/toolkit": "^1.9.1",
     "@ui-kitten/components": "^5.1.2",
     "expo": "~47.0.8",
-    "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "moment": "^2.29.4",
     "react": "18.2.0",

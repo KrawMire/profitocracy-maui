@@ -10,6 +10,8 @@ import { addAnchorDate } from "state/anchor-dates/actions";
 import AnchorDate from "domain/anchor-date/anchor-date";
 import { createDateForCurrentMonth, getCurrentDay } from "utils/dates-helpers";
 import { useMemo } from "react";
+import Expense from "domain/expense/expense";
+import ExpenseType from "domain/expense/components/expense-type";
 
 export function HomeScreen() {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ export function HomeScreen() {
   const anchorDays = useSelector((state: AppState) => state.settings.settings.anchorDatesSettings.days);
   const anchorDates = useSelector((state: AppState) => state.anchorDates.dates);
 
-  const expenses = useSelector((state: AppState) => state.expenses.expenses);
+  const expensesSettings = useSelector((state: AppState) => state.settings.settings.expensesSettings);
   const expenseCategories = useSelector(
     (state: AppState) => state.settings.settings.expenseCategoriesSettings.categories,
   );
@@ -66,6 +68,31 @@ export function HomeScreen() {
 
     return calculateDailyCash(initialDisplayBalance, parsedCurrentAnchorDate.getDate(), anchorDays);
   }, [parsedCurrentAnchorDate]);
+
+  const expenses = useMemo(() => {
+    return expensesSettings.map((expenseSettings): Expense => {
+      const expenseNames = {
+        [ExpenseType.Main]: "Main expenses",
+        [ExpenseType.Secondary]: "Secondary expenses",
+        [ExpenseType.Postponed]: "Postponed",
+      };
+
+      let plannedAmount = 0;
+
+      if (parsedCurrentAnchorDate) {
+        plannedAmount = initialDisplayBalance * expenseSettings.percent * 0.01;
+        plannedAmount = Number(plannedAmount.toFixed(2));
+      }
+
+      return {
+        expenseType: expenseSettings.expenseType,
+        name: expenseNames[expenseSettings.expenseType],
+        plannedAmount: parsedCurrentAnchorDate ? plannedAmount : 0,
+        actualAmount: calculateExpenseType(expenseSettings.expenseType, transactions),
+      };
+    });
+  }, [parsedCurrentAnchorDate]);
+
   const actualDailyAmount = calculateDailyCash(actualBalance, getCurrentDay(), anchorDays);
 
   const renderHeader = (header: string) => (

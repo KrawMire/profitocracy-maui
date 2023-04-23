@@ -9,6 +9,9 @@ export const settingsScreenStyles = StyleSheet.create({
   resetAppButton: {
     marginTop: 25,
   },
+  resetModalBackdrop: {
+    backgroundColor: $modalBackdropColor,
+  },
   settingsCard: {
     marginBottom: 10,
   },
