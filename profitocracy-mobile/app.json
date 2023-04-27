@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "profitocracy-mobile",
+    "slug": "profitocracy-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "profitocracy-mobile"
+}
