@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97467AA729FB186200573DBD /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA629FB186200573DBD /* Balance.swift */; };
+		97467AA929FB187200573DBD /* AnchorDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA829FB187200573DBD /* AnchorDate.swift */; };
+		97467AAB29FB188900573DBD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AAA29FB188900573DBD /* Transaction.swift */; };
+		97467AAD29FB18FD00573DBD /* SpendCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AAC29FB18FD00573DBD /* SpendCategory.swift */; };
+		97467AAF29FB191C00573DBD /* SpendType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AAE29FB191C00573DBD /* SpendType.swift */; };
+		97467AB129FB193800573DBD /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB029FB193800573DBD /* Currency.swift */; };
+		97467AB329FB195900573DBD /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB229FB195900573DBD /* AppSettings.swift */; };
+		97467AB529FB197000573DBD /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB429FB197000573DBD /* CurrencyRate.swift */; };
 		97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */; };
 		97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB729F5282E00D5C2DE /* ContentView.swift */; };
 		97732FBA29F5282F00D5C2DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97732FB929F5282F00D5C2DE /* Assets.xcassets */; };
@@ -34,6 +42,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97467AA629FB186200573DBD /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		97467AA829FB187200573DBD /* AnchorDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDate.swift; sourceTree = "<group>"; };
+		97467AAA29FB188900573DBD /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		97467AAC29FB18FD00573DBD /* SpendCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendCategory.swift; sourceTree = "<group>"; };
+		97467AAE29FB191C00573DBD /* SpendType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendType.swift; sourceTree = "<group>"; };
+		97467AB029FB193800573DBD /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		97467AB229FB195900573DBD /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		97467AB429FB197000573DBD /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
+		97467AB829FB214800573DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		97732FB229F5282E00D5C2DE /* Profitocracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Profitocracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyApp.swift; sourceTree = "<group>"; };
 		97732FB729F5282E00D5C2DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +88,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97467AA529FB181400573DBD /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				97467AA629FB186200573DBD /* Balance.swift */,
+				97467AA829FB187200573DBD /* AnchorDate.swift */,
+				97467AAA29FB188900573DBD /* Transaction.swift */,
+				97467AAC29FB18FD00573DBD /* SpendCategory.swift */,
+				97467AAE29FB191C00573DBD /* SpendType.swift */,
+				97467AB029FB193800573DBD /* Currency.swift */,
+				97467AB229FB195900573DBD /* AppSettings.swift */,
+				97467AB429FB197000573DBD /* CurrencyRate.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		97467AB629FB1E0900573DBD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		97467AB729FB1E2300573DBD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		97732FA929F5282E00D5C2DE = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +140,10 @@
 		97732FB429F5282E00D5C2DE /* Profitocracy */ = {
 			isa = PBXGroup;
 			children = (
+				97467AB829FB214800573DBD /* Info.plist */,
+				97467AB729FB1E2300573DBD /* Storyboards */,
+				97467AB629FB1E0900573DBD /* Controllers */,
+				97467AA529FB181400573DBD /* Domain */,
 				97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */,
 				97732FB729F5282E00D5C2DE /* ContentView.swift */,
 				97732FB929F5282F00D5C2DE /* Assets.xcassets */,
@@ -257,8 +307,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97467AA929FB187200573DBD /* AnchorDate.swift in Sources */,
 				97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */,
+				97467AA729FB186200573DBD /* Balance.swift in Sources */,
 				97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */,
+				97467AB529FB197000573DBD /* CurrencyRate.swift in Sources */,
+				97467AAD29FB18FD00573DBD /* SpendCategory.swift in Sources */,
+				97467AB329FB195900573DBD /* AppSettings.swift in Sources */,
+				97467AAF29FB191C00573DBD /* SpendType.swift in Sources */,
+				97467AB129FB193800573DBD /* Currency.swift in Sources */,
+				97467AAB29FB188900573DBD /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,11 +478,14 @@
 				DEVELOPMENT_TEAM = LLQT5AQ7W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Profitocracy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Profitocracy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,11 +510,14 @@
 				DEVELOPMENT_TEAM = LLQT5AQ7W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Profitocracy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Profitocracy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
