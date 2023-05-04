@@ -12,6 +12,6 @@ const Root = () => (
       <App />
     </PersistGate>
   </Provider>
-)
+);
 
 registerRootComponent(Root);

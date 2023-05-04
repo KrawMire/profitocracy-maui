@@ -7,7 +7,6 @@
       "utils/*": ["./src/utils/*"],
       "domain/*": ["./src/domain/*"],
       "state/*": ["./src/state/*"],
-      "storage/*": ["./src/storage/*"],
       "screens/*": ["./src/ui/screens/*"],
       "components/*": ["src/ui/components/*"],
       "styles/*": ["./src/ui/styles/*"]
