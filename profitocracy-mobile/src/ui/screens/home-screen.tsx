@@ -11,6 +11,8 @@ import { AnchorDate } from "domain/anchor-date";
 import { addAnchorDate } from "state/anchor-dates/actions";
 import { getNextAnchorDate } from "operations/home-screen/anchor-dates/get-next-anchor-date";
 import { getDailyBalance } from "operations/home-screen/balance/get-daily-balance.operation";
+import { Spending } from "domain/spending";
+import { roundNumber } from "utils/numbers/convert-number";
 
 export function HomeScreen() {
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ export function HomeScreen() {
   const currentAnchorDate = anchorDates[anchorDates.length - 1];
   const anchorDate = new Date(currentAnchorDate.date);
   const anchorBalance = currentAnchorDate.balance;
+
   const anchorDateFromToday = getCurrentAnchorDateOperation(anchorDays, getCurrentDay());
   const nextAnchorDate = getNextAnchorDate(anchorDate, anchorDays);
 
@@ -40,6 +43,21 @@ export function HomeScreen() {
 
   const dailyBalanceInitial = getDailyBalance(anchorBalance, anchorDate, nextAnchorDate);
   const dailyBalanceActual = getDailyBalance(actualBalance, getCurrentDate(), nextAnchorDate);
+
+  const mainSpending: Spending = {
+    plannedAmount: roundNumber(anchorBalance * 0.5),
+    actualAmount: 0,
+  };
+
+  const secondarySpending: Spending = {
+    plannedAmount: roundNumber(anchorBalance * 0.3),
+    actualAmount: 0,
+  };
+
+  const savedAmount: Spending = {
+    plannedAmount: roundNumber(anchorBalance * 0.2),
+    actualAmount: 0,
+  };
 
   const renderHeader = (header: string) => (
     <Layout>
@@ -83,28 +101,41 @@ export function HomeScreen() {
           </Layout>
         </View>
 
-        {/*<Text category="h4" style={homeScreenStyles.sectionHeader}>*/}
-        {/*  Expense types*/}
-        {/*</Text>*/}
-        {/*<ScrollView horizontal showsHorizontalScrollIndicator={false}>*/}
-        {/*  {expenses.map((expense) => (*/}
-        {/*    <Card*/}
-        {/*      key={expense.expenseType}*/}
-        {/*      header={renderHeader(expense.name)}*/}
-        {/*      style={homeScreenStyles.infoCard}*/}
-        {/*      status="info"*/}
-        {/*    >*/}
-        {/*      <Text>*/}
-        {/*        {calculateExpenseType(expense.expenseType, transactions)}*/}
-        {/*        {baseCurrency.symbol}*/}
-        {/*      </Text>*/}
-        {/*      <Text>*/}
-        {/*        {expense.plannedAmount}*/}
-        {/*        {baseCurrency.symbol}*/}
-        {/*      </Text>*/}
-        {/*    </Card>*/}
-        {/*  ))}*/}
-        {/*</ScrollView>*/}
+        <Text category="h4" style={homeScreenStyles.sectionHeader}>
+          Spending types
+        </Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <Card header={renderHeader("Main spending")} style={homeScreenStyles.infoCard} status="info">
+            <Text>
+              {mainSpending.plannedAmount}
+              {mainCurrency.symbol}
+            </Text>
+            <Text>
+              {mainSpending.actualAmount}
+              {mainCurrency.symbol}
+            </Text>
+          </Card>
+          <Card header={renderHeader("Secondary spending")} style={homeScreenStyles.infoCard} status="info">
+            <Text>
+              {secondarySpending.plannedAmount}
+              {mainCurrency.symbol}
+            </Text>
+            <Text>
+              {secondarySpending.actualAmount}
+              {mainCurrency.symbol}
+            </Text>
+          </Card>
+          <Card header={renderHeader("Saved")} style={homeScreenStyles.infoCard} status="info">
+            <Text>
+              {savedAmount.plannedAmount}
+              {mainCurrency.symbol}
+            </Text>
+            <Text>
+              {savedAmount.actualAmount}
+              {mainCurrency.symbol}
+            </Text>
+          </Card>
+        </ScrollView>
 
         {/*<Text category="h4" style={homeScreenStyles.sectionHeader}>*/}
         {/*  Expense categories*/}

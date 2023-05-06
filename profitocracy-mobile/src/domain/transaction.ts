@@ -1,6 +1,6 @@
 import { Category } from "domain/category";
 import { Currency } from "domain/currency";
-import { SpendType } from "domain/spend-type";
+import { SpendType } from "domain/spending";
 
 export interface Transaction {
   id: string;
@@ -8,7 +8,7 @@ export interface Transaction {
   description: string;
   amount: number;
   mainCurrencyAmount: number;
-  category: Category;
+  category: Category | null;
   currency: Currency;
   spendType: SpendType;
 }

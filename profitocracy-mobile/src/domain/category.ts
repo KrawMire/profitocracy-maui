@@ -1,6 +1,5 @@
 export interface Category {
-    name: string;
-    description: string;
-    plannedAmount: number;
-    isTracking: boolean;
+  name: string;
+  plannedAmount: number;
+  isTracking: boolean;
 }

@@ -5,6 +5,8 @@ import { settingsScreenStyles } from "styles/screens/settings-screen.style";
 import { resetStore } from "state/global/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { AppThemeSettings } from "components/settings-screen/app-theme-settings";
+import { ExpensesCategoriesSettings } from "components/settings-screen/expense-categories-settings";
 
 export function SettingsScreen() {
   const dispatch = useDispatch();
@@ -29,12 +31,12 @@ export function SettingsScreen() {
       <Layout style={settingsScreenStyles.wrapper} level="4">
         <ScrollView>
           <Text category="h1">Settings</Text>
-          {/*<Card header={renderHeader("App theme")} style={settingsScreenStyles.settingsCard}>*/}
-          {/*  <AppThemeSettings />*/}
-          {/*</Card>*/}
-          {/*<Card header={renderHeader("Expense categories")} style={settingsScreenStyles.settingsCard}>*/}
-          {/*  <ExpensesCategoriesSettings />*/}
-          {/*</Card>*/}
+          <Card header={renderHeader("App theme")} style={settingsScreenStyles.settingsCard}>
+            <AppThemeSettings />
+          </Card>
+          <Card header={renderHeader("Expense categories")} style={settingsScreenStyles.settingsCard}>
+            <ExpensesCategoriesSettings />
+          </Card>
           <Button onPress={onShowModal} status="danger" style={settingsScreenStyles.resetAppButton}>
             Reset app
           </Button>
