@@ -4,12 +4,14 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "services/*": ["./src/services/*"],
       "utils/*": ["./src/utils/*"],
       "domain/*": ["./src/domain/*"],
       "state/*": ["./src/state/*"],
       "screens/*": ["./src/ui/screens/*"],
       "components/*": ["src/ui/components/*"],
-      "styles/*": ["./src/ui/styles/*"]
+      "styles/*": ["./src/ui/styles/*"],
+      "operations/*":["./src/operations/*"]
     }
   }
 }

@@ -7,6 +7,7 @@ export interface Transaction {
   date: Date;
   description: string;
   amount: number;
+  mainCurrencyAmount: number;
   category: Category;
   currency: Currency;
   spendType: SpendType;

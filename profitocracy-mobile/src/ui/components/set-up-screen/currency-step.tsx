@@ -1,16 +1,13 @@
 import { Button, IndexPath, Layout, Select, SelectItem, Text } from "@ui-kitten/components";
 import { currencyStepStyle } from "styles/components/set-up-screen/currency-step.style";
 import { useEffect, useState } from "react";
-import { showMessage } from "react-native-flash-message";
 import { useDispatch, useSelector } from "react-redux";
-import { CurrencyRate } from "domain/currency-rate";
+import { CurrencyService } from "services/currency-service";
 import { availableCurrencies } from "utils/currency/available-currencies";
 import Loading from "components/shared/loading";
 import { setCurrencyRates } from "state/currency-rates/actions";
 import { setMainCurrency } from "state/settings/actions";
-import { showWarning } from "utils/toast/show-warning";
 import { AppState } from "state/app-state";
-import { roundNumber } from "utils/numbers/convert-number";
 
 export interface CurrencyStepProps {
   onMoveNext: () => void;
@@ -33,36 +30,14 @@ export function CurrencyStep(props: CurrencyStepProps) {
   const loadCurrencies = () => {
     setCurrencyLoaded(false);
 
-    fetch(`https://api.exchangerate.host/latest?base=${baseCurrency.code}`, {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((response: any) => {
-        if (!response.success) {
-          showWarning("Cannot load currencies data. Try again later.");
-          return;
-        }
-
-        const rates = response.rates;
-        const updatedAvailableCurrencies: CurrencyRate[] = availableCurrencies.map((currency) => ({
-          currency: {
-            name: currency.name,
-            code: currency.code,
-            symbol: currency.symbol,
-          },
-          rate: roundNumber(rates[currency.code]),
-        }));
-
-        dispatch(setCurrencyRates(updatedAvailableCurrencies));
+    CurrencyService.getCurrencyRates(baseCurrency.code)
+      .then((currencies) => {
+        dispatch(setCurrencyRates(currencies));
         setCurrencyLoaded(true);
         setLoadingError(false);
       })
       .catch(() => {
         setLoadingError(true);
-        showMessage({
-          message: "Cannot load currencies data. Try again later.",
-          type: "warning",
-        });
       });
   };
 

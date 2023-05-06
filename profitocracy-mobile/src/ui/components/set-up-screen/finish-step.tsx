@@ -1,14 +1,21 @@
 import { Button, Layout, Text } from "@ui-kitten/components";
 import { finishStepStyle } from "styles/components/set-up-screen/finish-step.style";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "state/app-state";
-import { showSuccess } from "utils/toast/show-success";
+import { setIsAppSetUp } from "state/settings/actions";
+import { addAnchorDate } from "state/anchor-dates/actions";
+import { getCurrentAnchorDateOperation } from "operations/common/anchor-dates/get-current-anchor-date.operation";
+import { showError } from "utils/toast/show-error";
+import { AnchorDate } from "domain/anchor-date";
+import { getCurrentDay } from "utils/dates/get-current-day";
 
 export interface FinishStepProps {
   onMoveBack: () => void;
 }
 
 export function FinishStep(props: FinishStepProps) {
+  const dispatch = useDispatch();
+
   const mainCurrency = useSelector((state: AppState) => state.settings.mainCurrency);
   const mainBalance = useSelector((state: AppState) => state.mainBalance);
   const anchorDays = useSelector((state: AppState) => state.settings.anchorDays);
@@ -16,7 +23,21 @@ export function FinishStep(props: FinishStepProps) {
   const joinedAnchorDays = anchorDays.join(", ");
 
   const onFinishClick = () => {
-    showSuccess("Finished!");
+    let nearestAnchorDate: Date;
+    try {
+      nearestAnchorDate = getCurrentAnchorDateOperation(anchorDays, getCurrentDay());
+    } catch (err) {
+      showError("Cannot create first anchor date!");
+      return;
+    }
+
+    const anchorDate: AnchorDate = {
+      date: nearestAnchorDate,
+      balance: mainBalance.amount,
+    };
+
+    dispatch(addAnchorDate(anchorDate));
+    dispatch(setIsAppSetUp(true));
   };
 
   return (
