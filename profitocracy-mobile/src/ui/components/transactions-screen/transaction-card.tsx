@@ -15,29 +15,34 @@ export interface TransactionCardProps {
 }
 
 export function TransactionCard(props: TransactionCardProps) {
+  const isIncome = props.transaction.isIncome;
   const category = props.transaction.category;
+  const date = new Date(props.transaction.date);
+
   const amount = props.transaction.amount;
   const amountCurrencySymbol = props.transaction.currency.symbol;
-
   const amountInBaseCurrency = props.transaction.mainCurrencyAmount;
   const baseCurrencySymbol = props.mainCurrency.symbol;
 
-  const expenseTypeName = getSpendingTypeName(props.transaction.spendType);
+  const spendTypeName = getSpendingTypeName(props.transaction.spendType);
   const categoryName = category?.name;
   const transactionDescription = props.transaction.description;
 
   const renderHeader = () => (
     <View>
       <Text category="h5">
+        {isIncome ? "+" : "-"}
         {amount}
         {amountCurrencySymbol}
       </Text>
       <Text category="h6" appearance="hint">
-        {props.transaction.date.toString()}
+        {date.toDateString()}
       </Text>
-      <Text category="h6" appearance="hint">
-        {expenseTypeName}
-      </Text>
+      {!isIncome && (
+        <Text category="h6" appearance="hint">
+          {spendTypeName}
+        </Text>
+      )}
       {amountCurrencySymbol !== baseCurrencySymbol && (
         <Text category="h6" appearance="hint">
           {amountInBaseCurrency}

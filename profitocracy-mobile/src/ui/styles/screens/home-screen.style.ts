@@ -2,11 +2,14 @@ import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 
 const screenWidth = Dimensions.get("window").width;
+const colors = {
+  sumTextColor: "#2d2d2d",
+};
 
 export const homeScreenStyles = StyleSheet.create({
   amountWrapper: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   balanceCard: {
     marginTop: 10,
@@ -45,8 +48,12 @@ export const homeScreenStyles = StyleSheet.create({
     height: "100%",
   },
   sectionHeader: {
-    marginBottom: 5,
-    marginTop: 10,
+    marginBottom: 15,
+    marginTop: 20,
+  },
+  sumText: {
+    color: colors.sumTextColor,
+    fontWeight: "800",
   },
   wrapper: {
     height: "100%",

@@ -1,15 +1,25 @@
 import { StyleSheet } from "react-native";
 
+const colors = {
+  amountSign: "#3f3f3f",
+};
+
 export const addTransactionScreenStyles = StyleSheet.create({
   addButton: {
     marginTop: 10,
   },
   amountInput: {
-    width: "70%",
+    width: "65%",
+  },
+  amountSign: {
+    color: colors.amountSign,
+    fontSize: 30,
+    fontWeight: "500",
   },
   amountWrapper: {
     flexDirection: "row",
     justifyContent: "space-around",
+    marginTop: 25,
   },
   categorySelect: {
     width: "70%",
@@ -27,6 +37,9 @@ export const addTransactionScreenStyles = StyleSheet.create({
   },
   descriptionInput: {
     marginTop: 10,
+  },
+  incomeExpenseButton: {
+    width: "45%",
   },
   transactionFormWrapper: {
     marginTop: 20,

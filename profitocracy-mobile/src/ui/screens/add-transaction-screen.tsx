@@ -25,7 +25,9 @@ export function AddTransactionScreen() {
   const [spendType, setSpendType] = useState(SpendType.Main);
   const [categoryIndex, setCategoryIndex] = useState<IndexPath | null>(null);
   const [currencyIndex, setCurrencyIndex] = useState(new IndexPath(0));
+  const [isIncome, setIsIncome] = useState(false);
 
+  const amountSign = isIncome ? "+" : "-";
   const date = new Date(Date.now());
 
   const onChangeAmount = (value: string) => {
@@ -100,6 +102,7 @@ export function AddTransactionScreen() {
       amount: transactionAmount,
       mainCurrencyAmount: getMainCurrencyAmount(),
       spendType: spendType,
+      isIncome: isIncome,
     };
 
     dispatch(addTransaction(newTransaction));
@@ -117,7 +120,25 @@ export function AddTransactionScreen() {
       <Layout style={addTransactionScreenStyles.wrapper} level="4">
         <Text category="h1">Add transaction</Text>
         <Layout style={addTransactionScreenStyles.transactionFormWrapper} level="4">
+          <Layout style={addTransactionScreenStyles.typeButtonGroup} level="4">
+            <Button
+              onPress={() => setIsIncome(true)}
+              appearance={isIncome ? "outline" : "filled"}
+              style={addTransactionScreenStyles.incomeExpenseButton}
+            >
+              Income
+            </Button>
+            <Button
+              onPress={() => setIsIncome(false)}
+              appearance={isIncome ? "filled" : "outline"}
+              style={addTransactionScreenStyles.incomeExpenseButton}
+            >
+              Expense
+            </Button>
+          </Layout>
+
           <Layout style={addTransactionScreenStyles.amountWrapper} level="4">
+            <Text style={addTransactionScreenStyles.amountSign}>{amountSign}</Text>
             <Input
               placeholder="Enter amount..."
               onChangeText={onChangeAmount}
@@ -135,29 +156,31 @@ export function AddTransactionScreen() {
               ))}
             </Select>
           </Layout>
-          <Layout style={addTransactionScreenStyles.typeButtonGroup} level="4">
-            <Button
-              onPress={() => setSpendType(SpendType.Main)}
-              appearance={spendType === SpendType.Main ? "outline" : "filled"}
-              style={addTransactionScreenStyles.typeButton}
-            >
-              Main
-            </Button>
-            <Button
-              onPress={() => setSpendType(SpendType.Secondary)}
-              appearance={spendType === SpendType.Secondary ? "outline" : "filled"}
-              style={addTransactionScreenStyles.typeButton}
-            >
-              Secondary
-            </Button>
-            <Button
-              onPress={() => setSpendType(SpendType.Saved)}
-              appearance={spendType === SpendType.Saved ? "outline" : "filled"}
-              style={addTransactionScreenStyles.typeButton}
-            >
-              Save
-            </Button>
-          </Layout>
+          {!isIncome && (
+            <Layout style={addTransactionScreenStyles.typeButtonGroup} level="4">
+              <Button
+                onPress={() => setSpendType(SpendType.Main)}
+                appearance={spendType === SpendType.Main ? "outline" : "filled"}
+                style={addTransactionScreenStyles.typeButton}
+              >
+                Main
+              </Button>
+              <Button
+                onPress={() => setSpendType(SpendType.Secondary)}
+                appearance={spendType === SpendType.Secondary ? "outline" : "filled"}
+                style={addTransactionScreenStyles.typeButton}
+              >
+                Secondary
+              </Button>
+              <Button
+                onPress={() => setSpendType(SpendType.Saved)}
+                appearance={spendType === SpendType.Saved ? "outline" : "filled"}
+                style={addTransactionScreenStyles.typeButton}
+              >
+                Save
+              </Button>
+            </Layout>
+          )}
           <Input
             placeholder="Enter description..."
             onChangeText={setDescription}

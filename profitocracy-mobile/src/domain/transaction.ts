@@ -11,4 +11,5 @@ export interface Transaction {
   category: Category | null;
   currency: Currency;
   spendType: SpendType;
+  isIncome: boolean;
 }
