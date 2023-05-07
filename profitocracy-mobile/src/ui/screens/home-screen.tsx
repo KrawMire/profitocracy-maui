@@ -1,5 +1,5 @@
 import { Card, Layout, Text } from "@ui-kitten/components";
-import { homeScreenStyles } from "styles/screens/home-screen.style";
+import { getHomeScreenStyle } from "styles/screens/home-screen.style";
 import { ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "state/app-state";
@@ -14,14 +14,18 @@ import { Spending } from "domain/spending";
 import { roundNumber } from "utils/numbers/convert-number";
 import { ProgressBar } from "components/shared/progress-bar";
 import { groupTransactionsAmount } from "operations/home-screen/transactions/group-transactions";
+import { getTotalSaved } from "operations/home-screen/balance/get-total-saved";
 
 export function HomeScreen() {
   const dispatch = useDispatch();
 
+  const theme = useSelector((state: AppState) => state.settings.theme);
   const mainCurrency = useSelector((state: AppState) => state.settings.mainCurrency);
   const anchorDates = useSelector((state: AppState) => state.anchorDates);
   const transactions = useSelector((state: AppState) => state.transactions);
   const anchorDays = useSelector((state: AppState) => state.settings.anchorDays);
+
+  const homeScreenStyles = getHomeScreenStyle(theme);
 
   const currentAnchorDate = anchorDates[anchorDates.length - 1];
   const anchorDate = new Date(currentAnchorDate.date);
@@ -32,10 +36,15 @@ export function HomeScreen() {
 
   const currentPeriodTransactions = getCurrentPeriodTransactionsOperation(transactions, anchorDate);
 
-  const { totalAmount, mainSpendingTotalAmount, secondarySpendingTotalAmount, savedTotalAmount } =
-    groupTransactionsAmount(currentPeriodTransactions);
+  const {
+    totalAmount: totalAnchorAmount,
+    mainSpendingTotalAmount: mainSpendingTotalAnchorAmount,
+    secondarySpendingTotalAmount: secondarySpendingTotalAnchorAmount,
+    savedTotalAmount: savedTotalAnchorAmount,
+  } = groupTransactionsAmount(currentPeriodTransactions);
 
-  const actualBalance = roundNumber(anchorBalance - totalAmount);
+  const actualBalance = roundNumber(anchorBalance - totalAnchorAmount);
+  const totalSaved = getTotalSaved(transactions);
 
   if (anchorDateFromToday.setHours(0, 0, 0, 0) !== anchorDate.setHours(0, 0, 0, 0)) {
     const newAnchorDate: AnchorDate = {
@@ -51,17 +60,17 @@ export function HomeScreen() {
 
   const mainSpending: Spending = {
     plannedAmount: roundNumber(anchorBalance * 0.5),
-    actualAmount: mainSpendingTotalAmount,
+    actualAmount: mainSpendingTotalAnchorAmount,
   };
 
   const secondarySpending: Spending = {
     plannedAmount: roundNumber(anchorBalance * 0.3),
-    actualAmount: secondarySpendingTotalAmount,
+    actualAmount: secondarySpendingTotalAnchorAmount,
   };
 
   const savedAmount: Spending = {
     plannedAmount: roundNumber(anchorBalance * 0.2),
-    actualAmount: savedTotalAmount,
+    actualAmount: savedTotalAnchorAmount,
   };
 
   const renderHeader = (header: string) => (
@@ -75,7 +84,7 @@ export function HomeScreen() {
       <ScrollView style={homeScreenStyles.scrollWrapper}>
         <Text category="h1">Home</Text>
 
-        <Card header={renderHeader("Total balance")} status="success" style={homeScreenStyles.balanceCard}>
+        <Card header={renderHeader("Total balance")} style={homeScreenStyles.balanceCard}>
           <View style={homeScreenStyles.amountWrapper}>
             <Text style={homeScreenStyles.sumText}>
               {anchorBalance}
@@ -89,18 +98,27 @@ export function HomeScreen() {
           <ProgressBar reverseColors currentAmount={actualBalance} totalAmount={anchorBalance} />
         </Card>
 
+        <Card header={renderHeader("Saved amount")} style={homeScreenStyles.balanceCard}>
+          <View style={homeScreenStyles.savedAmountWrapper}>
+            <Text style={homeScreenStyles.sumText}>
+              {totalSaved}
+              {mainCurrency.symbol}
+            </Text>
+          </View>
+        </Card>
+
         <View>
           <Text category="h4" style={homeScreenStyles.sectionHeader}>
             Cash for the day
           </Text>
           <Layout style={homeScreenStyles.dailyCashWrapper} level="4">
-            <Card header={renderHeader("From initial")} status="success" style={homeScreenStyles.dailyCashCard}>
+            <Card header={renderHeader("From initial")} style={homeScreenStyles.dailyCashCard}>
               <Text>
                 {dailyBalanceInitial}
                 {mainCurrency.symbol}
               </Text>
             </Card>
-            <Card header={renderHeader("From actual")} status="success" style={homeScreenStyles.dailyCashCard}>
+            <Card header={renderHeader("From actual")} style={homeScreenStyles.dailyCashCard}>
               <Text>
                 {dailyBalanceActual}
                 {mainCurrency.symbol}
@@ -112,8 +130,8 @@ export function HomeScreen() {
         <Text category="h4" style={homeScreenStyles.sectionHeader}>
           Spending types
         </Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <Card header={renderHeader("Main spending")} style={homeScreenStyles.infoCard} status="info">
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={homeScreenStyles.spendTypesScrollWrapper}>
+          <Card header={renderHeader("Main spending")} style={homeScreenStyles.infoCard}>
             <View style={homeScreenStyles.amountWrapper}>
               <Text style={homeScreenStyles.sumText}>
                 {mainSpending.plannedAmount}
@@ -126,7 +144,7 @@ export function HomeScreen() {
             </View>
             <ProgressBar currentAmount={mainSpending.actualAmount} totalAmount={mainSpending.plannedAmount} />
           </Card>
-          <Card header={renderHeader("Secondary spending")} style={homeScreenStyles.infoCard} status="info">
+          <Card header={renderHeader("Secondary spending")} style={homeScreenStyles.infoCard}>
             <View style={homeScreenStyles.amountWrapper}>
               <Text style={homeScreenStyles.sumText}>
                 {secondarySpending.plannedAmount}
@@ -139,7 +157,7 @@ export function HomeScreen() {
             </View>
             <ProgressBar currentAmount={secondarySpending.actualAmount} totalAmount={secondarySpending.plannedAmount} />
           </Card>
-          <Card header={renderHeader("Saved")} style={homeScreenStyles.infoCard} status="info">
+          <Card header={renderHeader("Saved")} style={homeScreenStyles.infoCard}>
             <View style={homeScreenStyles.amountWrapper}>
               <Text style={homeScreenStyles.sumText}>
                 {savedAmount.plannedAmount}
