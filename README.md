@@ -1,5 +1,5 @@
 
-<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/assets/profitocracy-launchscreen-transparent.svg" alt="Title image" height="150px"/>
+<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/assets/profitocracy-launchscreen-transparent.png" alt="Title image" height="150px"/>
 
 # Profitocracy
 
