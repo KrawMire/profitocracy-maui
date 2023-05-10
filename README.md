@@ -1,3 +1,6 @@
+
+<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/assets/profitocracy-launchscreen-transparent.svg" alt="Title image" height="150px"/>
+
 # Profitocracy
 
 Welcome to Profitocracy finance control app source code! There you can explore the inner logic of the app.
