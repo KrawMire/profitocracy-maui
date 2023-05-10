@@ -1,9 +1,10 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/profitocracy-launchscreen-transparent.png" alt="Title image" height="175px"/>
+</p>
 
-<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/assets/profitocracy-launchscreen-transparent.png" alt="Title image" height="150px"/>
-
-# Profitocracy
-
-Welcome to Profitocracy finance control app source code! There you can explore the inner logic of the app.
+<p align="center">
+  Welcome to Profitocracy source code! Profitocracy is a multicurrency finance mobile application which helps people to track their expenses.
+</p>
 
 ## Introduction
 
