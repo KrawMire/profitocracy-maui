@@ -6,6 +6,7 @@ const screenWidth = Dimensions.get("window").width;
 const colors = {
   sumTextColorLight: "#dcdcdc",
   sumTextColorDark: "#2d2d2d",
+  subheaderTextColor: "#a1a1a1",
 };
 
 export function getHomeScreenStyle(theme: ThemeSettings) {
@@ -62,6 +63,9 @@ export function getHomeScreenStyle(theme: ThemeSettings) {
     },
     spendTypesScrollWrapper: {
       marginBottom: 25,
+    },
+    subheaderText: {
+      color: colors.subheaderTextColor,
     },
     sumText: {
       color: sumTextColor,

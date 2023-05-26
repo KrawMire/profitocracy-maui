@@ -1,13 +1,11 @@
 import { Card, Layout, Text } from "@ui-kitten/components";
 import { getHomeScreenStyle } from "styles/screens/home-screen.style";
 import { ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { AppState } from "state/app-state";
 import { getCurrentPeriodTransactionsOperation } from "operations/home-screen/transactions/get-current-period-transactions.operation";
 import { getCurrentAnchorDateOperation } from "operations/common/anchor-dates/get-current-anchor-date.operation";
 import { getCurrentDate, getCurrentDay } from "utils/dates/get-current-day";
-import { AnchorDate } from "domain/anchor-date";
-import { addAnchorDate } from "state/anchor-dates/actions";
 import { getNextAnchorDate } from "operations/home-screen/anchor-dates/get-next-anchor-date";
 import { getDailyBalance } from "operations/home-screen/balance/get-daily-balance.operation";
 import { Spending } from "domain/spending";
@@ -15,10 +13,10 @@ import { roundNumber } from "utils/numbers/convert-number";
 import { ProgressBar } from "components/shared/progress-bar";
 import { groupTransactionsAmount } from "operations/home-screen/transactions/group-transactions";
 import { getTotalSaved } from "operations/home-screen/balance/get-total-saved";
+import { useState } from "react";
+import { AnchorBalanceModal } from "components/home-screen/anchor-balance-modal";
 
 export function HomeScreen() {
-  const dispatch = useDispatch();
-
   const theme = useSelector((state: AppState) => state.settings.theme);
   const mainCurrency = useSelector((state: AppState) => state.settings.mainCurrency);
   const anchorDates = useSelector((state: AppState) => state.anchorDates);
@@ -46,14 +44,8 @@ export function HomeScreen() {
   const actualBalance = roundNumber(anchorBalance - totalAnchorAmount);
   const totalSaved = getTotalSaved(transactions);
 
-  if (anchorDateFromToday.setHours(0, 0, 0, 0) !== anchorDate.setHours(0, 0, 0, 0)) {
-    const newAnchorDate: AnchorDate = {
-      date: anchorDateFromToday,
-      balance: actualBalance,
-    };
-
-    dispatch(addAnchorDate(newAnchorDate));
-  }
+  const isNewAnchorPeriod = anchorDateFromToday.setHours(0, 0, 0, 0) !== anchorDate.setHours(0, 0, 0, 0);
+  const [showAnchorBalanceModal, setShowAnchorBalanceModal] = useState(isNewAnchorPeriod);
 
   const dailyBalanceInitial = getDailyBalance(anchorBalance, anchorDate, nextAnchorDate);
   const dailyBalanceActual = getDailyBalance(actualBalance, getCurrentDate(), nextAnchorDate);
@@ -73,9 +65,14 @@ export function HomeScreen() {
     actualAmount: savedTotalAnchorAmount,
   };
 
-  const renderHeader = (header: string) => (
+  const renderHeader = (header: string, subheader?: string) => (
     <Layout>
       <Text category="h6">{header}</Text>
+      {subheader && (
+        <Text category="h6" style={homeScreenStyles.subheaderText}>
+          {subheader}
+        </Text>
+      )}
     </Layout>
   );
 
@@ -84,7 +81,10 @@ export function HomeScreen() {
       <ScrollView style={homeScreenStyles.scrollWrapper}>
         <Text category="h1">Home</Text>
 
-        <Card header={renderHeader("Total balance")} style={homeScreenStyles.balanceCard}>
+        <Card
+          header={renderHeader("Total balance", `${anchorDate.toDateString()} - ${nextAnchorDate.toDateString()}`)}
+          style={homeScreenStyles.balanceCard}
+        >
           <View style={homeScreenStyles.amountWrapper}>
             <Text style={homeScreenStyles.sumText}>
               {anchorBalance}
@@ -203,6 +203,13 @@ export function HomeScreen() {
         {/*    </Layout>*/}
         {/*  )}*/}
         {/*</Layout>*/}
+
+        <AnchorBalanceModal
+          actualBalance={actualBalance}
+          anchorDate={anchorDateFromToday}
+          visible={showAnchorBalanceModal}
+          close={() => setShowAnchorBalanceModal(false)}
+        />
       </ScrollView>
     </Layout>
   );
