@@ -20,7 +20,7 @@ struct ContentView: View {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
-            TransactionsView()
+            TransactionsView(transactions: Transaction.previewData)
                 .tabItem {
                     Image(systemName: "list.dash")
                     Text("Transactions")

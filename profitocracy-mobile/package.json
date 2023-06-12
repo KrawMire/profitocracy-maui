@@ -7,7 +7,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",
-    "ios-device:release": "npx react-native run-ios --configuration Release --device",
+    "ios-device:release": "npx react-native run-ios --configuration Release --device \"iPhone (Anton)\" ",
     "web": "expo start --web",
     "test": "jest --config ./jest.config.json --verbose"
   },

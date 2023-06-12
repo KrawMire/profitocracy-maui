@@ -12,17 +12,16 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading) {
+            Form {
+                Section("Total Amounts") {
                     TotalBalanceCardView()
                     CashCardView(
                         title: "Saved Amount",
                         current: 10,
                         total: 1500
                     )
-                    Text("Cash for the Day")
-                        .font(.title2)
-                        .fontWeight(.bold)
+                }
+                Section("Cash for the Day") {
                     HStack {
                         CashCardView(
                             title: "From Actual",
@@ -36,38 +35,29 @@ struct HomeView: View {
                             total: 150
                         )
                     }
-                    Text("Spending Types")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            CashCardView(
-                                title: "Main Spendings",
-                                current: 1230,
-                                total: 7500
-                            )
-                            .frame(width: screenWidth * 0.9)
-                            CashCardView(
-                                title: "Secondary Spendings",
-                                current: 553,
-                                total: 5000
-                            )
-                            .frame(width: screenWidth * 0.9)
-                            CashCardView(
-                                title: "Saved",
-                                current: 1500,
-                                total: 1500
-                            )
-                            .frame(width: screenWidth * 0.9)
-                        }
-                    }
                 }
-                .padding()
-                .navigationTitle("Home")
-                .toolbar() {
-                    Button(action: {}) {
-                        Image(systemName: "plus.circle.fill")
-                    }
+                Section("Spending Types") {
+                    CashCardView(
+                        title: "Main Spendings",
+                        current: 1230,
+                        total: 7500
+                    )
+                    CashCardView(
+                        title: "Secondary Spendings",
+                        current: 553,
+                        total: 5000
+                    )
+                    CashCardView(
+                        title: "Saved",
+                        current: 1500,
+                        total: 1500
+                    )
+                }
+            }
+            .navigationTitle("Home")
+            .toolbar() {
+                Button(action: {}) {
+                    Image(systemName: "plus.circle.fill")
                 }
             }
             Spacer()
@@ -77,8 +67,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            HomeView()
-        }
+        HomeView()
     }
 }

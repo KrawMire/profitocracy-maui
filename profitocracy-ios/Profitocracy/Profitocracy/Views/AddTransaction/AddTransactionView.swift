@@ -23,3 +23,4 @@ struct AddTransactionView_Previews: PreviewProvider {
         AddTransactionView()
     }
 }
+

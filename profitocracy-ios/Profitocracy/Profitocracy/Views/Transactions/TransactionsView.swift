@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct TransactionsView: View {
+    let transactions: [Transaction]
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                
+            List(transactions) { transaction in
+                TransactionCardView(transaction: transaction)
             }
             .navigationTitle("Transactions")
         }
@@ -20,6 +22,6 @@ struct TransactionsView: View {
 
 struct TransactionHistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionsView()
+        TransactionsView(transactions: Transaction.previewData)
     }
 }

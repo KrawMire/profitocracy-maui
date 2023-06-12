@@ -10,8 +10,17 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         NavigationStack {
-            VStack {
-                
+            Form {
+                Section(header: Text("Application settings")) {
+                    NavigationLink(destination: ExpenseCategoriesSettingsView()) {
+                        Label("Expense categories", systemImage: "list.bullet")
+                    }
+                }
+                Section(header: Text("System settings")) {
+                    NavigationLink(destination: ThemeSettingsView()) {
+                        Label("Theme", systemImage: "paintpalette")
+                    }
+                }
             }
             .navigationTitle("Settings")
         }

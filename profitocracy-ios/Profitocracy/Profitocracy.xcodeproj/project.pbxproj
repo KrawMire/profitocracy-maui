@@ -15,6 +15,9 @@
 		97467AB129FB193800573DBD /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB029FB193800573DBD /* Currency.swift */; };
 		97467AB329FB195900573DBD /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB229FB195900573DBD /* AppSettings.swift */; };
 		97467AB529FB197000573DBD /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB429FB197000573DBD /* CurrencyRate.swift */; };
+		97634CC82A37AFA30096EE1F /* ThemeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97634CC72A37AFA30096EE1F /* ThemeSettingsView.swift */; };
+		97634CCA2A37AFBB0096EE1F /* ExpenseCategoriesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97634CC92A37AFBB0096EE1F /* ExpenseCategoriesSettingsView.swift */; };
+		97634CCC2A37B89D0096EE1F /* TransactionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97634CCB2A37B89D0096EE1F /* TransactionCardView.swift */; };
 		97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */; };
 		97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB729F5282E00D5C2DE /* ContentView.swift */; };
 		97732FBA29F5282F00D5C2DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97732FB929F5282F00D5C2DE /* Assets.xcassets */; };
@@ -57,6 +60,9 @@
 		97467AB229FB195900573DBD /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		97467AB429FB197000573DBD /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
 		97467AB829FB214800573DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		97634CC72A37AFA30096EE1F /* ThemeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettingsView.swift; sourceTree = "<group>"; };
+		97634CC92A37AFBB0096EE1F /* ExpenseCategoriesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoriesSettingsView.swift; sourceTree = "<group>"; };
+		97634CCB2A37B89D0096EE1F /* TransactionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCardView.swift; sourceTree = "<group>"; };
 		97732FB229F5282E00D5C2DE /* Profitocracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Profitocracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyApp.swift; sourceTree = "<group>"; };
 		97732FB729F5282E00D5C2DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,6 +119,15 @@
 			children = (
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		97634CC62A37AF920096EE1F /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				97634CC72A37AFA30096EE1F /* ThemeSettingsView.swift */,
+				97634CC92A37AFBB0096EE1F /* ExpenseCategoriesSettingsView.swift */,
+			);
+			path = SettingsViews;
 			sourceTree = "<group>";
 		};
 		97732FA929F5282E00D5C2DE = {
@@ -198,6 +213,7 @@
 		97FCA2E72A377FE6002451B7 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				97634CC62A37AF920096EE1F /* SettingsViews */,
 				97FCA2E82A377FF2002451B7 /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -206,6 +222,7 @@
 		97FCA2EA2A378007002451B7 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				97634CCB2A37B89D0096EE1F /* TransactionCardView.swift */,
 				97FCA2EB2A378025002451B7 /* TransactionsView.swift */,
 			);
 			path = Transactions;
@@ -375,6 +392,7 @@
 				97FCA2FD2A379377002451B7 /* NumberUtils.swift in Sources */,
 				97FCA2EC2A378025002451B7 /* TransactionsView.swift in Sources */,
 				97FCA2F22A3789C2002451B7 /* CashCardView.swift in Sources */,
+				97634CCC2A37B89D0096EE1F /* TransactionCardView.swift in Sources */,
 				97FCA2EF2A3780AB002451B7 /* TotalBalanceCardView.swift in Sources */,
 				97467AA929FB187200573DBD /* AnchorDate.swift in Sources */,
 				97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */,
@@ -385,10 +403,12 @@
 				97467AAD29FB18FD00573DBD /* SpendCategory.swift in Sources */,
 				97467AB329FB195900573DBD /* AppSettings.swift in Sources */,
 				97467AAF29FB191C00573DBD /* SpendType.swift in Sources */,
+				97634CC82A37AFA30096EE1F /* ThemeSettingsView.swift in Sources */,
 				97FCA2E62A377FD0002451B7 /* AddTransactionView.swift in Sources */,
 				97467AB129FB193800573DBD /* Currency.swift in Sources */,
 				97467AAB29FB188900573DBD /* Transaction.swift in Sources */,
 				97FCA2E92A377FF2002451B7 /* SettingsView.swift in Sources */,
+				97634CCA2A37AFBB0096EE1F /* ExpenseCategoriesSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
