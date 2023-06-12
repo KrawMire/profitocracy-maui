@@ -18,10 +18,16 @@
 		97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */; };
 		97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB729F5282E00D5C2DE /* ContentView.swift */; };
 		97732FBA29F5282F00D5C2DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97732FB929F5282F00D5C2DE /* Assets.xcassets */; };
-		97732FBD29F5282F00D5C2DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97732FBC29F5282F00D5C2DE /* Preview Assets.xcassets */; };
 		97732FC729F5282F00D5C2DE /* ProfitocracyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FC629F5282F00D5C2DE /* ProfitocracyTests.swift */; };
 		97732FD129F5282F00D5C2DE /* ProfitocracyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FD029F5282F00D5C2DE /* ProfitocracyUITests.swift */; };
 		97732FD329F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FD229F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift */; };
+		97FCA2E42A377FBF002451B7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA2E32A377FBF002451B7 /* HomeView.swift */; };
+		97FCA2E62A377FD0002451B7 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA2E52A377FD0002451B7 /* AddTransactionView.swift */; };
+		97FCA2E92A377FF2002451B7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA2E82A377FF2002451B7 /* SettingsView.swift */; };
+		97FCA2EC2A378025002451B7 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA2EB2A378025002451B7 /* TransactionsView.swift */; };
+		97FCA2EF2A3780AB002451B7 /* TotalBalanceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA2EE2A3780AB002451B7 /* TotalBalanceCardView.swift */; };
+		97FCA2F22A3789C2002451B7 /* CashCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA2F12A3789C2002451B7 /* CashCardView.swift */; };
+		97FCA2FD2A379377002451B7 /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCA2FC2A379377002451B7 /* NumberUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +61,18 @@
 		97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyApp.swift; sourceTree = "<group>"; };
 		97732FB729F5282E00D5C2DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		97732FB929F5282F00D5C2DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		97732FBC29F5282F00D5C2DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		97732FC229F5282F00D5C2DE /* ProfitocracyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProfitocracyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97732FC629F5282F00D5C2DE /* ProfitocracyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyTests.swift; sourceTree = "<group>"; };
 		97732FCC29F5282F00D5C2DE /* ProfitocracyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProfitocracyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97732FD029F5282F00D5C2DE /* ProfitocracyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyUITests.swift; sourceTree = "<group>"; };
 		97732FD229F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitocracyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		97FCA2E32A377FBF002451B7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		97FCA2E52A377FD0002451B7 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
+		97FCA2E82A377FF2002451B7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		97FCA2EB2A378025002451B7 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+		97FCA2EE2A3780AB002451B7 /* TotalBalanceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalBalanceCardView.swift; sourceTree = "<group>"; };
+		97FCA2F12A3789C2002451B7 /* CashCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashCardView.swift; sourceTree = "<group>"; };
+		97FCA2FC2A379377002451B7 /* NumberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,19 +100,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		97467AA529FB181400573DBD /* Domain */ = {
+		97467AA529FB181400573DBD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				97467AA629FB186200573DBD /* Balance.swift */,
-				97467AA829FB187200573DBD /* AnchorDate.swift */,
-				97467AAA29FB188900573DBD /* Transaction.swift */,
-				97467AAC29FB18FD00573DBD /* SpendCategory.swift */,
-				97467AAE29FB191C00573DBD /* SpendType.swift */,
-				97467AB029FB193800573DBD /* Currency.swift */,
-				97467AB229FB195900573DBD /* AppSettings.swift */,
-				97467AB429FB197000573DBD /* CurrencyRate.swift */,
+				97FCA2F52A3790B0002451B7 /* Domain */,
 			);
-			path = Domain;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		97467AB629FB1E0900573DBD /* Controllers */ = {
@@ -108,13 +113,6 @@
 			children = (
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		97467AB729FB1E2300573DBD /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		97732FA929F5282E00D5C2DE = {
@@ -140,24 +138,16 @@
 		97732FB429F5282E00D5C2DE /* Profitocracy */ = {
 			isa = PBXGroup;
 			children = (
+				97FCA2FB2A379365002451B7 /* Utils */,
+				97FCA2E22A377F96002451B7 /* Views */,
 				97467AB829FB214800573DBD /* Info.plist */,
-				97467AB729FB1E2300573DBD /* Storyboards */,
 				97467AB629FB1E0900573DBD /* Controllers */,
-				97467AA529FB181400573DBD /* Domain */,
+				97467AA529FB181400573DBD /* Models */,
 				97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */,
 				97732FB729F5282E00D5C2DE /* ContentView.swift */,
 				97732FB929F5282F00D5C2DE /* Assets.xcassets */,
-				97732FBB29F5282F00D5C2DE /* Preview Content */,
 			);
 			path = Profitocracy;
-			sourceTree = "<group>";
-		};
-		97732FBB29F5282F00D5C2DE /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				97732FBC29F5282F00D5C2DE /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		97732FC529F5282F00D5C2DE /* ProfitocracyTests */ = {
@@ -175,6 +165,82 @@
 				97732FD229F5282F00D5C2DE /* ProfitocracyUITestsLaunchTests.swift */,
 			);
 			path = ProfitocracyUITests;
+			sourceTree = "<group>";
+		};
+		97FCA2E02A377F63002451B7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				97FCA2F02A378908002451B7 /* CashCards */,
+				97FCA2E32A377FBF002451B7 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		97FCA2E12A377F85002451B7 /* AddTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				97FCA2E52A377FD0002451B7 /* AddTransactionView.swift */,
+			);
+			path = AddTransaction;
+			sourceTree = "<group>";
+		};
+		97FCA2E22A377F96002451B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				97FCA2EA2A378007002451B7 /* Transactions */,
+				97FCA2E72A377FE6002451B7 /* Settings */,
+				97FCA2E12A377F85002451B7 /* AddTransaction */,
+				97FCA2E02A377F63002451B7 /* Home */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		97FCA2E72A377FE6002451B7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				97FCA2E82A377FF2002451B7 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		97FCA2EA2A378007002451B7 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				97FCA2EB2A378025002451B7 /* TransactionsView.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		97FCA2F02A378908002451B7 /* CashCards */ = {
+			isa = PBXGroup;
+			children = (
+				97FCA2EE2A3780AB002451B7 /* TotalBalanceCardView.swift */,
+				97FCA2F12A3789C2002451B7 /* CashCardView.swift */,
+			);
+			path = CashCards;
+			sourceTree = "<group>";
+		};
+		97FCA2F52A3790B0002451B7 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				97467AA629FB186200573DBD /* Balance.swift */,
+				97467AA829FB187200573DBD /* AnchorDate.swift */,
+				97467AAA29FB188900573DBD /* Transaction.swift */,
+				97467AAC29FB18FD00573DBD /* SpendCategory.swift */,
+				97467AAE29FB191C00573DBD /* SpendType.swift */,
+				97467AB029FB193800573DBD /* Currency.swift */,
+				97467AB229FB195900573DBD /* AppSettings.swift */,
+				97467AB429FB197000573DBD /* CurrencyRate.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		97FCA2FB2A379365002451B7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				97FCA2FC2A379377002451B7 /* NumberUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,7 +347,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97732FBD29F5282F00D5C2DE /* Preview Assets.xcassets in Resources */,
 				97732FBA29F5282F00D5C2DE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,16 +372,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97FCA2FD2A379377002451B7 /* NumberUtils.swift in Sources */,
+				97FCA2EC2A378025002451B7 /* TransactionsView.swift in Sources */,
+				97FCA2F22A3789C2002451B7 /* CashCardView.swift in Sources */,
+				97FCA2EF2A3780AB002451B7 /* TotalBalanceCardView.swift in Sources */,
 				97467AA929FB187200573DBD /* AnchorDate.swift in Sources */,
 				97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */,
 				97467AA729FB186200573DBD /* Balance.swift in Sources */,
 				97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */,
 				97467AB529FB197000573DBD /* CurrencyRate.swift in Sources */,
+				97FCA2E42A377FBF002451B7 /* HomeView.swift in Sources */,
 				97467AAD29FB18FD00573DBD /* SpendCategory.swift in Sources */,
 				97467AB329FB195900573DBD /* AppSettings.swift in Sources */,
 				97467AAF29FB191C00573DBD /* SpendType.swift in Sources */,
+				97FCA2E62A377FD0002451B7 /* AddTransactionView.swift in Sources */,
 				97467AB129FB193800573DBD /* Currency.swift in Sources */,
 				97467AAB29FB188900573DBD /* Transaction.swift in Sources */,
+				97FCA2E92A377FF2002451B7 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
