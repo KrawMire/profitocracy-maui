@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State var selectedTheme: Theme = .dark
+    
     var body: some View {
         NavigationStack {
             Form {
                 Section(header: Text("Application settings")) {
                     NavigationLink(destination: ExpenseCategoriesSettingsView()) {
-                        Label("Expense categories", systemImage: "list.bullet")
+                        Label("Expense Categories", systemImage: "list.bullet")
+                    }
+                    NavigationLink(destination: AnchorDatesSettingsView()) {
+                        Label("Anchor Dates", systemImage: "calendar")
                     }
                 }
                 Section(header: Text("System settings")) {
-                    NavigationLink(destination: ThemeSettingsView()) {
-                        Label("Theme", systemImage: "paintpalette")
+                    Picker("Theme", selection: $selectedTheme) {
+                        ForEach(Theme.allCases) { theme in
+                            Text(theme.rawValue.capitalized)
+                        }
                     }
+                    .pickerStyle(.navigationLink)
                 }
             }
             .navigationTitle("Settings")

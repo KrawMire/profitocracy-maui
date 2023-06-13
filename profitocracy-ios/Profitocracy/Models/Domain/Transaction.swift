@@ -9,6 +9,7 @@ import Foundation
 
 struct Transaction: Identifiable {
     let id: UUID
+    var type: TransactionType
     var amount: Float
     var expenseType: String
     var expenseCategory: String
@@ -18,6 +19,7 @@ struct Transaction: Identifiable {
     
     init(
         id: UUID = UUID(),
+        type: TransactionType,
         amount: Float,
         expenseType: String,
         expenseCategory: String,
@@ -26,6 +28,7 @@ struct Transaction: Identifiable {
         date: String
     ) {
         self.id = id
+        self.type = type
         self.amount = amount
         self.expenseType = expenseType
         self.expenseCategory = expenseCategory
@@ -37,8 +40,8 @@ struct Transaction: Identifiable {
 
 extension Transaction {
     static let previewData = [
-        Transaction(amount: 24, expenseType: "Main expenses", expenseCategory: "Products", description: "Apples and meat", time: "00:32", date: "13.06.2023"),
-        Transaction(amount: 120, expenseType: "Secondary expenses", expenseCategory: "Car", description: "Oil", time: "18:48", date: "12.06.2023"),
-        Transaction(amount: 39, expenseType: "Saved", expenseCategory: "Health", description: "Pants and T-Shirt", time: "11:00", date: "11.06.2023"),
+        Transaction(type: .expense, amount: 24, expenseType: "Main expenses", expenseCategory: "Products", description: "Apples and meat", time: "00:32", date: "13.06.2023"),
+        Transaction(type: .expense, amount: 120, expenseType: "Secondary expenses", expenseCategory: "Car", description: "Oil", time: "18:48", date: "12.06.2023"),
+        Transaction(type: .expense, amount: 39, expenseType: "Saved", expenseCategory: "Health", description: "Pants and T-Shirt", time: "11:00", date: "11.06.2023"),
     ]
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct TotalBalanceCardView: View {
     var body: some View {
         VStack {
-            Text("Total Balance")
+            Text("Balance")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text("10.06.2023-25.06.2023")

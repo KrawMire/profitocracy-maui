@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var isPresentingAddTransactionView = false
     let screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
@@ -56,11 +57,30 @@ struct HomeView: View {
             }
             .navigationTitle("Home")
             .toolbar() {
-                Button(action: {}) {
+                Button(action: {
+                    isPresentingAddTransactionView = true
+                }) {
                     Image(systemName: "plus.circle.fill")
                 }
             }
-            Spacer()
+            .sheet(isPresented: $isPresentingAddTransactionView) {
+                NavigationStack {
+                    AddTransactionView()
+                        .navigationTitle("Add transaction")
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Cancel") {
+                                    isPresentingAddTransactionView = false
+                                }
+                            }
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button("Add") {
+                                    isPresentingAddTransactionView = false
+                                }
+                            }
+                        }
+                }
+            }
         }
     }
 }
