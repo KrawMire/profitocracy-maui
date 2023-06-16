@@ -7,10 +7,18 @@
 
 import Foundation
 
-struct SpendCategory {
+struct SpendCategory: Identifiable {
+    let id: UUID
     var name: String
     var plannedAmount: Float
     var isTracking: Bool
+    
+    init(id: UUID = UUID(), name: String, plannedAmount: Float, isTracking: Bool) {
+        self.id = id
+        self.name = name
+        self.plannedAmount = plannedAmount
+        self.isTracking = isTracking
+    }
 }
 
 extension SpendCategory {

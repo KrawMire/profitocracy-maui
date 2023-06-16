@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct MoneyAmount {
+    var amount: Float
+    var currency: Currency
+}

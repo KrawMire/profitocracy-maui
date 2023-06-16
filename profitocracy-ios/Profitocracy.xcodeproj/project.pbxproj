@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		97467AA729FB186200573DBD /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA629FB186200573DBD /* Balance.swift */; };
+		97467AA729FB186200573DBD /* MoneyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA629FB186200573DBD /* MoneyAmount.swift */; };
 		97467AA929FB187200573DBD /* AnchorDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA829FB187200573DBD /* AnchorDate.swift */; };
 		97467AAB29FB188900573DBD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AAA29FB188900573DBD /* Transaction.swift */; };
 		97467AAD29FB18FD00573DBD /* SpendCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AAC29FB18FD00573DBD /* SpendCategory.swift */; };
@@ -15,6 +15,7 @@
 		97467AB129FB193800573DBD /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB029FB193800573DBD /* Currency.swift */; };
 		97467AB329FB195900573DBD /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB229FB195900573DBD /* AppSettings.swift */; };
 		97467AB529FB197000573DBD /* CurrencyRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AB429FB197000573DBD /* CurrencyRate.swift */; };
+		974793942A3D055B004DE91E /* Spending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974793932A3D055B004DE91E /* Spending.swift */; };
 		97634CCA2A37AFBB0096EE1F /* ExpenseCategoriesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97634CC92A37AFBB0096EE1F /* ExpenseCategoriesSettingsView.swift */; };
 		97634CCC2A37B89D0096EE1F /* TransactionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97634CCB2A37B89D0096EE1F /* TransactionCardView.swift */; };
 		97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */; };
@@ -53,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		97467AA629FB186200573DBD /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		97467AA629FB186200573DBD /* MoneyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyAmount.swift; sourceTree = "<group>"; };
 		97467AA829FB187200573DBD /* AnchorDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDate.swift; sourceTree = "<group>"; };
 		97467AAA29FB188900573DBD /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		97467AAC29FB18FD00573DBD /* SpendCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendCategory.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		97467AB229FB195900573DBD /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		97467AB429FB197000573DBD /* CurrencyRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRate.swift; sourceTree = "<group>"; };
 		97467AB829FB214800573DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		974793932A3D055B004DE91E /* Spending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spending.swift; sourceTree = "<group>"; };
 		97634CC92A37AFBB0096EE1F /* ExpenseCategoriesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategoriesSettingsView.swift; sourceTree = "<group>"; };
 		97634CCB2A37B89D0096EE1F /* TransactionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCardView.swift; sourceTree = "<group>"; };
 		97732FB229F5282E00D5C2DE /* Profitocracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Profitocracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,38 @@
 			children = (
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		974793902A3D04A4004DE91E /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				97467AB429FB197000573DBD /* CurrencyRate.swift */,
+				97467AB029FB193800573DBD /* Currency.swift */,
+				97467AAC29FB18FD00573DBD /* SpendCategory.swift */,
+				97467AAA29FB188900573DBD /* Transaction.swift */,
+				97467AA829FB187200573DBD /* AnchorDate.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		974793912A3D04B4004DE91E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				97FC99142A39008000E45782 /* Theme.swift */,
+				97FC99122A38EFA600E45782 /* TransactionType.swift */,
+				97467AAE29FB191C00573DBD /* SpendType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		974793922A3D04BF004DE91E /* ValueObjects */ = {
+			isa = PBXGroup;
+			children = (
+				97467AB229FB195900573DBD /* AppSettings.swift */,
+				97467AA629FB186200573DBD /* MoneyAmount.swift */,
+				974793932A3D055B004DE91E /* Spending.swift */,
+			);
+			path = ValueObjects;
 			sourceTree = "<group>";
 		};
 		97634CC62A37AF920096EE1F /* SettingsViews */ = {
@@ -244,16 +278,9 @@
 		97FCA2F52A3790B0002451B7 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				97467AA629FB186200573DBD /* Balance.swift */,
-				97467AA829FB187200573DBD /* AnchorDate.swift */,
-				97467AAA29FB188900573DBD /* Transaction.swift */,
-				97467AAC29FB18FD00573DBD /* SpendCategory.swift */,
-				97467AAE29FB191C00573DBD /* SpendType.swift */,
-				97467AB029FB193800573DBD /* Currency.swift */,
-				97467AB229FB195900573DBD /* AppSettings.swift */,
-				97467AB429FB197000573DBD /* CurrencyRate.swift */,
-				97FC99122A38EFA600E45782 /* TransactionType.swift */,
-				97FC99142A39008000E45782 /* Theme.swift */,
+				974793922A3D04BF004DE91E /* ValueObjects */,
+				974793912A3D04B4004DE91E /* Enums */,
+				974793902A3D04A4004DE91E /* Entities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -402,7 +429,8 @@
 				97FCA2EF2A3780AB002451B7 /* TotalBalanceCardView.swift in Sources */,
 				97467AA929FB187200573DBD /* AnchorDate.swift in Sources */,
 				97732FB829F5282E00D5C2DE /* ContentView.swift in Sources */,
-				97467AA729FB186200573DBD /* Balance.swift in Sources */,
+				97467AA729FB186200573DBD /* MoneyAmount.swift in Sources */,
+				974793942A3D055B004DE91E /* Spending.swift in Sources */,
 				97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */,
 				97467AB529FB197000573DBD /* CurrencyRate.swift in Sources */,
 				97FCA2E42A377FBF002451B7 /* HomeView.swift in Sources */,
