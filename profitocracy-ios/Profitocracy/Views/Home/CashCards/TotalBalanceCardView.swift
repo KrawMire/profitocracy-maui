@@ -8,20 +8,31 @@
 import SwiftUI
 
 struct TotalBalanceCardView: View {
+    @Binding var anchorDate: AnchorDate
+    @Binding var currentValue: Float
+    @Binding var currencySymbol: String
+    
+    private var startDate: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
+        
+        return dateFormatter.string(from: anchorDate.startDate)
+    }
+    
     var body: some View {
         VStack {
             Text("Balance")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text("10.06.2023-25.06.2023")
+            Text("\(startDate)-25.06.2023")
                 .font(.subheadline)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            ProgressView(value: 2500, total: 15000)
+            ProgressView(value: currentValue, total: anchorDate.balance)
             HStack {
-                Text("$2500")
+                Text("\(currencySymbol)\(roundFloatString(currentValue))")
                     .font(.caption)
                 Spacer()
-                Text("$15000")
+                Text("\(currencySymbol)\(roundFloatString(anchorDate.balance))")
                     .font(.caption)
             }
         }
@@ -31,6 +42,10 @@ struct TotalBalanceCardView: View {
 
 struct TotalBalanceCardViiew_Previews: PreviewProvider {
     static var previews: some View {
-        TotalBalanceCardView()
+        TotalBalanceCardView(
+            anchorDate: .constant(AnchorDate(startDate: Date(), balance: 1000)),
+            currentValue: .constant(100),
+            currencySymbol: .constant("$")
+        )
     }
 }

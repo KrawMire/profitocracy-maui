@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct TransactionsView: View {
-    let transactions: [Transaction]
+    @Binding var transactions: [Transaction]
     
     var body: some View {
         NavigationStack {
-            List(transactions) { transaction in
+            List($transactions) { transaction in
                 TransactionCardView(transaction: transaction)
             }
             .navigationTitle("Transactions")
@@ -22,6 +22,6 @@ struct TransactionsView: View {
 
 struct TransactionHistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionsView(transactions: Transaction.previewData)
+        TransactionsView(transactions: .constant([Transaction.emptyTransaction]))
     }
 }

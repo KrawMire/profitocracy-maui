@@ -8,6 +8,6 @@
 import Foundation
 
 struct AnchorDate {
-    var date: Date
+    var startDate: Date
     var balance: Float
 }

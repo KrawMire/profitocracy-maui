@@ -8,15 +8,11 @@
 import SwiftUI
 
 struct CashCardView: View {
-    let title: String
-    let current: Float
-    let total: Float
+    var title: String
     
-    init(title: String, current: Float, total: Float) {
-        self.title = title
-        self.current = current
-        self.total = total
-    }
+    @Binding var current: Float
+    @Binding var total: Float
+    @Binding var currencySymbol: String
     
     var body: some View {
         VStack {
@@ -24,12 +20,11 @@ struct CashCardView: View {
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
             ProgressView(value: current, total: total)
-            
             HStack {
-                Text("$\(String(roundNumber(current)))")
+                Text("\(currencySymbol)\(String(roundFloatString(current)))")
                     .font(.caption)
                 Spacer()
-                Text("$\(String(roundNumber(total)))")
+                Text("\(currencySymbol)\(String(roundFloatString(total)))")
                     .font(.caption)
             }
         }
@@ -41,8 +36,9 @@ struct SavedAmountCard_Previews: PreviewProvider {
     static var previews: some View {
         CashCardView(
             title: "Saved amount",
-            current: 10,
-            total: 1500
+            current: .constant(10),
+            total: .constant(1500),
+            currencySymbol: .constant("$")
         )
     }
 }

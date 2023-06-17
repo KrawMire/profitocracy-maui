@@ -10,6 +10,7 @@ import Foundation
 enum TransactionType: String, CaseIterable, Identifiable {
     case expense
     case income
+    case postpone
     
     var id: Self { self }
 }

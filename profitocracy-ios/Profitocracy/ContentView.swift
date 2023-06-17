@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Binding var transactions: [Transaction]
+    @Binding var appSettings: AppSettings
+    @Binding var currentAnchorDate: AnchorDate
+    
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(
+                transactions: $transactions,
+                appSettings: $appSettings,
+                currentAnchorDate: $currentAnchorDate
+            )
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")
@@ -20,7 +28,7 @@ struct ContentView: View {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
-            TransactionsView(transactions: Transaction.previewData)
+            TransactionsView(transactions: $transactions)
                 .tabItem {
                     Image(systemName: "list.dash")
                     Text("Transactions")
@@ -30,7 +38,41 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static let transactions = [
+        Transaction(
+            type: .expense,
+            amount: 50,
+            spendType: .main,
+            currency: Currency(name: "US Dollar", code: "USD", symbol: "$"),
+            description: "",
+            time: Time(hours: 10, minutes: 50, seconds: 11),
+            date: Date()
+        )
+    ]
+    
+    static let appSettings = AppSettings(
+        categories: [
+            SpendCategory(name: "Test category", plannedAmount: 100, isTracking: true)
+        ],
+        anchorDays: [10, 25],
+        theme: .system,
+        mainCurrency: Currency(
+            name: "US Dollar",
+            code: "USD",
+            symbol: "$"
+        )
+    )
+    
+    static let currentAnchorDate = AnchorDate(
+        startDate: Date(),
+        balance: 200
+    )
+    
     static var previews: some View {
-        ContentView()
+        ContentView(
+            transactions: .constant(transactions),
+            appSettings: .constant(appSettings),
+            currentAnchorDate: .constant(currentAnchorDate)
+        )
     }
 }

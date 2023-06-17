@@ -7,9 +7,22 @@
 
 import Foundation
 
-struct AppSettings {
+class AppSettings: ObservableObject {
+    @Published var mainCurrency: Currency
+    
     var categories: [SpendCategory]
     var anchorDays: [Int]
     var theme: Theme
-    var mainCurrency: Currency
+    
+    init(
+        categories: [SpendCategory],
+        anchorDays: [Int],
+        theme: Theme,
+        mainCurrency: Currency
+    ) {
+        self.mainCurrency = mainCurrency
+        self.categories = categories
+        self.anchorDays = anchorDays
+        self.theme = theme
+    }
 }

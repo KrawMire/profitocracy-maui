@@ -7,13 +7,14 @@
 
 import Foundation
 
-struct Currency: Identifiable {
-    let name: String
-    let code: String
-    let symbol: String
-    let id: UUID
+struct Currency: Identifiable, Hashable {
+    var name: String
+    var code: String
+    var symbol: String
+    var id: UUID
     
     init(id: UUID = UUID(), name: String, code: String, symbol: String) {
+        self.id = id
         self.name = name
         self.code = code
         self.symbol = symbol

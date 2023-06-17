@@ -11,27 +11,30 @@ struct Transaction: Identifiable {
     let id: UUID
     var type: TransactionType
     var amount: Float
-    var expenseType: String
-    var expenseCategory: String
+    var spendType: SpendType
+    var category: SpendCategory?
+    var currency: Currency
     var description: String
-    var time: String
-    var date: String
+    var time: Time
+    var date: Date
     
     init(
         id: UUID = UUID(),
+        category: SpendCategory? = nil as SpendCategory?,
         type: TransactionType,
         amount: Float,
-        expenseType: String,
-        expenseCategory: String,
+        spendType: SpendType,
+        currency: Currency,
         description: String,
-        time: String,
-        date: String
+        time: Time,
+        date: Date
     ) {
         self.id = id
         self.type = type
         self.amount = amount
-        self.expenseType = expenseType
-        self.expenseCategory = expenseCategory
+        self.spendType = spendType
+        self.currency = currency
+        self.category = category
         self.description = description
         self.time = time
         self.date = date
@@ -39,9 +42,20 @@ struct Transaction: Identifiable {
 }
 
 extension Transaction {
-    static let previewData = [
-        Transaction(type: .expense, amount: 24, expenseType: "Main expenses", expenseCategory: "Products", description: "Apples and meat", time: "00:32", date: "13.06.2023"),
-        Transaction(type: .expense, amount: 120, expenseType: "Secondary expenses", expenseCategory: "Car", description: "Oil", time: "18:48", date: "12.06.2023"),
-        Transaction(type: .expense, amount: 39, expenseType: "Saved", expenseCategory: "Health", description: "Pants and T-Shirt", time: "11:00", date: "11.06.2023"),
-    ]
+    static var emptyTransaction: Transaction {
+        let date = Date()
+        let currentHours = Calendar.current.component(.hour, from: date)
+        let currentMinutes = Calendar.current.component(.minute, from: date)
+        let currentSeconds = Calendar.current.component(.second, from: date)
+        
+        return Transaction(
+            type: .expense,
+            amount: 0,
+            spendType: .main,
+            currency: Currency.availableCurrencies[0],
+            description: "",
+            time: Time(hours: currentHours, minutes: currentMinutes, seconds: currentSeconds),
+            date: date
+        )
+    }
 }

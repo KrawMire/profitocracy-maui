@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97259D582A3DB81700A4FAC7 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97259D572A3DB81700A4FAC7 /* Time.swift */; };
 		97467AA729FB186200573DBD /* MoneyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA629FB186200573DBD /* MoneyAmount.swift */; };
 		97467AA929FB187200573DBD /* AnchorDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA829FB187200573DBD /* AnchorDate.swift */; };
 		97467AAB29FB188900573DBD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AAA29FB188900573DBD /* Transaction.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97259D572A3DB81700A4FAC7 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		97467AA629FB186200573DBD /* MoneyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyAmount.swift; sourceTree = "<group>"; };
 		97467AA829FB187200573DBD /* AnchorDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDate.swift; sourceTree = "<group>"; };
 		97467AAA29FB188900573DBD /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -112,19 +114,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97259D542A3DB7FB00A4FAC7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				97259D572A3DB81700A4FAC7 /* Time.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		97467AA529FB181400573DBD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				97259D542A3DB7FB00A4FAC7 /* Common */,
 				97FCA2F52A3790B0002451B7 /* Domain */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		97467AB629FB1E0900573DBD /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		974793902A3D04A4004DE91E /* Entities */ = {
@@ -194,7 +198,6 @@
 				97FCA2FB2A379365002451B7 /* Utils */,
 				97FCA2E22A377F96002451B7 /* Views */,
 				97467AB829FB214800573DBD /* Info.plist */,
-				97467AB629FB1E0900573DBD /* Controllers */,
 				97467AA529FB181400573DBD /* Models */,
 				97732FB529F5282E00D5C2DE /* ProfitocracyApp.swift */,
 				97732FB729F5282E00D5C2DE /* ContentView.swift */,
@@ -434,6 +437,7 @@
 				97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */,
 				97467AB529FB197000573DBD /* CurrencyRate.swift in Sources */,
 				97FCA2E42A377FBF002451B7 /* HomeView.swift in Sources */,
+				97259D582A3DB81700A4FAC7 /* Time.swift in Sources */,
 				97467AAD29FB18FD00573DBD /* SpendCategory.swift in Sources */,
 				97467AB329FB195900573DBD /* AppSettings.swift in Sources */,
 				97467AAF29FB191C00573DBD /* SpendType.swift in Sources */,
