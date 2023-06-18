@@ -24,8 +24,8 @@ struct SettingsView: View {
                     NavigationLink(destination: AnchorDatesSettingsView()) {
                         Label("Anchor Dates", systemImage: "calendar")
                     }
-                    Picker(selection: $appSettings.mainCurrency.name, label: Label("Currency", systemImage: "banknote")) {
-                        ForEach(Currency.availableCurrencies, id: \.name) { currency in
+                    Picker(selection: $appSettings.mainCurrency, label: Label("Currency", systemImage: "banknote")) {
+                        ForEach(Currency.availableCurrencies) { currency in
                             Text(currency.name).tag(currency)
                         }
                     }

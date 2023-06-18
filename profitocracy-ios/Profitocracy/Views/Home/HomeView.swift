@@ -13,17 +13,17 @@ struct HomeView: View {
     @Binding var transactions: [Transaction]
     @Binding var currentAnchorDate: AnchorDate
     
-    @State private var isPresentingAddTransactionView: Bool
-    @State private var newTransaction: Transaction
+    @State private var newTransaction = Transaction.emptyTransaction
+    @State private var isPresentingAddTransactionView = false
     
-    @State private var totalSpendingsAmount: PlannedBalance
-    @State private var totalSavedAmount: Float
+    @State private var totalSpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
+    @State private var totalSavedAmount: Float = 0
     
-    @State private var dailyAmount: PlannedBalance
-    @State private var mainSpendingsAmount: PlannedBalance
-    @State private var secondarySpendingsAmount: PlannedBalance
-    @State private var savedSpendingsAmount: PlannedBalance
-    @State private var categoriesSpendings: [CategorySpending]
+    @State private var dailyAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
+    @State private var mainSpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
+    @State private var secondarySpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
+    @State private var savedSpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
+    @State private var categoriesSpendings: [CategorySpending] = []
     
     init(
         appSettings: AppSettings,
@@ -34,17 +34,11 @@ struct HomeView: View {
         _transactions = transactions
         _currentAnchorDate = currentAnchorDate
         
-        _isPresentingAddTransactionView = State(initialValue: false)
-        _newTransaction = State(initialValue: Transaction.emptyTransaction)
-        
-        _totalSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
-        _totalSavedAmount = State(initialValue: 0)
-        
-        _dailyAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
-        _mainSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
-        _secondarySpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
-        _savedSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
-        
+        initCategories()
+        calculateSpendings()
+    }
+    
+    private func initCategories() -> Void {
         let categoriesSpendings = appSettings.categories.map { category in
             return CategorySpending(
                 id: category.id,
@@ -54,49 +48,37 @@ struct HomeView: View {
             )
         }
         
-        _categoriesSpendings = State(initialValue: categoriesSpendings)
-        
-        _calculateSpendings()
+        self.categoriesSpendings = categoriesSpendings
     }
     
-    private func _calculateSpendings() -> Void {
+    private func calculateSpendings() -> Void {
         totalSpendingsAmount.actualAmount = 0
         totalSpendingsAmount.totalAmount = currentAnchorDate.balance
         totalSavedAmount = 0
         
         dailyAmount.actualAmount = 0
-        dailyAmount.totalAmount = 200
-        
         mainSpendingsAmount.actualAmount = 0
-        mainSpendingsAmount.totalAmount = currentAnchorDate.balance * 0.5
         secondarySpendingsAmount.actualAmount = 0
-        secondarySpendingsAmount.totalAmount = currentAnchorDate.balance * 0.3
         savedSpendingsAmount.actualAmount = 0
-        savedSpendingsAmount.totalAmount = currentAnchorDate.balance * 0.2
         
         for transaction in transactions {
-            if Calendar.current.isDateInToday(transaction.date)
-                && transaction.type == .expense {
-                dailyAmount.actualAmount += transaction.amount
-            }
-            
-            if transaction.type == .income || transaction.type == .postpone {
-                totalSpendingsAmount.actualAmount += transaction.amount
-                
-                if transaction.type == .postpone {
-                    totalSavedAmount += transaction.amount
-                }
-                
+            if transaction.type == .income {
+                totalSpendingsAmount.totalAmount += transaction.amount
                 continue
             }
             
+            if transaction.type == .postpone {
+                totalSavedAmount += transaction.amount
+            }
+            
+            if Calendar.current.isDateInToday(transaction.date) && transaction.type != .postpone {
+                dailyAmount.actualAmount += transaction.amount
+            }
+            
             switch transaction.spendType {
-            case .main:
-                mainSpendingsAmount.actualAmount += transaction.amount
-            case .secondary:
-                secondarySpendingsAmount.actualAmount += transaction.amount
-            case .saved:
-                savedSpendingsAmount.actualAmount += transaction.amount
+            case .main: mainSpendingsAmount.actualAmount += transaction.amount
+            case .secondary: secondarySpendingsAmount.actualAmount += transaction.amount
+            case .saved: savedSpendingsAmount.actualAmount += transaction.amount
             }
             
             if transaction.category != nil {
@@ -107,6 +89,11 @@ struct HomeView: View {
                 }
             }
         }
+        
+        dailyAmount.totalAmount = totalSpendingsAmount.totalAmount / 15
+        mainSpendingsAmount.totalAmount = totalSpendingsAmount.totalAmount * 0.5
+        secondarySpendingsAmount.totalAmount = totalSpendingsAmount.totalAmount * 0.3
+        savedSpendingsAmount.totalAmount = totalSpendingsAmount.totalAmount * 0.2
     }
     
     var body: some View {   
@@ -207,17 +194,15 @@ struct HomeView: View {
                                     transactions.insert(newTransaction, at: 0)
                                     isPresentingAddTransactionView = false
                                     newTransaction = Transaction.emptyTransaction
-                                    _calculateSpendings()
+                                    calculateSpendings()
                                 }
                             }
                         }
                 }
             }
-            .onChange(of: appSettings.categories) { _ in
-                _calculateSpendings()
-            }
             .onAppear() {
-                _calculateSpendings()
+                initCategories()
+                calculateSpendings()
             }
         }
     }
