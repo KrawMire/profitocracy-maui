@@ -9,23 +9,23 @@ import SwiftUI
 
 @main
 struct ProfitocracyApp: App {
+    @State private var isShowSetupView: Bool
+    
     @State private var transactions = [Transaction]()
     @State private var appSettings = AppSettings(
-        categories: [
-            SpendCategory(name: "Test category", plannedAmount: 100, isTracking: true)
-        ],
+        categories: [],
         anchorDays: [10, 25],
         theme: .system,
-        mainCurrency: Currency(
-            name: "US Dollar",
-            code: "USD",
-            symbol: "$"
-        )
+        mainCurrency: Currency.availableCurrencies[0]
     )
     @State private var currentAnchorDate = AnchorDate(
         startDate: Date(),
         balance: 200
     )
+    
+    init() {
+        self._isShowSetupView = State(initialValue: true)
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -34,6 +34,11 @@ struct ProfitocracyApp: App {
                 appSettings: $appSettings,
                 currentAnchorDate: $currentAnchorDate
             )
+            .sheet(isPresented: $isShowSetupView, onDismiss: {
+                isShowSetupView = false
+            }) {
+                SetupView(appSettings: $appSettings)
+            }
         }
     }
 }

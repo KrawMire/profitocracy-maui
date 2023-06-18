@@ -39,13 +39,3 @@ struct TotalBalanceCardView: View {
         .padding()
     }
 }
-
-struct TotalBalanceCardViiew_Previews: PreviewProvider {
-    static var previews: some View {
-        TotalBalanceCardView(
-            anchorDate: .constant(AnchorDate(startDate: Date(), balance: 1000)),
-            currentValue: .constant(100),
-            currencySymbol: .constant("$")
-        )
-    }
-}

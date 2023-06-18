@@ -8,9 +8,9 @@
 import Foundation
 
 enum Theme: String, CaseIterable, Identifiable {
-    case dark
-    case light
     case system
+    case light
+    case dark
     
     var id: Self { self }
 }

@@ -13,8 +13,3 @@ struct AnchorDatesSettingsView: View {
     }
 }
 
-struct AnchorDatesSettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnchorDatesSettingsView()
-    }
-}

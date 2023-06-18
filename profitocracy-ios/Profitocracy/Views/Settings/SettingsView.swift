@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var selectedTheme: Theme = .dark
+    @Binding var appSettings: AppSettings
     
     var body: some View {
         NavigationStack {
             Form {
                 Section(header: Text("Application settings")) {
-                    NavigationLink(destination: ExpenseCategoriesSettingsView()) {
+                    NavigationLink(destination: ExpenseCategoriesSettingsView(categories: $appSettings.categories)) {
                         Label("Expense Categories", systemImage: "list.bullet")
                     }
                     NavigationLink(destination: AnchorDatesSettingsView()) {
@@ -22,7 +22,7 @@ struct SettingsView: View {
                     }
                 }
                 Section(header: Text("System settings")) {
-                    Picker("Theme", selection: $selectedTheme) {
+                    Picker("Theme", selection: $appSettings.theme) {
                         ForEach(Theme.allCases) { theme in
                             Text(theme.rawValue.capitalized)
                         }
@@ -32,11 +32,5 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
         }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
     }
 }

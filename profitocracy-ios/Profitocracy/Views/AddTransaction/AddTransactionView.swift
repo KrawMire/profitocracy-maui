@@ -11,7 +11,7 @@ struct AddTransactionView: View {
     @Binding var transaction: Transaction
     @Binding var categories: [SpendCategory]
     
-    let amountFormatter: NumberFormatter = {
+    private let amountFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         return formatter
@@ -69,13 +69,3 @@ struct AddTransactionView: View {
         }
     }
 }
-
-struct AddTransactionView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddTransactionView(
-            transaction: .constant(Transaction.emptyTransaction),
-            categories: .constant([SpendCategory]())
-        )
-    }
-}
-

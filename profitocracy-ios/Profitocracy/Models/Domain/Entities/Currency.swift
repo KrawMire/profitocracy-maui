@@ -23,8 +23,8 @@ struct Currency: Identifiable, Hashable {
 
 extension Currency {
     static let availableCurrencies: [Currency] = [
-        Currency(name: "Dollar", code: "USD", symbol: "$"),
-        Currency(name: "Ruble", code: "RUB", symbol: "₽"),
-        Currency(name: "Euro", code: "EUR", symbol: "€")
+        Currency(name: "US Dollar", code: "USD", symbol: "$"),
+        Currency(name: "Russian Ruble", code: "RUB", symbol: "₽"),
+        Currency(name: "European Euro", code: "EUR", symbol: "€")
     ]
 }

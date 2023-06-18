@@ -19,9 +19,3 @@ struct TransactionsView: View {
         }
     }
 }
-
-struct TransactionHistoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        TransactionsView(transactions: .constant([Transaction.emptyTransaction]))
-    }
-}

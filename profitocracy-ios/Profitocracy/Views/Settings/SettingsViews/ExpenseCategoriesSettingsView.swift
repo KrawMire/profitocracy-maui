@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct ExpenseCategoriesSettingsView: View {
+    @Binding var categories: [SpendCategory]
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct ExpenseCategoriesSettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpenseCategoriesSettingsView()
-    }
-}

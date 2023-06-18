@@ -23,7 +23,7 @@ struct ContentView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
-            SettingsView()
+            SettingsView(appSettings: $appSettings)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
