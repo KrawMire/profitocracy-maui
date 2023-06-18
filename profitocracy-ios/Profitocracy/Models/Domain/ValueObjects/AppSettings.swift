@@ -9,8 +9,8 @@ import Foundation
 
 class AppSettings: ObservableObject {
     @Published var mainCurrency: Currency
+    @Published var categories: [SpendCategory]
     
-    var categories: [SpendCategory]
     var anchorDays: [Int]
     var theme: Theme
     

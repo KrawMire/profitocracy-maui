@@ -10,6 +10,12 @@ import SwiftUI
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(
+            appSettings: AppSettings(
+                categories: [SpendCategory](),
+                anchorDays: [10, 25],
+                theme: .system,
+                mainCurrency: Currency(name: "US Dollar", code: "USD", symbol: "$")
+            ),
             transactions: .constant([
                 Transaction(
                     type: .expense,
@@ -21,12 +27,6 @@ struct HomeView_Previews: PreviewProvider {
                     date: Date()
                 )
             ]),
-            appSettings: .constant(AppSettings(
-                categories: [SpendCategory](),
-                anchorDays: [10, 25],
-                theme: .system,
-                mainCurrency: Currency(name: "US Dollar", code: "USD", symbol: "$"))
-            ),
             currentAnchorDate: .constant(AnchorDate(startDate: Date(), balance: 1000))
         )
     }

@@ -8,10 +8,10 @@
 import Foundation
 
 struct Currency: Identifiable, Hashable {
+    var id: UUID
     var name: String
     var code: String
     var symbol: String
-    var id: UUID
     
     init(id: UUID = UUID(), name: String, code: String, symbol: String) {
         self.id = id

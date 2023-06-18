@@ -12,7 +12,7 @@ struct CashCardView: View {
     
     @Binding var current: Float
     @Binding var total: Float
-    @Binding var currencySymbol: String
+    var currencySymbol: String
     
     var body: some View {
         VStack {

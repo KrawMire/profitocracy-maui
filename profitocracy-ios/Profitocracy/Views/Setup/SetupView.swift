@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SetupView: View {
-    @Binding var appSettings: AppSettings
+    @ObservedObject var appSettings: AppSettings
     
     var body: some View {
         NavigationStack {

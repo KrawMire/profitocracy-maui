@@ -22,7 +22,7 @@ struct Transaction: Identifiable {
         id: UUID = UUID(),
         category: SpendCategory? = nil as SpendCategory?,
         type: TransactionType,
-        amount: Float,
+        amount: Float?,
         spendType: SpendType,
         currency: Currency,
         description: String,
@@ -31,7 +31,7 @@ struct Transaction: Identifiable {
     ) {
         self.id = id
         self.type = type
-        self.amount = amount
+        self.amount = amount ?? 0
         self.spendType = spendType
         self.currency = currency
         self.category = category
@@ -50,7 +50,7 @@ extension Transaction {
         
         return Transaction(
             type: .expense,
-            amount: 0,
+            amount: nil,
             spendType: .main,
             currency: Currency.availableCurrencies[0],
             description: "",

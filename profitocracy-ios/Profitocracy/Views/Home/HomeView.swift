@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var appSettings: AppSettings
+    
     @Binding var transactions: [Transaction]
-    @Binding var appSettings: AppSettings
     @Binding var currentAnchorDate: AnchorDate
     
     @State private var isPresentingAddTransactionView: Bool
@@ -25,31 +26,31 @@ struct HomeView: View {
     @State private var categoriesSpendings: [CategorySpending]
     
     init(
+        appSettings: AppSettings,
         transactions: Binding<[Transaction]>,
-        appSettings: Binding<AppSettings>,
         currentAnchorDate: Binding<AnchorDate>
     ) {
+        self.appSettings = appSettings
         _transactions = transactions
-        _appSettings = appSettings
         _currentAnchorDate = currentAnchorDate
         
         _isPresentingAddTransactionView = State(initialValue: false)
         _newTransaction = State(initialValue: Transaction.emptyTransaction)
         
-        _totalSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: currentAnchorDate.wrappedValue.balance))
+        _totalSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
         _totalSavedAmount = State(initialValue: 0)
         
-        _dailyAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: currentAnchorDate.wrappedValue.balance))
-        _mainSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: currentAnchorDate.wrappedValue.balance))
-        _secondarySpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: currentAnchorDate.wrappedValue.balance))
-        _savedSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: currentAnchorDate.wrappedValue.balance))
+        _dailyAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
+        _mainSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
+        _secondarySpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
+        _savedSpendingsAmount = State(initialValue: PlannedBalance(actualAmount: 0, totalAmount: 0))
         
         let categoriesSpendings = appSettings.categories.map { category in
             return CategorySpending(
                 id: category.id,
-                categoryName: category.name.wrappedValue,
+                categoryName: category.name,
                 actualAmount: 0,
-                plannedAmount: category.plannedAmount.wrappedValue
+                plannedAmount: category.plannedAmount
             )
         }
         
@@ -60,12 +61,18 @@ struct HomeView: View {
     
     private func _calculateSpendings() -> Void {
         totalSpendingsAmount.actualAmount = 0
+        totalSpendingsAmount.totalAmount = currentAnchorDate.balance
         totalSavedAmount = 0
         
         dailyAmount.actualAmount = 0
+        dailyAmount.totalAmount = 200
+        
         mainSpendingsAmount.actualAmount = 0
+        mainSpendingsAmount.totalAmount = currentAnchorDate.balance * 0.5
         secondarySpendingsAmount.actualAmount = 0
+        secondarySpendingsAmount.totalAmount = currentAnchorDate.balance * 0.3
         savedSpendingsAmount.actualAmount = 0
+        savedSpendingsAmount.totalAmount = currentAnchorDate.balance * 0.2
         
         for transaction in transactions {
             if Calendar.current.isDateInToday(transaction.date)
@@ -109,7 +116,7 @@ struct HomeView: View {
                     TotalBalanceCardView(
                         anchorDate: $currentAnchorDate,
                         currentValue: $totalSpendingsAmount.actualAmount,
-                        currencySymbol: $appSettings.mainCurrency.symbol
+                        currencySymbol: appSettings.mainCurrency.symbol
                     )
                     HStack {
                         Text("Saved Amount")
@@ -126,14 +133,14 @@ struct HomeView: View {
                             title: "From Actual",
                             current: $dailyAmount.actualAmount,
                             total: $dailyAmount.totalAmount,
-                            currencySymbol: $appSettings.mainCurrency.symbol
+                            currencySymbol: appSettings.mainCurrency.symbol
                         )
                         Spacer()
                         CashCardView(
                             title: "From Initial",
                             current: $dailyAmount.actualAmount,
                             total: $dailyAmount.totalAmount,
-                            currencySymbol: $appSettings.mainCurrency.symbol
+                            currencySymbol: appSettings.mainCurrency.symbol
                         )
                     }
                 }
@@ -142,19 +149,19 @@ struct HomeView: View {
                         title: "Main Spendings",
                         current: $mainSpendingsAmount.actualAmount,
                         total: $mainSpendingsAmount.totalAmount,
-                        currencySymbol: $appSettings.mainCurrency.symbol
+                        currencySymbol: appSettings.mainCurrency.symbol
                     )
                     CashCardView(
                         title: "Secondary Spendings",
                         current: $secondarySpendingsAmount.actualAmount,
                         total: $secondarySpendingsAmount.totalAmount,
-                        currencySymbol: $appSettings.mainCurrency.symbol
+                        currencySymbol: appSettings.mainCurrency.symbol
                     )
                     CashCardView(
                         title: "Saved",
                         current: $savedSpendingsAmount.actualAmount,
                         total: $savedSpendingsAmount.totalAmount,
-                        currencySymbol: $appSettings.mainCurrency.symbol
+                        currencySymbol: appSettings.mainCurrency.symbol
                     )
                 }
                 Section("Categories Spendings") {
@@ -163,7 +170,7 @@ struct HomeView: View {
                             title: category.categoryName,
                             current: .constant(120),
                             total: .constant(250),
-                            currencySymbol: $appSettings.mainCurrency.symbol)
+                            currencySymbol: appSettings.mainCurrency.symbol)
                     }
                 }
             }
@@ -205,6 +212,12 @@ struct HomeView: View {
                             }
                         }
                 }
+            }
+            .onChange(of: appSettings.categories) { _ in
+                _calculateSpendings()
+            }
+            .onAppear() {
+                _calculateSpendings()
             }
         }
     }

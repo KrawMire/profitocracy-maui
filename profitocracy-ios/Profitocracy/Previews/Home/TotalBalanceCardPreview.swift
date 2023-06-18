@@ -13,7 +13,7 @@ struct TotalBalanceCardViiew_Previews: PreviewProvider {
         TotalBalanceCardView(
             anchorDate: .constant(AnchorDate(startDate: Date(), balance: 1000)),
             currentValue: .constant(100),
-            currencySymbol: .constant("$")
+            currencySymbol: "$"
         )
     }
 }

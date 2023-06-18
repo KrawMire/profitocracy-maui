@@ -11,5 +11,5 @@ struct CategorySpending: Identifiable {
     var id: UUID
     var categoryName: String
     var actualAmount: Float
-    var plannedAmount: Float
+    var plannedAmount: Float?
 }

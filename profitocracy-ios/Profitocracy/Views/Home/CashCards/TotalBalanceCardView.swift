@@ -10,7 +10,7 @@ import SwiftUI
 struct TotalBalanceCardView: View {
     @Binding var anchorDate: AnchorDate
     @Binding var currentValue: Float
-    @Binding var currencySymbol: String
+    var currencySymbol: String
     
     private var startDate: String {
         let dateFormatter = DateFormatter()

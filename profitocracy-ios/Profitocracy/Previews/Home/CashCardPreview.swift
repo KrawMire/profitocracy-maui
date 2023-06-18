@@ -13,7 +13,7 @@ struct SavedAmountCard_Previews: PreviewProvider {
             title: "Saved amount",
             current: .constant(10),
             total: .constant(1500),
-            currencySymbol: .constant("$")
+            currencySymbol: "$"
         )
     }
 }

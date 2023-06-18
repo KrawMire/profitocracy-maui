@@ -12,7 +12,7 @@ struct ProfitocracyApp: App {
     @State private var isShowSetupView: Bool
     
     @State private var transactions = [Transaction]()
-    @State private var appSettings = AppSettings(
+    @StateObject private var appSettings = AppSettings(
         categories: [],
         anchorDays: [10, 25],
         theme: .system,
@@ -31,13 +31,13 @@ struct ProfitocracyApp: App {
         WindowGroup {
             ContentView(
                 transactions: $transactions,
-                appSettings: $appSettings,
+                appSettings: appSettings,
                 currentAnchorDate: $currentAnchorDate
             )
             .sheet(isPresented: $isShowSetupView, onDismiss: {
                 isShowSetupView = false
             }) {
-                SetupView(appSettings: $appSettings)
+                SetupView(appSettings: appSettings)
             }
         }
     }
