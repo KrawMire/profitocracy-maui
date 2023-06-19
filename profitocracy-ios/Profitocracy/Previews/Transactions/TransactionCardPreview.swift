@@ -16,7 +16,7 @@ struct TransactionCardView_Previews: PreviewProvider {
                     plannedAmount: 1000,
                     isTracking: true
                 ),
-                type: .expense,
+                type: .income,
                 amount: 10,
                 spendType: .main,
                 currency: Currency(

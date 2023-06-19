@@ -30,7 +30,8 @@ struct SpendCategoriesSettingsView_Previews: PreviewProvider {
                 ],
                 anchorDays: [10, 25],
                 theme: .system,
-                mainCurrency: Currency.availableCurrencies[0]
+                mainCurrency: Currency.availableCurrencies[0],
+                isSetup: true
             )
         )
     }

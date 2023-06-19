@@ -9,9 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var appSettings: AppSettings
+    @ObservedObject var currentAnchorDate: AnchorDate
     
     @Binding var transactions: [Transaction]
-    @Binding var currentAnchorDate: AnchorDate
     
     @State private var newTransaction = Transaction.emptyTransaction
     @State private var isPresentingAddTransactionView = false
@@ -28,11 +28,11 @@ struct HomeView: View {
     init(
         appSettings: AppSettings,
         transactions: Binding<[Transaction]>,
-        currentAnchorDate: Binding<AnchorDate>
+        currentAnchorDate: AnchorDate
     ) {
         self.appSettings = appSettings
+        self.currentAnchorDate = currentAnchorDate
         _transactions = transactions
-        _currentAnchorDate = currentAnchorDate
         
         initCategories()
         calculateSpendings()
@@ -101,7 +101,8 @@ struct HomeView: View {
             Form {
                 Section("Total Amounts") {
                     TotalBalanceCardView(
-                        anchorDate: $currentAnchorDate,
+                        anchorDate: currentAnchorDate,
+                        nextDate: .constant(getNextAnchorDate(currentAnchorDate: currentAnchorDate, anchorDays: appSettings.anchorDays)),
                         currentValue: $totalSpendingsAmount.actualAmount,
                         currencySymbol: appSettings.mainCurrency.symbol
                     )

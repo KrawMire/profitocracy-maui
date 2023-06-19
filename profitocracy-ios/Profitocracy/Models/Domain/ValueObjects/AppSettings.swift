@@ -10,19 +10,21 @@ import Foundation
 class AppSettings: ObservableObject {
     @Published var mainCurrency: Currency
     @Published var categories: [SpendCategory]
-    
-    var anchorDays: [Int]
-    var theme: Theme
+    @Published var anchorDays: [Int]
+    @Published var theme: Theme
+    @Published var isSetup: Bool
     
     init(
         categories: [SpendCategory],
         anchorDays: [Int],
         theme: Theme,
-        mainCurrency: Currency
+        mainCurrency: Currency,
+        isSetup: Bool
     ) {
         self.mainCurrency = mainCurrency
         self.categories = categories
         self.anchorDays = anchorDays
         self.theme = theme
+        self.isSetup = isSetup
     }
 }

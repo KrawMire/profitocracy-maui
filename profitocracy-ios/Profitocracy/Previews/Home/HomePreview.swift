@@ -14,7 +14,8 @@ struct HomeView_Previews: PreviewProvider {
                 categories: [SpendCategory](),
                 anchorDays: [10, 25],
                 theme: .system,
-                mainCurrency: Currency(name: "US Dollar", code: "USD", symbol: "$")
+                mainCurrency: Currency(name: "US Dollar", code: "USD", symbol: "$"),
+                isSetup: true
             ),
             transactions: .constant([
                 Transaction(
@@ -27,7 +28,7 @@ struct HomeView_Previews: PreviewProvider {
                     date: Date()
                 )
             ]),
-            currentAnchorDate: .constant(AnchorDate(startDate: Date(), balance: 1000))
+            currentAnchorDate: AnchorDate(startDate: Date(), balance: 1000)
         )
     }
 }

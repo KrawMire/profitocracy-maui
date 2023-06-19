@@ -7,7 +7,14 @@
 
 import Foundation
 
-struct AnchorDate {
-    var startDate: Date
-    var balance: Float
+class AnchorDate: ObservableObject, Identifiable {
+    @Published var id: UUID
+    @Published var startDate: Date
+    @Published var balance: Float
+    
+    init(id: UUID = UUID(), startDate: Date, balance: Float) {
+        self.id = id
+        self.startDate = startDate
+        self.balance = balance
+    }
 }

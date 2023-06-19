@@ -12,7 +12,8 @@ struct SetupView_Previews: PreviewProvider {
         categories: [],
         anchorDays: [10, 25],
         theme: .system,
-        mainCurrency: Currency.availableCurrencies[0]
+        mainCurrency: Currency.availableCurrencies[0],
+        isSetup: true
     )
     
     static var previews: some View {

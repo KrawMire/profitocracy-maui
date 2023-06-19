@@ -10,14 +10,14 @@ import SwiftUI
 struct ContentView: View {
     @Binding var transactions: [Transaction]
     @ObservedObject var appSettings: AppSettings
-    @Binding var currentAnchorDate: AnchorDate
+    @ObservedObject var currentAnchorDate: AnchorDate
     
     var body: some View {
         TabView {
             HomeView(
                 appSettings: appSettings,
                 transactions: $transactions,
-                currentAnchorDate: $currentAnchorDate
+                currentAnchorDate: currentAnchorDate
             )
                 .tabItem {
                     Image(systemName: "house.fill")
@@ -60,7 +60,8 @@ struct ContentView_Previews: PreviewProvider {
             name: "US Dollar",
             code: "USD",
             symbol: "$"
-        )
+        ),
+        isSetup: true
     )
     
     static let currentAnchorDate = AnchorDate(
@@ -72,7 +73,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(
             transactions: .constant(transactions),
             appSettings: appSettings,
-            currentAnchorDate: .constant(currentAnchorDate)
+            currentAnchorDate: currentAnchorDate
         )
     }
 }
