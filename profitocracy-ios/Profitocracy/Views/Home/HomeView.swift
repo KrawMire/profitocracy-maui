@@ -25,6 +25,10 @@ struct HomeView: View {
     @State private var savedSpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
     @State private var categoriesSpendings: [CategorySpending] = []
     
+    private var nextAnchorDate: Date {
+        return getNextAnchorDate(currentAnchorDate: currentAnchorDate, anchorDays: appSettings.anchorDays)
+    }
+    
     init(
         appSettings: AppSettings,
         transactions: Binding<[Transaction]>,
@@ -75,6 +79,12 @@ struct HomeView: View {
                 dailyAmount.actualAmount += transaction.amount
             }
             
+            if (currentAnchorDate.startDate >= transaction.date || transaction.date >= nextAnchorDate) {
+                continue
+            }
+            
+            totalSpendingsAmount.actualAmount += transaction.amount
+            
             switch transaction.spendType {
             case .main: mainSpendingsAmount.actualAmount += transaction.amount
             case .secondary: secondarySpendingsAmount.actualAmount += transaction.amount
@@ -102,7 +112,7 @@ struct HomeView: View {
                 Section("Total Amounts") {
                     TotalBalanceCardView(
                         anchorDate: currentAnchorDate,
-                        nextDate: .constant(getNextAnchorDate(currentAnchorDate: currentAnchorDate, anchorDays: appSettings.anchorDays)),
+                        nextDate: .constant(nextAnchorDate),
                         currentValue: $totalSpendingsAmount.actualAmount,
                         currencySymbol: appSettings.mainCurrency.symbol
                     )

@@ -17,6 +17,6 @@ struct SetupView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        SetupView(appSettings: appSettings)
+        SetupView(appSettings: appSettings, balance: .constant(0))
     }
 }

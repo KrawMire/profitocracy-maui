@@ -11,6 +11,8 @@
 		9743441E2A40D26600C65E32 /* AnchorDatesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743441D2A40D26600C65E32 /* AnchorDatesState.swift */; };
 		974344202A40D3B400C65E32 /* NewAnchorDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743441F2A40D3B400C65E32 /* NewAnchorDateView.swift */; };
 		974344222A40D40C00C65E32 /* AnchorDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974344212A40D40C00C65E32 /* AnchorDateUtils.swift */; };
+		974344252A40F99400C65E32 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974344242A40F99400C65E32 /* AppViewModel.swift */; };
+		974344272A40FFC200C65E32 /* TransactionsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974344262A40FFC200C65E32 /* TransactionsState.swift */; };
 		97467AA729FB186200573DBD /* MoneyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA629FB186200573DBD /* MoneyAmount.swift */; };
 		97467AA929FB187200573DBD /* AnchorDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AA829FB187200573DBD /* AnchorDate.swift */; };
 		97467AAB29FB188900573DBD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97467AAA29FB188900573DBD /* Transaction.swift */; };
@@ -78,6 +80,8 @@
 		9743441D2A40D26600C65E32 /* AnchorDatesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDatesState.swift; sourceTree = "<group>"; };
 		9743441F2A40D3B400C65E32 /* NewAnchorDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnchorDateView.swift; sourceTree = "<group>"; };
 		974344212A40D40C00C65E32 /* AnchorDateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDateUtils.swift; sourceTree = "<group>"; };
+		974344242A40F99400C65E32 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		974344262A40FFC200C65E32 /* TransactionsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsState.swift; sourceTree = "<group>"; };
 		97467AA629FB186200573DBD /* MoneyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyAmount.swift; sourceTree = "<group>"; };
 		97467AA829FB187200573DBD /* AnchorDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDate.swift; sourceTree = "<group>"; };
 		97467AAA29FB188900573DBD /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -164,8 +168,17 @@
 			isa = PBXGroup;
 			children = (
 				9743441D2A40D26600C65E32 /* AnchorDatesState.swift */,
+				974344262A40FFC200C65E32 /* TransactionsState.swift */,
 			);
 			path = AppState;
+			sourceTree = "<group>";
+		};
+		974344232A40F98200C65E32 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				974344242A40F99400C65E32 /* AppViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		97467AA529FB181400573DBD /* Models */ = {
@@ -244,6 +257,7 @@
 		97732FB429F5282E00D5C2DE /* Profitocracy */ = {
 			isa = PBXGroup;
 			children = (
+				974344232A40F98200C65E32 /* ViewModels */,
 				97CDDE9B2A3F321900EADFCC /* Previews */,
 				97FCA2FB2A379365002451B7 /* Utils */,
 				97FCA2E22A377F96002451B7 /* Views */,
@@ -587,8 +601,10 @@
 				97FCA2E42A377FBF002451B7 /* HomeView.swift in Sources */,
 				97259D582A3DB81700A4FAC7 /* Time.swift in Sources */,
 				97467AAD29FB18FD00573DBD /* SpendCategory.swift in Sources */,
+				974344272A40FFC200C65E32 /* TransactionsState.swift in Sources */,
 				97CDDEA42A3F33C100EADFCC /* TotalBalanceCardPreview.swift in Sources */,
 				97467AB329FB195900573DBD /* AppSettings.swift in Sources */,
+				974344252A40F99400C65E32 /* AppViewModel.swift in Sources */,
 				97467AAF29FB191C00573DBD /* SpendType.swift in Sources */,
 				974344202A40D3B400C65E32 /* NewAnchorDateView.swift in Sources */,
 				97CDDEBB2A3F6D6700EADFCC /* SpendCategoryEditView.swift in Sources */,

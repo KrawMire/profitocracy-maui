@@ -9,6 +9,13 @@ import SwiftUI
 
 struct SetupView: View {
     @ObservedObject var appSettings: AppSettings
+    @Binding var balance: Float
+    
+    private let balanceFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
     
     var body: some View {
         NavigationStack {
@@ -20,7 +27,7 @@ struct SetupView: View {
                         }
                     }
                     .pickerStyle(.navigationLink)
-                    //TextField("Initial balance...")
+                    TextField("Initial balance...", value: $balance, formatter: balanceFormatter)
                 }
             }
             .navigationTitle("Application Setup")
