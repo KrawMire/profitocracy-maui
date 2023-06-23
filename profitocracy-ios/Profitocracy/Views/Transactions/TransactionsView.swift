@@ -13,10 +13,6 @@ struct TransactionsView: View {
     @State private var newTransaction = Transaction.emptyTransaction
     @State private var isPresentingAddTransactionView = false
     
-    init(viewModel: TransactionsViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
         NavigationStack {
             List($viewModel.transactionsGroups) { transactionGroup in

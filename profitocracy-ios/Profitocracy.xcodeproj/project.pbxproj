@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		97259D582A3DB81700A4FAC7 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97259D572A3DB81700A4FAC7 /* Time.swift */; };
+		973F3B192A461EAE00098742 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973F3B182A461EAE00098742 /* SettingsViewModel.swift */; };
 		9743441E2A40D26600C65E32 /* AnchorDatesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743441D2A40D26600C65E32 /* AnchorDatesState.swift */; };
 		974344202A40D3B400C65E32 /* NewAnchorDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743441F2A40D3B400C65E32 /* NewAnchorDateView.swift */; };
 		974344222A40D40C00C65E32 /* AnchorDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974344212A40D40C00C65E32 /* AnchorDateUtils.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		97259D572A3DB81700A4FAC7 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		973F3B182A461EAE00098742 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		9743441D2A40D26600C65E32 /* AnchorDatesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDatesState.swift; sourceTree = "<group>"; };
 		9743441F2A40D3B400C65E32 /* NewAnchorDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnchorDateView.swift; sourceTree = "<group>"; };
 		974344212A40D40C00C65E32 /* AnchorDateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDateUtils.swift; sourceTree = "<group>"; };
@@ -172,6 +174,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		973F3B172A461E9D00098742 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				973F3B182A461EAE00098742 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		9743441C2A40D25500C65E32 /* AppState */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +194,7 @@
 		974344232A40F98200C65E32 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				973F3B172A461E9D00098742 /* Settings */,
 				9786BC2F2A44E6AD0026043F /* Transactions */,
 				9786BC2C2A44DBE00026043F /* Home */,
 				974344242A40F99400C65E32 /* AppViewModel.swift */,
@@ -632,6 +643,7 @@
 				9786BC352A44EE200026043F /* TransactionsGroup.swift in Sources */,
 				97467AAD29FB18FD00573DBD /* SpendCategory.swift in Sources */,
 				974344272A40FFC200C65E32 /* TransactionsState.swift in Sources */,
+				973F3B192A461EAE00098742 /* SettingsViewModel.swift in Sources */,
 				97CDDEA42A3F33C100EADFCC /* TotalBalanceCardPreview.swift in Sources */,
 				97467AB329FB195900573DBD /* AppSettings.swift in Sources */,
 				974344252A40F99400C65E32 /* AppViewModel.swift in Sources */,

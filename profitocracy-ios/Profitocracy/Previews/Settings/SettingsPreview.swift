@@ -10,12 +10,14 @@ import SwiftUI
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView(
-            appSettings: AppSettings(
-                categories: [SpendCategory](),
-                anchorDays: [10, 25],
-                theme: .system,
-                mainCurrency: Currency(name: "US Dollar", code: "USD", symbol: "$"),
-                isSetup: true
+            viewModel: SettingsViewModel(
+                appSettings: .constant(AppSettings(
+                    categories: [SpendCategory](),
+                    anchorDays: [10, 25],
+                    theme: .system,
+                    mainCurrency: Currency(name: "US Dollar", code: "USD", symbol: "$"),
+                    isSetup: true
+                ))
             )
         )
     }

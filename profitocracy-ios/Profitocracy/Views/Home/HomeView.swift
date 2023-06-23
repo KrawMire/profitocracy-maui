@@ -13,10 +13,6 @@ struct HomeView: View {
     @State private var newTransaction = Transaction.emptyTransaction
     @State private var isPresentingAddTransactionView = false
     
-    init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {   
         NavigationStack {
             Form {

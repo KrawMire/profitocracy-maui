@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var appSettings: AppSettings
+    @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
         NavigationStack {
             Form {
                 Section(header: Text("Application settings")) {
                     NavigationLink(
-                        destination: SpendCategoriesSettingsView(appSettings: appSettings)
+                        destination: SpendCategoriesSettingsView(appSettings: viewModel.appSettings)
                         .navigationTitle("Spend Categories")
                         .navigationBarTitleDisplayMode(.inline)
                     ) {
@@ -24,7 +24,7 @@ struct SettingsView: View {
                     NavigationLink(destination: AnchorDatesSettingsView()) {
                         Label("Anchor Dates", systemImage: "calendar")
                     }
-                    Picker(selection: $appSettings.mainCurrency, label: Label("Currency", systemImage: "banknote")) {
+                    Picker(selection: $viewModel.appSettings.mainCurrency, label: Label("Currency", systemImage: "banknote")) {
                         ForEach(Currency.availableCurrencies) { currency in
                             Text(currency.name).tag(currency)
                         }
@@ -32,9 +32,9 @@ struct SettingsView: View {
                     .pickerStyle(.navigationLink)
                 }
                 Section(header: Text("System settings")) {
-                    Picker(selection: $appSettings.theme, label: Label("Theme", systemImage: "paintpalette")) {
+                    Picker(selection: $viewModel.appSettings.theme, label: Label("Theme", systemImage: "paintpalette")) {
                         ForEach(Theme.allCases) { theme in
-                            Text(theme.rawValue.capitalized)
+                            Text(theme.rawValue.capitalized).tag(theme)
                         }
                     }
                     .pickerStyle(.navigationLink)
