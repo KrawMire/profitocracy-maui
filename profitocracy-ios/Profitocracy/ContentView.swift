@@ -8,27 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Binding var transactions: [Transaction]
-    @ObservedObject var appSettings: AppSettings
-    @ObservedObject var currentAnchorDate: AnchorDate
+    @ObservedObject var viewModel: AppViewModel
     
     var body: some View {
         TabView {
             HomeView(
-                appSettings: appSettings,
-                transactions: $transactions,
-                currentAnchorDate: currentAnchorDate
+                viewModel: HomeViewModel(
+                    appSettings: viewModel.appSettings,
+                    currentAnchorDate: viewModel.currentAnchorDate,
+                    transactionsState: viewModel.transactionsState
+                )
             )
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
-            SettingsView(appSettings: appSettings)
+            SettingsView(appSettings: viewModel.appSettings)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
-            TransactionsView(transactions: $transactions)
+            TransactionsView(
+                viewModel: TransactionsViewModel(
+                    appSettings: viewModel.appSettings,
+                    transactionsState: viewModel.transactionsState
+                )
+            )
                 .tabItem {
                     Image(systemName: "list.dash")
                     Text("Transactions")
@@ -70,10 +75,6 @@ struct ContentView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        ContentView(
-            transactions: .constant(transactions),
-            appSettings: appSettings,
-            currentAnchorDate: currentAnchorDate
-        )
+        ContentView(viewModel: AppViewModel())
     }
 }

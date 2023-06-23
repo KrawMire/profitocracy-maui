@@ -10,7 +10,7 @@ import SwiftUI
 struct TransactionCardView_Previews: PreviewProvider {
     static var previews: some View {
         TransactionCardView(
-            transaction: .constant(Transaction(
+            transaction: Transaction(
                 category: SpendCategory(
                     name: "Test Category",
                     plannedAmount: 1000,
@@ -30,6 +30,6 @@ struct TransactionCardView_Previews: PreviewProvider {
                     minutes: 23,
                     seconds: 44),
                 date: Date()
-            )))
+            ))
     }
 }

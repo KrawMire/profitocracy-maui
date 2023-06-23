@@ -11,8 +11,8 @@ struct SavedAmountCard_Previews: PreviewProvider {
     static var previews: some View {
         CashCardView(
             title: "Saved amount",
-            current: .constant(10),
-            total: .constant(1500),
+            current: 10,
+            total: 1500,
             currencySymbol: "$"
         )
     }

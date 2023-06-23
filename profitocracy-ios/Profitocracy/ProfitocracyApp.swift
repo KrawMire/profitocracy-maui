@@ -13,11 +13,7 @@ struct ProfitocracyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(
-                transactions: $viewModel.transactionsState.transactions,
-                appSettings: viewModel.appSettings,
-                currentAnchorDate: viewModel.currentAnchorDate
-            )
+            ContentView(viewModel: viewModel)
             .sheet(isPresented: $viewModel.isShowSetupView, onDismiss: {
                 viewModel.setShowSetupView(!viewModel.appSettings.isSetup)
             }) {

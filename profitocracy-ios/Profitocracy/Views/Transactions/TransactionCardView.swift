@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TransactionCardView: View {
-    @Binding var transaction: Transaction
+    var transaction: Transaction
     
     private var transactionSign: String {
         switch transaction.type {

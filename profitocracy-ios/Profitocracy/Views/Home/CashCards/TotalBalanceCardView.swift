@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct TotalBalanceCardView: View {
-    @ObservedObject var anchorDate: AnchorDate
-    @Binding var nextDate: Date
-    @Binding var currentValue: Float
+    var anchorDate: AnchorDate
+    var nextDate: Date
+    var currentValue: Float
     var currencySymbol: String
     
     private var startDate: String {

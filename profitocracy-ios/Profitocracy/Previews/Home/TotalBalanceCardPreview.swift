@@ -12,8 +12,8 @@ struct TotalBalanceCardViiew_Previews: PreviewProvider {
     static var previews: some View {
         TotalBalanceCardView(
             anchorDate: AnchorDate(startDate: Date(), balance: 1000),
-            nextDate: .constant(Date()),
-            currentValue: .constant(100),
+            nextDate: Date(),
+            currentValue: 100,
             currencySymbol: "$"
         )
     }
