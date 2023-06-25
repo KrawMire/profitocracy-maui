@@ -18,7 +18,11 @@ class AnchorDate: ObservableObject, Identifiable, Codable {
         case balance
     }
     
-    init(id: UUID = UUID(), startDate: Date, balance: Float) {
+    init(
+        id: UUID = UUID(),
+        startDate: Date,
+        balance: Float
+    ) {
         self.id = id
         self.startDate = startDate
         self.balance = balance

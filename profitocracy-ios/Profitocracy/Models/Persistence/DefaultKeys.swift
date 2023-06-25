@@ -11,4 +11,5 @@ enum DefaultKeys: String {
     case transactions = "Transactions"
     case appSettings = "AppSettings"
     case anchorDates = "AnchorDates"
+    case currencyRates = "CurrencyRates"
 }

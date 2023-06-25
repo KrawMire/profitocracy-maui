@@ -16,32 +16,44 @@ struct ContentView: View {
                 viewModel: HomeViewModel(
                     appSettings: viewModel.appSettings,
                     currentAnchorDate: viewModel.currentAnchorDate,
-                    transactionsState: viewModel.transactionsState
+                    transactionsState: viewModel.transactionsState,
+                    currencyRatesState: viewModel.currencyRatesState
                 )
             )
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
-                }
-            SettingsView(
-                viewModel: SettingsViewModel(
-                    appSettings: $viewModel.appSettings
-                )
+            .tabItem {
+                Image(systemName: "house.fill")
+                Text("Home")
+            }
+            
+            CurrencyRatesView(
+                currencyRatesState: viewModel.currencyRatesState,
+                appSettings: viewModel.appSettings
             )
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+            .tabItem {
+                Image(systemName: "dollarsign.circle.fill")
+                Text("Currencies")
+            }
+            
             TransactionsView(
                 viewModel: TransactionsViewModel(
                     appSettings: viewModel.appSettings,
                     transactionsState: viewModel.transactionsState
                 )
             )
-                .tabItem {
-                    Image(systemName: "list.dash")
-                    Text("Transactions")
-                }
+            .tabItem {
+                Image(systemName: "list.dash")
+                Text("Transactions")
+            }
+            
+            SettingsView(
+                viewModel: SettingsViewModel(
+                    appSettings: $viewModel.appSettings
+                )
+            )
+            .tabItem {
+                Image(systemName: "gear")
+                Text("Settings")
+            }
         }
     }
 }

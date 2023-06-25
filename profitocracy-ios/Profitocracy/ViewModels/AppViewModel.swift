@@ -14,6 +14,7 @@ class AppViewModel : ObservableObject {
     
     @Published var currentAnchorDate: AnchorDate
     
+    @Published var currencyRatesState: CurrencyRatesState
     @Published var transactionsState: TransactionsState
     @Published var appSettings: AppSettings
     @Published var anchorDatesState: AnchorDatesState
@@ -28,7 +29,8 @@ class AppViewModel : ObservableObject {
             mainCurrency: Currency.availableCurrencies[0],
             isSetup: false
         )
-        transactionsState = TransactionsState(transactions: [Transaction]())
+        currencyRatesState = CurrencyRatesState(currencyRates: [])
+        transactionsState = TransactionsState(transactions: [])
         anchorDatesState = AnchorDatesState(anchorDates: [])
         currentAnchorDate = AnchorDate(
             startDate: Date(),
@@ -38,6 +40,7 @@ class AppViewModel : ObservableObject {
         loadData()
         isShowSetupView = !appSettings.isSetup
         initAnchorDates()
+        loadCurrencyRates()
     }
     
     func loadData() {
@@ -59,6 +62,12 @@ class AppViewModel : ObservableObject {
         if let appSettingsData = UserDefaults.standard.data(forKey: DefaultKeys.appSettings.rawValue) {
             if let appSettings = try? JSONDecoder().decode(AppSettings.self, from: appSettingsData) {
                 self.appSettings = appSettings
+            }
+        }
+        
+        if let currencyRatesData = UserDefaults.standard.data(forKey: DefaultKeys.currencyRates.rawValue) {
+            if let currencyRatesState = try? JSONDecoder().decode(CurrencyRatesState.self, from: currencyRatesData) {
+                self.currencyRatesState = currencyRatesState
             }
         }
     }
@@ -123,5 +132,26 @@ class AppViewModel : ObservableObject {
     
     private func createAnchorDate(date: Date, balance: Float) -> AnchorDate {
         return AnchorDate(startDate: date, balance: balance)
+    }
+    
+    private func loadCurrencyRates() {
+        CurrencyService.getCurrencyRate(baseCurrency: appSettings.mainCurrency) { result in
+            switch result {
+            case .success(let response):
+                var rates = [CurrencyRate]()
+                
+                for currency in Currency.availableCurrencies {
+                    let rate = response.rates[currency.code]
+                    
+                    if (rate != nil) {
+                        rates.append(CurrencyRate(currency: currency, rate: Float(rate!)))
+                    }
+                }
+                
+                self.currencyRatesState = CurrencyRatesState(currencyRates: rates)
+            default:
+                let a = "Error!"
+            }
+        }
     }
 }

@@ -29,7 +29,8 @@ struct HomeView_Previews: PreviewProvider {
                         time: Time(hours: 10, minutes: 50, seconds: 11),
                         date: Date()
                     )
-                ])
+                ]),
+                currencyRatesState: CurrencyRatesState(currencyRates: [])
             )
         )
     }

@@ -12,6 +12,7 @@ class HomeViewModel: ObservableObject {
     @ObservedObject var appSettings: AppSettings
     @ObservedObject var currentAnchorDate: AnchorDate
     @ObservedObject var transactionsState: TransactionsState
+    @ObservedObject var currencyRatesState: CurrencyRatesState
     
     @Published var totalSpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
     @Published var totalSavedAmount: Float = 0
@@ -31,11 +32,13 @@ class HomeViewModel: ObservableObject {
     init(
         appSettings: AppSettings,
         currentAnchorDate: AnchorDate,
-        transactionsState: TransactionsState
+        transactionsState: TransactionsState,
+        currencyRatesState: CurrencyRatesState
     ) {
         self.appSettings = appSettings
         self.currentAnchorDate = currentAnchorDate
         self.transactionsState = transactionsState
+        self.currencyRatesState = currencyRatesState
         
         initCategories()
         calculateSpendings()
@@ -85,8 +88,11 @@ class HomeViewModel: ObservableObject {
         savedSpendingsAmount.actualAmount = 0
         
         for transaction in transactionsState.transactions {
+            let currencyRate = currencyRatesState.currencyRates.first(where: { $0.currency.code == transaction.currency.code })
+            let transactionAmount = currencyRate != nil ? transaction.amount / currencyRate!.rate : transaction.amount
+            
             if transaction.type == .income {
-                totalSpendingsAmount.totalAmount += transaction.amount
+                totalSpendingsAmount.totalAmount += transactionAmount
                 continue
             }
             
@@ -95,26 +101,26 @@ class HomeViewModel: ObservableObject {
             }
             
             if Calendar.current.isDateInToday(transaction.date) && transaction.type != .postpone {
-                spendToday += transaction.amount
+                spendToday += transactionAmount
             }
             
             if (currentAnchorDate.startDate >= transaction.date || transaction.date >= nextAnchorDate) {
                 continue
             }
             
-            totalSpendingsAmount.actualAmount += transaction.amount
+            totalSpendingsAmount.actualAmount += transactionAmount
             
             switch transaction.spendType {
-            case .main: mainSpendingsAmount.actualAmount += transaction.amount
-            case .secondary: secondarySpendingsAmount.actualAmount += transaction.amount
-            case .saved: savedSpendingsAmount.actualAmount += transaction.amount
+            case .main: mainSpendingsAmount.actualAmount += transactionAmount
+            case .secondary: secondarySpendingsAmount.actualAmount += transactionAmount
+            case .saved: savedSpendingsAmount.actualAmount += transactionAmount
             }
             
             if transaction.category != nil {
                 let categorySpendingIndex = categoriesSpendings.firstIndex(where: { $0.id == transaction.category!.id })
                 
                 if categorySpendingIndex != nil {
-                    categoriesSpendings[categorySpendingIndex!].actualAmount += transaction.amount
+                    categoriesSpendings[categorySpendingIndex!].actualAmount += transactionAmount
                 }
             }
         }
