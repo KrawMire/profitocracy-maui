@@ -12,9 +12,10 @@ class AppViewModel : ObservableObject {
     @Published var isShowSetupView: Bool
     @Published var balance: Float
     
+    @Published var currentAnchorDate: AnchorDate
+    
     @Published var transactionsState: TransactionsState
     @Published var appSettings: AppSettings
-    @Published var currentAnchorDate: AnchorDate
     @Published var anchorDatesState: AnchorDatesState
     
     init() {
@@ -34,8 +35,32 @@ class AppViewModel : ObservableObject {
             balance: 0
         )
         
+        loadData()
         isShowSetupView = !appSettings.isSetup
         initAnchorDates()
+    }
+    
+    func loadData() {
+        // Load anchor dates from UserDefaults
+        if let anchorDatesData = UserDefaults.standard.data(forKey: DefaultKeys.anchorDates.rawValue) {
+            if let anchorDatesState = try? JSONDecoder().decode(AnchorDatesState.self, from: anchorDatesData) {
+                self.anchorDatesState = anchorDatesState
+            }
+        }
+        
+        // Load transactions from UserDefaults
+        if let transactionsData = UserDefaults.standard.data(forKey: DefaultKeys.transactions.rawValue) {
+            if let transactionsState = try? JSONDecoder().decode(TransactionsState.self, from: transactionsData) {
+                self.transactionsState = transactionsState
+            }
+        }
+        
+        // Load app settings from UserDefaults
+        if let appSettingsData = UserDefaults.standard.data(forKey: DefaultKeys.appSettings.rawValue) {
+            if let appSettings = try? JSONDecoder().decode(AppSettings.self, from: appSettingsData) {
+                self.appSettings = appSettings
+            }
+        }
     }
     
     func setShowSetupView(_ value: Bool) {

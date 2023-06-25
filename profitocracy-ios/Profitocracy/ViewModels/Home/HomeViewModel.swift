@@ -16,7 +16,9 @@ class HomeViewModel: ObservableObject {
     @Published var totalSpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
     @Published var totalSavedAmount: Float = 0
     
-    @Published var dailyAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
+    @Published var dailyAmountInitial = PlannedBalance(actualAmount: 0, totalAmount: 0)
+    @Published var dailyAmountActual = PlannedBalance(actualAmount: 0, totalAmount: 0)
+    
     @Published var mainSpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
     @Published var secondarySpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
     @Published var savedSpendingsAmount = PlannedBalance(actualAmount: 0, totalAmount: 0)
@@ -69,11 +71,15 @@ class HomeViewModel: ObservableObject {
     }
     
     private func calculateSpendings() -> Void {
+        var spendToday: Float = 0
+        
         totalSpendingsAmount.actualAmount = 0
         totalSpendingsAmount.totalAmount = currentAnchorDate.balance
         totalSavedAmount = 0
         
-        dailyAmount.actualAmount = 0
+        dailyAmountInitial.actualAmount = 0
+        dailyAmountActual.actualAmount = 0
+        
         mainSpendingsAmount.actualAmount = 0
         secondarySpendingsAmount.actualAmount = 0
         savedSpendingsAmount.actualAmount = 0
@@ -89,7 +95,7 @@ class HomeViewModel: ObservableObject {
             }
             
             if Calendar.current.isDateInToday(transaction.date) && transaction.type != .postpone {
-                dailyAmount.actualAmount += transaction.amount
+                spendToday += transaction.amount
             }
             
             if (currentAnchorDate.startDate >= transaction.date || transaction.date >= nextAnchorDate) {
@@ -113,9 +119,30 @@ class HomeViewModel: ObservableObject {
             }
         }
         
-        dailyAmount.totalAmount = totalSpendingsAmount.totalAmount / 15
+        let initialDatesDiff = getDateDiffInDays(dateFrom: currentAnchorDate.startDate, dateTo: nextAnchorDate)
+        let actualDatesDiff = getDateDiffInDays(dateFrom: getCurrentLocalDate(), dateTo: nextAnchorDate)
+        
+        dailyAmountInitial.totalAmount = totalSpendingsAmount.totalAmount / Float(initialDatesDiff)
+        dailyAmountActual.totalAmount = totalSpendingsAmount.totalAmount / Float(actualDatesDiff)
+        
+        dailyAmountInitial.actualAmount = spendToday
+        dailyAmountActual.actualAmount = spendToday
+        
         mainSpendingsAmount.totalAmount = totalSpendingsAmount.totalAmount * 0.5
         secondarySpendingsAmount.totalAmount = totalSpendingsAmount.totalAmount * 0.3
         savedSpendingsAmount.totalAmount = totalSpendingsAmount.totalAmount * 0.2
+    }
+    
+    private func getDateDiffInDays(dateFrom: Date, dateTo: Date) -> Int {
+        let components = Calendar.current.dateComponents([.day], from: dateFrom, to: dateTo)
+        return components.day!
+    }
+    
+    private func getCurrentLocalDate() -> Date {
+        let currentDate = Date()
+        let calendar = Calendar.current
+
+        let components = calendar.dateComponents([.year, .month, .day], from: currentDate)
+        return calendar.date(from: components)!
     }
 }

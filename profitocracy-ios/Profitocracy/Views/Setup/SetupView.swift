@@ -28,6 +28,7 @@ struct SetupView: View {
                     }
                     .pickerStyle(.navigationLink)
                     TextField("Initial balance...", value: $balance, formatter: balanceFormatter)
+                        .keyboardType(.decimalPad)
                 }
             }
             .navigationTitle("Application Setup")

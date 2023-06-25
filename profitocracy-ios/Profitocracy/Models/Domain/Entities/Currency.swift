@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Currency: Identifiable, Hashable {
+struct Currency: Identifiable, Hashable, Codable {
     var id: UUID
     var name: String
     var code: String

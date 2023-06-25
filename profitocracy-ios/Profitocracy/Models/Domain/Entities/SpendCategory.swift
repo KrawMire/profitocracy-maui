@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SpendCategory: Identifiable, Hashable {
+struct SpendCategory: Identifiable, Hashable, Codable {
     let id: UUID
     var name: String
     var plannedAmount: Float?

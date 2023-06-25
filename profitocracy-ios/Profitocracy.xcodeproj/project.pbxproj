@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		97259D582A3DB81700A4FAC7 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97259D572A3DB81700A4FAC7 /* Time.swift */; };
 		973F3B192A461EAE00098742 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973F3B182A461EAE00098742 /* SettingsViewModel.swift */; };
+		973F3B1C2A46272C00098742 /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973F3B1B2A46272C00098742 /* DefaultKeys.swift */; };
 		9743441E2A40D26600C65E32 /* AnchorDatesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743441D2A40D26600C65E32 /* AnchorDatesState.swift */; };
 		974344202A40D3B400C65E32 /* NewAnchorDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743441F2A40D3B400C65E32 /* NewAnchorDateView.swift */; };
 		974344222A40D40C00C65E32 /* AnchorDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974344212A40D40C00C65E32 /* AnchorDateUtils.swift */; };
@@ -83,6 +84,7 @@
 /* Begin PBXFileReference section */
 		97259D572A3DB81700A4FAC7 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		973F3B182A461EAE00098742 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		973F3B1B2A46272C00098742 /* DefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
 		9743441D2A40D26600C65E32 /* AnchorDatesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDatesState.swift; sourceTree = "<group>"; };
 		9743441F2A40D3B400C65E32 /* NewAnchorDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnchorDateView.swift; sourceTree = "<group>"; };
 		974344212A40D40C00C65E32 /* AnchorDateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorDateUtils.swift; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		973F3B1A2A46271400098742 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				973F3B1B2A46272C00098742 /* DefaultKeys.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		9743441C2A40D25500C65E32 /* AppState */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +215,7 @@
 		97467AA529FB181400573DBD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				973F3B1A2A46271400098742 /* Persistence */,
 				9743441C2A40D25500C65E32 /* AppState */,
 				97CDDE962A3F1E4A00EADFCC /* Special */,
 				97259D542A3DB7FB00A4FAC7 /* Common */,
@@ -636,6 +647,7 @@
 				974793942A3D055B004DE91E /* Spending.swift in Sources */,
 				97CDDEAE2A3F350400EADFCC /* AnchorDatesSettingsPreview.swift in Sources */,
 				974344222A40D40C00C65E32 /* AnchorDateUtils.swift in Sources */,
+				973F3B1C2A46272C00098742 /* DefaultKeys.swift in Sources */,
 				97732FB629F5282E00D5C2DE /* ProfitocracyApp.swift in Sources */,
 				97467AB529FB197000573DBD /* CurrencyRate.swift in Sources */,
 				97FCA2E42A377FBF002451B7 /* HomeView.swift in Sources */,

@@ -36,15 +36,15 @@ struct HomeView: View {
                     HStack {
                         CashCardView(
                             title: "From Actual",
-                            current: viewModel.dailyAmount.actualAmount,
-                            total: viewModel.dailyAmount.totalAmount,
+                            current: viewModel.dailyAmountActual.actualAmount,
+                            total: viewModel.dailyAmountActual.totalAmount,
                             currencySymbol: viewModel.appSettings.mainCurrency.symbol
                         )
                         Spacer()
                         CashCardView(
                             title: "From Initial",
-                            current: viewModel.dailyAmount.actualAmount,
-                            total: viewModel.dailyAmount.totalAmount,
+                            current: viewModel.dailyAmountInitial.actualAmount,
+                            total: viewModel.dailyAmountInitial.totalAmount,
                             currencySymbol: viewModel.appSettings.mainCurrency.symbol
                         )
                     }

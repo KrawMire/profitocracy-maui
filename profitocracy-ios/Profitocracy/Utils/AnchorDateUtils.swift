@@ -19,7 +19,7 @@ func getNextAnchorDate(currentAnchorDate: AnchorDate, anchorDays: [Int]) -> Date
     let currentDateComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date())
     
     for anchorDayIndex in anchorDays.indices {
-        let anchorDay = anchorDays[anchorDayIndex]
+        var anchorDay = anchorDays[anchorDayIndex]
         
         if currentAnchorDateComponents.day! < anchorDay {
             return Calendar.current.date(
@@ -28,6 +28,7 @@ func getNextAnchorDate(currentAnchorDate: AnchorDate, anchorDays: [Int]) -> Date
         }
         
         if (anchorDayIndex == anchorDays.count - 1) {
+            anchorDay = anchorDays.first!
             var nextDateMonth = currentDateComponents.month!
             var nextDateYear = currentDateComponents.year!
             

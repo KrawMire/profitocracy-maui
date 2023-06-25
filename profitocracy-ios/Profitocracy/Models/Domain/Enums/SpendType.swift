@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SpendType: String, CaseIterable, Identifiable {
+enum SpendType: String, CaseIterable, Identifiable, Codable {
     case main
     case secondary
     case saved

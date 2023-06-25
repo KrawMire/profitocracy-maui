@@ -7,14 +7,38 @@
 
 import Foundation
 
-class AnchorDatesState: ObservableObject {
-    @Published var anchorDates: [AnchorDate]
+class AnchorDatesState: ObservableObject, Codable {
+    @Published var anchorDates: [AnchorDate] {
+        didSet {
+            saveAnchorDatesState()
+        }
+    }
+    
+    private func saveAnchorDatesState() {
+        if let anchorDatesData = try? JSONEncoder().encode(self) {
+            UserDefaults.standard.set(anchorDatesData, forKey: DefaultKeys.anchorDates.rawValue)
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case anchorDates
+    }
     
     init(anchorDates: [AnchorDate]) {
         self.anchorDates = anchorDates
     }
     
-    func addAnchorDate(_ newAnchorDate: AnchorDate) -> Void {
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        anchorDates = try container.decode([AnchorDate].self, forKey: .anchorDates)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(anchorDates, forKey: .anchorDates)
+    }
+    
+    func addAnchorDate(_ newAnchorDate: AnchorDate) {
         anchorDates.append(newAnchorDate)
     }
 }
