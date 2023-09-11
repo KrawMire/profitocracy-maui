@@ -15,7 +15,10 @@ class CurrencyService {
     static func getCurrencyRate(baseCurrency: Currency, completion: @escaping (Result<RatesResponse, Error>) -> Void) {
         let url = URL(string: "https://api.exchangerate.host/latest?base=\(baseCurrency.code)")!
 
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        var request = URLRequest(url: url)
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if data != nil {
                 do {
                     let decoder = JSONDecoder()

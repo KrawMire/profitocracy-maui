@@ -150,7 +150,7 @@ class AppViewModel : ObservableObject {
                 
                 self.currencyRatesState = CurrencyRatesState(currencyRates: rates)
             default:
-                let a = "Error!"
+                let _ = "Error!"
             }
         }
     }

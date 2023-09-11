@@ -97,7 +97,7 @@ class HomeViewModel: ObservableObject {
             }
             
             if transaction.type == .postpone {
-                totalSavedAmount += transaction.amount
+                totalSavedAmount += transactionAmount
             }
             
             if Calendar.current.isDateInToday(transaction.date) && transaction.type != .postpone {

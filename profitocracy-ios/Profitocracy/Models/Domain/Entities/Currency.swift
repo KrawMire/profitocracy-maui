@@ -27,6 +27,7 @@ extension Currency {
         Currency(name: "Russian Ruble", code: "RUB", symbol: "₽"),
         Currency(name: "European Euro", code: "EUR", symbol: "€"),
         Currency(name: "Armenian Dram", code: "AMD", symbol: "֏"),
-        Currency(name: "Georgian Lari", code: "GEL", symbol: "₾")
+        Currency(name: "Georgian Lari", code: "GEL", symbol: "₾"),
+        Currency(name: "Serbian dinar", code: "RSD", symbol: "дин.")
     ]
 }
