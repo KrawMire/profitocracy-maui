@@ -4,7 +4,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Pages.CurrencyRatesPage"
              Title="Currency Rates">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+    <StackLayout>
+        <ListView x:Name="CurrenciesListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <FlexLayout Padding="20"
+                                    JustifyContent="SpaceBetween">
+                            <StackLayout>
+                                <Label Text="US Dollar"/>
+                                <Label Text="1 RUB = 0.12 USD"/>
+                            </StackLayout>
+                            <Label Text="$"/>
+                        </FlexLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
