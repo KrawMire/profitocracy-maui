@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1300mm"
+   height="1500mm"
+   viewBox="0 0 1300 1500"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   sodipodi:docname="profitocracy-launchscreen.svg"
+   inkscape:export-filename="profitocracy-launchscreen.png"
+   inkscape:export-xdpi="87.574409"
+   inkscape:export-ydpi="87.574409"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.086507075"
+     inkscape:cx="1092.3962"
+     inkscape:cy="3358.1068"
+     inkscape:window-width="1508"
+     inkscape:window-height="945"
+     inkscape:window-x="172"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1067">
+      <stop
+         style="stop-color:#fe9819;stop-opacity:1;"
+         offset="0"
+         id="stop1063" />
+      <stop
+         style="stop-color:#ffd3b4;stop-opacity:1;"
+         offset="1"
+         id="stop1065" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1059">
+      <stop
+         style="stop-color:#fc5dae;stop-opacity:1;"
+         offset="0"
+         id="stop1055" />
+      <stop
+         style="stop-color:#f49ce4;stop-opacity:0.98233217;"
+         offset="1"
+         id="stop1057" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1051">
+      <stop
+         style="stop-color:#4ec661;stop-opacity:1;"
+         offset="0"
+         id="stop1047" />
+      <stop
+         style="stop-color:#a1dfac;stop-opacity:1;"
+         offset="1"
+         id="stop1049" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1043"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#8cd397;stop-opacity:1;"
+         offset="0"
+         id="stop1041" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect14871"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1"
+       unit="px"
+       method="arc"
+       mode="F"
+       radius="200"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect5586"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="IF,0,0,1,0,26.458333,0,1 @ IF,0,0,1,0,26.458333,0,1 @ IF,0,0,1,0,26.458333,0,1 @ IF,0,0,1,0,26.458333,0,1"
+       unit="px"
+       method="auto"
+       mode="IF"
+       radius="100"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect5582"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,13.229167,0,1 @ F,0,0,1,0,13.229167,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="50"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect5519"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="25"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <rect
+       x="253.32629"
+       y="916.44513"
+       width="1765.8333"
+       height="856.83893"
+       id="rect3323" />
+    <rect
+       x="96.860054"
+       y="573.70953"
+       width="2361.895"
+       height="2898.3508"
+       id="rect3317" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1809"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="0"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect14871-7"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1"
+       unit="px"
+       method="arc"
+       mode="F"
+       radius="200"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect14871-7-2"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1 @ F,0,0,1,0,52.916667,0,1"
+       unit="px"
+       method="arc"
+       mode="F"
+       radius="200"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1051"
+       id="linearGradient1053"
+       x1="73.275902"
+       y1="692.66754"
+       x2="967.19373"
+       y2="692.66754"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.88406598,0,0,0.97411924,191.36492,81.891343)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1059"
+       id="linearGradient1061"
+       x1="75.625969"
+       y1="498.61905"
+       x2="969.54382"
+       y2="498.61905"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.88513196,0,0,0.81259942,190.81036,159.95222)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1067"
+       id="linearGradient1069"
+       x1="69.288658"
+       y1="317.5498"
+       x2="968.20648"
+       y2="317.5498"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.88513196,0,0,0.81259942,190.81036,159.95222)" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Backgroung"
+     style="display:inline"
+     transform="translate(-0.41863018,-1.2558905)">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0;stroke-dasharray:none"
+       id="rect866"
+       width="1501.0179"
+       height="1295.9851"
+       x="4.3769341"
+       y="-1296.2358"
+       transform="matrix(0.00123217,0.99999924,-0.99999862,0.00165927,0,0)"
+       sodipodi:type="rect"
+       d="M 4.3769341,-1296.2358 H 1505.3949 V -0.25073242 H 4.3769341 Z" />
+    <path
+       style="fill:url(#linearGradient1069);fill-opacity:1;stroke:#ffffff;stroke-width:15;stroke-linejoin:miter;stroke-dasharray:none"
+       id="rect935"
+       width="782.38391"
+       height="335.54001"
+       x="258.77841"
+       y="250.22304"
+       inkscape:path-effect="#path-effect14871"
+       d="m 311.69508,250.22304 h 676.55058 a 52.916667,52.916667 45 0 1 52.91664,52.91666 v 229.70668 a 52.916667,52.916667 135 0 1 -52.91664,52.91667 H 311.69508 A 52.916667,52.916667 45 0 1 258.77841,532.84638 V 303.1397 a 52.916667,52.916667 135 0 1 52.91667,-52.91666 z"
+       sodipodi:type="rect" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:142.372px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linejoin:miter;stroke-dasharray:none"
+       x="281.27863"
+       y="401.6734"
+       id="text16433"
+       transform="scale(1.0502443,0.95215941)"><tspan
+         sodipodi:role="line"
+         id="tspan16431"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:142.372px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0;stroke-dasharray:none"
+         x="281.27863"
+         y="401.6734">¥</tspan></text>
+    <path
+       style="display:inline;fill:url(#linearGradient1061);fill-opacity:1;stroke:#ffffff;stroke-width:10;stroke-linejoin:miter;stroke-dasharray:none"
+       id="rect935-6-7"
+       width="782.38391"
+       height="335.54001"
+       x="262.17493"
+       y="397.35977"
+       inkscape:path-effect="#path-effect14871-7-2"
+       d="m 315.09159,397.35977 h 676.55058 a 52.916667,52.916667 45 0 1 52.91663,52.91667 v 229.70667 a 52.916667,52.916667 135 0 1 -52.91663,52.91667 H 315.09159 A 52.916667,52.916667 45 0 1 262.17493,679.98311 V 450.27644 a 52.916667,52.916667 135 0 1 52.91666,-52.91667 z"
+       sodipodi:type="rect" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:150.243px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linejoin:miter;stroke-dasharray:none"
+       x="262.17368"
+       y="584.09943"
+       id="text17084"
+       transform="scale(1.1107134,0.90032226)"><tspan
+         sodipodi:role="line"
+         id="tspan17082"
+         style="stroke-width:0"
+         x="262.17368"
+         y="584.09943">€</tspan></text>
+    <path
+       style="display:inline;fill:url(#linearGradient1053);fill-opacity:1;stroke:#ffffff;stroke-width:10;stroke-linejoin:miter;stroke-dasharray:none"
+       id="rect935-6"
+       width="781.44165"
+       height="402.23505"
+       x="260.56595"
+       y="555.51459"
+       inkscape:path-effect="#path-effect14871-7"
+       d="m 313.48262,555.51459 h 675.60831 a 52.916667,52.916667 45 0 1 52.91667,52.91666 v 296.40172 a 52.916667,52.916667 135 0 1 -52.91667,52.91666 l -675.60831,0 A 52.916667,52.916667 45 0 1 260.56595,904.83297 V 608.43125 a 52.916667,52.916667 135 0 1 52.91667,-52.91666 z"
+       sodipodi:type="rect" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:144.292px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linejoin:miter;stroke-dasharray:none"
+       x="253.74379"
+       y="793.06494"
+       id="text16433-4"
+       transform="scale(1.1537781,0.86671778)"><tspan
+         sodipodi:role="line"
+         id="tspan16431-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:144.292px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0;stroke-dasharray:none"
+         x="253.74379"
+         y="793.06494">$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:176.389px;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#848484;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       x="95.235794"
+       y="1247.6698"
+       id="text450"><tspan
+         sodipodi:role="line"
+         id="tspan448"
+         x="95.235794"
+         y="1247.6698"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:176.389px;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#848484;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1">Profitocracy</tspan></text>
+  </g>
+</svg>
