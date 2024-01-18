@@ -5,127 +5,146 @@
              x:Class="Profitocracy.Mobile.Pages.HomePage"
              Title="Home">
     <ScrollView>
-        <VerticalStackLayout Padding="20,10">
-            <Label Text="Total amounts" />
-            <StackLayout>
-                <StackLayout Padding="20">
-                    <Label Text="Balance" />
-                    <Label Text="10.01.2024-25.01.2024" />
-                    <ProgressBar Progress="0.2" Margin="0, 10"/>
-                    <FlexLayout JustifyContent="SpaceBetween">
-                        <Label Text="$200"/>
-                        <Label Text="$1000" />
-                    </FlexLayout>
+        <VerticalStackLayout Padding="20">
+            <Label Text="Total amounts" 
+                   Style="{StaticResource BlockHeader}"
+                   Margin="0,0,0,5"/>
+            <Frame Padding="0">
+                <StackLayout Style="{StaticResource BalanceCard}">
+                    <StackLayout Padding="20">
+                        <Label Text="Balance" />
+                        <Label Text="10.01.2024-25.01.2024" />
+                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Text="$200"/>
+                            <Label Text="$1000" />
+                        </FlexLayout>
+                    </StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="*"/> 
+                        </Grid.ColumnDefinitions>
+                        <BoxView Grid.Column="1" 
+                                 Grid.ColumnSpan="2" 
+                                 HeightRequest="1" 
+                                 Color="Grey"/>
+                    </Grid>
+                    <StackLayout Padding="20">
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Text="Saved" />
+                            <Label Text="$10000" />
+                        </FlexLayout>
+                    </StackLayout>
                 </StackLayout>
+            </Frame>
+            
+            
+            <Label Margin="0, 40, 0, 5"
+                   Text="Cash for the day"
+                   Style="{StaticResource BlockHeader}" />
+            <Frame Padding="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="*"/> 
+                        <ColumnDefinition />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <BoxView Grid.Column="1" 
-                             Grid.ColumnSpan="2" 
-                             HeightRequest="1" 
-                             Color="Grey"/>
+                    <StackLayout Grid.Column="0" 
+                                 Style="{StaticResource BalanceCard}"
+                                 Padding="20">
+                        <Label Text="From actual" />
+                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Text="$200"/>
+                            <Label Text="$1000" />
+                        </FlexLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" 
+                                 Style="{StaticResource BalanceCard}"
+                                 Padding="20">
+                        <Label Text="From initial" />
+                        <ProgressBar Progress="0.1" Margin="0, 10"/>
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Text="$200"/>
+                            <Label Text="$1500" />
+                        </FlexLayout>
+                    </StackLayout>
                 </Grid>
-                <StackLayout Padding="20">
-                    <FlexLayout JustifyContent="SpaceBetween">
+            </Frame>
+            
+            
+            <Label Margin="0, 40, 0, 5"
+                   Text="Spending types"
+                   Style="{StaticResource BlockHeader}" />
+            <Frame Padding="0">
+                <StackLayout Style="{StaticResource BalanceCard}">
+                    <StackLayout Padding="20">
+                        <Label Text="Main spendings" />
+                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Text="$200"/>
+                            <Label Text="$1000" />
+                        </FlexLayout>
+                    </StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="*"/> 
+                        </Grid.ColumnDefinitions>
+                        <BoxView Grid.Column="1" 
+                                 Grid.ColumnSpan="2" 
+                                 HeightRequest="1" 
+                                 Color="Grey"/>
+                    </Grid>
+                    <StackLayout Padding="20">
+                        <Label Text="Secondary spendings" />
+                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Text="$200"/>
+                            <Label Text="$1000" />
+                        </FlexLayout>
+                    </StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="*"/> 
+                        </Grid.ColumnDefinitions>
+                        <BoxView Grid.Column="1" 
+                                 Grid.ColumnSpan="2" 
+                                 HeightRequest="1" 
+                                 Color="Grey"/>
+                    </Grid>
+                    <StackLayout Padding="20">
                         <Label Text="Saved" />
-                        <Label Text="$10000" />
-                    </FlexLayout>
+                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Text="$200"/>
+                            <Label Text="$1000" />
+                        </FlexLayout>
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
+            </Frame>
             
             
-            <Label Margin="0, 40, 0, 0">Cash for the day</Label>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" 
-                             Padding="20">
-                    <Label Text="From actual" />
+            <Label Margin="0, 40, 0, 5"
+                   Text="Categories spendings"
+                   Style="{StaticResource BlockHeader}"/>
+            <Frame Padding="0">
+                <StackLayout Padding="20" Style="{StaticResource BalanceCard}">
+                    <Label Text="Food" />
                     <ProgressBar Progress="0.2" Margin="0, 10"/>
                     <FlexLayout JustifyContent="SpaceBetween">
                         <Label Text="$200"/>
-                        <Label Text="$1000" />
+                        <Label Text="$500" />
                     </FlexLayout>
                 </StackLayout>
-                <StackLayout Grid.Column="1" 
-                             Padding="20">
-                    <Label Text="From initial" />
-                    <ProgressBar Progress="0.1" Margin="0, 10"/>
-                    <FlexLayout JustifyContent="SpaceBetween">
-                        <Label Text="$200"/>
-                        <Label Text="$1500" />
-                    </FlexLayout>
-                </StackLayout>
-            </Grid>
-            
-            
-            <Label Margin="0, 40, 0, 0">Spending types</Label>
-            <StackLayout Padding="20">
-                <Label Text="Main spendings" />
-                <ProgressBar Progress="0.2" Margin="0, 10"/>
-                <FlexLayout JustifyContent="SpaceBetween">
-                    <Label Text="$200"/>
-                    <Label Text="$1000" />
-                </FlexLayout>
-            </StackLayout>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="*"/> 
-                </Grid.ColumnDefinitions>
-                <BoxView Grid.Column="1" 
-                         Grid.ColumnSpan="2" 
-                         HeightRequest="1" 
-                         Color="Grey"/>
-            </Grid>
-            <StackLayout Padding="20">
-                <Label Text="Secondary spendings" />
-                <ProgressBar Progress="0.2" Margin="0, 10"/>
-                <FlexLayout JustifyContent="SpaceBetween">
-                    <Label Text="$200"/>
-                    <Label Text="$1000" />
-                </FlexLayout>
-            </StackLayout>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="*"/> 
-                </Grid.ColumnDefinitions>
-                <BoxView Grid.Column="1" 
-                         Grid.ColumnSpan="2" 
-                         HeightRequest="1" 
-                         Color="Grey"/>
-            </Grid>
-            <StackLayout Padding="20">
-                <Label Text="Saved" />
-                <ProgressBar Progress="0.2" Margin="0, 10"/>
-                <FlexLayout JustifyContent="SpaceBetween">
-                    <Label Text="$200"/>
-                    <Label Text="$1000" />
-                </FlexLayout>
-            </StackLayout>
-            
-            
-            <Label Margin="0, 40, 0, 0">Categories spendings</Label>
-            <StackLayout Padding="20">
-                <Label Text="Food" />
-                <ProgressBar Progress="0.2" Margin="0, 10"/>
-                <FlexLayout JustifyContent="SpaceBetween">
-                    <Label Text="$200"/>
-                    <Label Text="$500" />
-                </FlexLayout>
-            </StackLayout>
-            
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

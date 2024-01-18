@@ -4,7 +4,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Pages.SettingsPage"
              Title="Settings">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+    <ScrollView Padding="20">
+        <StackLayout>
+            <Label Text="Application settings"
+                   Style="{StaticResource BlockHeader}"
+                   Margin="0,0,0,5"/>
+            <Frame Padding="0">
+                <StackLayout Style="{StaticResource MenuCategory}"
+                             Padding="10">
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="0, 10">
+                        <Label Text="Expense Categories" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="0, 10">
+                        <Label Text="Anchor Dates" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Label Text="System settings"
+                   Style="{StaticResource BlockHeader}"
+                   Margin="0,20,0,5"/>
+            <Frame Padding="0">
+                <StackLayout Style="{StaticResource MenuCategory}"
+                             Padding="10">
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="0, 10">
+                        <Label Text="Theme" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

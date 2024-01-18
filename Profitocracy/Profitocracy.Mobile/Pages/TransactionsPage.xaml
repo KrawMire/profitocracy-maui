@@ -4,7 +4,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Pages.TransactionsPage"
              Title="Transactions">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+    <ScrollView>
+        <CollectionView x:Name="TransactionsListView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <StackLayout>
+                                <HorizontalStackLayout>
+                                    <Label Text="$"/>
+                                    <Label Text="700"/>
+                                </HorizontalStackLayout>
+                                <Label Text="Secondary expenses"/>
+                                <Label Style="{StaticResource SecondaryText}"
+                                       Text="Secondary expenses"/>
+                            </StackLayout>
+                            <Label Style="{StaticResource SecondaryText}"
+                                   Text="10:14"/>
+                        </FlexLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
 </ContentPage>
