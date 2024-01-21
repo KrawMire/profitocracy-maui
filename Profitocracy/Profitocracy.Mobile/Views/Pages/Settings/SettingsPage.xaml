@@ -2,7 +2,7 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Profitocracy.Mobile.Pages.SettingsPage"
+             x:Class="Profitocracy.Mobile.Views.Pages.Settings.SettingsPage"
              Title="Settings">
     <ScrollView Padding="20">
         <StackLayout>
@@ -14,11 +14,9 @@
                              Padding="10">
                     <StackLayout Orientation="Horizontal"
                                  Padding="0, 10">
-                        <Label Text="Expense Categories" />
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 Padding="0, 10">
-                        <Label Text="Anchor Dates" />
+                        <Button Text="Expense categories"
+                                x:Name="CategoriesButton"
+                                Clicked="CategoriesButton_OnClicked"/>
                     </StackLayout>
                 </StackLayout>
             </Frame>
@@ -31,7 +29,9 @@
                              Padding="10">
                     <StackLayout Orientation="Horizontal"
                                  Padding="0, 10">
-                        <Label Text="Theme" />
+                        <Button Text="Theme"
+                                x:Name="ThemeSettingsButton"
+                                Clicked="ThemeSettingsButton_OnClicked"/>
                     </StackLayout>
                 </StackLayout>
             </Frame>

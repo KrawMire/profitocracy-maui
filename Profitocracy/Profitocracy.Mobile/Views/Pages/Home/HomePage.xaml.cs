@@ -1,4 +1,4 @@
-namespace Profitocracy.Mobile.Pages;
+namespace Profitocracy.Mobile.Views.Pages.Home;
 
 public partial class HomePage : ContentPage
 {

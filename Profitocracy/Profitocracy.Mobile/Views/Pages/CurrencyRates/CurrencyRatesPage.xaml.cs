@@ -1,4 +1,4 @@
-namespace Profitocracy.Mobile.Pages;
+namespace Profitocracy.Mobile.Views.Pages.CurrencyRates;
 
 public partial class CurrencyRatesPage : ContentPage
 {

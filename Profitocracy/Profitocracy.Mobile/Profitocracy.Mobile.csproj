@@ -81,5 +81,58 @@
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
     </ItemGroup>
+    
+    <ItemGroup>
+      <MauiXaml Update="Pages\Settings\SettingsPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Pages\Transactions\TransactionsPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Pages\Home\HomePage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Pages\CurrencyRates\CurrencyRatesPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Update="Pages\Settings\SettingsPage.xaml.cs">
+        <DependentUpon>SettingsPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\Transactions\TransactionsPage.xaml.cs">
+        <DependentUpon>TransactionsPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\Home\HomePage.xaml.cs">
+        <DependentUpon>HomePage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\CurrencyRates\CurrencyRatesPage.xaml.cs">
+        <DependentUpon>CurrencyRatesPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Profitocracy.BusinessLogic\Profitocracy.BusinessLogic.csproj" />
+      <ProjectReference Include="..\Profitocracy.Domain\Profitocracy.Domain.csproj" />
+      <ProjectReference Include="..\Profitocracy.Infrastructure\Profitocracy.Infrastructure.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="ViewModels\" />
+      <Folder Include="Views\" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Pages\CurrencyRates\CurrencyRatesPage.xaml" />
+      <AdditionalFiles Include="Views\Pages\Home\HomePage.xaml" />
+      <AdditionalFiles Include="Views\Pages\Settings\ExpenseCategoriesSettingsPage.xaml" />
+      <AdditionalFiles Include="Views\Pages\Settings\SettingsPage.xaml" />
+      <AdditionalFiles Include="Views\Pages\Transactions\TransactionsPage.xaml" />
+    </ItemGroup>
 
 </Project>

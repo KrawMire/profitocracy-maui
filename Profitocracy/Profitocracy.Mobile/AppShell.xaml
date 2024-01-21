@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:pages="clr-namespace:Profitocracy.Mobile.Pages"
+       xmlns:currencyRates="clr-namespace:Profitocracy.Mobile.Views.Pages.CurrencyRates"
+       xmlns:home="clr-namespace:Profitocracy.Mobile.Views.Pages.Home"
+       xmlns:settings="clr-namespace:Profitocracy.Mobile.Views.Pages.Settings"
+       xmlns:transactions="clr-namespace:Profitocracy.Mobile.Views.Pages.Transactions"
        x:Class="Profitocracy.Mobile.AppShell">
     <TabBar>
         <Tab Title="Home" Icon="home.png">
-            <ShellContent ContentTemplate="{DataTemplate pages:HomePage}"/>
+            <ShellContent ContentTemplate="{DataTemplate home:HomePage}"/>
         </Tab>
         <Tab Title="Currencies" Icon="currencies.png">
-            <ShellContent ContentTemplate="{DataTemplate pages:CurrencyRatesPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate currencyRates:CurrencyRatesPage}"/>
         </Tab>
         <Tab Title="Transactions" Icon="transactions.png">
-            <ShellContent ContentTemplate="{DataTemplate pages:TransactionsPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate transactions:TransactionsPage}"/>
         </Tab>
         <Tab Title="Settings" Icon="settings.png">
-            <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate settings:SettingsPage}"/>
         </Tab>
     </TabBar>
 </Shell>

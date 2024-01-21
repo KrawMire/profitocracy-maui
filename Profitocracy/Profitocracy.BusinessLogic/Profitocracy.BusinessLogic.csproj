@@ -7,7 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Boundaries\TransactionBoundary\Gateways\" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Profitocracy.Domain\Profitocracy.Domain.csproj" />
     </ItemGroup>
 
 </Project>
