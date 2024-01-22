@@ -8,7 +8,12 @@
 
 ## Introduction
 
-Profitocracy is a mobile application that helps people to control their finances and spend money wisely. There will be three versions of the app: cross-platform (written with React Native), Android (written with Java) and iOS (with Swift). For now, you can see that there are only two of them - cross-platform (`profitocracy-mobile`) and iOS native (`profitocracy-ios`).
+Profitocracy is a mobile application that helps people to control their finances and spend money wisely. There will be four versions of the app:
+
+- Cross-platform, written with MAUI
+- Cross-platform, created with React Native;
+- Android, written with Java;
+- iOS, created with Swift.
 
 So, cross-platform app version is an MVP application that was created as a test and made for understanding what I want to get in the end. So, during the development process I highlighted some main terms of this application.
 
