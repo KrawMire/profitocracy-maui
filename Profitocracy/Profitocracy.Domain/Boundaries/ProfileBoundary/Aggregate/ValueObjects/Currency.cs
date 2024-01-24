@@ -1,6 +1,6 @@
 namespace Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate.ValueObjects;
 
-public struct Currency
+public class Currency
 {
 	public required string Name { get; set; }
 	public required string Code { get; set; }
