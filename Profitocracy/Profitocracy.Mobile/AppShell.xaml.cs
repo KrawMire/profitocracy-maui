@@ -1,4 +1,5 @@
 ﻿using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
+using Profitocracy.Mobile.Constants;
 using Profitocracy.Mobile.Views.Setup;
 
 namespace Profitocracy.Mobile;
@@ -11,7 +12,7 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 		
-		Routing.RegisterRoute("SetupFirstProfile", typeof(SetupPage));
+		Routing.RegisterRoute(RoutesConstants.SetupPage, typeof(SetupPage));
 
 		_profileService = profileService ?? throw new ArgumentNullException(nameof(profileService));
 	}
@@ -24,7 +25,7 @@ public partial class AppShell : Shell
 			
 			if (profile is null)
 			{
-				await Current.GoToAsync("SetupFirstProfile");
+				await Current.GoToAsync(RoutesConstants.SetupPage);
 			}
 		}
 		catch (Exception ex)
