@@ -13,7 +13,7 @@ public class ProfileModel
 	public AnchorDateModel StartDate { get; set; }
 	public decimal Balance { get; set; }
 	public decimal SavedBalance { get; set; }
-	public List<ProfileCategoryModel>? CategoriesNames { get; set; }
+	public List<ProfileCategoryModel>? Categories { get; set; }
 	public ProfileSettingsModel Settings { get; set; }
 	public bool IsCurrent { get; set; }
 }

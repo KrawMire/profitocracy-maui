@@ -18,31 +18,35 @@ public class ProfileBuilder(Guid profileId)
 	private AnchorDate? _startDate;
 	private ProfileSettings? _settings;
 	
-	public void AddBalance(decimal balance)
+	public ProfileBuilder AddBalance(decimal balance)
 	{
 		_balance = balance;
+		return this;
 	}
 
-	public void AddSavedBalance(decimal savedBalance)
+	public ProfileBuilder AddSavedBalance(decimal savedBalance)
 	{
 		_savedBalance = savedBalance;
+		return this;
 	}
 	
-	public void AddName(string name)
+	public ProfileBuilder AddName(string name)
 	{
 		_name = name;
+		return this;
 	}
 
-	public void AddStartDate(DateTime date, decimal balance)
+	public ProfileBuilder AddStartDate(DateTime date, decimal balance)
 	{
 		_startDate = new AnchorDate
 		{
 			Timestamp = date,
 			InitialBalance = balance
 		};
+		return this;
 	}
 
-	public void AddCategoryExpense(Guid id, string name, decimal? plannedAmount = null)
+	public ProfileBuilder AddCategoryExpense(Guid id, string name, decimal? plannedAmount = null)
 	{
 		_categories.Add(new ProfileCategory(id)
 		{
@@ -50,9 +54,10 @@ public class ProfileBuilder(Guid profileId)
 			ActualAmount = 0,
 			PlannedAmount = plannedAmount
 		});
+		return this;
 	}
 
-	public void AddCurrency(string code, string name, string symbol)
+	public ProfileBuilder AddCurrency(string code, string name, string symbol)
 	{
 		_settings = new ProfileSettings
 		{
@@ -63,11 +68,13 @@ public class ProfileBuilder(Guid profileId)
 				Symbol = symbol
 			}
 		};
+		return this;
 	}
 
-	public void AddIsCurrent(bool isCurrent)
+	public ProfileBuilder AddIsCurrent(bool isCurrent)
 	{
 		_isCurrent = isCurrent;
+		return this;
 	}
 
 	public Profile Build()

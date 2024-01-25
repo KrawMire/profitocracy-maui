@@ -13,5 +13,5 @@ public class TransactionModel
 	public DateTime Timestamp { get; set; }
 	public string? Description { get; set; }
 	public GeoTagModel? GeoTag { get; set; }
-	public string? CategoryName { get; set; }
+	public TransactionCategoryModel? Category { get; set; }
 }
