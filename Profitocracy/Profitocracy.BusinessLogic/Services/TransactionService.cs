@@ -12,10 +12,10 @@ public class TransactionService : ITransactionService
 	{
 		_transactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
 	}
-	
-	public Task<List<Transaction>> GetAll()
+
+	public Task<List<Transaction>> GetAllByProfileId(Guid profileId)
 	{
-		return _transactionRepository.GetAll();
+		return _transactionRepository.GetAllByProfileId(profileId);
 	}
 
 	public Task<Transaction> Create(Transaction transaction)

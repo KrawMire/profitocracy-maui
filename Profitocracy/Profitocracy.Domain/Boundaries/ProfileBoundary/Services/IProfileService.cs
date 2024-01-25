@@ -4,5 +4,6 @@ namespace Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
 
 public interface IProfileService
 {
-	Task<Profile> GetCurrentProfile();
+	Task<Profile> Create(Profile profile);
+	Task<Profile?> GetCurrentProfile();
 }

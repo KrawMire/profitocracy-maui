@@ -4,6 +4,6 @@ namespace Profitocracy.Domain.Boundaries.TransactionBoundary.Services;
 
 public interface ITransactionService
 {
-	Task<List<Transaction>> GetAll();
+	Task<List<Transaction>> GetAllByProfileId(Guid profileId);
 	Task<Transaction> Create(Transaction transaction);
 }

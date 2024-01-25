@@ -2,7 +2,7 @@ using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
 using Profitocracy.Domain.Boundaries.TransactionBoundary.Repositories;
 using Profitocracy.Infrastructure.Common.Abstractions;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
-using Profitocracy.Infrastructure.Persistence.Sqlite.Models;
+using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Repositories;
 
@@ -12,29 +12,32 @@ public class TransactionRepository(
 {
 	private readonly DbConnection _dbConnection = dbConnection ?? throw new ArgumentNullException(nameof(dbConnection));
 	private readonly IInfrastructureMapper<Transaction, TransactionModel> _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-	
-	public async Task<List<Transaction>> GetAll()
+
+	public async Task<List<Transaction>> GetAllByProfileId(Guid profileId)
 	{
 		await _dbConnection.Init();
 
 		var transactions = await _dbConnection.Database
 			.Table<TransactionModel>()
+			.Where(t => t.ProfileId.Equals(profileId))
 			.ToListAsync();
 
 		if (transactions is null)
 		{
 			return [];
 		}
-		
+
 		var domainTransactions = transactions
 			.Select(_mapper.MapToDomain)
 			.ToList();
-		
+
 		return domainTransactions;
 	}
 
 	public async Task<Transaction> Create(Transaction transaction)
 	{
+		await _dbConnection.Init();
+		
 		var transactionToCreate = _mapper.MapToModel(transaction);
 		_ = await _dbConnection.Database.InsertAsync(transactionToCreate);
 		

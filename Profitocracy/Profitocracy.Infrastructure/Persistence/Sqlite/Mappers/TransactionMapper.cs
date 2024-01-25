@@ -1,6 +1,7 @@
 using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
 using Profitocracy.Infrastructure.Common.Abstractions;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models;
+using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Mappers;
 
@@ -8,9 +9,8 @@ public class TransactionMapper : IInfrastructureMapper<Transaction, TransactionM
 {
 	public Transaction MapToDomain(TransactionModel model)
 	{
-		return new Transaction
+		return new Transaction(model.Id)
 		{
-			Id = model.Id,
 			Amount = model.Amount
 		};
 	}
