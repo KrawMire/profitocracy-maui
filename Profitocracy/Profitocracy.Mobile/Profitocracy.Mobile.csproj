@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
         <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+        
         <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
         <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -37,16 +38,6 @@
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     </PropertyGroup>
-
-<!--    <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">-->
-<!--        &lt;!&ndash;DEBUG ON DEVICE&ndash;&gt;-->
-<!--        <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>-->
-<!--        &lt;!&ndash;DEBUG ON SIMULATOR&ndash;&gt;-->
-
-<!--        &lt;!&ndash;-->
-<!--            <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>-->
-<!--        &ndash;&gt;-->
-<!--    </PropertyGroup>-->
     
     <ItemGroup>
         <!-- App Icon -->
@@ -123,16 +114,10 @@
     </ItemGroup>
     
     <ItemGroup>
+      <Folder Include="Models\Category\" />
+      <Folder Include="Models\Profile\" />
+      <Folder Include="Models\Transaction\" />
       <Folder Include="ViewModels\" />
-      <Folder Include="Views\" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <AdditionalFiles Include="Views\Pages\CurrencyRates\CurrencyRatesPage.xaml" />
-      <AdditionalFiles Include="Views\Pages\Home\HomePage.xaml" />
-      <AdditionalFiles Include="Views\Pages\Settings\ExpenseCategoriesSettingsPage.xaml" />
-      <AdditionalFiles Include="Views\Pages\Settings\SettingsPage.xaml" />
-      <AdditionalFiles Include="Views\Pages\Transactions\TransactionsPage.xaml" />
     </ItemGroup>
 
 </Project>

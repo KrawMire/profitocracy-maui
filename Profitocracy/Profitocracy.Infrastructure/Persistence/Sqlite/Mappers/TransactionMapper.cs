@@ -14,20 +14,20 @@ public class TransactionMapper : IInfrastructureMapper<Transaction, TransactionM
 		TransactionGeoTag? geoTag = null;
 		TransactionCategory? category = null;
 		
-		if (model.GeoTag is not null)
+		if (model.GeoTagLongitude is not null && model.GeoTagLatitude is not null)
 		{
 			geoTag = new TransactionGeoTag
 			{
-				Latitude = model.GeoTag.Latitude,
-				Longitude = model.GeoTag.Longitude
+				Latitude = (double)model.GeoTagLatitude,
+				Longitude = (double)model.GeoTagLongitude
 			};
 		}
 
-		if (model.Category is not null)
+		if (model.CategoryId is not null && model.CategoryName is not null)
 		{
-			category = new TransactionCategory(model.Category.CategoryId)
+			category = new TransactionCategory((Guid)model.CategoryId)
 			{
-				Name = model.Category.Name
+				Name = model.CategoryName
 			};
 		}
 
@@ -45,27 +45,6 @@ public class TransactionMapper : IInfrastructureMapper<Transaction, TransactionM
 
 	public TransactionModel MapToModel(Transaction entity)
 	{
-		GeoTagModel? geoTag = null;
-		TransactionCategoryModel? category = null;
-		
-		if (entity.GeoTag is not null)
-		{
-			geoTag = new GeoTagModel
-			{
-				Latitude = entity.GeoTag.Latitude,
-				Longitude = entity.GeoTag.Longitude
-			};
-		}
-
-		if (entity.Category is not null)
-		{
-			category = new TransactionCategoryModel
-			{
-				CategoryId = entity.Category.Id,
-				Name = entity.Category.Name
-			};
-		}
-		
 		return new TransactionModel
 		{
 			Id = entity.Id,
@@ -75,8 +54,10 @@ public class TransactionMapper : IInfrastructureMapper<Transaction, TransactionM
 			SpendingType = (short)entity.SpendingType,
 			Timestamp = entity.Timestamp,
 			Description = entity.Description,
-			GeoTag = geoTag,
-			Category = category
+			GeoTagLatitude = entity.GeoTag?.Latitude,
+			GeoTagLongitude = entity.GeoTag?.Longitude,
+			CategoryId = entity.Category?.Id,
+			CategoryName = entity.Category?.Name
 		};
 	}
 }

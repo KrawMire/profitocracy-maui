@@ -9,13 +9,12 @@ public class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
 {
 	public Profile MapToDomain(ProfileModel model)
 	{
-		var modelCurrency = model.Settings.Currency;
 		var builder = new ProfileBuilder(model.Id)
 			.AddBalance(model.Balance)
 			.AddSavedBalance(model.SavedBalance)
 			.AddName(model.Name)
-			.AddStartDate(model.StartDate.Timestamp, model.StartDate.InitialBalance)
-			.AddCurrency(modelCurrency.Code, modelCurrency.Name, modelCurrency.Symbol)
+			.AddStartDate(model.StartTimestamp, model.InitialBalance)
+			.AddCurrency(model.CurrencyCode, model.CurrencyName, model.CurrencySymbol)
 			.AddIsCurrent(model.IsCurrent);
 
 		if (model.Categories is not null)
@@ -34,12 +33,6 @@ public class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
 
 	public ProfileModel MapToModel(Profile entity)
 	{
-		var anchorDate = new AnchorDateModel
-		{
-			Timestamp = entity.StartDate.Timestamp,
-			InitialBalance = entity.StartDate.InitialBalance
-		};
-
 		var categories = entity.CategoriesBalances
 			.Select(c => new ProfileCategoryModel
 			{
@@ -53,20 +46,15 @@ public class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
 		{
 			Id = entity.Id,
 			Name = entity.Name,
-			StartDate = anchorDate,
+			StartTimestamp = entity.StartDate.Timestamp,
+			InitialBalance = entity.StartDate.InitialBalance,
 			Balance = entity.Balance,
 			SavedBalance = entity.SavedBalance,
 			IsCurrent = entity.IsCurrent,
 			Categories = categories,
-			Settings = new ProfileSettingsModel
-			{
-				Currency = new CurrencyModel
-				{
-					Code = entity.Settings.Currency.Code,
-					Name = entity.Settings.Currency.Name,
-					Symbol = entity.Settings.Currency.Symbol
-				}
-			}
+			CurrencyCode = entity.Settings.Currency.Code,
+			CurrencyName = entity.Settings.Currency.Name,
+			CurrencySymbol = entity.Settings.Currency.Symbol
 		};
 	}
 }

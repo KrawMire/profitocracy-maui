@@ -12,6 +12,8 @@ public class TransactionModel
 	public short SpendingType { get; set; }
 	public DateTime Timestamp { get; set; }
 	public string? Description { get; set; }
-	public GeoTagModel? GeoTag { get; set; }
-	public TransactionCategoryModel? Category { get; set; }
+	public double? GeoTagLongitude { get; set; }
+	public double? GeoTagLatitude { get; set; }
+	public Guid? CategoryId { get; set; }
+	public string? CategoryName { get; set; }
 }

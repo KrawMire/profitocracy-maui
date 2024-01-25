@@ -5,7 +5,8 @@
        xmlns:home="clr-namespace:Profitocracy.Mobile.Views.Pages.Home"
        xmlns:settings="clr-namespace:Profitocracy.Mobile.Views.Pages.Settings"
        xmlns:transactions="clr-namespace:Profitocracy.Mobile.Views.Pages.Transactions"
-       x:Class="Profitocracy.Mobile.AppShell">
+       x:Class="Profitocracy.Mobile.AppShell"
+       Loaded="AppShell_OnLoaded">
     <TabBar>
         <Tab Title="Home" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate home:HomePage}"/>
