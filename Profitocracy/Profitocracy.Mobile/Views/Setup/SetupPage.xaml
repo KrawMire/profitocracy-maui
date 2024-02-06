@@ -5,13 +5,24 @@
              x:Class="Profitocracy.Mobile.Views.Setup.SetupPage"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              ios:Page.ModalPresentationStyle="FullScreen"
-             Shell.PresentationMode="ModalAnimated"
-             Title="Setup">
+             Shell.PresentationMode="ModalAnimated">
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+        <BackButtonBehavior IsVisible="False" 
+                            IsEnabled="False" />
     </Shell.BackButtonBehavior>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20">
+            <StackLayout Margin="0, 20">
+                <Label Text="Profile name"/>
+                <Entry Text="{Binding Name, Mode=TwoWay}" />
+            </StackLayout>
+            
+            <StackLayout Margin="0, 20">
+                <Label Text="Your initial balance"/>
+                <Entry Keyboard="Numeric"
+                       Text="{Binding InitialBalance, Mode=TwoWay}"/>
+            </StackLayout>
+            
             <Button Text="Go to expenses" 
                     Clicked="Button_OnClicked"/>
         </StackLayout>

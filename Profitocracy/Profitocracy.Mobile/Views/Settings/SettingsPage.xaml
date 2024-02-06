@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Views.Pages.Settings.SettingsPage"
              Title="Settings">
-    <ScrollView Padding="20">
+    <ScrollView Padding="20"
+                VerticalScrollBarVisibility="Never">
         <StackLayout>
             <Label Text="Application settings"
                    Style="{StaticResource BlockHeader}"

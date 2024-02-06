@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst;</TargetFrameworks>
         <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
-        
+
         <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
         <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -38,16 +38,20 @@
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     </PropertyGroup>
-    
+
+    <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+      <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+    </PropertyGroup>
+
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" 
-                  ForegroundFile="Resources\AppIcon\appiconfg.svg" 
+        <MauiIcon Include="Resources\AppIcon\appicon.svg"
+                  ForegroundFile="Resources\AppIcon\appiconfg.svg"
                   Color="#ffffff"/>
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" 
-                          BaseSize="240,320" 
+        <MauiSplashScreen Include="Resources\Splash\splash.svg"
+                          BaseSize="240,320"
                           Color="#ffffff"/>
 
         <!-- Images -->
@@ -66,13 +70,13 @@
         <MauiImage Update="Resources\Images\settings.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\transactions.png" BaseSize="20,20" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
     </ItemGroup>
-    
+
     <ItemGroup>
       <MauiXaml Update="Pages\Settings\SettingsPage.xaml">
         <SubType>Designer</SubType>
@@ -87,7 +91,7 @@
         <SubType>Designer</SubType>
       </MauiXaml>
     </ItemGroup>
-    
+
     <ItemGroup>
       <Compile Update="Pages\Settings\SettingsPage.xaml.cs">
         <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -106,18 +110,16 @@
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
-    
+
     <ItemGroup>
       <ProjectReference Include="..\Profitocracy.BusinessLogic\Profitocracy.BusinessLogic.csproj" />
       <ProjectReference Include="..\Profitocracy.Domain\Profitocracy.Domain.csproj" />
       <ProjectReference Include="..\Profitocracy.Infrastructure\Profitocracy.Infrastructure.csproj" />
     </ItemGroup>
-    
+
     <ItemGroup>
       <Folder Include="Models\Category\" />
-      <Folder Include="Models\Profile\" />
       <Folder Include="Models\Transaction\" />
-      <Folder Include="ViewModels\" />
     </ItemGroup>
 
 </Project>

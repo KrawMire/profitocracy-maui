@@ -4,20 +4,19 @@ using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate.ValueObjects;
 
 namespace Profitocracy.Domain.Boundaries.ProfileBoundary.Factories;
 
-public class ProfileBuilder(Guid profileId)
+public class ProfileBuilder(Guid? profileId = null)
 {
-	private Guid _id = profileId;
-	private decimal _balance = 0;
-	private decimal _savedBalance = 0;
+	private Guid _id = profileId ?? Guid.NewGuid();
+	private decimal _balance;
+	private decimal _savedBalance;
 	private string _name = "Default";
 	private bool _isCurrent = true;
 		
 	private readonly List<ProfileCategory> _categories = [];
 	
-	
 	private AnchorDate? _startDate;
 	private ProfileSettings? _settings;
-	
+
 	public ProfileBuilder AddBalance(decimal balance)
 	{
 		_balance = balance;
