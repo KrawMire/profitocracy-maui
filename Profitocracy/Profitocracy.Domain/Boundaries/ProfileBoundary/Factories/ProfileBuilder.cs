@@ -108,6 +108,7 @@ public class ProfileBuilder(Guid? profileId = null)
 		var startDate = (AnchorDate)_startDate!;
 
 		var daysInPeriod = currentDate.Day - startDate.Timestamp.Day;
+		daysInPeriod = daysInPeriod == 0 ? 1 : daysInPeriod;
 
 		return new ProfileExpenses
 		{

@@ -14,12 +14,19 @@ public class ProfileMapper : IPresentationMapper<Profile, ProfileModel>
             .AddStartDate(model.StartDate, model.InitialBalance)
             .AddBalance(model.Balance)
             .AddSavedBalance(model.SavedBalance)
-            .AddCurrency(model.Currency.Code, model.Currency.Name, model.Currency.Symbol)
             .AddIsCurrent(model.IsCurrent);
-        
-        foreach (var category in model.CategoriesBalances)
+
+        if (model.Currency is not null)
         {
-            builder.AddCategoryExpense(category.CategoryId, category.Name, category.PlannedAmount);
+            builder.AddCurrency(model.Currency.Code, model.Currency.Name, model.Currency.Symbol);
+        }
+
+        if (model.CategoriesBalances is not null)
+        {
+            foreach (var category in model.CategoriesBalances)
+            {
+                builder.AddCategoryExpense(category.CategoryId, category.Name, category.PlannedAmount);
+            }   
         }
         
         return builder.Build();
@@ -49,6 +56,40 @@ public class ProfileMapper : IPresentationMapper<Profile, ProfileModel>
             InitialBalance = entity.StartDate.InitialBalance,
             Balance = entity.Balance,
             SavedBalance = entity.SavedBalance,
+            
+            Expenses = new ProfileExpensesModel
+            {
+                Main = new ProfileExpenseModel
+                {
+                    ActualAmount = entity.Expenses.Main.ActualAmount,
+                    PlannedAmount = entity.Expenses.Main.PlannedAmount
+                },
+                Saved = new ProfileExpenseModel
+                {
+                    ActualAmount = entity.Expenses.Saved.ActualAmount,
+                    PlannedAmount = entity.Expenses.Saved.PlannedAmount
+                },
+                Secondary = new ProfileExpenseModel
+                {
+                    ActualAmount = entity.Expenses.Secondary.ActualAmount,
+                    PlannedAmount = entity.Expenses.Secondary.PlannedAmount
+                },
+                TotalBalance = new ProfileExpenseModel
+                {
+                    ActualAmount = entity.Expenses.TotalBalance.ActualAmount,
+                    PlannedAmount = entity.Expenses.TotalBalance.PlannedAmount
+                },
+                DailyFromActualBalance = new ProfileExpenseModel
+                {
+                    ActualAmount = entity.Expenses.DailyFromActualBalance.ActualAmount,
+                    PlannedAmount = entity.Expenses.DailyFromActualBalance.PlannedAmount
+                },
+                DailyFromInitialBalance = new ProfileExpenseModel
+                {
+                    ActualAmount = entity.Expenses.DailyFromInitialBalance.ActualAmount,
+                    PlannedAmount = entity.Expenses.DailyFromInitialBalance.PlannedAmount
+                }, 
+            },
             
             CategoriesBalances = categories,
             Currency = new CurrencyModel

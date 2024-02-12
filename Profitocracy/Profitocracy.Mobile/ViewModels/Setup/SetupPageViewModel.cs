@@ -1,5 +1,8 @@
 using System.Globalization;
+using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
 using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
+using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Models.Profile;
 using Profitocracy.Mobile.ViewModels.Common;
 
 namespace Profitocracy.Mobile.ViewModels.Setup;
@@ -10,10 +13,12 @@ public class SetupPageViewModel : ViewModelBase
     private decimal _initialBalance;
 
     private readonly IProfileService _profileService;
+    private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
     
-    public SetupPageViewModel(IProfileService profileService)
+    public SetupPageViewModel(IProfileService profileService, IPresentationMapper<Profile, ProfileModel> mapper)
     {
         _profileService = profileService ?? throw new ArgumentNullException(nameof(profileService));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     public string Name
@@ -65,6 +70,15 @@ public class SetupPageViewModel : ViewModelBase
 
     public async void CreateFirstProfile()
     {
-        //TODO: Create initial profile
+        var profile = new ProfileModel
+        {
+            Name = _name,
+            InitialBalance = _initialBalance,
+            StartDate = DateTime.Now,
+            IsCurrent = true
+        };
+
+        var domainProfile = _mapper.MapToDomain(profile);
+        await _profileService.Create(domainProfile);
     }
 }

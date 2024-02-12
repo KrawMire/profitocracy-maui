@@ -1,13 +1,21 @@
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
+using Profitocracy.Mobile.ViewModels.Home;
 
 namespace Profitocracy.Mobile.Views.Pages.Home;
 
 public partial class HomePage : ContentPage
 {
-	private readonly IProfileService _profileService;
-	public HomePage(IProfileService profileService)
+	public readonly HomePageViewModel ViewModel;
+	
+	public HomePage(HomePageViewModel viewModel)
 	{
-		_profileService = profileService;
 		InitializeComponent();
+		
+		ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+		BindingContext = ViewModel;
+	}
+
+	private void HomePage_OnAppear(object? sender, EventArgs e)
+	{
+		ViewModel.Initialize();
 	}
 }

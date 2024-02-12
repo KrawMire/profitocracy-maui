@@ -1,6 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using Profitocracy.BusinessLogic;
+using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
 using Profitocracy.Infrastructure;
+using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Mappers;
+using Profitocracy.Mobile.Models.Profile;
+using Profitocracy.Mobile.ViewModels.Home;
 using Profitocracy.Mobile.ViewModels.Setup;
 using Profitocracy.Mobile.Views.Pages.Home;
 using Profitocracy.Mobile.Views.Pages.Transactions;
@@ -23,7 +28,8 @@ public static class MauiProgram
 			.RegisterAppServices()
 			.RegisterViewModels()
 			.RegisterViews()
-			.RegisterModels();
+			.RegisterModels()
+			.RegisterPresentationMappers();
 
 #if DEBUG
 		builder.Logging.AddDebug();
@@ -50,6 +56,7 @@ public static class MauiProgram
 
 	private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
 	{
+		_ = mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
 		_ = mauiAppBuilder.Services.AddTransient<SetupPageViewModel>();
 		
 		return mauiAppBuilder;
@@ -68,8 +75,10 @@ public static class MauiProgram
 		return mauiAppBuilder;
 	}
 	
-	private static MauiAppBuilder RegisterPresentationMapper(this MauiAppBuilder mauiAppBuilder)
+	private static MauiAppBuilder RegisterPresentationMappers(this MauiAppBuilder mauiAppBuilder)
 	{
+		_ = mauiAppBuilder.Services.AddTransient<IPresentationMapper<Profile, ProfileModel>, ProfileMapper>();
+		
 		return mauiAppBuilder;
 	} 
 }

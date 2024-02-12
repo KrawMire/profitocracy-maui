@@ -11,9 +11,9 @@ public class ProfileModel
     public decimal Balance { get; set; }
     public decimal SavedBalance { get; set; }
     
-    public ProfileExpensesModel Expenses { get; set; }
-    public List<CategoryExpenseModel> CategoriesBalances { get; set; }
+    public ProfileExpensesModel? Expenses { get; set; }
+    public List<CategoryExpenseModel>? CategoriesBalances { get; set; }
     
-    public CurrencyModel Currency { get; set; }
+    public CurrencyModel? Currency { get; set; }
     public bool IsCurrent { get; set; }
 }

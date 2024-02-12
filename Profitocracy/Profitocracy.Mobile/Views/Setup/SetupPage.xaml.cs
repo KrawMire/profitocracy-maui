@@ -21,9 +21,7 @@ public partial class SetupPage : ContentPage
 	
 	private async void Button_OnClicked(object? sender, EventArgs e)
 	{
-		var debugStr = $"{ViewModel.Name} - Profile name,\n{ViewModel.InitialBalance} - Initial Balance";
-
-		await DisplayAlert("Debug info", debugStr, "OK");
+		ViewModel.CreateFirstProfile();
 		await Shell.Current.Navigation.PopAsync();
 	}
 }
