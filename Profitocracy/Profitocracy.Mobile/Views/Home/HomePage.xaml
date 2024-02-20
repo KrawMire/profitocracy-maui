@@ -14,8 +14,15 @@
                 <StackLayout Style="{StaticResource BalanceCard}">
                     <StackLayout Padding="20">
                         <Label Text="Balance" />
-                        <Label Text="10.01.2024-25.01.2024" />
-                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <Label>
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="DateFrom"/>
+                                    <Binding Path="DateTo"/>
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <ProgressBar Progress="{Binding TotalBalanceRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
                             <Label Text="{Binding Profile.Expenses.TotalBalance.ActualAmount}"/>
                             <Label Text="{Binding Profile.Expenses.TotalBalance.PlannedAmount}" />
@@ -56,7 +63,7 @@
                                  Style="{StaticResource BalanceCard}"
                                  Padding="20">
                         <Label Text="From actual" />
-                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <ProgressBar Progress="{Binding DailyFromActualRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
                             <Label Text="{Binding Profile.Expenses.DailyFromActualBalance.ActualAmount}"/>
                             <Label Text="{Binding Profile.Expenses.DailyFromActualBalance.PlannedAmount}" />
@@ -66,7 +73,7 @@
                                  Style="{StaticResource BalanceCard}"
                                  Padding="20">
                         <Label Text="From initial" />
-                        <ProgressBar Progress="0.1" Margin="0, 10"/>
+                        <ProgressBar Progress="{Binding DailyFromInitialRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
                             <Label Text="{Binding Profile.Expenses.DailyFromInitialBalance.ActualAmount}"/>
                             <Label Text="{Binding Profile.Expenses.DailyFromInitialBalance.PlannedAmount}" />
@@ -83,7 +90,7 @@
                 <StackLayout Style="{StaticResource BalanceCard}">
                     <StackLayout Padding="20">
                         <Label Text="Main spendings" />
-                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <ProgressBar Progress="{Binding MainExpensesRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
                             <Label Text="{Binding Profile.Expenses.Main.ActualAmount}" />
                             <Label Text="{Binding Profile.Expenses.Main.PlannedAmount}" />
@@ -103,7 +110,7 @@
                     </Grid>
                     <StackLayout Padding="20">
                         <Label Text="Secondary spendings" />
-                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <ProgressBar Progress="{Binding SecondaryExpensesRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
                             <Label Text="{Binding Profile.Expenses.Secondary.ActualAmount}"/>
                             <Label Text="{Binding Profile.Expenses.Secondary.PlannedAmount}" />
@@ -123,7 +130,7 @@
                     </Grid>
                     <StackLayout Padding="20">
                         <Label Text="Saved" />
-                        <ProgressBar Progress="0.2" Margin="0, 10"/>
+                        <ProgressBar Progress="{Binding SavedRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
                             <Label Text="{Binding Profile.Expenses.Saved.ActualAmount}"/>
                             <Label Text="{Binding Profile.Expenses.Saved.PlannedAmount}" />

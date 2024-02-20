@@ -1,6 +1,4 @@
-using System.Collections.ObjectModel;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Services;
+using Profitocracy.Mobile.Views.Transactions;
 
 namespace Profitocracy.Mobile.Views.Pages.Transactions;
 
@@ -18,6 +16,6 @@ public partial class TransactionsPage : ContentPage
 
 	private void AddTransactionButton_OnClicked(object? sender, EventArgs e)
 	{
-		
+		Navigation.PushModalAsync(new AddTransactionPage());
 	}
 }
