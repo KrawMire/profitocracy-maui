@@ -1,13 +1,13 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Profitocracy.Mobile.ViewModels.Common;
+namespace Profitocracy.Mobile.Abstractions;
 
-public abstract class ViewModelBase : INotifyPropertyChanged
+public abstract class BaseNotifyObject : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

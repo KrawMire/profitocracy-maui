@@ -34,20 +34,16 @@ public class ProfileMapper : IPresentationMapper<Profile, ProfileModel>
 
     public ProfileModel MapToModel(Profile entity)
     {
-        var categories = new List<CategoryExpenseModel>();
-
-        foreach (var category in entity.CategoriesBalances)
-        {
-            var newCategoryModel = new CategoryExpenseModel
+        var categories = entity
+            .CategoriesBalances
+            .Select(category => new CategoryExpenseModel
             {
-                CategoryId = category.Id,
-                Name = category.Name,
-                ActualAmount = category.ActualAmount,
+                CategoryId = category.Id, 
+                Name = category.Name, 
+                ActualAmount = category.ActualAmount, 
                 PlannedAmount = category.PlannedAmount
-            };
-            categories.Add(newCategoryModel);
-        }
-        
+            }).ToList();
+
         var profileModel = new ProfileModel
         {
             Id = entity.Id,

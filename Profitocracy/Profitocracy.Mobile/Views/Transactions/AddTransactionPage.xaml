@@ -5,24 +5,36 @@
              x:Class="Profitocracy.Mobile.Views.Transactions.AddTransactionPage"
              Shell.PresentationMode="ModalAnimated">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10">
             <FlexLayout Margin="10,10" 
                         JustifyContent="SpaceBetween">
-                <Label>Add new transaction</Label>    
+                <Label Text="Add new transaction"
+                       FontSize="25"/>    
                 <Button x:Name="CloseButton" 
                         Clicked="CloseButton_OnClicked" 
                         Text="X"/>
             </FlexLayout>
             <StackLayout>
                 <Label>Transaction type</Label>
-                <Picker />
+                <Picker x:Name="TransactionTypePicker"
+                        SelectedItem="{Binding TransactionType, Mode=TwoWay}"
+                        Title="{Binding TransactionType}"/>
+                
+                <Label>Spending type</Label>
+                <Picker x:Name="SpendingTypePicker"
+                        SelectedItem="{Binding SpendingType, Mode=TwoWay}"
+                        Title="{Binding SpendingType}"/>
                 
                 <Label>Amount</Label>
-                <Entry Keyboard="Numeric"/>
+                <Entry Keyboard="Numeric"
+                       Text="{Binding Amount, Mode=TwoWay}"/>
                 
                 <Label>Description</Label>
-                <Entry/>
+                <Entry Text="{Binding Description, Mode=TwoWay}"/>
             </StackLayout>
+            <Button Text="Add transaction"
+                    x:Name="AddTransactionButton"
+                    Clicked="AddTransactionButton_OnClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

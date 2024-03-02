@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Views.Pages.Home.HomePage"
              Title="Home"
-             NavigatedTo="HomePage_OnAppear">
+             NavigatedTo="HomePage_OnNavigated">
     <ScrollView VerticalScrollBarVisibility="Never">
         <VerticalStackLayout Padding="20">
             <Label Text="Total amounts" 
@@ -24,8 +24,8 @@
                         </Label>
                         <ProgressBar Progress="{Binding TotalBalanceRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding Profile.Expenses.TotalBalance.ActualAmount}"/>
-                            <Label Text="{Binding Profile.Expenses.TotalBalance.PlannedAmount}" />
+                            <Label Text="{Binding TotalActualAmount}"/>
+                            <Label Text="{Binding TotalPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>
                     <Grid>
@@ -43,7 +43,7 @@
                     <StackLayout Padding="20">
                         <FlexLayout JustifyContent="SpaceBetween">
                             <Label Text="Saved" />
-                            <Label Text="{Binding Profile.SavedBalance}" />
+                            <Label Text="{Binding TotalSavedAmount}" />
                         </FlexLayout>
                     </StackLayout>
                 </StackLayout>
@@ -65,8 +65,8 @@
                         <Label Text="From actual" />
                         <ProgressBar Progress="{Binding DailyFromActualRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding Profile.Expenses.DailyFromActualBalance.ActualAmount}"/>
-                            <Label Text="{Binding Profile.Expenses.DailyFromActualBalance.PlannedAmount}" />
+                            <Label Text="{Binding DailyFromActualActualAmount}"/>
+                            <Label Text="{Binding DailyFromActualPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>
                     <StackLayout Grid.Column="1" 
@@ -75,8 +75,8 @@
                         <Label Text="From initial" />
                         <ProgressBar Progress="{Binding DailyFromInitialRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding Profile.Expenses.DailyFromInitialBalance.ActualAmount}"/>
-                            <Label Text="{Binding Profile.Expenses.DailyFromInitialBalance.PlannedAmount}" />
+                            <Label Text="{Binding DailyFromInitialActualAmount}"/>
+                            <Label Text="{Binding DailyFromInitialPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>
                 </Grid>
@@ -92,8 +92,8 @@
                         <Label Text="Main spendings" />
                         <ProgressBar Progress="{Binding MainExpensesRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding Profile.Expenses.Main.ActualAmount}" />
-                            <Label Text="{Binding Profile.Expenses.Main.PlannedAmount}" />
+                            <Label Text="{Binding MainActualAmount}" />
+                            <Label Text="{Binding MainPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>
                     <Grid>
@@ -112,8 +112,8 @@
                         <Label Text="Secondary spendings" />
                         <ProgressBar Progress="{Binding SecondaryExpensesRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding Profile.Expenses.Secondary.ActualAmount}"/>
-                            <Label Text="{Binding Profile.Expenses.Secondary.PlannedAmount}" />
+                            <Label Text="{Binding SecondaryActualAmount}"/>
+                            <Label Text="{Binding SecondaryPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>
                     <Grid>
@@ -132,8 +132,8 @@
                         <Label Text="Saved" />
                         <ProgressBar Progress="{Binding SavedRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding Profile.Expenses.Saved.ActualAmount}"/>
-                            <Label Text="{Binding Profile.Expenses.Saved.PlannedAmount}" />
+                            <Label Text="{Binding SavedActualAmount}"/>
+                            <Label Text="{Binding SavedPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>
                 </StackLayout>

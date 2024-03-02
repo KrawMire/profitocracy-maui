@@ -8,13 +8,12 @@ public partial class HomePage : ContentPage
 	
 	public HomePage(HomePageViewModel viewModel)
 	{
-		InitializeComponent();
-		
 		ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 		BindingContext = ViewModel;
+		InitializeComponent();
 	}
 
-	private void HomePage_OnAppear(object? sender, EventArgs e)
+	private void HomePage_OnNavigated(object? sender, EventArgs e)
 	{
 		ViewModel.Initialize();
 	}

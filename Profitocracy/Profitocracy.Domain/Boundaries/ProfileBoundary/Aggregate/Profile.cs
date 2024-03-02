@@ -38,10 +38,8 @@ public class Profile : AggregateRoot<Guid>
 		{
 			startDate.Timestamp = new DateTime(currentDate.Year, currentDate.Month, 1);
 		}
-		else
-		{
-			StartDate = startDate;
-		}
+		
+		StartDate = startDate;
 	}
 	
 	/// <summary>

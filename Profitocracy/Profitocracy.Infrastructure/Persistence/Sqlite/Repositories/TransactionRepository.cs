@@ -20,6 +20,7 @@ public class TransactionRepository(
 		var transactions = await _dbConnection.Database
 			.Table<TransactionModel>()
 			.Where(t => t.ProfileId.Equals(profileId))
+			.OrderByDescending(t => t.Timestamp)
 			.ToListAsync();
 
 		if (transactions is null)

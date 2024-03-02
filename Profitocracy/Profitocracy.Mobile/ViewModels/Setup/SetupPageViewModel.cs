@@ -3,11 +3,10 @@ using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
 using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Profile;
-using Profitocracy.Mobile.ViewModels.Common;
 
 namespace Profitocracy.Mobile.ViewModels.Setup;
 
-public class SetupPageViewModel : ViewModelBase
+public class SetupPageViewModel : BaseNotifyObject
 {
     private string _name = "";
     private decimal _initialBalance;

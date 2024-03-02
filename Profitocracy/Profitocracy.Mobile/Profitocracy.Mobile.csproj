@@ -119,7 +119,6 @@
 
     <ItemGroup>
       <Folder Include="Models\Category\" />
-      <Folder Include="Models\Transaction\" />
     </ItemGroup>
 
 </Project>

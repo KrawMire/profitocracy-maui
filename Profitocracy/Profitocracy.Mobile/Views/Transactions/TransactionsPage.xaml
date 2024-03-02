@@ -2,8 +2,10 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transaction"
              x:Class="Profitocracy.Mobile.Views.Pages.Transactions.TransactionsPage"
              Title="Transactions"
+             NavigatedTo="TransactionsPage_OnNavigatedTo"
              Loaded="TransactionsPage_OnLoaded">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="AddTransactionButton" 
@@ -11,22 +13,22 @@
                      Clicked="AddTransactionButton_OnClicked" />
     </ContentPage.ToolbarItems>
     <ScrollView>
-        <CollectionView x:Name="TransactionsListView">
+        <CollectionView x:Name="TransactionsCollectionView">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="transactions:TransactionModel">
                     <StackLayout Padding="10">
                         <FlexLayout JustifyContent="SpaceBetween">
                             <StackLayout>
                                 <HorizontalStackLayout>
+                                    <Label Text="{Binding DisplayAmount}"/>
                                     <Label Text="$"/>
-                                    <Label Text="700"/>
                                 </HorizontalStackLayout>
-                                <Label Text="Secondary expenses"/>
+                                <Label Text="{Binding DisplaySpendingType}"/>
                                 <Label Style="{StaticResource SecondaryText}"
-                                       Text="Secondary expenses"/>
+                                       Text="{Binding Description}"/>
                             </StackLayout>
                             <Label Style="{StaticResource SecondaryText}"
-                                   Text="10:14"/>
+                                   Text="{Binding Timestamp}"/>
                         </FlexLayout>
                     </StackLayout>
                 </DataTemplate>
