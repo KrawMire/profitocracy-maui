@@ -23,7 +23,7 @@ public class TransactionModel
     {
         get
         {
-            if (SpendingType == 0)
+            if (Type == 0)
             {
                 return $"+{Amount}";
             }
