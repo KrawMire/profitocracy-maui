@@ -29,13 +29,17 @@ public class ProfileService : IProfileService
 		{
 			return null;
 		}
-
+		
 		var transactions = await _transactionRepository.GetAllByProfileId(profile.Id);
+		profile.HandleTransactions(transactions);
 
-		foreach (var transaction in transactions)
+		if (!profile.NeedUpdate)
 		{
-			profile.HandleTransaction(transaction);
+			return profile;
 		}
+		
+		profile = await _profileRepository.Update(profile);
+		profile.HandleTransactions(transactions);
 
 		return profile;
 	}

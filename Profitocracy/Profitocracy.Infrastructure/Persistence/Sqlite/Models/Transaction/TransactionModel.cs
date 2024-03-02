@@ -9,7 +9,7 @@ public class TransactionModel
 	public decimal Amount { get; set; }
 	public Guid ProfileId { get; set; }
 	public short Type { get; set; }
-	public short SpendingType { get; set; }
+	public short? SpendingType { get; set; }
 	public DateTime Timestamp { get; set; }
 	public string? Description { get; set; }
 	public double? GeoTagLongitude { get; set; }

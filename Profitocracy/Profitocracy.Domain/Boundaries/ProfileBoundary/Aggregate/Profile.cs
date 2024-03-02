@@ -17,30 +17,68 @@ public class Profile : AggregateRoot<Guid>
 		Guid id,
 		string name,
 		AnchorDate startDate,
-		decimal balance,
 		decimal savedBalance,
 		List<ProfileCategory> categoriesBalances,
 		ProfileSettings settings,
-		ProfileExpenses expenses,
 		bool isCurrent) : base(id)
 	{
 		Name = name;
-		Balance = balance;
+		StartDate = startDate;
+		Balance = StartDate.InitialBalance;
 		SavedBalance = savedBalance;
 		CategoriesBalances = categoriesBalances;
 		Settings = settings;
 		IsCurrent = isCurrent;
-		Expenses = expenses;
+		Expenses = new ProfileExpenses
+		{
+			DailyFromActualBalance = new ProfileExpense
+			{
+				ActualAmount = 0,
+				PlannedAmount = 0
+			},
+			DailyFromInitialBalance = new ProfileExpense
+			{
+				ActualAmount = 0,
+				PlannedAmount = 0
+			},
+			Main = new ProfileExpense
+			{
+				ActualAmount = 0,
+				PlannedAmount = 0
+			},
+			Secondary = new ProfileExpense
+			{
+				ActualAmount = 0,
+				PlannedAmount = 0
+			},
+			Saved = new ProfileExpense
+			{
+				ActualAmount = 0,
+				PlannedAmount = 0
+			},
+			TotalBalance = new ProfileExpense
+			{
+				ActualAmount = 0,
+				PlannedAmount = 0
+			}
+		};
 		
 		var currentDate = DateTime.Now;
 
-		if (startDate.Timestamp.Month != currentDate.Month)
+		BillingPeriod = new TimePeriod
 		{
-			startDate.Timestamp = new DateTime(currentDate.Year, currentDate.Month, 1);
-		}
-		
-		StartDate = startDate;
+			DateFrom = new DateTime(currentDate.Year, currentDate.Month, 1),
+			DateTo = new DateTime(
+				currentDate.Year,
+				currentDate.Month,
+				DateTime.DaysInMonth(currentDate.Year, currentDate.Month))
+		};
 	}
+
+	/// <summary>
+	/// Does profile need to be updated and saved
+	/// </summary>
+	public bool NeedUpdate { get; private set; }
 	
 	/// <summary>
 	/// Name of profile
@@ -48,9 +86,14 @@ public class Profile : AggregateRoot<Guid>
 	public string Name { get; set; }
 	
 	/// <summary>
-	/// Anchor date of start of financial period (1 month)
+	/// Initial balance from date when profile was created
 	/// </summary>
 	public AnchorDate StartDate { get; set; }
+	
+	/// <summary>
+	/// Start and end dates of billing period
+	/// </summary>
+	public TimePeriod BillingPeriod { get; set; }
 	
 	/// <summary>
 	/// Current balance
@@ -86,6 +129,34 @@ public class Profile : AggregateRoot<Guid>
 	/// Process transaction and
 	/// project results in profile
 	/// </summary>
+	/// <param name="transactions">Transactions to handle</param>
+	public void HandleTransactions(List<Transaction> transactions)
+	{
+		foreach (var transaction in transactions)
+		{
+			HandleTransaction(transaction);
+		}
+
+		var currentDate = DateTime.Now;
+		
+		if (StartDate.Timestamp.Month != currentDate.Month)
+		{
+			StartDate = new AnchorDate
+			{
+				InitialBalance = Balance, 
+				Timestamp = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day)
+			};
+			
+			NeedUpdate = true;
+		}
+		
+		RecalculateExpenses();
+	}
+	
+	/// <summary>
+	/// Process transaction and
+	/// project results in profile
+	/// </summary>
 	/// <param name="transaction">Transaction to handle</param>
 	public void HandleTransaction(Transaction transaction)
 	{
@@ -98,6 +169,24 @@ public class Profile : AggregateRoot<Guid>
 			HandleExpenseTransaction(transaction);
 		}
 	}
+	
+	/// <summary>
+	/// Recalculate expenses
+	/// </summary>
+	private void RecalculateExpenses()
+	{
+		var daysInPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day;
+		daysInPeriod = daysInPeriod == 0 ? 1 : daysInPeriod;
+
+		Expenses.TotalBalance.PlannedAmount = StartDate.InitialBalance;
+		Expenses.DailyFromActualBalance.PlannedAmount = Balance / daysInPeriod;
+		Expenses.DailyFromInitialBalance.PlannedAmount = StartDate.InitialBalance / daysInPeriod;
+		Expenses.Main.PlannedAmount = StartDate.InitialBalance * 0.5m;
+		Expenses.Secondary.PlannedAmount = StartDate.InitialBalance * 0.3m;
+		Expenses.Saved.PlannedAmount = StartDate.InitialBalance * 0.2m;
+	}
+	
+	
 	
 	private void HandleIncomeTransaction(Transaction transaction)
 	{
@@ -114,6 +203,8 @@ public class Profile : AggregateRoot<Guid>
 			Expenses.DailyFromInitialBalance.ActualAmount += transaction.Amount;
 			Expenses.DailyFromActualBalance.ActualAmount += transaction.Amount;
 		}
+
+		Expenses.TotalBalance.ActualAmount += transaction.Amount;
 		
 		switch (transaction.SpendingType)
 		{

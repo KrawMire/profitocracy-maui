@@ -333,8 +333,8 @@ public class HomePageViewModel : BaseNotifyObject
         }
 
         TotalSavedAmount = profile.SavedBalance;
-        DateFrom = profile.StartDate.ToString("dd.MM.yyyy");
-        DateTo = DateTime.Now.ToString("dd.MM.yyyy");
+        DateFrom = profile.BillingDateFrom.ToString("dd.MM.yyyy");
+        DateTo = profile.BillingDateTo.ToString("dd.MM.yyyy");
         
         InitializeExpenses(profile.Expenses);
     }

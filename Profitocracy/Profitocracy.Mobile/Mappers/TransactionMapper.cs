@@ -15,7 +15,7 @@ public class TransactionMapper : IPresentationMapper<Transaction, TransactionMod
 			model.Amount,
 			model.ProfileId,
 			(TransactionType)model.Type,
-			(SpendingType)model.SpendingType,
+			model.SpendingType is null or -1 ? null : (SpendingType)model.SpendingType,
 			model.Timestamp,
 			model.Description,
 			null,
@@ -30,7 +30,7 @@ public class TransactionMapper : IPresentationMapper<Transaction, TransactionMod
 			Amount = entity.Amount,
 			ProfileId = entity.ProfileId,
 			Type = (int)entity.Type,
-			SpendingType = (int)entity.SpendingType,
+			SpendingType = entity.SpendingType is null ? null : (int)entity.SpendingType,
 			Description = entity.Description,
 			Timestamp = entity.Timestamp,
 		};

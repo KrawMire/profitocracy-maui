@@ -4,10 +4,10 @@ public class ProfileModel
 {
     public Guid? Id { get; set; }
     public required string Name { get; set; }
-    
     public required DateTime StartDate { get; set; }
     public required decimal InitialBalance { get; set; }
-    
+    public DateTime BillingDateFrom { get; set; }
+    public DateTime BillingDateTo { get; set; }
     public decimal Balance { get; set; }
     public decimal SavedBalance { get; set; }
     

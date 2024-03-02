@@ -48,6 +48,8 @@ public class ProfileMapper : IPresentationMapper<Profile, ProfileModel>
         {
             Id = entity.Id,
             Name = entity.Name,
+            BillingDateFrom = entity.BillingPeriod.DateFrom,
+            BillingDateTo = entity.BillingPeriod.DateTo,
             StartDate = entity.StartDate.Timestamp,
             InitialBalance = entity.StartDate.InitialBalance,
             Balance = entity.Balance,

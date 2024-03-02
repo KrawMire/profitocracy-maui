@@ -47,20 +47,20 @@ public class AddTransactionPageViewModel : BaseNotifyObject
 
     public readonly string[] TransactionTypes =
     [
-        "Expense",
-        "Income"
+        "Income",
+        "Expense"
     ];
 
     public string SpendingType
     {
         get
         {
-            if (_model.SpendingType < 0)
+            if (_model.SpendingType is null || _model.SpendingType < 0)
             {
                 return "Select type";
             }
             
-            return SpendingTypes[_model.SpendingType];
+            return SpendingTypes[(int)_model.SpendingType];
         }
         set
         {

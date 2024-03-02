@@ -4,43 +4,40 @@ using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate.ValueObjects;
 
 namespace Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
 
-public class Transaction(Guid id) : AggregateRoot<Guid>(id)
+public class Transaction : AggregateRoot<Guid>
 {
-	private TransactionType _type;
-	private SpendingType _spendingType;
-	public required decimal Amount { get; set; }
-	public required Guid ProfileId { get; set; }
-
-	public required TransactionType Type
+	public Transaction(
+		Guid id,
+		decimal amount,
+		Guid profileId,
+		TransactionType type,
+		SpendingType? spendingType,
+		DateTime timestamp,
+		string? description,
+		TransactionGeoTag? geoTag,
+		TransactionCategory? category): base(id)
 	{
-		get => _type;
+		Amount = amount;
+		ProfileId = profileId;
+		Timestamp = timestamp;
+		Description = description;
+		GeoTag = geoTag;
+		Category = category;
 
-		set
+		if (type == TransactionType.Expense && spendingType is null)
 		{
-			if (!Enum.IsDefined(typeof(TransactionType), value))
-			{
-				throw new Exception("Invalid value for transaction type");
-			}
-			
-			_type = value;
+			throw new Exception("If transaction is expense then spendingType should be specified");
 		}
-	}
 
-	public required SpendingType SpendingType
-	{
-		get => _spendingType;
-		set
-		{
-			if (!Enum.IsDefined(typeof(SpendingType), value))
-			{
-				throw new Exception("Invalid value for spending type");
-			}
-			
-			_spendingType = value;
-		}
+		Type = type;
+		SpendingType = spendingType;
 	}
-
-	public required DateTime Timestamp { get; set; }
+	
+	public decimal Amount { get; set; }
+	public Guid ProfileId { get; set; }
+	public TransactionType Type { get; set; }
+	public SpendingType? SpendingType { get; set; }
+	public DateTime Timestamp { get; set; }
 	public string? Description { get; set; }
 	public TransactionGeoTag? GeoTag { get; set; }
 	public TransactionCategory? Category { get; set; }

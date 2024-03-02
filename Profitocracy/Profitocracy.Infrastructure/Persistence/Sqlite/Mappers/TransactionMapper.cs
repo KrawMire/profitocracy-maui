@@ -30,13 +30,13 @@ public class TransactionMapper : IInfrastructureMapper<Transaction, TransactionM
 				Name = model.CategoryName
 			};
 		}
-
+		
 		return TransactionFactory.CreateTransaction(
 			model.Id,
 			model.Amount,
 			model.ProfileId,
 			(TransactionType)model.Type,
-			(SpendingType)model.SpendingType,
+			model.SpendingType is null ? null : (SpendingType)model.SpendingType,
 			model.Timestamp,
 			model.Description,
 			geoTag,
@@ -51,7 +51,7 @@ public class TransactionMapper : IInfrastructureMapper<Transaction, TransactionM
 			Amount = entity.Amount,
 			ProfileId = entity.ProfileId,
 			Type = (short)entity.Type,
-			SpendingType = (short)entity.SpendingType,
+			SpendingType = entity.SpendingType is null ? null : (short)entity.SpendingType,
 			Timestamp = entity.Timestamp,
 			Description = entity.Description,
 			GeoTagLatitude = entity.GeoTag?.Latitude,

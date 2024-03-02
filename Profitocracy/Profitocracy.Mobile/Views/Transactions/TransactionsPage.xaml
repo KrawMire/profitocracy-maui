@@ -28,7 +28,7 @@
                                        Text="{Binding Description}"/>
                             </StackLayout>
                             <Label Style="{StaticResource SecondaryText}"
-                                   Text="{Binding Timestamp}"/>
+                                   Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
                         </FlexLayout>
                     </StackLayout>
                 </DataTemplate>

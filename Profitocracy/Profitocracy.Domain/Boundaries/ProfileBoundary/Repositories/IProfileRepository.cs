@@ -5,5 +5,6 @@ namespace Profitocracy.Domain.Boundaries.ProfileBoundary.Repositories;
 public interface IProfileRepository
 {
 	Task<Profile> Create(Profile profile);
+	Task<Profile> Update(Profile profile);
 	Task<Profile?> GetCurrentProfile();
 }

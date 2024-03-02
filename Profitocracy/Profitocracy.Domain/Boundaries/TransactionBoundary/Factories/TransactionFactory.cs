@@ -11,25 +11,23 @@ public class TransactionFactory
 		decimal amount,
 		Guid profileId,
 		TransactionType type,
-		SpendingType spendingType,
+		SpendingType? spendingType,
 		DateTime timestamp,
 		string? description,
 		TransactionGeoTag? geoTag,
 		TransactionCategory? category)
 	{
-		description = string.IsNullOrWhiteSpace(description) ? null : description;
 		id ??= Guid.NewGuid();
 
-		return new Transaction((Guid)id)
-		{
-			Amount = amount,
-			ProfileId = profileId,
-			Type = type,
-			SpendingType = spendingType,
-			Timestamp = timestamp,
-			Description = description,
-			GeoTag = geoTag,
-			Category = category
-		};
+		return new Transaction(
+			(Guid)id,
+			amount,
+			profileId,
+			type,
+			spendingType,
+			timestamp,
+			description,
+			geoTag,
+			category);
 	} 
 }

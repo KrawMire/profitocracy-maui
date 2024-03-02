@@ -88,60 +88,13 @@ public class ProfileBuilder(Guid? profileId = null)
 			AddCurrency("USD", "US Dollar", "$");
 		}
 
-		var expenses = CreateProfileExpenses();
-
 		return new Profile(
 			_id,
 			_name,
 			(AnchorDate)_startDate!,
-			_balance,
 			_savedBalance,
 			_categories,
 			(ProfileSettings)_settings!,
-			expenses,
 			_isCurrent);
-	}
-
-	private ProfileExpenses CreateProfileExpenses()
-	{
-		var currentDate = DateTime.Now;
-		var startDate = (AnchorDate)_startDate!;
-
-		var daysInPeriod = currentDate.Day - startDate.Timestamp.Day;
-		daysInPeriod = daysInPeriod == 0 ? 1 : daysInPeriod;
-
-		return new ProfileExpenses
-		{
-			DailyFromActualBalance = new ProfileExpense
-			{
-				ActualAmount = 0,
-				PlannedAmount = _balance / daysInPeriod
-			},
-			DailyFromInitialBalance = new ProfileExpense
-			{
-				ActualAmount = 0,
-				PlannedAmount = startDate.InitialBalance / daysInPeriod
-			},
-			Main = new ProfileExpense
-			{
-				ActualAmount = 0,
-				PlannedAmount = startDate.InitialBalance * 0.5m
-			},
-			Secondary = new ProfileExpense
-			{
-				ActualAmount = 0,
-				PlannedAmount = startDate.InitialBalance * 0.3m
-			},
-			Saved = new ProfileExpense
-			{
-				ActualAmount = 0,
-				PlannedAmount = startDate.InitialBalance * 0.2m
-			},
-			TotalBalance = new ProfileExpense
-			{
-				ActualAmount = 0,
-				PlannedAmount = startDate.InitialBalance
-			}
-		};
 	}
 }
