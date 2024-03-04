@@ -27,7 +27,8 @@
                                            Invoked="SwipeItem_OnInvoked"/>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <StackLayout Padding="10">
+                        <StackLayout Padding="10"
+                                     BackgroundColor="White">
                             <FlexLayout JustifyContent="SpaceBetween">
                                 <StackLayout>
                                     <HorizontalStackLayout>

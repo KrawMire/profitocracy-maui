@@ -17,13 +17,15 @@
             <StackLayout>
                 <Label>Transaction type</Label>
                 <Picker x:Name="TransactionTypePicker"
-                        SelectedItem="{Binding TransactionType, Mode=TwoWay}"
-                        Title="{Binding TransactionType}"/>
+                        SelectedIndex="{Binding TransactionTypeIndex, Mode=TwoWay}"
+                        Title="{Binding TransactionType, Mode=TwoWay}"/>
                 
-                <Label>Spending type</Label>
-                <Picker x:Name="SpendingTypePicker"
-                        SelectedItem="{Binding SpendingType, Mode=TwoWay}"
-                        Title="{Binding SpendingType}"/>
+                <StackLayout IsVisible="{Binding IsSpendingTypeVisible}">
+                    <Label>Spending type</Label>
+                    <Picker x:Name="SpendingTypePicker"
+                            SelectedIndex="{Binding SpendingTypeIndex, Mode=TwoWay}"
+                            Title="{Binding SpendingType, Mode=TwoWay}"/>
+                </StackLayout>
                 
                 <Label>Amount</Label>
                 <Entry Keyboard="Numeric"

@@ -16,6 +16,9 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     private readonly ITransactionService _transactionService;
 
     private TransactionModel _model;
+    private bool _isSpendingTypeVisible = false;
+    private string _transactionType;
+    private string _spendingType;
         
         
     public AddTransactionPageViewModel(
@@ -32,7 +35,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
             Amount = Zero,
             ProfileId = Guid.Empty,
             Type = 0,
-            SpendingType = 0,
+            SpendingType = -1,
             Timestamp = DateTime.Now,
             Description = null
         };
@@ -51,38 +54,61 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         "Expense"
     ];
 
-    public string SpendingType
+    public int TransactionTypeIndex
     {
-        get
-        {
-            if (_model.SpendingType is null || _model.SpendingType < 0)
-            {
-                return "Select type";
-            }
-            
-            return SpendingTypes[(int)_model.SpendingType];
-        }
+        get => _model.Type;
         set
         {
-            _model.SpendingType = Array.FindIndex(SpendingTypes, type => type == value);
+            _model.Type = value;
+            TransactionType = TransactionTypes[_model.Type];
+            IsSpendingTypeVisible = _model.Type != 0;
+            OnPropertyChanged();
+        }
+    }
+    
+    public string TransactionType
+    {
+        get => _transactionType;
+        private set
+        {
+            _transactionType = value;
             OnPropertyChanged();
         }
     }
 
-    public string TransactionType
+    public bool IsSpendingTypeVisible
     {
-        get
+        get => _isSpendingTypeVisible;
+        private set
         {
-            if (_model.Type < 0)
-            {
-                return "Select type";
-            }
-            
-            return TransactionTypes[_model.Type];
+            _isSpendingTypeVisible = value;
+            OnPropertyChanged();
         }
+    }
+    
+    public int SpendingTypeIndex
+    {
+        get => _model.SpendingType ?? -1;
         set
         {
-            _model.Type = Array.FindIndex(TransactionTypes, type => type == value);
+            if (value == -1)
+            {
+                _model.SpendingType = null;
+            }
+
+            _model.SpendingType = value;
+            SpendingType = SpendingTypes[(int)_model.SpendingType];
+            
+            OnPropertyChanged();
+        }
+    }
+    
+    public string SpendingType
+    {
+        get => _spendingType;
+        private set
+        {
+            _spendingType = value;
             OnPropertyChanged();
         }
     }
@@ -119,6 +145,15 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     
     public async Task CreateTransaction()
     {
+        if (_model.Type < 0)
+        {
+            Shell.Current?.DisplayAlert(
+                "Error", 
+                "Invalid transaction type", 
+                "OK");
+            return;
+        }
+        
         var currentProfile = await _profileService.GetCurrentProfile();
 
         if (currentProfile is null)

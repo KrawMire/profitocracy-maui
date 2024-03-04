@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:currencyRates="clr-namespace:Profitocracy.Mobile.Views.Pages.CurrencyRates"
        xmlns:home="clr-namespace:Profitocracy.Mobile.Views.Pages.Home"
        xmlns:settings="clr-namespace:Profitocracy.Mobile.Views.Pages.Settings"
        xmlns:transactions="clr-namespace:Profitocracy.Mobile.Views.Pages.Transactions"
@@ -10,9 +9,6 @@
     <TabBar>
         <Tab Title="Home" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate home:HomePage}"/>
-        </Tab>
-        <Tab Title="Currencies" Icon="currencies.png">
-            <ShellContent ContentTemplate="{DataTemplate currencyRates:CurrencyRatesPage}"/>
         </Tab>
         <Tab Title="Transactions" Icon="transactions.png">
             <ShellContent ContentTemplate="{DataTemplate transactions:TransactionsPage}"/>

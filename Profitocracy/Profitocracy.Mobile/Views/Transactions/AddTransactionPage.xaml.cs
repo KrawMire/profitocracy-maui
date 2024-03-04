@@ -8,9 +8,10 @@ public partial class AddTransactionPage : ContentPage
 	
 	public AddTransactionPage(AddTransactionPageViewModel viewModel)
 	{
-		InitializeComponent();
 		ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 		BindingContext = ViewModel;
+	
+		InitializeComponent();
 		
 		TransactionTypePicker.ItemsSource = ViewModel.TransactionTypes.ToList();
 		SpendingTypePicker.ItemsSource = ViewModel.SpendingTypes.ToList();
