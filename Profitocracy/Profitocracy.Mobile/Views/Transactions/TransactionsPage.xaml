@@ -16,21 +16,33 @@
         <CollectionView x:Name="TransactionsCollectionView">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="transactions:TransactionModel">
-                    <StackLayout Padding="10">
-                        <FlexLayout JustifyContent="SpaceBetween">
-                            <StackLayout>
-                                <HorizontalStackLayout>
-                                    <Label Text="{Binding DisplayAmount}"/>
-                                    <Label Text="$"/>
-                                </HorizontalStackLayout>
-                                <Label Text="{Binding DisplaySpendingType}"/>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            
+                        </SwipeView.LeftItems>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="Tomato"
+                                           Invoked="SwipeItem_OnInvoked"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <StackLayout Padding="10">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <StackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="{Binding DisplayAmount}"/>
+                                        <Label Text="$"/>
+                                    </HorizontalStackLayout>
+                                    <Label Text="{Binding DisplaySpendingType}"/>
+                                    <Label Style="{StaticResource SecondaryText}"
+                                           Text="{Binding Description}"/>
+                                </StackLayout>
                                 <Label Style="{StaticResource SecondaryText}"
-                                       Text="{Binding Description}"/>
-                            </StackLayout>
-                            <Label Style="{StaticResource SecondaryText}"
-                                   Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
-                        </FlexLayout>
-                    </StackLayout>
+                                       Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
+                            </FlexLayout>
+                        </StackLayout>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -44,4 +44,11 @@ public class TransactionPageViewModel : BaseNotifyObject
             Transactions.Add(_mapper.MapToModel(transaction));
         }
     }
+
+    public async void DeleteTransaction(Guid transactionId)
+    {
+        var deletedId = await _transactionService.Delete(transactionId);
+
+        Transactions.Remove(Transactions.Single(t => t.Id == deletedId));
+    }
 }

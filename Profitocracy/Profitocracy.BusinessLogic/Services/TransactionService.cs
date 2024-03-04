@@ -22,4 +22,9 @@ public class TransactionService : ITransactionService
 	{
 		return _transactionRepository.Create(transaction);
 	}
+
+	public Task<Guid> Delete(Guid transactionId)
+	{
+		return _transactionRepository.Delete(transactionId);
+	}
 }

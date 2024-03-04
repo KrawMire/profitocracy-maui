@@ -10,6 +10,7 @@ public class HomePageViewModel : BaseNotifyObject
 {
     private ProfileModel? _profile;
 
+    private decimal _balance;
     private decimal _totalActualAmount;
     private decimal _totalPlannedAmount;
     private decimal _totalSavedAmount;
@@ -37,6 +38,19 @@ public class HomePageViewModel : BaseNotifyObject
     private readonly IProfileService _profileService;
     private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
 
+    public decimal Balance
+    {
+        get => _balance;
+        set
+        {
+            if (value != _balance)
+            {
+                _balance = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    
     public decimal TotalActualAmount
     {
         get => _totalActualAmount;
@@ -332,6 +346,7 @@ public class HomePageViewModel : BaseNotifyObject
             return;
         }
 
+        Balance = NumberUtils.RoundDecimal(profile.Balance);
         TotalSavedAmount = profile.SavedBalance;
         DateFrom = profile.BillingDateFrom.ToString("dd.MM.yyyy");
         DateTo = profile.BillingDateTo.ToString("dd.MM.yyyy");

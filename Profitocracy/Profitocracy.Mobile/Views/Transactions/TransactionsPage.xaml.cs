@@ -1,3 +1,4 @@
+using Profitocracy.Mobile.Models.Transaction;
 using Profitocracy.Mobile.ViewModels.Transactions;
 using Profitocracy.Mobile.Views.Transactions;
 
@@ -41,5 +42,26 @@ public partial class TransactionsPage : ContentPage
 		}
 		
 		await Navigation.PushModalAsync(addPage);
+	}
+
+	private async void SwipeItem_OnInvoked(object? sender, EventArgs e)
+	{
+		var swipeItem = sender as SwipeItem;
+
+		if (swipeItem is null)
+		{
+			await DisplayAlert("Error", "Internal error. Try again", "OK");
+			return;
+		}
+
+		var transaction = swipeItem.BindingContext as TransactionModel;
+
+		if (transaction?.Id is null)
+		{
+			await DisplayAlert("Error", "Cannot find transaction to delete", "OK");
+			return;
+		}
+		
+		ViewModel.DeleteTransaction((Guid)transaction.Id);
 	}
 }

@@ -49,4 +49,15 @@ public class TransactionRepository(
 		
 		return _mapper.MapToDomain(createdTransaction);
 	}
+
+	public async Task<Guid> Delete(Guid transactionId)
+	{
+		await _dbConnection.Init();
+
+		_ = await _dbConnection.Database
+			.Table<TransactionModel>()
+			.DeleteAsync(t => t.Id == transactionId);
+
+		return transactionId;
+	}
 }

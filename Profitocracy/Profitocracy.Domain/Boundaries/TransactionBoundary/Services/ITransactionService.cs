@@ -6,4 +6,5 @@ public interface ITransactionService
 {
 	Task<List<Transaction>> GetAllByProfileId(Guid profileId);
 	Task<Transaction> Create(Transaction transaction);
+	Task<Guid> Delete(Guid transactionId);
 }

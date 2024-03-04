@@ -25,6 +25,7 @@
                         <ProgressBar Progress="{Binding TotalBalanceRatio}" Margin="0, 10"/>
                         <FlexLayout JustifyContent="SpaceBetween">
                             <Label Text="{Binding TotalActualAmount}"/>
+                            <Label Text="{Binding Balance}"/>
                             <Label Text="{Binding TotalPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>

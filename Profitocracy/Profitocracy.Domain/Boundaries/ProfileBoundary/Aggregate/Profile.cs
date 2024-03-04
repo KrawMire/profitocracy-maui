@@ -175,15 +175,19 @@ public class Profile : AggregateRoot<Guid>
 	/// </summary>
 	private void RecalculateExpenses()
 	{
-		var daysInPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day;
-		daysInPeriod = daysInPeriod == 0 ? 1 : daysInPeriod;
+		var currentDay = DateTime.Now;
+		var daysInInitialPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day;
+		var daysInActualPeriod = BillingPeriod.DateTo.Day - currentDay.Day;
+		
+		daysInInitialPeriod = daysInInitialPeriod == 0 ? 1 : daysInInitialPeriod;
+		daysInActualPeriod = daysInActualPeriod == 0 ? 1 : daysInActualPeriod;
 
-		Expenses.TotalBalance.PlannedAmount = StartDate.InitialBalance;
-		Expenses.DailyFromActualBalance.PlannedAmount = Balance / daysInPeriod;
-		Expenses.DailyFromInitialBalance.PlannedAmount = StartDate.InitialBalance / daysInPeriod;
-		Expenses.Main.PlannedAmount = StartDate.InitialBalance * 0.5m;
-		Expenses.Secondary.PlannedAmount = StartDate.InitialBalance * 0.3m;
-		Expenses.Saved.PlannedAmount = StartDate.InitialBalance * 0.2m;
+		Expenses.TotalBalance.PlannedAmount += StartDate.InitialBalance;
+		Expenses.DailyFromActualBalance.PlannedAmount = Balance / daysInActualPeriod;
+		Expenses.DailyFromInitialBalance.PlannedAmount = Expenses.TotalBalance.PlannedAmount / daysInInitialPeriod;
+		Expenses.Main.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.5m;
+		Expenses.Secondary.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.3m;
+		Expenses.Saved.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.2m;
 	}
 	
 	
@@ -191,7 +195,7 @@ public class Profile : AggregateRoot<Guid>
 	private void HandleIncomeTransaction(Transaction transaction)
 	{
 		Balance += transaction.Amount;
-		Expenses.TotalBalance.PlannedAmount = Balance;
+		Expenses.TotalBalance.PlannedAmount += transaction.Amount;
 	}
 
 	private void HandleExpenseTransaction(Transaction transaction)
