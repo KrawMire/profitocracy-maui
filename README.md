@@ -11,17 +11,17 @@
 ### iOS
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_home.png" width="100" />
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_transactions_list.png" width="100" /> 
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_add_new_transaction.png" width="100" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_home.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_transactions_list.png" width="200" /> 
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_add_new_transaction.png" width="200" />
 </p>
 
 ### Android
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_home.png" width="100" />
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_transactions_list.png" width="100" /> 
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_add_new_transaction.png" width="100" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_home.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_transactions_list.png" width="200" /> 
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_add_new_transaction.png" width="200" />
 </p>
 
 ## Understanding of the application
