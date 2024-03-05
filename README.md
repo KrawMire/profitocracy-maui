@@ -6,6 +6,24 @@
   Welcome to Profitocracy source code! Profitocracy is a multicurrency finance mobile application which helps people to track their expenses.
 </p>
 
+## Application screenshots
+
+### iOS
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_home.png" width="100" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_transactions_list.png" width="100" /> 
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_add_new_transaction.png" width="100" />
+</p>
+
+### Android
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_home.png" width="100" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_transactions_list.png" width="100" /> 
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_add_new_transaction.png" width="100" />
+</p>
+
 ## Understanding of the application
 
 The root rule of this app is a **50-30-20 rule** which states that your money should be separated into three groups: for main expenses (50%), for secondary expenses (30%) and to postpone (other 20%). For example, if you have $1000, you should spend $500 for house rent, food etc, $300 should be spent to other needs, such as entertainment, clothes which is not necessary at the moment, but you want it. And the other $200 you should postpone for the "bad days" or expensive purchases.
