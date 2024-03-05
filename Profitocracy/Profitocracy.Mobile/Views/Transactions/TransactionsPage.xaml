@@ -7,41 +7,56 @@
              Title="Transactions"
              NavigatedTo="TransactionsPage_OnNavigatedTo"
              Loaded="TransactionsPage_OnLoaded">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="AddTransactionButton" 
-                     Text="+" 
-                     Clicked="AddTransactionButton_OnClicked" />
-    </ContentPage.ToolbarItems>
-    <ScrollView>
-        <CollectionView x:Name="TransactionsCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="transactions:TransactionModel">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Delete"
-                                           BackgroundColor="Tomato"
-                                           Invoked="SwipeItem_OnInvoked"/>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <StackLayout Padding="10"
-                                     BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
-                            <FlexLayout JustifyContent="SpaceBetween">
-                                <StackLayout>
-                                    <HorizontalStackLayout>
-                                        <Label Text="{Binding DisplayAmount}"/>
-                                    </HorizontalStackLayout>
-                                    <Label Text="{Binding DisplaySpendingType}"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <ScrollView Grid.Row="0">
+            <CollectionView x:Name="TransactionsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="transactions:TransactionModel">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                               BackgroundColor="Tomato"
+                                               Invoked="SwipeItem_OnInvoked"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <StackLayout Padding="10"
+                                         BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
+                                <FlexLayout JustifyContent="SpaceBetween">
+                                    <StackLayout>
+                                        <HorizontalStackLayout>
+                                            <Label Text="{Binding DisplayAmount}"/>
+                                        </HorizontalStackLayout>
+                                        <Label Text="{Binding DisplaySpendingType}"/>
+                                        <Label Style="{StaticResource SecondaryText}"
+                                               Text="{Binding Description}"/>
+                                    </StackLayout>
                                     <Label Style="{StaticResource SecondaryText}"
-                                           Text="{Binding Description}"/>
-                                </StackLayout>
-                                <Label Style="{StaticResource SecondaryText}"
-                                       Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
-                            </FlexLayout>
-                        </StackLayout>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </ScrollView>
+                                           Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
+                                </FlexLayout>
+                            </StackLayout>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        
+        <Button Grid.Row="0"
+                Text="+"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                FontAttributes="Bold"
+                BackgroundColor="{StaticResource Primary}"
+                WidthRequest="60"
+                HeightRequest="60"
+                CornerRadius="30"
+                Margin="0,0,20,20"
+                FontSize="25"
+                x:Name="AddTransactionButton" 
+                Clicked="AddTransactionButton_OnClicked"/>
+    </Grid>
 </ContentPage>
