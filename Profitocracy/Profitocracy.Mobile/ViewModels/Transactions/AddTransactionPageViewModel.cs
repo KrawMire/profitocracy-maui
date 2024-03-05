@@ -19,6 +19,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     private bool _isSpendingTypeVisible = false;
     private string _transactionType;
     private string _spendingType;
+    private string _amount = string.Empty;
         
         
     public AddTransactionPageViewModel(
@@ -115,20 +116,10 @@ public class AddTransactionPageViewModel : BaseNotifyObject
 
     public string Amount
     {
-        get => NumberUtils.RoundDecimal(_model.Amount).ToString(CultureInfo.InvariantCulture);
+        get => _amount;
         set
         {
-            if (!TryParse(value, out var val))
-            {
-                Shell.Current.DisplayAlert(
-                    "Invalid format", 
-                    "Amount must be a number", 
-                    "OK");
-                OnPropertyChanged();
-                return;
-            }
-            
-            _model.Amount = val;
+            _amount = value;
             OnPropertyChanged();
         }
     }
@@ -145,40 +136,32 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     
     public async Task CreateTransaction()
     {
+        _amount = _amount
+            .Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
+        
+        if (!TryParse(_amount, out var val))
+        {
+            throw new Exception("Amount must be a number");
+        }
+
+        _model.Amount = val;
+        
         if (_model.Type < 0)
         {
-            Shell.Current?.DisplayAlert(
-                "Error", 
-                "Invalid transaction type", 
-                "OK");
-            return;
+            throw new Exception("Invalid transaction type");
         }
         
         var currentProfile = await _profileService.GetCurrentProfile();
 
         if (currentProfile is null)
         {
-            Shell.Current?.DisplayAlert(
-                "Error", 
-                "Current profile was not found", 
-                "OK");
-            return;
+            throw new Exception("Current profile was not found");
         }
 
         var profileId = currentProfile.Id;
         _model.ProfileId = profileId;
 
-        try
-        {
-            var transaction = _mapper.MapToDomain(_model);
-            await _transactionService.Create(transaction);
-        }
-        catch (Exception ex)
-        {
-            Shell.Current?.DisplayAlert(
-                "Error", 
-                ex.Message, 
-                "OK");
-        }
+        var transaction = _mapper.MapToDomain(_model);
+        await _transactionService.Create(transaction);
     }
 }

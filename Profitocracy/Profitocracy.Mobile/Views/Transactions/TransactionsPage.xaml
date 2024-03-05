@@ -30,7 +30,6 @@
                                 <StackLayout>
                                     <HorizontalStackLayout>
                                         <Label Text="{Binding DisplayAmount}"/>
-                                        <Label Text="$"/>
                                     </HorizontalStackLayout>
                                     <Label Text="{Binding DisplaySpendingType}"/>
                                     <Label Style="{StaticResource SecondaryText}"

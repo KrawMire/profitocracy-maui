@@ -21,7 +21,14 @@ public partial class SetupPage : ContentPage
 	
 	private async void Button_OnClicked(object? sender, EventArgs e)
 	{
-		ViewModel.CreateFirstProfile();
-		await Shell.Current.Navigation.PopAsync();
+		try
+		{
+			ViewModel.CreateFirstProfile();
+			await Navigation.PopModalAsync();
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("Error", ex.Message, "OK");
+		}
 	}
 }

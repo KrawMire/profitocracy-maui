@@ -9,7 +9,7 @@ namespace Profitocracy.Mobile.ViewModels.Setup;
 public class SetupPageViewModel : BaseNotifyObject
 {
     private string _name = "";
-    private decimal _initialBalance;
+    private string _initialBalance;
 
     private readonly IProfileService _profileService;
     private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
@@ -37,42 +37,28 @@ public class SetupPageViewModel : BaseNotifyObject
 
     public string InitialBalance
     {
-        get => _initialBalance.ToString(CultureInfo.InvariantCulture);
+        get => _initialBalance;
         set
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                _initialBalance = 0;
-                OnPropertyChanged();
-                return;
-            }
-
-            if (!decimal.TryParse(value, out var numValue))
-            {
-                Shell.Current.DisplayAlert(
-                    "Invalid format", 
-                    "Balance must be a number", 
-                    "OK");
-                OnPropertyChanged();
-                return;
-            }
-
-            if (numValue == _initialBalance)
-            {
-                return;
-            }
-
-            _initialBalance = numValue;
+            _initialBalance = value;
             OnPropertyChanged();
         }
     }
 
     public async void CreateFirstProfile()
     {
+        _initialBalance = _initialBalance
+            .Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
+        
+        if (!decimal.TryParse(_initialBalance, out var numValue))
+        {
+            throw new Exception("Balance must be a number");
+        }
+        
         var profile = new ProfileModel
         {
             Name = _name,
-            InitialBalance = _initialBalance,
+            InitialBalance = numValue,
             StartDate = DateTime.Now,
             IsCurrent = true
         };

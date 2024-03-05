@@ -24,17 +24,14 @@ public partial class AddTransactionPage : ContentPage
 
 	private async void AddTransactionButton_OnClicked(object? sender, EventArgs e)
 	{
-		await ViewModel.CreateTransaction();
-		await Navigation.PopModalAsync();
-	}
-
-	private string ViewModelToString()
-	{
-		return @$"
-		{ViewModel.TransactionType}
-		{ViewModel.SpendingType}
-		{ViewModel.Amount}
-		{ViewModel.Description}
-		";
+		try
+		{
+			await ViewModel.CreateTransaction();
+			await Navigation.PopModalAsync();
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("Error", ex.Message, "OK");
+		}
 	}
 }
