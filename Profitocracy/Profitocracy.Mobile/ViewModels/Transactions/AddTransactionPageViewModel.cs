@@ -4,8 +4,6 @@ using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
 using Profitocracy.Domain.Boundaries.TransactionBoundary.Services;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Transaction;
-using Profitocracy.Mobile.Utils;
-using static System.Decimal;
 
 namespace Profitocracy.Mobile.ViewModels.Transactions;
 
@@ -33,7 +31,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
 
         _model = new TransactionModel
         {
-            Amount = Zero,
+            Amount = decimal.Zero,
             ProfileId = Guid.Empty,
             Type = 0,
             SpendingType = -1,
@@ -139,7 +137,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         _amount = _amount
             .Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
         
-        if (!TryParse(_amount, out var val))
+        if (!decimal.TryParse(_amount, out var val))
         {
             throw new Exception("Amount must be a number");
         }
@@ -151,15 +149,14 @@ public class AddTransactionPageViewModel : BaseNotifyObject
             throw new Exception("Invalid transaction type");
         }
         
-        var currentProfile = await _profileService.GetCurrentProfile();
+        var currentProfileId = await _profileService.GetCurrentProfileId();
 
-        if (currentProfile is null)
+        if (currentProfileId is null)
         {
             throw new Exception("Current profile was not found");
         }
 
-        var profileId = currentProfile.Id;
-        _model.ProfileId = profileId;
+        _model.ProfileId = (Guid)currentProfileId;
 
         var transaction = _mapper.MapToDomain(_model);
         await _transactionService.Create(transaction);

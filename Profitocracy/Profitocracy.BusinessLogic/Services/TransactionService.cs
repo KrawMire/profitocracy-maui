@@ -18,6 +18,11 @@ public class TransactionService : ITransactionService
 		return _transactionRepository.GetAllByProfileId(profileId);
 	}
 
+	public Task<List<Transaction>> GetForPeriod(Guid profileId, DateTime dateFrom, DateTime dateTo)
+	{
+		return _transactionRepository.GetForPeriod(profileId, dateFrom, dateTo);
+	}
+
 	public Task<Transaction> Create(Transaction transaction)
 	{
 		return _transactionRepository.Create(transaction);

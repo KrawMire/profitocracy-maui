@@ -21,7 +21,7 @@ public partial class AppShell : Shell
 	{
 		try
 		{
-			var profile = await _profileService.GetCurrentProfile();
+			var profile = await _profileService.GetCurrentProfileId();
 			
 			if (profile is null)
 			{

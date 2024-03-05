@@ -49,6 +49,23 @@ public class ProfileRepository : IProfileRepository
 		return _mapper.MapToDomain(updatedProfile);
 	}
 
+	public async Task<Guid?> GetCurrentProfileId()
+	{
+		await _dbConnection.Init();
+
+		var profile = await _dbConnection.Database
+			.Table<ProfileModel>()
+			.Where(p => p.IsCurrent)
+			.FirstOrDefaultAsync();
+
+		if (profile is null)
+		{
+			return null;
+		}
+
+		return profile.Id;
+	}
+
 	public async Task<Profile?> GetCurrentProfile()
 	{
 		await _dbConnection.Init();

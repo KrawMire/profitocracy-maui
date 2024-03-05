@@ -21,6 +21,11 @@ public class ProfileService : IProfileService
 		return _profileRepository.Create(profile);
 	}
 
+	public Task<Guid?> GetCurrentProfileId()
+	{
+		return _profileRepository.GetCurrentProfileId();
+	}
+
 	public async Task<Profile?> GetCurrentProfile()
 	{
 		var profile = await _profileRepository.GetCurrentProfile();

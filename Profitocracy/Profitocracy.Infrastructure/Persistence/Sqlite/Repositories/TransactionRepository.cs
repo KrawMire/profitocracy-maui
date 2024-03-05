@@ -35,6 +35,27 @@ public class TransactionRepository(
 		return domainTransactions;
 	}
 
+	public async Task<List<Transaction>> GetForPeriod(Guid profileId, DateTime dateFrom, DateTime dateTo)
+	{
+		await _dbConnection.Init();
+
+		var transactions = await _dbConnection.Database
+			.Table<TransactionModel>()
+			.Where(t => t.ProfileId == profileId)
+			.Where(t => t.Timestamp >= dateFrom)
+			.Where(t => t.Timestamp <= dateTo)
+			.ToListAsync();
+
+		if (transactions is null)
+		{
+			return [];
+		}
+
+		return transactions
+			.Select(_mapper.MapToDomain)
+			.ToList();
+	}
+
 	public async Task<Transaction> Create(Transaction transaction)
 	{
 		await _dbConnection.Init();

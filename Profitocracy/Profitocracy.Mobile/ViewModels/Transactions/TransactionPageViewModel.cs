@@ -27,15 +27,15 @@ public class TransactionPageViewModel : BaseNotifyObject
 
     public async void Initialize()
     {
-        var profile = await _profileService.GetCurrentProfile();
+        var profileId = await _profileService.GetCurrentProfileId();
 
-        if (profile is null)
+        if (profileId is null)
         {
             await Shell.Current.DisplayAlert("Error", "Cannot find current profile", "OK");
             return;
         }
         
-        var transactions = await _transactionService.GetAllByProfileId(profile.Id);
+        var transactions = await _transactionService.GetAllByProfileId((Guid)profileId);
         
         Transactions.Clear();
 
