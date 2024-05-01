@@ -1,6 +1,11 @@
 namespace Profitocracy.Domain.Boundaries.Common;
 
-public abstract class Entity<T>(T id)
+public abstract class Entity<T>
 {
-	public T Id { get; set; } = id;
+	public Entity(T id)
+	{
+		Id = id;
+	}
+	
+	public T Id { get; }
 }

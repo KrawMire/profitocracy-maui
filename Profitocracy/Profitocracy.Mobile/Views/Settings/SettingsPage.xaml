@@ -16,23 +16,9 @@
                     <StackLayout Orientation="Horizontal"
                                  Padding="0, 10">
                         <Button Text="Expense categories"
+                                Style="{StaticResource SettingsNavigationButton}"
                                 x:Name="CategoriesButton"
                                 Clicked="CategoriesButton_OnClicked"/>
-                    </StackLayout>
-                </StackLayout>
-            </Frame>
-
-            <Label Text="System settings"
-                   Style="{StaticResource BlockHeader}"
-                   Margin="0,20,0,5"/>
-            <Frame Padding="0">
-                <StackLayout Style="{StaticResource MenuCategory}"
-                             Padding="10">
-                    <StackLayout Orientation="Horizontal"
-                                 Padding="0, 10">
-                        <Button Text="Theme"
-                                x:Name="ThemeSettingsButton"
-                                Clicked="ThemeSettingsButton_OnClicked"/>
                     </StackLayout>
                 </StackLayout>
             </Frame>

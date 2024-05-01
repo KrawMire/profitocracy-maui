@@ -33,6 +33,10 @@
                 
                 <Label>Description</Label>
                 <Entry Text="{Binding Description, Mode=TwoWay}"/>
+                
+                <Label>Date</Label>
+                <DatePicker Date="{Binding Timestamp, Mode=TwoWay}"/>
+                
             </StackLayout>
             <Button Text="Add transaction"
                     x:Name="AddTransactionButton"

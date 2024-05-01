@@ -35,7 +35,7 @@ public class ProfileService : IProfileService
 			return null;
 		}
 		
-		var transactions = await _transactionRepository.GetAllByProfileId(profile.Id);
+		var transactions = await _transactionRepository.GetForPeriod(profile.Id, profile.BillingPeriod.DateFrom, profile.BillingPeriod.DateTo);
 		profile.HandleTransactions(transactions);
 
 		if (!profile.NeedUpdate)

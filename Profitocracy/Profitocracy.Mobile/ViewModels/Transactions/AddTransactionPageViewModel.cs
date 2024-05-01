@@ -14,7 +14,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     private readonly ITransactionService _transactionService;
 
     private TransactionModel _model;
-    private bool _isSpendingTypeVisible = false;
+    private bool _isSpendingTypeVisible;
     private string _transactionType;
     private string _spendingType;
     private string _amount = string.Empty;
@@ -128,6 +128,16 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         set
         {
             _model.Description = string.IsNullOrWhiteSpace(value) ? null : value;
+            OnPropertyChanged();
+        }
+    }
+
+    public DateTime Timestamp
+    {
+        get => _model.Timestamp;
+        set
+        {
+            _model.Timestamp = value;
             OnPropertyChanged();
         }
     }

@@ -10,10 +10,9 @@ public static class BusinessLogicRegistry
 {
 	public static IServiceCollection RegisterServices(this IServiceCollection services)
 	{
-		services.AddTransient<ITransactionService, TransactionService>();
-		services.AddTransient<ICategoryService, CategoryService>();
-		services.AddTransient<IProfileService, ProfileService>();
-		
-		return services;
+		return services
+			.AddTransient<ITransactionService, TransactionService>()
+			.AddTransient<ICategoryService, CategoryService>()
+			.AddTransient<IProfileService, ProfileService>();
 	}
 }

@@ -22,6 +22,7 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
+		
 		builder
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
@@ -35,6 +36,7 @@ public static class MauiProgram
 			.RegisterModels()
 			.RegisterPresentationMappers();
 
+		
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
@@ -44,9 +46,10 @@ public static class MauiProgram
 			AppDirectoryPath = FileSystem.AppDataDirectory 
 		};
 		
-		builder.Services.RegisterInfrastructureServices(infrastructureConfig);
-		builder.Services.RegisterServices();
-		builder.Services.AddSingleton<TransactionsPage>();
+		builder.Services
+			.RegisterInfrastructureServices(infrastructureConfig)
+			.RegisterServices()
+			.AddSingleton<TransactionsPage>();
 
 		return builder.Build();
 	}
@@ -60,21 +63,22 @@ public static class MauiProgram
 
 	private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
 	{
-		_ = mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
-		_ = mauiAppBuilder.Services.AddTransient<SetupPageViewModel>();
-		_ = mauiAppBuilder.Services.AddTransient<AddTransactionPageViewModel>();
-		_ = mauiAppBuilder.Services.AddTransient<TransactionPageViewModel>();
+		_ = mauiAppBuilder.Services
+			.AddTransient<HomePageViewModel>()
+			.AddTransient<SetupPageViewModel>()
+			.AddTransient<AddTransactionPageViewModel>()
+			.AddTransient<TransactionPageViewModel>();
 		
 		return mauiAppBuilder;
 	}
 
 	private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
 	{
-		_ = mauiAppBuilder.Services.AddSingleton<HomePage>();
-		_ = mauiAppBuilder.Services.AddSingleton<SetupPage>();
-		_ = mauiAppBuilder.Services.AddSingleton<TransactionsPage>();
-
-		_ = mauiAppBuilder.Services.AddTransient<AddTransactionPage>();
+		_ = mauiAppBuilder.Services
+			.AddSingleton<HomePage>()
+			.AddSingleton<SetupPage>()
+			.AddSingleton<TransactionsPage>()
+			.AddTransient<AddTransactionPage>();
 		
 		return mauiAppBuilder;
 	}
@@ -86,8 +90,9 @@ public static class MauiProgram
 	
 	private static MauiAppBuilder RegisterPresentationMappers(this MauiAppBuilder mauiAppBuilder)
 	{
-		_ = mauiAppBuilder.Services.AddTransient<IPresentationMapper<Profile, ProfileModel>, ProfileMapper>();
-		_ = mauiAppBuilder.Services.AddTransient<IPresentationMapper<Transaction, TransactionModel>, TransactionMapper>();
+		_ = mauiAppBuilder.Services
+			.AddTransient<IPresentationMapper<Profile, ProfileModel>, ProfileMapper>()
+			.AddTransient<IPresentationMapper<Transaction, TransactionModel>, TransactionMapper>();
 		
 		return mauiAppBuilder;
 	} 

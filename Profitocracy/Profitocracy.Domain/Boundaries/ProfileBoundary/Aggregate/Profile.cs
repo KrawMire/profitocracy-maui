@@ -190,8 +190,6 @@ public class Profile : AggregateRoot<Guid>
 		Expenses.Saved.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.2m;
 	}
 	
-	
-	
 	private void HandleIncomeTransaction(Transaction transaction)
 	{
 		Balance += transaction.Amount;
