@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.AddExpenseCategoryPage"
+             Shell.PresentationMode="ModalAnimated">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <FlexLayout Margin="10,10" 
+                        JustifyContent="SpaceBetween">
+                <Label Text="Add new category"
+                       FontSize="25"/>    
+                <Button x:Name="CloseButton" 
+                        Clicked="CloseButton_OnClicked" 
+                        Text="X"/>
+            </FlexLayout>
+            <StackLayout>
+                <Label>Category name</Label>
+                <Entry Text="{Binding Name, Mode=TwoWay}"/>
+                
+                <HorizontalStackLayout>
+                    <Label VerticalTextAlignment="Center">Specify planned amount</Label>
+                    <CheckBox VerticalOptions="Center" IsChecked="{Binding IsPlannedAmountPresent, Mode=TwoWay}"/>    
+                </HorizontalStackLayout>
+                
+                
+                <StackLayout IsVisible="{Binding IsPlannedAmountPresent}">
+                    <Label>Planned amount</Label>
+                    <Entry Keyboard="Numeric"
+                           Text="{Binding PlannedAmount, Mode=TwoWay}"/>    
+                </StackLayout>
+            </StackLayout>
+            <Button Text="Add transaction"
+                    x:Name="AddCategoryButton"
+                    Clicked="AddCategoryButton_OnClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

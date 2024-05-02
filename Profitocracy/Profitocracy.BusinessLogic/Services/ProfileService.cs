@@ -5,7 +5,7 @@ using Profitocracy.Domain.Boundaries.TransactionBoundary.Repositories;
 
 namespace Profitocracy.BusinessLogic.Services;
 
-public class ProfileService : IProfileService
+internal class ProfileService : IProfileService
 {
 	private readonly IProfileRepository _profileRepository;
 	private readonly ITransactionRepository _transactionRepository;

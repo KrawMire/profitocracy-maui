@@ -2,20 +2,21 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transaction"
-             x:Class="Profitocracy.Mobile.Views.Pages.Transactions.TransactionsPage"
-             Title="Transactions"
-             NavigatedTo="UpdateTransactionsList"
-             Loaded="UpdateTransactionsList">
-    <Grid>
+             xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Category"
+             x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.ExpenseCategoriesSettingsPage"
+             Title="Categories"
+             NavigatedTo="UpdateCategoriesList"
+             Loaded="UpdateCategoriesList">
+    <ContentPage.Content>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+            
         <ScrollView Grid.Row="0">
-            <CollectionView x:Name="TransactionsCollectionView">
+            <CollectionView x:Name="CategoriesCollectionView">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="transactions:TransactionModel">
+                    <DataTemplate x:DataType="categories:CategoryModel">
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
@@ -29,14 +30,10 @@
                                 <FlexLayout JustifyContent="SpaceBetween">
                                     <StackLayout>
                                         <HorizontalStackLayout>
-                                            <Label Text="{Binding DisplayAmount}"/>
+                                            <Label Text="{Binding Name}"/>
                                         </HorizontalStackLayout>
-                                        <Label Text="{Binding DisplaySpendingType}"/>
-                                        <Label Style="{StaticResource SecondaryText}"
-                                               Text="{Binding Description}"/>
+                                        <Label Text="{Binding PlannedAmount}"/>
                                     </StackLayout>
-                                    <Label Style="{StaticResource SecondaryText}"
-                                           Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
                                 </FlexLayout>
                             </StackLayout>
                         </SwipeView>
@@ -44,7 +41,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
-        
+            
         <Button Grid.Row="0"
                 Text="+"
                 HorizontalOptions="End"
@@ -56,7 +53,8 @@
                 CornerRadius="30"
                 Margin="0,0,20,20"
                 FontSize="25"
-                x:Name="AddTransactionButton" 
-                Clicked="AddTransactionButton_OnClicked"/>
+                x:Name="AddCategoryButton"
+                Clicked="AddCategoryButton_OnClicked"/>
     </Grid>
+    </ContentPage.Content>
 </ContentPage>

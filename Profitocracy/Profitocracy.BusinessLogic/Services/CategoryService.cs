@@ -4,7 +4,7 @@ using Profitocracy.Domain.Boundaries.CategoryBoundary.Services;
 
 namespace Profitocracy.BusinessLogic.Services;
 
-public class CategoryService : ICategoryService
+internal class CategoryService : ICategoryService
 {
 	private readonly ICategoryRepository _repository;
 	
@@ -16,5 +16,10 @@ public class CategoryService : ICategoryService
 	public Task<List<Category>> GetAllByProfileId(Guid profileId)
 	{
 		return _repository.GetAllByProfileId(profileId);
+	}
+
+	public Task<Category> Create(Category category)
+	{
+		return _repository.Create(category);
 	}
 }

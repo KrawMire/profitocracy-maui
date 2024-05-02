@@ -58,12 +58,7 @@ public class ProfileRepository : IProfileRepository
 			.Where(p => p.IsCurrent)
 			.FirstOrDefaultAsync();
 
-		if (profile is null)
-		{
-			return null;
-		}
-
-		return profile.Id;
+		return profile?.Id;
 	}
 
 	public async Task<Profile?> GetCurrentProfile()
@@ -74,11 +69,8 @@ public class ProfileRepository : IProfileRepository
 			.Where(p => p.IsCurrent)
 			.FirstOrDefaultAsync();
 
-		if (profile is null)
-		{
-			return null;
-		}
-
-		return _mapper.MapToDomain(profile);
+		return profile is null 
+			? null 
+			: _mapper.MapToDomain(profile);
 	}
 }

@@ -18,12 +18,7 @@ public partial class TransactionsPage : ContentPage
 		TransactionsCollectionView.ItemsSource = ViewModel.Transactions;
 	}
 
-	private void TransactionsPage_OnNavigatedTo(object? sender, NavigatedToEventArgs e)
-	{
-		ViewModel.Initialize();
-	}
-
-	private void TransactionsPage_OnLoaded(object? sender, EventArgs e)
+	private void UpdateTransactionsList(object? sender, EventArgs e)
 	{
 		ViewModel.Initialize();
 	}

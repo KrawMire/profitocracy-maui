@@ -34,4 +34,19 @@ public class CategoryRepository : ICategoryRepository
 
 		return domainCategories;
 	}
+
+	public async Task<Category> Create(Category category)
+	{
+		await _dbConnection.Init();
+
+		var categoryToCreate = _mapper.MapToModel(category);
+		_ = await _dbConnection.Database.InsertAsync(categoryToCreate);
+
+		var createdCategory = await _dbConnection.Database
+			.Table<CategoryModel>()
+			.Where(c => c.Id == categoryToCreate.Id)
+			.FirstAsync();
+
+		return _mapper.MapToDomain(createdCategory);
+	}
 }

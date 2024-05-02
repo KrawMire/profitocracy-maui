@@ -4,7 +4,7 @@ using Profitocracy.Domain.Boundaries.TransactionBoundary.Services;
 
 namespace Profitocracy.BusinessLogic.Services;
 
-public class TransactionService : ITransactionService
+internal class TransactionService : ITransactionService
 {
 	private readonly ITransactionRepository _transactionRepository;
 	

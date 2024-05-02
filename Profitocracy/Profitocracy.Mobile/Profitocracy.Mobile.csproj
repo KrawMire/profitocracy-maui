@@ -93,6 +93,9 @@
       <MauiXaml Update="Pages\CurrencyRates\CurrencyRatesPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
+      <MauiXaml Update="Views\Settings\CategoriesSettings\ExpenseCategoriesSettingsPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
@@ -112,16 +115,16 @@
         <DependentUpon>CurrencyRatesPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Settings\CategoriesSettings\ExpenseCategoriesSettingsPage.xaml.cs">
+        <DependentUpon>ExpenseCategoriesSettingsPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Profitocracy.BusinessLogic\Profitocracy.BusinessLogic.csproj" />
       <ProjectReference Include="..\Profitocracy.Domain\Profitocracy.Domain.csproj" />
       <ProjectReference Include="..\Profitocracy.Infrastructure\Profitocracy.Infrastructure.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Models\Category\" />
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,5 @@
+using Profitocracy.Mobile.Views.Settings.CategoriesSettings;
+
 namespace Profitocracy.Mobile.Views.Pages.Settings;
 
 public partial class SettingsPage : ContentPage
@@ -7,13 +9,13 @@ public partial class SettingsPage : ContentPage
 		InitializeComponent();
 	}
 
-	private void ThemeSettingsButton_OnClicked(object? sender, EventArgs e)
-	{
-		
-	}
-
 	private void CategoriesButton_OnClicked(object? sender, EventArgs e)
 	{
-		Navigation.PushAsync(new ExpenseCategoriesSettingsPage());
+		var categoriesPage = Handler?.MauiContext?.Services.GetService<ExpenseCategoriesSettingsPage>();
+
+		if (categoriesPage is not null)
+		{
+			Navigation.PushAsync(categoriesPage);	
+		}
 	}
 }
