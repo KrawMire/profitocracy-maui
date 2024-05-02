@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Views.Transactions.AddTransactionPage"
+             Loaded="AddTransactionPage_OnLoaded"
              Shell.PresentationMode="ModalAnimated">
     <ContentPage.Content>
         <StackLayout Padding="10">
@@ -25,6 +26,11 @@
                     <Picker x:Name="SpendingTypePicker"
                             SelectedIndex="{Binding SpendingTypeIndex, Mode=TwoWay}"
                             Title="{Binding SpendingType, Mode=TwoWay}"/>
+                    
+                    <Label>Expense category</Label>
+                    <Picker x:Name="CategoryPicker"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding Category}"/>
                 </StackLayout>
                 
                 <Label>Amount</Label>

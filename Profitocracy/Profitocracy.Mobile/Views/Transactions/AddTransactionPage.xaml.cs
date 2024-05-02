@@ -15,6 +15,7 @@ public partial class AddTransactionPage : ContentPage
 		
 		TransactionTypePicker.ItemsSource = ViewModel.TransactionTypes.ToList();
 		SpendingTypePicker.ItemsSource = ViewModel.SpendingTypes.ToList();
+		CategoryPicker.ItemsSource = ViewModel.AvailableCategories;
 	}
 
 	private async void CloseButton_OnClicked(object? sender, EventArgs e)
@@ -28,6 +29,18 @@ public partial class AddTransactionPage : ContentPage
 		{
 			await ViewModel.CreateTransaction();
 			await Navigation.PopModalAsync();
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("Error", ex.Message, "OK");
+		}
+	}
+
+	private async void AddTransactionPage_OnLoaded(object? sender, EventArgs e)
+	{
+		try
+		{
+			await ViewModel.Initialize();
 		}
 		catch (Exception ex)
 		{

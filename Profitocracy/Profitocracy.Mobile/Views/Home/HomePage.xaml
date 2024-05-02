@@ -2,6 +2,7 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:displaymodels="clr-namespace:Profitocracy.Mobile.Models.DisplayModels"
              x:Class="Profitocracy.Mobile.Views.Pages.Home.HomePage"
              Title="Home"
              NavigatedTo="HomePage_OnNavigated">
@@ -140,20 +141,35 @@
                 </StackLayout>
             </Frame>
             
-            
-            <Label Margin="0, 40, 0, 5"
-                   Text="Categories spendings"
-                   Style="{StaticResource BlockHeader}"/>
-            <Frame Padding="0">
-                <StackLayout Padding="20" Style="{StaticResource BalanceCard}">
-                    <Label Text="Food" />
-                    <ProgressBar Progress="0.2" Margin="0, 10"/>
-                    <FlexLayout JustifyContent="SpaceBetween">
-                        <Label Text="$200"/>
-                        <Label Text="$500" />
-                    </FlexLayout>
-                </StackLayout>
-            </Frame>
+            <StackLayout IsVisible="{Binding IsDisplayCategoriesSpendings}">
+                <Label Margin="0, 40, 0, 5"
+                       Text="Categories expenses"
+                       Style="{StaticResource BlockHeader}"/>
+                <Frame Padding="-5">
+                    <CollectionView x:Name="CategoriesExpensesCollectionView">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="displaymodels:DisplayCategoryExpense">
+                                <StackLayout Padding="20"
+                                             Style="{StaticResource BalanceCard}">
+                                    <StackLayout IsVisible="{Binding IsShowRatio}">
+                                        <Label Text="{Binding Name}" />
+                                        <ProgressBar Progress="{Binding Ratio}" Margin="0, 10"/>
+                                        <FlexLayout JustifyContent="SpaceBetween">
+                                            <Label Text="{Binding ActualAmount}"/>
+                                            <Label Text="{Binding PlannedAmount}" />
+                                        </FlexLayout>
+                                    </StackLayout>
+                                    <FlexLayout JustifyContent="SpaceBetween" 
+                                                IsVisible="{Binding IsNotShowRatio}">
+                                        <Label Text="{Binding Name}" />
+                                        <Label Text="{Binding ActualAmount}"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+            </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

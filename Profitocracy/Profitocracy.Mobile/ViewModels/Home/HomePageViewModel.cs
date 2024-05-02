@@ -1,6 +1,8 @@
+using System.Collections.ObjectModel;
 using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
 using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
 using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Models.DisplayModels;
 using Profitocracy.Mobile.Models.Profile;
 using Profitocracy.Mobile.Utils;
 
@@ -34,6 +36,8 @@ public class HomePageViewModel : BaseNotifyObject
     
     private string _dateFrom;
     private string _dateTo;
+
+    private bool _isDisplayCategoriesSpendings;
     
     private readonly IProfileService _profileService;
     private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
@@ -323,6 +327,19 @@ public class HomePageViewModel : BaseNotifyObject
             }
         }
     }
+
+    public bool IsDisplayCategoriesSpendings
+    {
+        get => _isDisplayCategoriesSpendings;
+        set
+        {
+            _isDisplayCategoriesSpendings = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    
+    public ObservableCollection<DisplayCategoryExpense> CategoriesExpenses = [];
     
     public HomePageViewModel(IProfileService profileService, IPresentationMapper<Profile, ProfileModel> mapper)
     {
@@ -352,6 +369,16 @@ public class HomePageViewModel : BaseNotifyObject
         DateTo = profile.BillingDateTo.ToString("dd.MM.yyyy");
         
         InitializeExpenses(profile.Expenses);
+
+        if (profile.CategoriesBalances is not null && profile.CategoriesBalances.Count > 0)
+        {
+            IsDisplayCategoriesSpendings = true;
+            InitializeCategoriesExpenses(profile.CategoriesBalances);   
+        }
+        else
+        {
+            IsDisplayCategoriesSpendings = false;
+        }
     }
 
     private void InitializeExpenses(ProfileExpensesModel expenses)
@@ -374,21 +401,57 @@ public class HomePageViewModel : BaseNotifyObject
     
     private void InitializeExpenseRatios(ProfileExpensesModel expenses)
     {
-        TotalBalanceRatio = GetExpenseRatio(expenses.TotalBalance);
-        DailyFromActualRatio = GetExpenseRatio(expenses.DailyFromActualBalance);
-        DailyFromInitialRatio = GetExpenseRatio(expenses.DailyFromInitialBalance);
-        MainExpensesRatio = GetExpenseRatio(expenses.Main);
-        SecondaryExpensesRatio = GetExpenseRatio(expenses.Secondary);
-        SavedRatio = GetExpenseRatio(expenses.Saved);
-    } 
-    
-    private float GetExpenseRatio(ProfileExpenseModel expense)
+        TotalBalanceRatio = GetExpenseRatio(expenses.TotalBalance.ActualAmount, expenses.TotalBalance.PlannedAmount);
+        DailyFromActualRatio = GetExpenseRatio(expenses.DailyFromActualBalance.ActualAmount, expenses.DailyFromActualBalance.PlannedAmount);
+        DailyFromInitialRatio = GetExpenseRatio(expenses.DailyFromInitialBalance.ActualAmount, expenses.DailyFromInitialBalance.PlannedAmount);
+        MainExpensesRatio = GetExpenseRatio(expenses.Main.ActualAmount, expenses.Main.PlannedAmount);
+        SecondaryExpensesRatio = GetExpenseRatio(expenses.Secondary.ActualAmount, expenses.Secondary.PlannedAmount);
+        SavedRatio = GetExpenseRatio(expenses.Saved.ActualAmount, expenses.Saved.PlannedAmount);
+    }
+
+    private void InitializeCategoriesExpenses(List<CategoryExpenseModel> expenses)
     {
-        if (expense.PlannedAmount == 0)
+        CategoriesExpenses.Clear();
+        
+        foreach (var expense in expenses)
+        {
+            DisplayCategoryExpense categoryExpense;
+            
+            if (expense.PlannedAmount is null or 0)
+            {
+                categoryExpense = new DisplayCategoryExpense(
+                    expense.Name, 
+                    NumberUtils.RoundDecimal(expense.ActualAmount),
+                    false,
+                    null, 
+                    null);
+            }
+            else
+            {
+                categoryExpense = new DisplayCategoryExpense(
+                    expense.Name, 
+                    NumberUtils.RoundDecimal(expense.ActualAmount),
+                    true,
+                    NumberUtils.RoundDecimal(expense.PlannedAmount),
+                    GetExpenseRatio(expense.ActualAmount, expense.PlannedAmount));
+            }
+            
+            CategoriesExpenses.Add(categoryExpense);
+        }
+    }
+    
+    private float GetExpenseRatio(decimal? actualAmount, decimal? plannedAmount)
+    {
+        if (actualAmount is null || plannedAmount is null)
+        {
+            return 1;
+        }
+        
+        if (plannedAmount == 0)
         {
             return 1;
         }
 
-        return (float)(expense.ActualAmount / expense.PlannedAmount);
+        return (float)(actualAmount / plannedAmount);
     }
 }

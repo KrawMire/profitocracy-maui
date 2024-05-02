@@ -11,6 +11,8 @@ public partial class HomePage : ContentPage
 		ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 		BindingContext = ViewModel;
 		InitializeComponent();
+
+		CategoriesExpensesCollectionView.ItemsSource = ViewModel.CategoriesExpenses;
 	}
 
 	private void HomePage_OnNavigated(object? sender, EventArgs e)

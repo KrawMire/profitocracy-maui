@@ -1,17 +1,23 @@
+using System.Collections.ObjectModel;
 using System.Globalization;
+using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
+using Profitocracy.Domain.Boundaries.CategoryBoundary.Services;
 using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
 using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
 using Profitocracy.Domain.Boundaries.TransactionBoundary.Services;
 using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Models.Category;
 using Profitocracy.Mobile.Models.Transaction;
 
 namespace Profitocracy.Mobile.ViewModels.Transactions;
 
 public class AddTransactionPageViewModel : BaseNotifyObject
 {
+    private readonly IPresentationMapper<Category, CategoryModel> _categoryMapper;
     private readonly IPresentationMapper<Transaction, TransactionModel> _mapper;
     private readonly IProfileService _profileService;
     private readonly ITransactionService _transactionService;
+    private readonly ICategoryService _categoryService;
 
     private TransactionModel _model;
     private bool _isSpendingTypeVisible;
@@ -22,12 +28,16 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         
     public AddTransactionPageViewModel(
         IPresentationMapper<Transaction, TransactionModel> mapper,
+        IPresentationMapper<Category, CategoryModel> categoryMapper,
         IProfileService profileService,
-        ITransactionService transactionService)
+        ITransactionService transactionService,
+        ICategoryService categoryService)
     {
         _mapper = mapper;
+        _categoryMapper = categoryMapper;
         _profileService = profileService;
         _transactionService = transactionService;
+        _categoryService = categoryService;
 
         _model = new TransactionModel
         {
@@ -44,7 +54,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     [
         "Main",
         "Secondary",
-        "Saved"   
+        "Saved"
     ];
 
     public readonly string[] TransactionTypes =
@@ -52,6 +62,8 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         "Income",
         "Expense"
     ];
+
+    public readonly ObservableCollection<CategoryModel> AvailableCategories = [];
 
     public int TransactionTypeIndex
     {
@@ -111,6 +123,8 @@ public class AddTransactionPageViewModel : BaseNotifyObject
             OnPropertyChanged();
         }
     }
+    
+    public CategoryModel? Category { get; set; }
 
     public string Amount
     {
@@ -141,7 +155,24 @@ public class AddTransactionPageViewModel : BaseNotifyObject
             OnPropertyChanged();
         }
     }
-    
+
+    public async Task Initialize()
+    {
+        var profileId = await _profileService.GetCurrentProfileId();
+        
+        if (profileId is null)
+        {
+            throw new Exception("Current profile was not found");
+        }
+        
+        var categories = await _categoryService.GetAllByProfileId((Guid)profileId);
+
+        foreach (var category in categories)
+        {
+            AvailableCategories.Add(_categoryMapper.MapToModel(category));
+        }
+    }
+
     public async Task CreateTransaction()
     {
         _amount = _amount
@@ -167,6 +198,15 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         }
 
         _model.ProfileId = (Guid)currentProfileId;
+
+        if (Category?.Id is not null)
+        {
+            _model.Category = new TransactionCategoryModel
+            {
+                Name = Category.Name,
+                CategoryId = (Guid)Category.Id
+            };
+        }
 
         var transaction = _mapper.MapToDomain(_model);
         await _transactionService.Create(transaction);

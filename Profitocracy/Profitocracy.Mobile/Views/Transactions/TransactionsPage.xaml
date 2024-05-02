@@ -32,6 +32,7 @@
                                             <Label Text="{Binding DisplayAmount}"/>
                                         </HorizontalStackLayout>
                                         <Label Text="{Binding DisplaySpendingType}"/>
+                                        <Label Text="{Binding Category.Name, FallbackValue=''}"/>
                                         <Label Style="{StaticResource SecondaryText}"
                                                Text="{Binding Description}"/>
                                     </StackLayout>

@@ -15,6 +15,7 @@ public class TransactionModel
     public required int Type { get; set; }
     public required int? SpendingType { get; set; }
     public required DateTime Timestamp { get; set; }
+    public TransactionCategoryModel? Category { get; set; }
     public string? Description { get; set; }
 
     public string DisplaySpendingType

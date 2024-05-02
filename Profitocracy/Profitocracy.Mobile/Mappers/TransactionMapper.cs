@@ -1,4 +1,5 @@
 using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
+using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate.Entities;
 using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate.ValueObjects;
 using Profitocracy.Domain.Boundaries.TransactionBoundary.Factories;
 using Profitocracy.Mobile.Abstractions;
@@ -10,6 +11,16 @@ public class TransactionMapper : IPresentationMapper<Transaction, TransactionMod
 {
 	public Transaction MapToDomain(TransactionModel model)
 	{
+		TransactionCategory? category = null;
+
+		if (model.Category is not null)
+		{
+			category = new TransactionCategory(model.Category.CategoryId)
+			{
+				Name = model.Category.Name
+			};
+		}
+		
 		return TransactionFactory.CreateTransaction(
 			model.Id,
 			model.Amount,
@@ -19,11 +30,22 @@ public class TransactionMapper : IPresentationMapper<Transaction, TransactionMod
 			model.Timestamp,
 			model.Description,
 			null,
-			null);
+			category);
 	}
 
 	public TransactionModel MapToModel(Transaction entity)
 	{
+		TransactionCategoryModel? category = null;
+
+		if (entity.Category is not null)
+		{
+			category = new TransactionCategoryModel
+			{
+				CategoryId = entity.Category.Id,
+				Name = entity.Category.Name
+			};
+		}
+		
 		return new TransactionModel
 		{
 			Id = entity.Id,
@@ -33,6 +55,7 @@ public class TransactionMapper : IPresentationMapper<Transaction, TransactionMod
 			SpendingType = entity.SpendingType is null ? null : (int)entity.SpendingType,
 			Description = entity.Description,
 			Timestamp = entity.Timestamp,
+			Category = category
 		};
 	}
 }
