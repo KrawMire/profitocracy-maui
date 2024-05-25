@@ -6,7 +6,8 @@ public class TransactionModel
     [
         "Main",
         "Secondary",
-        "Saved"   
+        "Saved",
+        "Income"
     ];
     
     public Guid? Id { get; set; }
@@ -24,7 +25,7 @@ public class TransactionModel
         {
             if (SpendingType is null or -1)
             {
-                return string.Empty;
+                return _spendingTypes[3];
             }
             
             return _spendingTypes[(int)SpendingType];

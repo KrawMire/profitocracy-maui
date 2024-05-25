@@ -208,7 +208,38 @@
         </Setter>
     </Style>
     
-    <Style TargetType="Label" x:Key="SecondaryText">
+    <Style TargetType="Border" x:Key="TransactionCard">
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray600}}"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="Padding" Value="16, 8"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 16"/>
+    </Style>
+    
+    <Style TargetType="Label" x:Key="TransactionCardSpendingType">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray50}}" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+    </Style>
+    
+    <Style TargetType="Label" x:Key="TransactionCardAmount">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray50}}" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+    </Style>
+    
+    <Style TargetType="Label" x:Key="TransactionCardDescription">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray400}}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+    </Style>
+    
+    <Style TargetType="Label" x:Key="TransactionCardTimestamp">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray400}}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="HorizontalOptions" Value="Start" />
