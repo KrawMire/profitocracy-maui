@@ -22,4 +22,9 @@ internal class CategoryService : ICategoryService
 	{
 		return _repository.Create(category);
 	}
+
+	public Task<Guid> Delete(Guid categoryId)
+	{
+		throw new NotImplementedException();
+	}
 }

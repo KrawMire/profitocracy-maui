@@ -9,17 +9,17 @@
         <StackLayout>
             <Label Text="Application settings"
                    Style="{StaticResource BlockHeader}"
-                   Margin="0,0,0,5"/>
+                   Margin="0,0,0,8"/>
             <Frame Padding="0">
                 <StackLayout Style="{StaticResource MenuCategory}"
-                             Padding="10">
-                    <StackLayout Orientation="Horizontal"
-                                 Padding="0, 10">
-                        <Button Text="Expense categories"
+                             Padding="8">
+                    <Grid>
+                        <Button BackgroundColor="Transparent"
+                                Text="Expense categories"
                                 Style="{StaticResource SettingsNavigationButton}"
                                 x:Name="CategoriesButton"
-                                Clicked="CategoriesButton_OnClicked"/>
-                    </StackLayout>
+                                Clicked="CategoriesButton_OnClicked" />
+                    </Grid>
                 </StackLayout>
             </Frame>
         </StackLayout>

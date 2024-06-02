@@ -16,16 +16,21 @@
             <CollectionView x:Name="TransactionsCollectionView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="transactions:TransactionModel">
-                        <Border StrokeThickness="0"
-                                Style="{StaticResource TransactionCard}">
-                            <SwipeView>
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem Text="Delete"
-                                                   BackgroundColor="Tomato"
-                                                   Invoked="SwipeItem_OnInvoked"/>
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItemView Margin="16"
+                                                   BackgroundColor="Transparent"
+                                                   Invoked="SwipeItem_OnInvoked">
+                                        <VerticalStackLayout VerticalOptions="Center">
+                                            <Image Source="delete.png" 
+                                                   Width="10" />
+                                        </VerticalStackLayout>
+                                    </SwipeItemView>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Border StrokeThickness="0"
+                                    Style="{StaticResource TransactionCard}">
                                 <StackLayout Padding="10">
                                     <FlexLayout JustifyContent="SpaceBetween">
                                         <StackLayout>
@@ -43,8 +48,8 @@
                                         </StackLayout>
                                     </FlexLayout>
                                 </StackLayout>
-                            </SwipeView>
-                        </Border>
+                            </Border>
+                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Category"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.ExpenseCategoriesSettingsPage"
              Title="Categories"
              NavigatedTo="UpdateCategoriesList"
@@ -20,22 +21,37 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
-                                    <SwipeItem Text="Delete"
-                                               BackgroundColor="Tomato"
-                                               Invoked="SwipeItem_OnInvoked"/>
+                                    <SwipeItemView Margin="24"
+                                                   BackgroundColor="Transparent"
+                                                   Invoked="SwipeItem_OnInvoked">
+                                        <VerticalStackLayout VerticalOptions="Center">
+                                            <Image Source="delete.png" WidthRequest="24">
+                                                <Image.Behaviors>
+                                                    <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding 
+                                                    Light={StaticResource Gray500}, 
+                                                    Dark={StaticResource Gray200}}"/>
+                                                </Image.Behaviors>
+                                            </Image>
+                                        </VerticalStackLayout>
+                                    </SwipeItemView>
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <StackLayout Padding="10"
-                                         BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
-                                <FlexLayout JustifyContent="SpaceBetween">
-                                    <StackLayout>
-                                        <HorizontalStackLayout>
-                                            <Label Text="{Binding Name}"/>
-                                        </HorizontalStackLayout>
-                                        <Label Text="{Binding PlannedAmount}"/>
-                                    </StackLayout>
-                                </FlexLayout>
-                            </StackLayout>
+                            
+                            <Border StrokeThickness="0"
+                                    Style="{StaticResource CategoryCard}">
+                                <StackLayout Padding="10">
+                                    <FlexLayout JustifyContent="SpaceBetween">
+                                        <StackLayout>
+                                            <Label Style="{StaticResource CategoryCardName}"
+                                                   Text="{Binding Name}"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Style="{StaticResource CategoryCardPlannedAmount}"
+                                                   Text="{Binding DisplayPlannedAmount}"/>
+                                        </StackLayout>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </Border>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

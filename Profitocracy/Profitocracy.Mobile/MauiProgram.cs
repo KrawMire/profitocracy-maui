@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using Profitocracy.BusinessLogic;
 using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
 using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
@@ -29,6 +30,7 @@ public static class MauiProgram
 		
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

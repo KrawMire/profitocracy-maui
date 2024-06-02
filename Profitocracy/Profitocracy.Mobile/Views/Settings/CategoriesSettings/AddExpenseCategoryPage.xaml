@@ -9,7 +9,7 @@
             <FlexLayout Margin="10,10" 
                         JustifyContent="SpaceBetween">
                 <Label Text="Add new category"
-                       FontSize="25"/>    
+                       FontSize="25"/>
                 <Button x:Name="CloseButton" 
                         Clicked="CloseButton_OnClicked" 
                         Text="X"/>

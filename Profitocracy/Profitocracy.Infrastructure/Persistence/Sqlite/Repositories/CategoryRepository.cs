@@ -49,4 +49,9 @@ public class CategoryRepository : ICategoryRepository
 
 		return _mapper.MapToDomain(createdCategory);
 	}
+
+	public Task<Guid> Delete(Guid categoryId)
+	{
+		throw new NotImplementedException();
+	}
 }
