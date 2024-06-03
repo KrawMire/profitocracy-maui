@@ -41,7 +41,7 @@ public partial class TransactionsPage : ContentPage
 
 	private async void SwipeItem_OnInvoked(object? sender, EventArgs e)
 	{
-		var swipeItem = sender as SwipeItem;
+		var swipeItem = sender as SwipeItemView;
 
 		if (swipeItem is null)
 		{

@@ -210,7 +210,7 @@
     
     <Style TargetType="Border" x:Key="TransactionCard">
         <Setter Property="Margin" Value="4"/>
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}"/>
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray600}}"/>
         <Setter Property="StrokeThickness" Value="0"/>
         <Setter Property="Padding" Value="16, 8"/>
         <Setter Property="StrokeShape" Value="RoundRectangle 16"/>
@@ -248,7 +248,7 @@
     
     <Style TargetType="Border" x:Key="CategoryCard">
         <Setter Property="Margin" Value="4"/>
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}"/>
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray600}}"/>
         <Setter Property="StrokeThickness" Value="0"/>
         <Setter Property="Padding" Value="16, 8"/>
         <Setter Property="StrokeShape" Value="RoundRectangle 16"/>
