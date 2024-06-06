@@ -40,7 +40,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
-      <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+        <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
     </PropertyGroup>
 
     <ItemGroup>
@@ -68,8 +68,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <MauiImage Update="Resources\Images\bin.red.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\bin.png" BaseSize="20,20" />
-        <MauiImage Update="Resources\Images\delete.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\currencies.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\home.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\settings.png" BaseSize="20,20" />

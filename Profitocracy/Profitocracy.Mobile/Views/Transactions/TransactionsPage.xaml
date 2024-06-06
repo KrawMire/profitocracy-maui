@@ -5,6 +5,7 @@
              xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transaction"
              x:Class="Profitocracy.Mobile.Views.Pages.Transactions.TransactionsPage"
              Title="Transactions"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
              NavigatedTo="UpdateTransactionsList"
              Loaded="UpdateTransactionsList">
     <Grid>
@@ -19,31 +20,72 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
-                                    <SwipeItemView Margin="16"
-                                                   BackgroundColor="Transparent"
+                                    <SwipeItemView Width="56"
+                                                   Padding="24"
+                                                   BackgroundColor="Tomato"
                                                    Invoked="SwipeItem_OnInvoked">
                                         <VerticalStackLayout VerticalOptions="Center">
-                                            <Image Source="delete.png" 
+                                            <Image Source="bin.png" 
                                                    Width="10" />
                                         </VerticalStackLayout>
                                     </SwipeItemView>
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <Border StrokeThickness="0"
-                                    Style="{StaticResource TransactionCard}">
-                                <StackLayout Padding="10">
+                            
+                            <Border Style="{StaticResource TransactionCard}">
+                                <StackLayout>
                                     <FlexLayout JustifyContent="SpaceBetween">
                                         <StackLayout>
-                                            <Label Style="{StaticResource TransactionCardSpendingType}"
-                                                   Text="{Binding DisplaySpendingType}"/>
-                                            <Label Text="{Binding Category.Name, FallbackValue=''}"/>
+                                            <Label Text="{Binding DisplaySpendingType}">
+                                                <Label.Style>
+                                                    <Style TargetType="Label">
+                                                        <Style.Triggers>
+                                                            <DataTrigger TargetType="Label"
+                                                                         Binding="{Binding IsIncome}"
+                                                                         Value="True">
+                                                                <Setter Property="Style" 
+                                                                        Value="{StaticResource TransactionCardSpendTypeIncome}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger TargetType="Label"
+                                                                         Binding="{Binding IsIncome}"
+                                                                         Value="False">
+                                                                <Setter Property="Style" 
+                                                                        Value="{StaticResource TransactionCardSpendType}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Label.Style>
+                                            </Label>
+                                            <Label Style="{StaticResource TransactionCardCategory}"
+                                                   Margin="0,4,0,0"
+                                                   Text="{Binding Category.Name, FallbackValue=''}"/>
                                             <Label Style="{StaticResource TransactionCardDescription}"
+                                                   Margin="0,4,0,0"
                                                    Text="{Binding Description}"/>
                                         </StackLayout>
                                         <StackLayout>
-                                            <Label Style="{StaticResource TransactionCardAmount}"
-                                                   Text="{Binding DisplayAmount}"/>
-                                            <Label Style="{StaticResource TransactionCardTimestamp}"
+                                            <Label Text="{Binding DisplayAmount}">
+                                                <Label.Style>
+                                                    <Style TargetType="Label">
+                                                        <Style.Triggers>
+                                                            <DataTrigger TargetType="Label"
+                                                                         Binding="{Binding IsIncome}"
+                                                                         Value="True">
+                                                                <Setter Property="Style" 
+                                                                        Value="{StaticResource TransactionCardAmountIncome}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger TargetType="Label"
+                                                                         Binding="{Binding IsIncome}"
+                                                                         Value="False">
+                                                                <Setter Property="Style" 
+                                                                        Value="{StaticResource TransactionCardAmount}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Label.Style>
+                                            </Label>
+                                            <Label Style="{StaticResource TransactionCardDate}"
+                                                   Margin="0,4,0,0"
                                                    Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
                                         </StackLayout>
                                     </FlexLayout>
@@ -67,6 +109,13 @@
                 Margin="0,0,20,20"
                 FontSize="25"
                 x:Name="AddTransactionButton" 
-                Clicked="AddTransactionButton_OnClicked"/>
+                Clicked="AddTransactionButton_OnClicked">
+            <Button.Shadow>
+                <Shadow Brush="{StaticResource Gray300}"
+                        Offset="0,8"
+                        Radius="16"
+                        Opacity="0.9" />
+            </Button.Shadow>
+        </Button>
     </Grid>
 </ContentPage>

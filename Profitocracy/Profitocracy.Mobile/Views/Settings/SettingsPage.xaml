@@ -3,25 +3,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Views.Pages.Settings.SettingsPage"
-             Title="Settings">
-    <ScrollView Padding="20"
+             Title="Settings"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+    <ScrollView Padding="16"
                 VerticalScrollBarVisibility="Never">
         <StackLayout>
-            <Label Text="Application settings"
-                   Style="{StaticResource BlockHeader}"
-                   Margin="0,0,0,8"/>
-            <Frame Padding="0">
-                <StackLayout Style="{StaticResource MenuCategory}"
-                             Padding="8">
-                    <Grid>
-                        <Button BackgroundColor="Transparent"
-                                Text="Expense categories"
-                                Style="{StaticResource SettingsNavigationButton}"
-                                x:Name="CategoriesButton"
-                                Clicked="CategoriesButton_OnClicked" />
-                    </Grid>
-                </StackLayout>
-            </Frame>
+            <Label Text="Application"
+                   Style="{StaticResource SettingsGroupTitle}"
+                   Margin="0,0,0,0"/>
+            <Button Text="Profiles"
+                    Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0" />
+            <Button Text="Categories"
+                    Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0"
+                    x:Name="CategoriesButton"
+                    Clicked="CategoriesButton_OnClicked">
+            </Button>
+            
+            <Label Text="General"
+                   Style="{StaticResource SettingsGroupTitle}"
+                   Margin="0,16,0,0"/>
+            <Button Text="Language"
+                    Margin="0,8,0,0"
+                    Style="{StaticResource SettingsButton}" />
+            <Button Text="Theme"
+                    Margin="0,8,0,0"
+                    Style="{StaticResource SettingsButton}" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

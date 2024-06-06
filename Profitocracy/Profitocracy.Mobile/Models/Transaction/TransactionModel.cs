@@ -19,18 +19,9 @@ public class TransactionModel
     public TransactionCategoryModel? Category { get; set; }
     public string? Description { get; set; }
 
-    public string DisplaySpendingType
-    {
-        get
-        {
-            if (SpendingType is null or -1)
-            {
-                return _spendingTypes[3];
-            }
-            
-            return _spendingTypes[(int)SpendingType];
-        }   
-    }
+    public bool IsIncome => SpendingType is null or -1;
+    
+    public string DisplaySpendingType => IsIncome ? _spendingTypes[3] : _spendingTypes[(int)SpendingType!];
 
     public string DisplayAmount
     {

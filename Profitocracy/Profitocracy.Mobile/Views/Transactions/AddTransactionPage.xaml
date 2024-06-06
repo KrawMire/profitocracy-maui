@@ -6,47 +6,56 @@
              Loaded="AddTransactionPage_OnLoaded"
              Shell.PresentationMode="ModalAnimated">
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <FlexLayout Margin="10,10" 
-                        JustifyContent="SpaceBetween">
+        <Grid VerticalOptions="Fill"
+              Padding="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <FlexLayout JustifyContent="SpaceBetween">
                 <Label Text="Add new transaction"
                        FontSize="25"/>    
                 <Button x:Name="CloseButton" 
                         Clicked="CloseButton_OnClicked" 
                         Text="X"/>
             </FlexLayout>
-            <StackLayout>
-                <Label>Transaction type</Label>
-                <Picker x:Name="TransactionTypePicker"
-                        SelectedIndex="{Binding TransactionTypeIndex, Mode=TwoWay}"
-                        Title="{Binding TransactionType, Mode=TwoWay}"/>
+            <ScrollView Grid.Row="1" Padding="0, 16">
+                <StackLayout>
+                    <Label>Transaction type</Label>
+                    <Picker x:Name="TransactionTypePicker"
+                            SelectedIndex="{Binding TransactionTypeIndex, Mode=TwoWay}"
+                            Title="{Binding TransactionType, Mode=TwoWay}"/>
+            
+                    <StackLayout IsVisible="{Binding IsSpendingTypeVisible}">
+                        <Label>Spending type</Label>
+                        <Picker x:Name="SpendingTypePicker"
+                                SelectedIndex="{Binding SpendingTypeIndex, Mode=TwoWay}"
+                                Title="{Binding SpendingType, Mode=TwoWay}"/>
                 
-                <StackLayout IsVisible="{Binding IsSpendingTypeVisible}">
-                    <Label>Spending type</Label>
-                    <Picker x:Name="SpendingTypePicker"
-                            SelectedIndex="{Binding SpendingTypeIndex, Mode=TwoWay}"
-                            Title="{Binding SpendingType, Mode=TwoWay}"/>
-                    
-                    <Label>Expense category</Label>
-                    <Picker x:Name="CategoryPicker"
-                            ItemDisplayBinding="{Binding Name}"
-                            SelectedItem="{Binding Category}"/>
+                        <Label>Expense category</Label>
+                        <Picker x:Name="CategoryPicker"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding Category}"/>
+                    </StackLayout>
+            
+                    <Label>Amount</Label>
+                    <Entry Keyboard="Numeric"
+                           Text="{Binding Amount, Mode=TwoWay}"/>
+            
+                    <Label>Description</Label>
+                    <Entry Text="{Binding Description, Mode=TwoWay}"/>
+            
+                    <Label>Date</Label>
+                    <DatePicker Date="{Binding Timestamp, Mode=TwoWay}"/>
+            
                 </StackLayout>
-                
-                <Label>Amount</Label>
-                <Entry Keyboard="Numeric"
-                       Text="{Binding Amount, Mode=TwoWay}"/>
-                
-                <Label>Description</Label>
-                <Entry Text="{Binding Description, Mode=TwoWay}"/>
-                
-                <Label>Date</Label>
-                <DatePicker Date="{Binding Timestamp, Mode=TwoWay}"/>
-                
-            </StackLayout>
-            <Button Text="Add transaction"
-                    x:Name="AddTransactionButton"
-                    Clicked="AddTransactionButton_OnClicked"/>
-        </StackLayout>
+            </ScrollView>
+            <Grid Grid.Row="2">
+                <Button Text="Add transaction"
+                        x:Name="AddTransactionButton"
+                        Clicked="AddTransactionButton_OnClicked"/>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
