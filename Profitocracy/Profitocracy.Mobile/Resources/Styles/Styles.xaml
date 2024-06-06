@@ -564,7 +564,7 @@
     
     <Style TargetType="Label" x:Key="CategoryCardName">
         <Setter Property="FontFamily" Value="OpenSansSemibold"/>
-        <Setter Property="TextColor" Value="{StaticResource LightPrimaryText}"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
         <Setter Property="FontSize" Value="16"/>
     </Style>
     

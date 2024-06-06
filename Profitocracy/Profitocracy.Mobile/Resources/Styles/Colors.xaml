@@ -35,6 +35,7 @@
     <Color x:Key="DarkSpecialSecondaryText">#E8E8E8</Color>
 
     <!-- Common colors -->
+    <Color x:Key="Transparent">Transparent</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Magenta">#D600AA</Color>

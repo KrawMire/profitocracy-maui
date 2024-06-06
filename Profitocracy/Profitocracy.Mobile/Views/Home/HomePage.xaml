@@ -12,7 +12,7 @@
             
             <Border Style="{StaticResource ProfileExpenseCard}">
                 <Border.Shadow>
-                    <Shadow Brush="{StaticResource Gray300}"
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
                             Offset="0,8"
                             Radius="16"
                             Opacity="0.9" />

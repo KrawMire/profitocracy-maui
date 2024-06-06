@@ -106,12 +106,12 @@
                 WidthRequest="60"
                 HeightRequest="60"
                 CornerRadius="30"
-                Margin="0,0,20,20"
+                Margin="0,0,16,16"
                 FontSize="25"
                 x:Name="AddTransactionButton" 
                 Clicked="AddTransactionButton_OnClicked">
             <Button.Shadow>
-                <Shadow Brush="{StaticResource Gray300}"
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
                         Offset="0,8"
                         Radius="16"
                         Opacity="0.9" />
