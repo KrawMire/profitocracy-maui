@@ -18,13 +18,22 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     private readonly IProfileService _profileService;
     private readonly ITransactionService _transactionService;
     private readonly ICategoryService _categoryService;
-
+    
+    private static readonly CategoryModel NoneCategory = new()
+    {
+        Id = Guid.NewGuid(),
+        ProfileId = default,
+        Name = "None"
+    };
+    
     private TransactionModel _model;
-    private bool _isSpendingTypeVisible;
-    private string _transactionType;
-    private string _spendingType;
     private string _amount = string.Empty;
-        
+
+    private bool _isIncome;
+    private bool _isExpense;
+    private bool _isMain;
+    private bool _isSecondary;
+    private bool _isSaved;
         
     public AddTransactionPageViewModel(
         IPresentationMapper<Transaction, TransactionModel> mapper,
@@ -43,89 +52,140 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         {
             Amount = decimal.Zero,
             ProfileId = Guid.Empty,
-            Type = 0,
-            SpendingType = -1,
+            Type = 1,
+            SpendingType = 0,
             Timestamp = DateTime.Now,
             Description = null
         };
+
+        _isExpense = true;
+        _isIncome = false;
+
+        _isMain = true;
+        _isSecondary = false;
+        _isSaved = false;
+    }
+    
+    public readonly ObservableCollection<CategoryModel> AvailableCategories = [];
+    
+    public CategoryModel? Category { get; set; }
+
+    public bool IsIncome
+    {
+        get => _isIncome;
+        set
+        {
+            _isIncome = value;
+            OnPropertyChanged();
+        }
     }
 
-    public readonly string[] SpendingTypes =
-    [
-        "Main",
-        "Secondary",
-        "Saved"
-    ];
-
-    public readonly string[] TransactionTypes =
-    [
-        "Income",
-        "Expense"
-    ];
-
-    public readonly ObservableCollection<CategoryModel> AvailableCategories = [];
-
-    public int TransactionTypeIndex
+    public bool IsExpense
+    {
+        get => _isExpense;
+        set
+        {
+            _isExpense = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public bool IsMain
+    {
+        get => _isMain;
+        set
+        {
+            _isMain = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public bool IsSecondary
+    {
+        get => _isSecondary;
+        set
+        {
+            _isSecondary = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public bool IsSaved
+    {
+        get => _isSaved;
+        set
+        {
+            _isSaved = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public int TransactionType
     {
         get => _model.Type;
         set
         {
-            _model.Type = value;
-            TransactionType = TransactionTypes[_model.Type];
-            IsSpendingTypeVisible = _model.Type != 0;
-            OnPropertyChanged();
-        }
-    }
-    
-    public string TransactionType
-    {
-        get => _transactionType;
-        private set
-        {
-            _transactionType = value;
-            OnPropertyChanged();
-        }
-    }
+            if (value != _model.Type)
+            {
+                _model.Type = value;
 
-    public bool IsSpendingTypeVisible
-    {
-        get => _isSpendingTypeVisible;
-        private set
-        {
-            _isSpendingTypeVisible = value;
-            OnPropertyChanged();
+                if (value == 0)
+                {
+                    IsIncome = true;
+                    IsExpense = false;
+                    SpendingType = null;
+                }
+
+                if (value == 1)
+                {
+                    IsIncome = false;
+                    IsExpense = true;
+                    SpendingType = 0;
+                }
+                
+                OnPropertyChanged();
+            }
         }
     }
     
-    public int SpendingTypeIndex
+    public int? SpendingType
     {
-        get => _model.SpendingType ?? -1;
+        get => _model.SpendingType;
         set
         {
-            if (value == -1)
+            if (value != _model.SpendingType)
             {
-                _model.SpendingType = null;
+                _model.SpendingType = value;
+
+                switch (value)
+                {
+                    case 0:
+                        IsMain = true;
+                        IsSecondary = false;
+                        IsSaved = false;
+                        break;
+                    case 1:
+                        IsMain = false;
+                        IsSecondary = true;
+                        IsSaved = false;
+                        break;
+                    case 2:
+                        IsMain = false;
+                        IsSecondary = false;
+                        IsSaved = true;
+                        break;
+                    default:
+                        IsMain = true;
+                        IsSecondary = false;
+                        IsSaved = false;
+                        break;
+                }
+                
+                OnPropertyChanged();
             }
-
-            _model.SpendingType = value;
-            SpendingType = SpendingTypes[(int)_model.SpendingType];
-            
-            OnPropertyChanged();
         }
     }
     
-    public string SpendingType
-    {
-        get => _spendingType;
-        private set
-        {
-            _spendingType = value;
-            OnPropertyChanged();
-        }
-    }
-    
-    public CategoryModel? Category { get; set; }
-
     public string Amount
     {
         get => _amount;
@@ -167,6 +227,8 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         
         var categories = await _categoryService.GetAllByProfileId((Guid)profileId);
 
+        AvailableCategories.Add(NoneCategory);
+        
         foreach (var category in categories)
         {
             AvailableCategories.Add(_categoryMapper.MapToModel(category));
@@ -201,11 +263,18 @@ public class AddTransactionPageViewModel : BaseNotifyObject
 
         if (Category?.Id is not null)
         {
-            _model.Category = new TransactionCategoryModel
+            if (Category.Id.Equals(NoneCategory.Id))
             {
-                Name = Category.Name,
-                CategoryId = (Guid)Category.Id
-            };
+                _model.Category = null;
+            }
+            else
+            {
+                _model.Category = new TransactionCategoryModel
+                {
+                    Name = Category.Name,
+                    CategoryId = (Guid)Category.Id
+                };   
+            }
         }
 
         var transaction = _mapper.MapToDomain(_model);

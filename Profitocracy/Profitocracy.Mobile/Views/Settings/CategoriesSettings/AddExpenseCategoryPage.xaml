@@ -3,36 +3,51 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.AddExpenseCategoryPage"
+             Padding="16"
              Shell.PresentationMode="ModalAnimated">
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <FlexLayout Margin="10,10" 
+        <Grid VerticalOptions="Fill"
+              RowDefinitions="auto,*,auto">
+            <FlexLayout Grid.Row="0"
                         JustifyContent="SpaceBetween">
-                <Label Text="Add new category"
-                       FontSize="25"/>    
-                <Button x:Name="CloseButton" 
-                        Clicked="CloseButton_OnClicked" 
-                        Text="X"/>
+                <Label Style="{StaticResource PageTitle}"
+                       Text="Add new category"/>
+                <Border Style="{StaticResource CloseButton}"
+                        VerticalOptions="End"
+                        x:Name="CloseButton">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CloseButton_OnClicked" />
+                    </Border.GestureRecognizers>
+                    <Label Style="{StaticResource CloseButtonContent}"
+                           Text="X"/>
+                </Border>
             </FlexLayout>
-            <StackLayout>
-                <Label>Category name</Label>
-                <Entry Text="{Binding Name, Mode=TwoWay}"/>
+            <StackLayout Grid.Row="1">
+                <StackLayout Margin="0,32,0,0">
+                    <Label Text="Category name"/>
+                    <Entry Margin="0,4,0,0"
+                           Text="{Binding Name, Mode=TwoWay}"/>
+                </StackLayout>
                 
-                <HorizontalStackLayout>
+                <FlexLayout Margin="0,16,0,0"
+                            JustifyContent="SpaceBetween">
                     <Label VerticalTextAlignment="Center">Specify planned amount</Label>
-                    <CheckBox VerticalOptions="Center" IsChecked="{Binding IsPlannedAmountPresent, Mode=TwoWay}"/>    
-                </HorizontalStackLayout>
+                    <Switch IsToggled="{Binding IsPlannedAmountPresent, Mode=TwoWay}"/>    
+                </FlexLayout>
                 
                 
-                <StackLayout IsVisible="{Binding IsPlannedAmountPresent}">
-                    <Label>Planned amount</Label>
-                    <Entry Keyboard="Numeric"
+                <StackLayout Margin="0,16,0,0"
+                             IsVisible="{Binding IsPlannedAmountPresent}">
+                    <Label Text="Planned amount"/>
+                    <Entry Margin="0,4,0,0"
+                           Keyboard="Numeric"
                            Text="{Binding PlannedAmount, Mode=TwoWay}"/>    
                 </StackLayout>
             </StackLayout>
-            <Button Text="Add transaction"
+            <Button Grid.Row="2"
+                    Text="Save category"
                     x:Name="AddCategoryButton"
                     Clicked="AddCategoryButton_OnClicked"/>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

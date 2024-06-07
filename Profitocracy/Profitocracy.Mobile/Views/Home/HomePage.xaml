@@ -5,17 +5,24 @@
              xmlns:displaymodels="clr-namespace:Profitocracy.Mobile.Models.DisplayModels"
              x:Class="Profitocracy.Mobile.Views.Pages.Home.HomePage"
              Title="Home"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
              NavigatedTo="HomePage_OnNavigated">
     <ScrollView VerticalScrollBarVisibility="Never">
-        <VerticalStackLayout Padding="20">
-            <Label Text="Total amounts" 
-                   Style="{StaticResource BlockHeader}"
-                   Margin="0,0,0,5"/>
-            <Frame Padding="0">
-                <StackLayout Style="{StaticResource BalanceCard}">
-                    <StackLayout Padding="20">
-                        <Label Text="Balance" />
-                        <Label>
+        <VerticalStackLayout Padding="8, 16">
+            
+            <Border Style="{StaticResource ProfileExpenseCard}">
+                <Border.Shadow>
+                    <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
+                            Offset="0,8"
+                            Radius="16"
+                            Opacity="0.9" />
+                </Border.Shadow>
+                <StackLayout>
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource ProfileExpenseCardTitle}"
+                               Text="{Binding ProfileName}"/>
+                        <Label Style="{StaticResource ProfileExpenseCardPeriod}"
+                               VerticalTextAlignment="End">
                             <Label.Text>
                                 <MultiBinding StringFormat="{}{0} - {1}">
                                     <Binding Path="DateFrom"/>
@@ -23,153 +30,171 @@
                                 </MultiBinding>
                             </Label.Text>
                         </Label>
-                        <ProgressBar Progress="{Binding TotalBalanceRatio}" Margin="0, 10"/>
+                    </FlexLayout>
+                    <FlexLayout JustifyContent="SpaceBetween"
+                                Margin="0, 16, 0, 0">
+                        <Label Style="{StaticResource ProfileExpenseCardSubtitle}"
+                               Text="Balance"/>
+                        <Label Style="{StaticResource ProfileExpenseCardBalance}"
+                               Text="{Binding Balance}"/>
+                    </FlexLayout>
+                    <StackLayout Margin="0, 16, 0, 0">
+                        <ProgressBar Style="{StaticResource ProfileExpenseCardProgressBar}" 
+                                     Progress="{Binding TotalBalanceRatio}"/>
                         <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding TotalActualAmount}"/>
-                            <Label Text="{Binding Balance}"/>
-                            <Label Text="{Binding TotalPlannedAmount}" />
+                            <Label Style="{StaticResource ProfileExpenseCardProgressValue}" 
+                                   Text="{Binding TotalActualAmount}"/>
+                            <Label Style="{StaticResource ProfileExpenseCardProgressValue}" 
+                                   Text="{Binding TotalPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>
-                    <Grid>
+                    <FlexLayout JustifyContent="SpaceBetween"
+                                Margin="0, 16, 0, 0">
+                        <Label Style="{StaticResource ProfileExpenseCardSubtitle}" 
+                               Text="Saved" />
+                        <Label Style="{StaticResource ProfileExpenseCardBalance}"
+                               Text="{Binding TotalSavedAmount}" />
+                    </FlexLayout>
+                </StackLayout>
+            </Border>
+            
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0, 16, 0, 0">
+                <StackLayout>
+                    <Label Style="{StaticResource ExpenseCardTitle}"
+                           Text="Daily amounts"/>
+                    <Grid Margin="0, 16, 0, 0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="*"/> 
+                            <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <BoxView Grid.Column="1" 
-                                 Grid.ColumnSpan="2" 
-                                 HeightRequest="1" 
-                                 Color="Grey"/>
+                        <StackLayout Grid.Column="0"
+                                     Padding="0, 0, 8, 0">
+                            <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                   Text="Initial"/>
+                            <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
+                                         Margin="0,8,0,0"
+                                         Progress="{Binding DailyFromInitialRatio}"/>
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                       Text="{Binding DailyFromInitialActualAmount}"/>
+                                <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                       Text="{Binding DailyFromInitialPlannedAmount}" />
+                            </FlexLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1"
+                                     Padding="8, 0, 0, 0">
+                            <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                   Text="Actual"/>
+                            <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
+                                         Margin="0,8,0,0"
+                                         Progress="{Binding DailyFromActualRatio}"/>
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                       Text="{Binding DailyFromActualActualAmount}"/>
+                                <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                       Text="{Binding DailyFromActualPlannedAmount}" />
+                            </FlexLayout>
+                        </StackLayout>
                     </Grid>
-                    <StackLayout Padding="20">
+                </StackLayout>
+            </Border>
+            
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0, 16, 0, 0">
+                <StackLayout>
+                    <Label Style="{StaticResource ExpenseCardTitle}"
+                           Text="Spending types"/>
+                        
+                    <StackLayout Margin="0,16,0,0">
+                        <Label Style="{StaticResource ExpenseCardSubtitle}"
+                               Text="Main"/>
+                        <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
+                                     Margin="0,8,0,0"
+                                     Progress="{Binding MainExpensesRatio}"/>
                         <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="Saved" />
-                            <Label Text="{Binding TotalSavedAmount}" />
+                            <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                   Text="{Binding MainActualAmount}"/>
+                            <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                   Text="{Binding MainPlannedAmount}" />
+                        </FlexLayout>
+                    </StackLayout>
+                    
+                    <StackLayout Margin="0,16,0,0">
+                        <Label Style="{StaticResource ExpenseCardSubtitle}"
+                               Text="Secondary"/>
+                        <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
+                                     Margin="0,8,0,0"
+                                     Progress="{Binding SecondaryExpensesRatio}"/>
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                   Text="{Binding SecondaryActualAmount}"/>
+                            <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                   Text="{Binding SecondaryPlannedAmount}" />
+                        </FlexLayout>
+                    </StackLayout>
+                    
+                    <StackLayout Margin="0,16,0,0">
+                        <Label Style="{StaticResource ExpenseCardSubtitle}"
+                               Text="Saved"/>
+                        <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
+                                     Margin="0,8,0,0"
+                                     Progress="{Binding SavedRatio}"/>
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                   Text="{Binding SavedActualAmount}"/>
+                            <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                   Text="{Binding SavedPlannedAmount}" />
                         </FlexLayout>
                     </StackLayout>
                 </StackLayout>
-            </Frame>
+            </Border>
             
-            
-            <Label Margin="0, 40, 0, 5"
-                   Text="Cash for the day"
-                   Style="{StaticResource BlockHeader}" />
-            <Frame Padding="0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Column="0" 
-                                 Style="{StaticResource BalanceCard}"
-                                 Padding="20">
-                        <Label Text="From actual" />
-                        <ProgressBar Progress="{Binding DailyFromActualRatio}" Margin="0, 10"/>
-                        <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding DailyFromActualActualAmount}"/>
-                            <Label Text="{Binding DailyFromActualPlannedAmount}" />
-                        </FlexLayout>
-                    </StackLayout>
-                    <StackLayout Grid.Column="1" 
-                                 Style="{StaticResource BalanceCard}"
-                                 Padding="20">
-                        <Label Text="From initial" />
-                        <ProgressBar Progress="{Binding DailyFromInitialRatio}" Margin="0, 10"/>
-                        <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding DailyFromInitialActualAmount}"/>
-                            <Label Text="{Binding DailyFromInitialPlannedAmount}" />
-                        </FlexLayout>
-                    </StackLayout>
-                </Grid>
-            </Frame>
-            
-            
-            <Label Margin="0, 40, 0, 5"
-                   Text="Spending types"
-                   Style="{StaticResource BlockHeader}" />
-            <Frame Padding="0">
-                <StackLayout Style="{StaticResource BalanceCard}">
-                    <StackLayout Padding="20">
-                        <Label Text="Main spendings" />
-                        <ProgressBar Progress="{Binding MainExpensesRatio}" Margin="0, 10"/>
-                        <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding MainActualAmount}" />
-                            <Label Text="{Binding MainPlannedAmount}" />
-                        </FlexLayout>
-                    </StackLayout>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="*"/> 
-                        </Grid.ColumnDefinitions>
-                        <BoxView Grid.Column="1" 
-                                 Grid.ColumnSpan="2" 
-                                 HeightRequest="1" 
-                                 Color="Grey"/>
-                    </Grid>
-                    <StackLayout Padding="20">
-                        <Label Text="Secondary spendings" />
-                        <ProgressBar Progress="{Binding SecondaryExpensesRatio}" Margin="0, 10"/>
-                        <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding SecondaryActualAmount}"/>
-                            <Label Text="{Binding SecondaryPlannedAmount}" />
-                        </FlexLayout>
-                    </StackLayout>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="*"/> 
-                        </Grid.ColumnDefinitions>
-                        <BoxView Grid.Column="1" 
-                                 Grid.ColumnSpan="2" 
-                                 HeightRequest="1" 
-                                 Color="Grey"/>
-                    </Grid>
-                    <StackLayout Padding="20">
-                        <Label Text="Saved" />
-                        <ProgressBar Progress="{Binding SavedRatio}" Margin="0, 10"/>
-                        <FlexLayout JustifyContent="SpaceBetween">
-                            <Label Text="{Binding SavedActualAmount}"/>
-                            <Label Text="{Binding SavedPlannedAmount}" />
-                        </FlexLayout>
-                    </StackLayout>
-                </StackLayout>
-            </Frame>
-            
-            <StackLayout IsVisible="{Binding IsDisplayCategoriesSpendings}">
-                <Label Margin="0, 40, 0, 5"
-                       Text="Categories expenses"
-                       Style="{StaticResource BlockHeader}"/>
-                <Frame Padding="-5">
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0, 16, 0, 0">
+                <StackLayout>
+                    <Label Style="{StaticResource ExpenseCardTitle}"
+                           Text="Categories"/>
+                    
+                    <Label Style="{StaticResource ExpenseCardSubtitle}" 
+                           IsVisible="{Binding IsDisplayNoCategories}" 
+                           Text="There is no categories"
+                           Margin="0,16,0,0"
+                           HorizontalTextAlignment="Center"/> 
+                    
                     <CollectionView x:Name="CategoriesExpensesCollectionView">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="displaymodels:DisplayCategoryExpense">
-                                <StackLayout Padding="20"
-                                             Style="{StaticResource BalanceCard}">
-                                    <StackLayout IsVisible="{Binding IsShowRatio}">
-                                        <Label Text="{Binding Name}" />
-                                        <ProgressBar Progress="{Binding Ratio}" Margin="0, 10"/>
+                                <StackLayout>
+                                    <StackLayout Margin="0,16,0,0"
+                                                 IsVisible="{Binding IsShowRatio}">
+                                        <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                               Text="{Binding Name}" />
+                                        <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
+                                                     Progress="{Binding Ratio}" 
+                                                     Margin="0, 8,0,0"/>
                                         <FlexLayout JustifyContent="SpaceBetween">
-                                            <Label Text="{Binding ActualAmount}"/>
-                                            <Label Text="{Binding PlannedAmount}" />
+                                            <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                                   Text="{Binding ActualAmount}" />
+                                            <Label Style="{StaticResource ExpenseCardProgressValue}"
+                                                   Text="{Binding PlannedAmount}"/>
                                         </FlexLayout>
                                     </StackLayout>
-                                    <FlexLayout JustifyContent="SpaceBetween" 
+                                    
+                                    <FlexLayout JustifyContent="SpaceBetween"
+                                                Margin="0,16,0,0"
                                                 IsVisible="{Binding IsNotShowRatio}">
-                                        <Label Text="{Binding Name}" />
-                                        <Label Text="{Binding ActualAmount}"/>
+                                        <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                               Text="{Binding Name}"/>
+                                        <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                               Text="{Binding ActualAmount}"/>
                                     </FlexLayout>
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                </Frame>
-            </StackLayout>
+                </StackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

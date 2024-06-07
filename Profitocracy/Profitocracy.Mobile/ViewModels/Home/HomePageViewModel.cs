@@ -12,6 +12,8 @@ public class HomePageViewModel : BaseNotifyObject
 {
     private ProfileModel? _profile;
 
+    private string _profileName;
+    
     private decimal _balance;
     private decimal _totalActualAmount;
     private decimal _totalPlannedAmount;
@@ -37,11 +39,24 @@ public class HomePageViewModel : BaseNotifyObject
     private string _dateFrom;
     private string _dateTo;
 
-    private bool _isDisplayCategoriesSpendings;
+    private bool _isDisplayNoCategories;
     
     private readonly IProfileService _profileService;
     private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
 
+    public string ProfileName
+    {
+        get => _profileName;
+        set
+        {
+            if (_profileName != value)
+            {
+                _profileName = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    
     public decimal Balance
     {
         get => _balance;
@@ -327,17 +342,16 @@ public class HomePageViewModel : BaseNotifyObject
             }
         }
     }
-
-    public bool IsDisplayCategoriesSpendings
+    
+    public bool IsDisplayNoCategories
     {
-        get => _isDisplayCategoriesSpendings;
+        get => _isDisplayNoCategories;
         set
         {
-            _isDisplayCategoriesSpendings = value;
+            _isDisplayNoCategories = value;
             OnPropertyChanged();
         }
     }
-    
     
     public ObservableCollection<DisplayCategoryExpense> CategoriesExpenses = [];
     
@@ -363,6 +377,7 @@ public class HomePageViewModel : BaseNotifyObject
             return;
         }
 
+        ProfileName = profile.Name;
         Balance = NumberUtils.RoundDecimal(profile.Balance);
         TotalSavedAmount = profile.SavedBalance;
         DateFrom = profile.BillingDateFrom.ToString("dd.MM.yyyy");
@@ -372,12 +387,12 @@ public class HomePageViewModel : BaseNotifyObject
 
         if (profile.CategoriesBalances is not null && profile.CategoriesBalances.Count > 0)
         {
-            IsDisplayCategoriesSpendings = true;
-            InitializeCategoriesExpenses(profile.CategoriesBalances);   
+            IsDisplayNoCategories = false;
+            InitializeCategoriesExpenses(profile.CategoriesBalances);
         }
         else
         {
-            IsDisplayCategoriesSpendings = false;
+            IsDisplayNoCategories = true;
         }
     }
 

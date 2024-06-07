@@ -3,25 +3,66 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Views.Pages.Settings.SettingsPage"
-             Title="Settings">
-    <ScrollView Padding="20"
+             Title="Settings"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+    <ScrollView Padding="16"
                 VerticalScrollBarVisibility="Never">
         <StackLayout>
-            <Label Text="Application settings"
-                   Style="{StaticResource BlockHeader}"
-                   Margin="0,0,0,5"/>
-            <Frame Padding="0">
-                <StackLayout Style="{StaticResource MenuCategory}"
-                             Padding="10">
-                    <StackLayout Orientation="Horizontal"
-                                 Padding="0, 10">
-                        <Button Text="Expense categories"
-                                Style="{StaticResource SettingsNavigationButton}"
-                                x:Name="CategoriesButton"
-                                Clicked="CategoriesButton_OnClicked"/>
-                    </StackLayout>
-                </StackLayout>
-            </Frame>
+            <Label Text="Application"
+                   Style="{StaticResource SettingsGroupTitle}"
+                   Margin="0,0,0,0"/>
+            <Border Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Border.GestureRecognizers>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text="Profiles" />
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text=">" />
+                </FlexLayout>
+            </Border>
+            <Border Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0" >
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
+                </Border.GestureRecognizers>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text="Categories" />
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text=">" />
+                </FlexLayout>
+            </Border>
+            
+            <Label Text="General"
+                   Style="{StaticResource SettingsGroupTitle}"
+                   Margin="0,16,0,0"/>
+            <Border Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0" >
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Border.GestureRecognizers>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text="Theme" />
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text=">" />
+                </FlexLayout>
+            </Border>
+            <Border Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0" >
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Border.GestureRecognizers>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text="Language" />
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text=">" />
+                </FlexLayout>
+            </Border>
         </StackLayout>
     </ScrollView>
 </ContentPage>

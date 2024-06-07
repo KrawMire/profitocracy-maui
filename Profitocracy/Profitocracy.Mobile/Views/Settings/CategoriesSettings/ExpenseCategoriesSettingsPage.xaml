@@ -3,10 +3,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Category"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.ExpenseCategoriesSettingsPage"
              Title="Categories"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
              NavigatedTo="UpdateCategoriesList"
-             Loaded="UpdateCategoriesList">
+             Loaded="UpdateCategoriesList"
+             Padding="8">
     <ContentPage.Content>
         <Grid>
         <Grid.RowDefinitions>
@@ -20,22 +23,33 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
-                                    <SwipeItem Text="Delete"
-                                               BackgroundColor="Tomato"
-                                               Invoked="SwipeItem_OnInvoked"/>
+                                    <SwipeItemView Margin="24"
+                                                   BackgroundColor="Transparent"
+                                                   Invoked="SwipeItem_OnInvoked">
+                                        <VerticalStackLayout VerticalOptions="Center">
+                                            <Image Source="bin_red.png" WidthRequest="24">
+                                                <Image.Behaviors>
+                                                    <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding 
+                                                    Light={StaticResource Gray500}, 
+                                                    Dark={StaticResource Gray200}}"/>
+                                                </Image.Behaviors>
+                                            </Image>
+                                        </VerticalStackLayout>
+                                    </SwipeItemView>
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <StackLayout Padding="10"
-                                         BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
-                                <FlexLayout JustifyContent="SpaceBetween">
-                                    <StackLayout>
-                                        <HorizontalStackLayout>
-                                            <Label Text="{Binding Name}"/>
-                                        </HorizontalStackLayout>
-                                        <Label Text="{Binding PlannedAmount}"/>
-                                    </StackLayout>
-                                </FlexLayout>
-                            </StackLayout>
+                            
+                            <Border Style="{StaticResource CategoryCard}"
+                                    Margin="0,8,0,0">
+                                <StackLayout>
+                                    <FlexLayout JustifyContent="SpaceBetween">
+                                        <Label Style="{StaticResource CategoryCardName}"
+                                               Text="{Binding Name}"/>
+                                        <Label Style="{StaticResource CategoryCardPlannedAmount}"
+                                               Text="{Binding DisplayPlannedAmount}"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </Border>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -51,10 +65,17 @@
                 WidthRequest="60"
                 HeightRequest="60"
                 CornerRadius="30"
-                Margin="0,0,20,20"
+                Margin="0,0,8,16"
                 FontSize="25"
                 x:Name="AddCategoryButton"
-                Clicked="AddCategoryButton_OnClicked"/>
+                Clicked="AddCategoryButton_OnClicked">
+            <Button.Shadow>
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
+                        Offset="0,8"
+                        Radius="16"
+                        Opacity="0.9" />
+            </Button.Shadow>
+        </Button>
     </Grid>
     </ContentPage.Content>
 </ContentPage>

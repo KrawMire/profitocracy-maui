@@ -5,6 +5,7 @@
              xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transaction"
              x:Class="Profitocracy.Mobile.Views.Pages.Transactions.TransactionsPage"
              Title="Transactions"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
              NavigatedTo="UpdateTransactionsList"
              Loaded="UpdateTransactionsList">
     <Grid>
@@ -19,27 +20,82 @@
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
-                                    <SwipeItem Text="Delete"
-                                               BackgroundColor="Tomato"
-                                               Invoked="SwipeItem_OnInvoked"/>
+                                    <SwipeItemView Width="56"
+                                                   Padding="24"
+                                                   BackgroundColor="Tomato"
+                                                   Invoked="SwipeItem_OnInvoked">
+                                        <VerticalStackLayout VerticalOptions="Center">
+                                            <Image Source="bin.png" 
+                                                   Width="10" />
+                                        </VerticalStackLayout>
+                                    </SwipeItemView>
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <StackLayout Padding="10"
-                                         BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}">
-                                <FlexLayout JustifyContent="SpaceBetween">
-                                    <StackLayout>
-                                        <HorizontalStackLayout>
-                                            <Label Text="{Binding DisplayAmount}"/>
-                                        </HorizontalStackLayout>
-                                        <Label Text="{Binding DisplaySpendingType}"/>
-                                        <Label Text="{Binding Category.Name, FallbackValue=''}"/>
-                                        <Label Style="{StaticResource SecondaryText}"
-                                               Text="{Binding Description}"/>
-                                    </StackLayout>
-                                    <Label Style="{StaticResource SecondaryText}"
-                                           Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
-                                </FlexLayout>
-                            </StackLayout>
+                            
+                            <Border Style="{StaticResource TransactionCard}">
+                                <StackLayout>
+                                    <FlexLayout JustifyContent="SpaceBetween">
+                                        <StackLayout>
+                                            <Label Text="{Binding DisplaySpendingType}">
+                                                <Label.Style>
+                                                    <Style TargetType="Label">
+                                                        <Style.Triggers>
+                                                            <DataTrigger TargetType="Label"
+                                                                         Binding="{Binding IsIncome}"
+                                                                         Value="True">
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger TargetType="Label"
+                                                                         Binding="{Binding IsIncome}"
+                                                                         Value="False">
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Label.Style>
+                                            </Label>
+                                            <Label Style="{StaticResource TransactionCardCategory}"
+                                                   Margin="0,4,0,0"
+                                                   Text="{Binding Category.Name, FallbackValue=''}"/>
+                                            <Label Style="{StaticResource TransactionCardDescription}"
+                                                   Margin="0,4,0,0"
+                                                   Text="{Binding Description}"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label HorizontalTextAlignment="End"
+                                                   Text="{Binding DisplayAmount}">
+                                                <Label.Style>
+                                                    <Style TargetType="Label">
+                                                        <Style.Triggers>
+                                                            <DataTrigger TargetType="Label"
+                                                                         Binding="{Binding IsIncome}"
+                                                                         Value="True">
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger TargetType="Label"
+                                                                         Binding="{Binding IsIncome}"
+                                                                         Value="False">
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Label.Style>
+                                            </Label>
+                                            <Label Style="{StaticResource TransactionCardDate}"
+                                                   Margin="0,4,0,0"
+                                                   Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
+                                        </StackLayout>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </Border>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -55,9 +111,16 @@
                 WidthRequest="60"
                 HeightRequest="60"
                 CornerRadius="30"
-                Margin="0,0,20,20"
+                Margin="0,0,16,16"
                 FontSize="25"
                 x:Name="AddTransactionButton" 
-                Clicked="AddTransactionButton_OnClicked"/>
+                Clicked="AddTransactionButton_OnClicked">
+            <Button.Shadow>
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
+                        Offset="0,8"
+                        Radius="16"
+                        Opacity="0.9" />
+            </Button.Shadow>
+        </Button>
     </Grid>
 </ContentPage>

@@ -26,6 +26,7 @@ public class CategoryRepository : ICategoryRepository
 		var categories = await _dbConnection.Database
 			.Table<CategoryModel>()
 			.Where(c => c.ProfileId.Equals(profileId))
+			.OrderByDescending(c => c.PlannedAmount)
 			.ToListAsync();
 
 		var domainCategories = categories
@@ -48,5 +49,10 @@ public class CategoryRepository : ICategoryRepository
 			.FirstAsync();
 
 		return _mapper.MapToDomain(createdCategory);
+	}
+
+	public Task<Guid> Delete(Guid categoryId)
+	{
+		throw new NotImplementedException();
 	}
 }

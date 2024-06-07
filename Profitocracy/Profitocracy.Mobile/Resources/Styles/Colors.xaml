@@ -6,13 +6,37 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
-    <Color x:Key="Primary">#67a35f</Color>
-    <Color x:Key="PrimaryDark">#4b7846</Color>
-    <Color x:Key="PrimaryDarkText">#242424</Color>
-    <Color x:Key="Secondary">#0d7000 </Color>
-    <Color x:Key="SecondaryDarkText">#0d7000</Color>
-    <Color x:Key="Tertiary">#0d7000</Color>
+    <!-- Common app colors -->
+    <Color x:Key="Primary">#67A35F</Color>
+    <Color x:Key="PrimaryDark">#467140</Color>
+    <Color x:Key="SpecialPrimaryText">#FFFFFF</Color>
+    <Color x:Key="SecondaryText">#AAAAAA</Color>
+    
+    <!-- Colors for light theme -->
+    <Color x:Key="SecondaryLight">#93BC8E</Color>
+    <Color x:Key="LightContent">#FFFFFF</Color>
+    <Color x:Key="LightBackground">#EEEEEE</Color>
+    
+    <Color x:Key="LightMenuContent">#3F3F3F</Color>
+    <Color x:Key="LightMenuBackground">#FFFFFF</Color>
+    
+    <Color x:Key="LightPrimaryText">#4E4E4E</Color>
+    <Color x:Key="LightSpecialSecondaryText">#5D7159</Color>
+    
+    <!-- Colors for dark theme -->
+    <Color x:Key="SecondaryDark">#598254</Color>
+    <Color x:Key="DarkContent">#444444</Color>
+    <Color x:Key="DarkBackground">#303030</Color>
+    
+    <Color x:Key="DarkMenuContent">#CDCDCD</Color>
+    <Color x:Key="DarkEntryBackground">#5E5E5E</Color>
+    <Color x:Key="DarkMenuBackground">#3D3D3D</Color>
+    
+    <Color x:Key="DarkPrimaryText">#FFFFFF</Color>
+    <Color x:Key="DarkSpecialSecondaryText">#E8E8E8</Color>
 
+    <!-- Common colors -->
+    <Color x:Key="Transparent">Transparent</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Magenta">#D600AA</Color>
@@ -21,6 +45,7 @@
     <Color x:Key="MidnightBlue">#190649</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>
 
+    <!-- Gray colors -->
     <Color x:Key="Gray50">#F7F7F7</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
     <Color x:Key="Gray200">#C8C8C8</Color>
@@ -31,9 +56,9 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
 
+    
+    <!-- Brushes -->
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
-    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
 
