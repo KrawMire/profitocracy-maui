@@ -8,20 +8,48 @@
 
 ## Application screenshots
 
-### iOS
+### iOS (Light theme)
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_home.png" width="200" />
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_transactions_list.png" width="200" /> 
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_add_new_transaction.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_light_homepage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_light_transactionspage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_light_addtransactionpage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_light_settingspage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_light_categoiespage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_light_addcategorypage.png" width="200" />
 </p>
 
-### Android
+### iOS (Dark theme)
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_home.png" width="200" />
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_transactions_list.png" width="200" /> 
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_add_new_transaction.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_dark_homepage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_dark_transactionspage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_dark_addtransactionpage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_dark_settingspage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_dark_categoiespage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_dark_addcategorypage.png" width="200" />
+</p>
+
+### Android (Light theme)
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_light_homepage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_light_transactionspage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_light_addtransactionpage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_light_settingspage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_light_categoriespage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_light_addcategorypage.png" width="200" />
+</p>
+
+### Android (Dark theme)
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_dark_homepage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_dark_transactionspage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_dark_addtransactionpage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_dark_settingspage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_dark_categoriespage.png" width="200" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_dark_addcategorypage.png" width="200" />
 </p>
 
 ## Understanding of the application

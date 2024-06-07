@@ -482,7 +482,7 @@
     </Style>
     
     <Style TargetType="ProgressBar" x:Key="ProfileExpenseCardProgressBar">
-        <Setter Property="Height" Value="4"/>
+        <Setter Property="HeightRequest" Value="4"/>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
         <Setter Property="ProgressColor" Value="{AppThemeBinding Light={StaticResource SecondaryDark}, Dark={StaticResource SecondaryLight}}" />
     </Style>
@@ -507,6 +507,7 @@
     </Style>
     
     <Style TargetType="ProgressBar" x:Key="ExpenseCardProgressBar">
+        <Setter Property="HeightRequest" Value="4"/>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
         <Setter Property="ProgressColor" Value="{StaticResource Primary}" />
     </Style>
