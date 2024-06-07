@@ -11,25 +11,66 @@
             <Label Text="Application"
                    Style="{StaticResource SettingsGroupTitle}"
                    Margin="0,0,0,0"/>
-            <Button Text="Profiles"
-                    Style="{StaticResource SettingsButton}"
-                    Margin="0,8,0,0" />
-            <Button Text="Categories"
-                    Style="{StaticResource SettingsButton}"
-                    Margin="0,8,0,0"
-                    x:Name="CategoriesButton"
-                    Clicked="CategoriesButton_OnClicked">
-            </Button>
+            <Grid>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
+                </Grid.GestureRecognizers>
+                <Border Style="{StaticResource SettingsButton}"
+                        Margin="0,8,0,0">
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="Profiles" />
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text=">" />
+                    </FlexLayout>
+                </Border>
+            </Grid>
+            <Grid>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
+                </Grid.GestureRecognizers>
+                <Border Style="{StaticResource SettingsButton}"
+                        Margin="0,8,0,0" >
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="Categories" />
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text=">" />
+                    </FlexLayout>
+                </Border>
+            </Grid>
             
             <Label Text="General"
                    Style="{StaticResource SettingsGroupTitle}"
                    Margin="0,16,0,0"/>
-            <Button Text="Language"
-                    Margin="0,8,0,0"
-                    Style="{StaticResource SettingsButton}" />
-            <Button Text="Theme"
-                    Margin="0,8,0,0"
-                    Style="{StaticResource SettingsButton}" />
+            <Grid>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
+                </Grid.GestureRecognizers>
+                <Border Style="{StaticResource SettingsButton}"
+                        Margin="0,8,0,0" >
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="Theme" />
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text=">" />
+                    </FlexLayout>
+                </Border>
+            </Grid>
+            <Grid>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
+                </Grid.GestureRecognizers>
+                <Border Style="{StaticResource SettingsButton}"
+                        Margin="0,8,0,0" >
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="Language" />
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text=">" />
+                    </FlexLayout>
+                </Border>
+            </Grid>
         </StackLayout>
     </ScrollView>
 </ContentPage>

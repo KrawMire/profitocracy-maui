@@ -547,12 +547,17 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
     </Style>
     
-    <Style TargetType="Button" x:Key="SettingsButton">
+    <Style TargetType="Border" x:Key="SettingsButton">
+        <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="Padding" Value="8,12"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightContent}, Dark={StaticResource DarkContent}}"/>
+    </Style>
+    
+    <Style TargetType="Label" x:Key="SettingsButtonText">
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="OpenSansSemibold"/>
-        <Setter Property="Padding" Value="8,12"/>
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightContent}, Dark={StaticResource DarkContent}}"/>
     </Style>
     
     <Style TargetType="Border" x:Key="CategoryCard">

@@ -27,7 +27,7 @@
                                                    BackgroundColor="Transparent"
                                                    Invoked="SwipeItem_OnInvoked">
                                         <VerticalStackLayout VerticalOptions="Center">
-                                            <Image Source="bin.red.png" WidthRequest="24">
+                                            <Image Source="bin_red.png" WidthRequest="24">
                                                 <Image.Behaviors>
                                                     <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding 
                                                     Light={StaticResource Gray500}, 
