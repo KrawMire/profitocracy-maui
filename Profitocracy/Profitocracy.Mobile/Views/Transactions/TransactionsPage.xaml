@@ -43,14 +43,16 @@
                                                             <DataTrigger TargetType="Label"
                                                                          Binding="{Binding IsIncome}"
                                                                          Value="True">
-                                                                <Setter Property="Style" 
-                                                                        Value="{StaticResource TransactionCardSpendTypeIncome}" />
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
                                                             </DataTrigger>
                                                             <DataTrigger TargetType="Label"
                                                                          Binding="{Binding IsIncome}"
                                                                          Value="False">
-                                                                <Setter Property="Style" 
-                                                                        Value="{StaticResource TransactionCardSpendType}" />
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -64,21 +66,24 @@
                                                    Text="{Binding Description}"/>
                                         </StackLayout>
                                         <StackLayout>
-                                            <Label Text="{Binding DisplayAmount}">
+                                            <Label HorizontalTextAlignment="End"
+                                                   Text="{Binding DisplayAmount}">
                                                 <Label.Style>
                                                     <Style TargetType="Label">
                                                         <Style.Triggers>
                                                             <DataTrigger TargetType="Label"
                                                                          Binding="{Binding IsIncome}"
                                                                          Value="True">
-                                                                <Setter Property="Style" 
-                                                                        Value="{StaticResource TransactionCardAmountIncome}" />
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
                                                             </DataTrigger>
                                                             <DataTrigger TargetType="Label"
                                                                          Binding="{Binding IsIncome}"
                                                                          Value="False">
-                                                                <Setter Property="Style" 
-                                                                        Value="{StaticResource TransactionCardAmount}" />
+                                                                <Setter Property="FontSize" Value="18"/>
+                                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>

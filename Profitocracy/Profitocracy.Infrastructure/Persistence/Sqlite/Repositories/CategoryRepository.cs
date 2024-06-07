@@ -26,6 +26,7 @@ public class CategoryRepository : ICategoryRepository
 		var categories = await _dbConnection.Database
 			.Table<CategoryModel>()
 			.Where(c => c.ProfileId.Equals(profileId))
+			.OrderByDescending(c => c.PlannedAmount)
 			.ToListAsync();
 
 		var domainCategories = categories

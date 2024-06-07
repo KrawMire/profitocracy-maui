@@ -4,58 +4,214 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Profitocracy.Mobile.Views.Transactions.AddTransactionPage"
              Loaded="AddTransactionPage_OnLoaded"
-             Shell.PresentationMode="ModalAnimated">
+             Shell.PresentationMode="ModalAnimated"
+             Padding="16">
     <ContentPage.Content>
         <Grid VerticalOptions="Fill"
-              Padding="8">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <FlexLayout JustifyContent="SpaceBetween">
-                <Label Text="Add new transaction"
-                       FontSize="25"/>    
-                <Button x:Name="CloseButton" 
-                        Clicked="CloseButton_OnClicked" 
-                        Text="X"/>
+              RowDefinitions="auto,auto,*,auto">
+            <FlexLayout Grid.Row="0"
+                        JustifyContent="SpaceBetween">
+                <Label Style="{StaticResource PageTitle}"
+                       Text="Add new transaction"/>    
+                <Border Style="{StaticResource CloseButton}"
+                        VerticalOptions="End"
+                        x:Name="CloseButton">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CloseButton_OnClicked" />
+                    </Border.GestureRecognizers>
+                    <Label Style="{StaticResource CloseButtonContent}"
+                           Text="X"/>
+                </Border>
             </FlexLayout>
-            <ScrollView Grid.Row="1" Padding="0, 16">
+            <Grid Grid.Row="1"
+                  Margin="0,16,0,0"
+                  ColumnDefinitions="*,16,*">
+                <Button  Grid.Column="0"
+                        Text="Expense"
+                        x:Name="ExpenseButton"
+                        Clicked="ExpenseButton_OnClicked">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger TargetType="Button"
+                                             Binding="{Binding IsExpense}"
+                                             Value="True">
+                                    <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="TextColor" Value="{StaticResource White}"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button"
+                                             Binding="{Binding IsExpense}"
+                                             Value="False">
+                                    <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}"/>
+                                    <Setter Property="TextColor" Value="{StaticResource LightPrimaryText}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Grid.Column="2" 
+                        Text="Income"
+                        x:Name="IncomeButton"
+                        Clicked="IncomeButton_OnClicked">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger TargetType="Button"
+                                             Binding="{Binding IsIncome}"
+                                             Value="True">
+                                    <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="TextColor" Value="{StaticResource White}"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button"
+                                             Binding="{Binding IsIncome}"
+                                             Value="False">
+                                    <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}"/>
+                                    <Setter Property="TextColor" Value="{StaticResource LightPrimaryText}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            <ScrollView Grid.Row="2"
+                        Margin="0,8">
                 <StackLayout>
-                    <Label>Transaction type</Label>
-                    <Picker x:Name="TransactionTypePicker"
-                            SelectedIndex="{Binding TransactionTypeIndex, Mode=TwoWay}"
-                            Title="{Binding TransactionType, Mode=TwoWay}"/>
-            
-                    <StackLayout IsVisible="{Binding IsSpendingTypeVisible}">
-                        <Label>Spending type</Label>
-                        <Picker x:Name="SpendingTypePicker"
-                                SelectedIndex="{Binding SpendingTypeIndex, Mode=TwoWay}"
-                                Title="{Binding SpendingType, Mode=TwoWay}"/>
+                    <StackLayout IsVisible="{Binding IsIncome}">
+                        <StackLayout Margin="0,16,0,0">
+                            <Label>Amount</Label>
+                            <Entry Keyboard="Numeric"
+                                   Text="{Binding Amount, Mode=TwoWay}"/>
+                        </StackLayout>
                 
-                        <Label>Expense category</Label>
-                        <Picker x:Name="CategoryPicker"
-                                ItemDisplayBinding="{Binding Name}"
-                                SelectedItem="{Binding Category}"/>
+                        <StackLayout Margin="0,16,0,0">
+                            <Label>Description</Label>
+                            <Entry Text="{Binding Description, Mode=TwoWay}"/>
+                        </StackLayout>
+                
+                        <StackLayout Margin="0,16,0,0">
+                            <Label>Date</Label>
+                            <DatePicker Date="{Binding Timestamp, Mode=TwoWay}"/>
+                        </StackLayout>
                     </StackLayout>
-            
-                    <Label>Amount</Label>
-                    <Entry Keyboard="Numeric"
-                           Text="{Binding Amount, Mode=TwoWay}"/>
-            
-                    <Label>Description</Label>
-                    <Entry Text="{Binding Description, Mode=TwoWay}"/>
-            
-                    <Label>Date</Label>
-                    <DatePicker Date="{Binding Timestamp, Mode=TwoWay}"/>
-            
+                    <StackLayout IsVisible="{Binding IsExpense}">
+                        <Grid ColumnDefinitions="*,16,*,16,*">
+                            <Button Grid.Column="0"
+                                    Text="Main"
+                                    x:Name="MainTypeButton"
+                                    Clicked="MainTypeButton_OnClicked">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding IsMain}"
+                                                         Value="True">
+                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="TextColor" Value="{StaticResource White}"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding IsMain}"
+                                                         Value="False">
+                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}"/>
+                                                <Setter Property="TextColor" Value="{StaticResource LightPrimaryText}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <Button Grid.Column="2"
+                                    Text="Secondary"
+                                    x:Name="SecondaryTypeButton"
+                                    Clicked="SecondaryTypeButton_OnClicked">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding IsSecondary}"
+                                                         Value="True">
+                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="TextColor" Value="{StaticResource White}"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding IsSecondary}"
+                                                         Value="False">
+                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}"/>
+                                                <Setter Property="TextColor" Value="{StaticResource LightPrimaryText}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <Button Grid.Column="4"
+                                    Text="Saved"
+                                    x:Name="SavedTypeButton"
+                                    Clicked="SavedTypeButton_OnClicked">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding IsSaved}"
+                                                         Value="True">
+                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="TextColor" Value="{StaticResource White}"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Button"
+                                                         Binding="{Binding IsSaved}"
+                                                         Value="False">
+                                                <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="BackgroundColor" Value="{StaticResource LightBackground}"/>
+                                                <Setter Property="TextColor" Value="{StaticResource LightPrimaryText}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                    
+                        <StackLayout Margin="0,16,0,0">
+                            <Label Text="Category"/>
+                            <Picker Margin="0,4,0,0"
+                                    x:Name="CategoryPicker"
+                                    ItemDisplayBinding="{Binding Name}"
+                                    SelectedItem="{Binding Category}"/>
+                        </StackLayout>
+                    
+                        <StackLayout Margin="0,16,0,0">
+                            <Label>Amount</Label>
+                            <Entry Keyboard="Numeric"
+                                   Text="{Binding Amount, Mode=TwoWay}"/>
+                        </StackLayout>
+                    
+                        <StackLayout Margin="0,16,0,0">
+                            <Label>Description</Label>
+                            <Entry Text="{Binding Description, Mode=TwoWay}"/>
+                        </StackLayout>
+                    
+                        <StackLayout Margin="0,16,0,0">
+                            <Label>Date</Label>
+                            <DatePicker Date="{Binding Timestamp, Mode=TwoWay}"/>
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <Grid Grid.Row="2">
-                <Button Text="Add transaction"
-                        x:Name="AddTransactionButton"
-                        Clicked="AddTransactionButton_OnClicked"/>
-            </Grid>
+            <Button Grid.Row="3"
+                    Text="Add transaction"
+                    VerticalOptions="End"
+                    x:Name="AddTransactionButton"
+                    Clicked="AddTransactionButton_OnClicked"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

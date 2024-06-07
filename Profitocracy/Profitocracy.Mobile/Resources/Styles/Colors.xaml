@@ -28,7 +28,6 @@
     <Color x:Key="DarkBackground">#303030</Color>
     
     <Color x:Key="DarkMenuContent">#CDCDCD</Color>
-    <Color x:Key="DarkMenuActiveContent">#FFFFFF</Color>
     <Color x:Key="DarkMenuBackground">#3D3D3D</Color>
     
     <Color x:Key="DarkPrimaryText">#FFFFFF</Color>

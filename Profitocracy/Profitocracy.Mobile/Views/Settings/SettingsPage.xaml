@@ -11,66 +11,58 @@
             <Label Text="Application"
                    Style="{StaticResource SettingsGroupTitle}"
                    Margin="0,0,0,0"/>
-            <Grid>
-                <Grid.GestureRecognizers>
+            <Border Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Border.GestureRecognizers>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text="Profiles" />
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text=">" />
+                </FlexLayout>
+            </Border>
+            <Border Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0" >
+                <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
-                </Grid.GestureRecognizers>
-                <Border Style="{StaticResource SettingsButton}"
-                        Margin="0,8,0,0">
-                    <FlexLayout JustifyContent="SpaceBetween">
-                        <Label Style="{StaticResource SettingsButtonText}"
-                               Text="Profiles" />
-                        <Label Style="{StaticResource SettingsButtonText}"
-                               Text=">" />
-                    </FlexLayout>
-                </Border>
-            </Grid>
-            <Grid>
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
-                </Grid.GestureRecognizers>
-                <Border Style="{StaticResource SettingsButton}"
-                        Margin="0,8,0,0" >
-                    <FlexLayout JustifyContent="SpaceBetween">
-                        <Label Style="{StaticResource SettingsButtonText}"
-                               Text="Categories" />
-                        <Label Style="{StaticResource SettingsButtonText}"
-                               Text=">" />
-                    </FlexLayout>
-                </Border>
-            </Grid>
+                </Border.GestureRecognizers>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text="Categories" />
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text=">" />
+                </FlexLayout>
+            </Border>
             
             <Label Text="General"
                    Style="{StaticResource SettingsGroupTitle}"
                    Margin="0,16,0,0"/>
-            <Grid>
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
-                </Grid.GestureRecognizers>
-                <Border Style="{StaticResource SettingsButton}"
-                        Margin="0,8,0,0" >
-                    <FlexLayout JustifyContent="SpaceBetween">
-                        <Label Style="{StaticResource SettingsButtonText}"
-                               Text="Theme" />
-                        <Label Style="{StaticResource SettingsButtonText}"
-                               Text=">" />
-                    </FlexLayout>
-                </Border>
-            </Grid>
-            <Grid>
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="CategoriesButton_OnClicked"/>
-                </Grid.GestureRecognizers>
-                <Border Style="{StaticResource SettingsButton}"
-                        Margin="0,8,0,0" >
-                    <FlexLayout JustifyContent="SpaceBetween">
-                        <Label Style="{StaticResource SettingsButtonText}"
-                               Text="Language" />
-                        <Label Style="{StaticResource SettingsButtonText}"
-                               Text=">" />
-                    </FlexLayout>
-                </Border>
-            </Grid>
+            <Border Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0" >
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Border.GestureRecognizers>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text="Theme" />
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text=">" />
+                </FlexLayout>
+            </Border>
+            <Border Style="{StaticResource SettingsButton}"
+                    Margin="0,8,0,0" >
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Border.GestureRecognizers>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text="Language" />
+                    <Label Style="{StaticResource SettingsButtonText}"
+                           Text=">" />
+                </FlexLayout>
+            </Border>
         </StackLayout>
     </ScrollView>
 </ContentPage>
