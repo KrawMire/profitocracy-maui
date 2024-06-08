@@ -1,13 +1,15 @@
+using Profitocracy.Mobile.Resources.Strings;
+
 namespace Profitocracy.Mobile.Models.Transaction;
 
 public class TransactionModel
 {
     private readonly string[] _spendingTypes =
     [
-        "Main",
-        "Secondary",
-        "Saved",
-        "Income"
+        AppResources.Main,
+        AppResources.Secondary,
+        AppResources.Saved,
+        AppResources.Income
     ];
     
     public Guid? Id { get; set; }

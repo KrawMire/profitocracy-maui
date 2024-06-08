@@ -4,16 +4,17 @@
        xmlns:home="clr-namespace:Profitocracy.Mobile.Views.Pages.Home"
        xmlns:settings="clr-namespace:Profitocracy.Mobile.Views.Pages.Settings"
        xmlns:transactions="clr-namespace:Profitocracy.Mobile.Views.Pages.Transactions"
+       xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
        x:Class="Profitocracy.Mobile.AppShell"
        Loaded="AppShell_OnLoaded">
     <TabBar>
-        <Tab Title="Home" Icon="home.png">
+        <Tab Title="{x:Static resx:AppResources.Home}" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate home:HomePage}"/>
         </Tab>
-        <Tab Title="Transactions" Icon="transactions.png">
+        <Tab Title="{x:Static resx:AppResources.Transactions}" Icon="transactions.png">
             <ShellContent ContentTemplate="{DataTemplate transactions:TransactionsPage}"/>
         </Tab>
-        <Tab Title="Settings" Icon="settings.png">
+        <Tab Title="{x:Static resx:AppResources.Settings}" Icon="settings.png">
             <ShellContent ContentTemplate="{DataTemplate settings:SettingsPage}"/>
         </Tab>
     </TabBar>
