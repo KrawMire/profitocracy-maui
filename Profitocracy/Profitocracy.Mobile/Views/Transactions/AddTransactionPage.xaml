@@ -2,6 +2,7 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
              x:Class="Profitocracy.Mobile.Views.Transactions.AddTransactionPage"
              Loaded="AddTransactionPage_OnLoaded"
              Shell.PresentationMode="ModalAnimated"
@@ -12,7 +13,7 @@
             <FlexLayout Grid.Row="0"
                         JustifyContent="SpaceBetween">
                 <Label Style="{StaticResource PageTitle}"
-                       Text="Add new transaction"/>    
+                       Text="{x:Static resx:AppResources.AddNewTransaction}"/>    
                 <Border Style="{StaticResource CloseButton}"
                         VerticalOptions="End"
                         x:Name="CloseButton">
@@ -27,7 +28,7 @@
                   Margin="0,32,0,0"
                   ColumnDefinitions="*,16,*">
                 <Button  Grid.Column="0"
-                        Text="Expense"
+                        Text="{x:Static resx:AppResources.Expense}"
                         x:Name="ExpenseButton"
                         Clicked="ExpenseButton_OnClicked">
                     <Button.Style>
@@ -53,7 +54,7 @@
                     </Button.Style>
                 </Button>
                 <Button Grid.Column="2" 
-                        Text="Income"
+                        Text="{x:Static resx:AppResources.Income}"
                         x:Name="IncomeButton"
                         Clicked="IncomeButton_OnClicked">
                     <Button.Style>
@@ -84,20 +85,20 @@
                 <StackLayout>
                     <StackLayout IsVisible="{Binding IsIncome}">
                         <StackLayout Margin="0,16,0,0">
-                            <Label Text="Amount"/>
+                            <Label Text="{x:Static resx:AppResources.Amount}"/>
                             <Entry Margin="0,4,0,0"
                                    Keyboard="Numeric"
                                    Text="{Binding Amount, Mode=TwoWay}"/>
                         </StackLayout>
                 
                         <StackLayout Margin="0,16,0,0">
-                            <Label Text="Description"/>
+                            <Label Text="{x:Static resx:AppResources.Description}"/>
                             <Entry Margin="0,4,0,0"
                                    Text="{Binding Description, Mode=TwoWay}"/>
                         </StackLayout>
                 
                         <StackLayout Margin="0,16,0,0">
-                            <Label Text="Date"/>
+                            <Label Text="{x:Static resx:AppResources.Date}"/>
                             <DatePicker Margin="0,4,0,0"
                                         Date="{Binding Timestamp, Mode=TwoWay}"/>
                         </StackLayout>
@@ -105,7 +106,7 @@
                     <StackLayout IsVisible="{Binding IsExpense}">
                         <Grid ColumnDefinitions="*,16,*,16,*">
                             <Button Grid.Column="0"
-                                    Text="Main"
+                                    Text="{x:Static resx:AppResources.Main}"
                                     x:Name="MainTypeButton"
                                     Clicked="MainTypeButton_OnClicked">
                                 <Button.Style>
@@ -131,7 +132,7 @@
                                 </Button.Style>
                             </Button>
                             <Button Grid.Column="2"
-                                    Text="Secondary"
+                                    Text="{x:Static resx:AppResources.Secondary}"
                                     x:Name="SecondaryTypeButton"
                                     Clicked="SecondaryTypeButton_OnClicked">
                                 <Button.Style>
@@ -157,7 +158,7 @@
                                 </Button.Style>
                             </Button>
                             <Button Grid.Column="4"
-                                    Text="Saved"
+                                    Text="{x:Static resx:AppResources.Saved}"
                                     x:Name="SavedTypeButton"
                                     Clicked="SavedTypeButton_OnClicked">
                                 <Button.Style>
@@ -185,7 +186,7 @@
                         </Grid>
                     
                         <StackLayout Margin="0,16,0,0">
-                            <Label Text="Category"/>
+                            <Label Text="{x:Static resx:AppResources.Category}"/>
                             <Picker Margin="0,4,0,0"
                                     x:Name="CategoryPicker"
                                     ItemDisplayBinding="{Binding Name}"
@@ -193,20 +194,20 @@
                         </StackLayout>
                     
                         <StackLayout Margin="0,16,0,0">
-                            <Label Text="Amount"/>
+                            <Label Text="{x:Static resx:AppResources.Amount}"/>
                             <Entry Margin="0,4,0,0"
                                    Keyboard="Numeric"
                                    Text="{Binding Amount, Mode=TwoWay}"/>
                         </StackLayout>
                     
                         <StackLayout Margin="0,16,0,0">
-                            <Label Text="Description"/>
+                            <Label Text="{x:Static resx:AppResources.Description}"/>
                             <Entry Margin="0,4,0,0"
                                    Text="{Binding Description, Mode=TwoWay}"/>
                         </StackLayout>
                     
                         <StackLayout Margin="0,16,0,0">
-                            <Label Text="Date"/>
+                            <Label Text="{x:Static resx:AppResources.Date}"/>
                             <DatePicker Margin="0,4,0,0"
                                         Date="{Binding Timestamp, Mode=TwoWay}"/>
                         </StackLayout>
@@ -214,7 +215,7 @@
                 </StackLayout>
             </ScrollView>
             <Button Grid.Row="3"
-                    Text="Add transaction"
+                    Text="{x:Static resx:AppResources.SaveTransaction}"
                     VerticalOptions="End"
                     x:Name="AddTransactionButton"
                     Clicked="AddTransactionButton_OnClicked"/>

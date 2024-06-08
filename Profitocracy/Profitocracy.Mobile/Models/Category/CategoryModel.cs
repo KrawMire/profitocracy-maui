@@ -1,3 +1,5 @@
+using Profitocracy.Mobile.Resources.Strings;
+
 namespace Profitocracy.Mobile.Models.Category;
 
 public class CategoryModel
@@ -8,5 +10,5 @@ public class CategoryModel
     public decimal? PlannedAmount { get; set; }
 
     public string? DisplayPlannedAmount 
-        => PlannedAmount is not null ? PlannedAmount.ToString() : "No limits";
+        => PlannedAmount is not null ? PlannedAmount.ToString() : AppResources.NoLimits;
 }

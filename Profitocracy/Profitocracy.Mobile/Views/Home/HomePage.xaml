@@ -3,8 +3,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:displaymodels="clr-namespace:Profitocracy.Mobile.Models.DisplayModels"
+             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
              x:Class="Profitocracy.Mobile.Views.Pages.Home.HomePage"
-             Title="Home"
+             Title="{x:Static resx:AppResources.Home}"
              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
              NavigatedTo="HomePage_OnNavigated">
     <ScrollView VerticalScrollBarVisibility="Never">
@@ -34,7 +35,7 @@
                     <FlexLayout JustifyContent="SpaceBetween"
                                 Margin="0, 16, 0, 0">
                         <Label Style="{StaticResource ProfileExpenseCardSubtitle}"
-                               Text="Balance"/>
+                               Text="{x:Static resx:AppResources.Balance}"/>
                         <Label Style="{StaticResource ProfileExpenseCardBalance}"
                                Text="{Binding Balance}"/>
                     </FlexLayout>
@@ -51,7 +52,7 @@
                     <FlexLayout JustifyContent="SpaceBetween"
                                 Margin="0, 16, 0, 0">
                         <Label Style="{StaticResource ProfileExpenseCardSubtitle}" 
-                               Text="Saved" />
+                               Text="{x:Static resx:AppResources.SavedBalance}" />
                         <Label Style="{StaticResource ProfileExpenseCardBalance}"
                                Text="{Binding TotalSavedAmount}" />
                     </FlexLayout>
@@ -62,7 +63,7 @@
                     Margin="0, 16, 0, 0">
                 <StackLayout>
                     <Label Style="{StaticResource ExpenseCardTitle}"
-                           Text="Daily amounts"/>
+                           Text="{x:Static resx:AppResources.DailyAmounts}"/>
                     <Grid Margin="0, 16, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -71,7 +72,7 @@
                         <StackLayout Grid.Column="0"
                                      Padding="0, 0, 8, 0">
                             <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                   Text="Initial"/>
+                                   Text="{x:Static resx:AppResources.FromInitialBalance}"/>
                             <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                          Margin="0,8,0,0"
                                          Progress="{Binding DailyFromInitialRatio}"/>
@@ -85,7 +86,7 @@
                         <StackLayout Grid.Column="1"
                                      Padding="8, 0, 0, 0">
                             <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                   Text="Actual"/>
+                                   Text="{x:Static resx:AppResources.FromActualBalance}"/>
                             <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                          Margin="0,8,0,0"
                                          Progress="{Binding DailyFromActualRatio}"/>
@@ -104,11 +105,11 @@
                     Margin="0, 16, 0, 0">
                 <StackLayout>
                     <Label Style="{StaticResource ExpenseCardTitle}"
-                           Text="Spending types"/>
+                           Text="{x:Static resx:AppResources.SpendingTypes}"/>
                         
                     <StackLayout Margin="0,16,0,0">
                         <Label Style="{StaticResource ExpenseCardSubtitle}"
-                               Text="Main"/>
+                               Text="{x:Static resx:AppResources.Main}"/>
                         <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                      Margin="0,8,0,0"
                                      Progress="{Binding MainExpensesRatio}"/>
@@ -122,7 +123,7 @@
                     
                     <StackLayout Margin="0,16,0,0">
                         <Label Style="{StaticResource ExpenseCardSubtitle}"
-                               Text="Secondary"/>
+                               Text="{x:Static resx:AppResources.Secondary}"/>
                         <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                      Margin="0,8,0,0"
                                      Progress="{Binding SecondaryExpensesRatio}"/>
@@ -136,7 +137,7 @@
                     
                     <StackLayout Margin="0,16,0,0">
                         <Label Style="{StaticResource ExpenseCardSubtitle}"
-                               Text="Saved"/>
+                               Text="{x:Static resx:AppResources.Saved}"/>
                         <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                      Margin="0,8,0,0"
                                      Progress="{Binding SavedRatio}"/>
@@ -154,11 +155,11 @@
                     Margin="0, 16, 0, 0">
                 <StackLayout>
                     <Label Style="{StaticResource ExpenseCardTitle}"
-                           Text="Categories"/>
+                           Text="{x:Static resx:AppResources.Categories}"/>
                     
                     <Label Style="{StaticResource ExpenseCardSubtitle}" 
                            IsVisible="{Binding IsDisplayNoCategories}" 
-                           Text="There is no categories"
+                           Text="{x:Static resx:AppResources.ThereIsNoCategories}"
                            Margin="0,16,0,0"
                            HorizontalTextAlignment="Center"/> 
                     
