@@ -241,6 +241,7 @@ public class Profile : AggregateRoot<Guid>
 	
 	private void HandleSavingSpendingTransaction(Transaction transaction)
 	{
+		SavedBalance += transaction.Amount;
 		Expenses.Saved.ActualAmount = transaction.Amount;
 	}
 

@@ -18,9 +18,9 @@ public partial class TransactionsPage : ContentPage
 		TransactionsCollectionView.ItemsSource = ViewModel.Transactions;
 	}
 
-	private void UpdateTransactionsList(object? sender, EventArgs e)
+	private async void UpdateTransactionsList(object? sender, EventArgs e)
 	{
-		ViewModel.Initialize();
+		await ViewModel.Initialize();
 	}
 
 	private async void AddTransactionButton_OnClicked(object? sender, EventArgs e)
@@ -41,9 +41,7 @@ public partial class TransactionsPage : ContentPage
 
 	private async void SwipeItem_OnInvoked(object? sender, EventArgs e)
 	{
-		var swipeItem = sender as SwipeItemView;
-
-		if (swipeItem is null)
+		if (sender is not SwipeItemView swipeItem)
 		{
 			await DisplayAlert("Error", "Internal error. Try again", "OK");
 			return;
@@ -57,6 +55,6 @@ public partial class TransactionsPage : ContentPage
 			return;
 		}
 		
-		ViewModel.DeleteTransaction((Guid)transaction.Id);
+		await ViewModel.DeleteTransaction((Guid)transaction.Id);
 	}
 }

@@ -42,7 +42,11 @@ internal class ProfileService : IProfileService
 			return null;
 		}
 		
-		var transactions = await _transactionRepository.GetForPeriod(profile.Id, profile.BillingPeriod.DateFrom, profile.BillingPeriod.DateTo);
+		var transactions = await _transactionRepository.GetForPeriod(
+			profile.Id, 
+			profile.BillingPeriod.DateFrom, 
+			profile.BillingPeriod.DateTo);
+		
 		var categories = await _categoryRepository.GetAllByProfileId(profile.Id);
 
 		if (categories.Count > 0)

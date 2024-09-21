@@ -25,7 +25,7 @@ public class TransactionPageViewModel : BaseNotifyObject
 
     public readonly ObservableCollection<TransactionModel> Transactions = [];
 
-    public async void Initialize()
+    public async Task Initialize()
     {
         var profileId = await _profileService.GetCurrentProfileId();
 
@@ -45,7 +45,7 @@ public class TransactionPageViewModel : BaseNotifyObject
         }
     }
 
-    public async void DeleteTransaction(Guid transactionId)
+    public async Task DeleteTransaction(Guid transactionId)
     {
         var deletedId = await _transactionService.Delete(transactionId);
 
