@@ -5,7 +5,7 @@ using SQLite;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
 
-public class DbConnection(InfrastructureConfiguration configuration)
+internal class DbConnection(InfrastructureConfiguration configuration)
 {
 	public SQLiteAsyncConnection Database
 	{

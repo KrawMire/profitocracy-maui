@@ -1,10 +1,10 @@
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
-using Profitocracy.Infrastructure.Common.Abstractions;
+using Profitocracy.Core.Domain.Model.Categories;
+using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Category;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Mappers;
 
-public class CategoryMapper : IInfrastructureMapper<Category, CategoryModel>
+internal class CategoryMapper : IInfrastructureMapper<Category, CategoryModel>
 {
 	public Category MapToDomain(CategoryModel model)
 	{

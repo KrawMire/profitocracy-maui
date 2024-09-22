@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Services;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.DisplayModels;
 using Profitocracy.Mobile.Models.Profile;
@@ -10,9 +10,7 @@ namespace Profitocracy.Mobile.ViewModels.Home;
 
 public class HomePageViewModel : BaseNotifyObject
 {
-    private ProfileModel? _profile;
-
-    private string _profileName;
+    private string _profileName = string.Empty;
     
     private decimal _balance;
     private decimal _totalActualAmount;
@@ -36,8 +34,8 @@ public class HomePageViewModel : BaseNotifyObject
     private float _secondaryExpensesRatio;
     private float _savedRatio;
     
-    private string _dateFrom;
-    private string _dateTo;
+    private string _dateFrom = string.Empty;
+    private string _dateTo = string.Empty;
 
     private bool _isDisplayNoCategories;
     

@@ -1,11 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Repositories;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Repositories;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Repositories;
-using Profitocracy.Infrastructure.Common.Abstractions;
+using Profitocracy.Core.Domain.Model.Categories;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Transactions;
+using Profitocracy.Core.Persistence;
+using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Mappers;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Category;

@@ -1,5 +1,5 @@
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Factories;
+using Profitocracy.Core.Domain.Model.Categories;
+using Profitocracy.Core.Domain.Model.Categories.Factories;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Category;
 

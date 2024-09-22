@@ -1,11 +1,11 @@
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Factories;
-using Profitocracy.Infrastructure.Common.Abstractions;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Profiles.Factories;
+using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Profile;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Mappers;
 
-public class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
+internal class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
 {
 	public Profile MapToDomain(ProfileModel model)
 	{

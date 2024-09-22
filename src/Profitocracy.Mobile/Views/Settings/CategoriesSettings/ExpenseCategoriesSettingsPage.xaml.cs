@@ -37,7 +37,7 @@ public partial class ExpenseCategoriesSettingsPage : ContentPage
 		await Navigation.PushModalAsync(addPage);
 	}
 
-	private async void SwipeItem_OnInvoked(object? sender, EventArgs e)
+	private void SwipeItem_OnInvoked(object? sender, EventArgs e)
 	{
 		
 	}

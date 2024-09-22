@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profitocracy.Mobile", "src\Profitocracy.Mobile\Profitocracy.Mobile.csproj", "{0AC9F184-8D37-4B34-A3B9-80ED5DA88AB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profitocracy.Domain", "src\Profitocracy.Domain\Profitocracy.Domain.csproj", "{5079990A-238B-4730-9AD4-412C18BE2F6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profitocracy.Core", "src\Profitocracy.Core\Profitocracy.Core.csproj", "{5079990A-238B-4730-9AD4-412C18BE2F6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profitocracy.BusinessLogic", "src\Profitocracy.BusinessLogic\Profitocracy.BusinessLogic.csproj", "{AAF5F485-176B-429A-8AC3-E0745905DB2A}"
 EndProject

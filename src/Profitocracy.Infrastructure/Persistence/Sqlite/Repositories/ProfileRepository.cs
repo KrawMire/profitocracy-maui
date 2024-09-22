@@ -1,12 +1,12 @@
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Repositories;
-using Profitocracy.Infrastructure.Common.Abstractions;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Persistence;
+using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Profile;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Repositories;
 
-public class ProfileRepository : IProfileRepository
+internal class ProfileRepository : IProfileRepository
 {
 	private readonly DbConnection _dbConnection;
 	private readonly IInfrastructureMapper<Profile, ProfileModel> _mapper;

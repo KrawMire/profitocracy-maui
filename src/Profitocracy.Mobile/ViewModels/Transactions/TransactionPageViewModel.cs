@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Services;
+using Profitocracy.Core.Domain.Model.Transactions;
+using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Transaction;
 
@@ -9,17 +8,17 @@ namespace Profitocracy.Mobile.ViewModels.Transactions;
 
 public class TransactionPageViewModel : BaseNotifyObject
 {
-    private readonly ITransactionService _transactionService;
-    private readonly IProfileService _profileService;
+    private readonly ITransactionRepository _transactionRepository;
+    private readonly IProfileRepository _profileRepository;
     private readonly IPresentationMapper<Transaction, TransactionModel> _mapper;
     
     public TransactionPageViewModel(
         IPresentationMapper<Transaction, TransactionModel> mapper,
-        IProfileService profileService,
-        ITransactionService transactionService)
+        IProfileRepository profileRepository,
+        ITransactionRepository transactionRepository)
     {
-        _transactionService = transactionService;
-        _profileService = profileService;
+        _transactionRepository = transactionRepository;
+        _profileRepository = profileRepository;
         _mapper = mapper;
     }
 
@@ -27,7 +26,7 @@ public class TransactionPageViewModel : BaseNotifyObject
 
     public async Task Initialize()
     {
-        var profileId = await _profileService.GetCurrentProfileId();
+        var profileId = await _profileRepository.GetCurrentProfileId();
 
         if (profileId is null)
         {
@@ -35,7 +34,7 @@ public class TransactionPageViewModel : BaseNotifyObject
             return;
         }
         
-        var transactions = await _transactionService.GetAllByProfileId((Guid)profileId);
+        var transactions = await _transactionRepository.GetAllByProfileId((Guid)profileId);
         
         Transactions.Clear();
 
@@ -47,7 +46,7 @@ public class TransactionPageViewModel : BaseNotifyObject
 
     public async Task DeleteTransaction(Guid transactionId)
     {
-        var deletedId = await _transactionService.Delete(transactionId);
+        var deletedId = await _transactionRepository.Delete(transactionId);
 
         Transactions.Remove(Transactions.Single(t => t.Id == deletedId));
     }

@@ -1,10 +1,8 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Services;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Services;
+using Profitocracy.Core.Domain.Model.Categories;
+using Profitocracy.Core.Domain.Model.Transactions;
+using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Category;
 using Profitocracy.Mobile.Models.Transaction;
@@ -15,9 +13,9 @@ public class AddTransactionPageViewModel : BaseNotifyObject
 {
     private readonly IPresentationMapper<Category, CategoryModel> _categoryMapper;
     private readonly IPresentationMapper<Transaction, TransactionModel> _mapper;
-    private readonly IProfileService _profileService;
-    private readonly ITransactionService _transactionService;
-    private readonly ICategoryService _categoryService;
+    private readonly IProfileRepository _profileRepository;
+    private readonly ITransactionRepository _transactionRepository;
+    private readonly ICategoryRepository _categoryRepository;
     
     private static readonly CategoryModel NoneCategory = new()
     {
@@ -38,15 +36,15 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     public AddTransactionPageViewModel(
         IPresentationMapper<Transaction, TransactionModel> mapper,
         IPresentationMapper<Category, CategoryModel> categoryMapper,
-        IProfileService profileService,
-        ITransactionService transactionService,
-        ICategoryService categoryService)
+        IProfileRepository profileRepository,
+        ITransactionRepository transactionRepository, 
+        ICategoryRepository categoryRepository)
     {
         _mapper = mapper;
         _categoryMapper = categoryMapper;
-        _profileService = profileService;
-        _transactionService = transactionService;
-        _categoryService = categoryService;
+        _profileRepository = profileRepository;
+        _transactionRepository = transactionRepository;
+        _categoryRepository = categoryRepository;
 
         _model = new TransactionModel
         {
@@ -218,14 +216,14 @@ public class AddTransactionPageViewModel : BaseNotifyObject
 
     public async Task Initialize()
     {
-        var profileId = await _profileService.GetCurrentProfileId();
+        var profileId = await _profileRepository.GetCurrentProfileId();
         
         if (profileId is null)
         {
             throw new Exception("Current profile was not found");
         }
         
-        var categories = await _categoryService.GetAllByProfileId((Guid)profileId);
+        var categories = await _categoryRepository.GetAllByProfileId((Guid)profileId);
 
         AvailableCategories.Add(NoneCategory);
         
@@ -252,7 +250,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
             throw new Exception("Invalid transaction type");
         }
         
-        var currentProfileId = await _profileService.GetCurrentProfileId();
+        var currentProfileId = await _profileRepository.GetCurrentProfileId();
 
         if (currentProfileId is null)
         {
@@ -278,6 +276,6 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         }
 
         var transaction = _mapper.MapToDomain(_model);
-        await _transactionService.Create(transaction);
+        await _transactionRepository.Create(transaction);
     }
 }

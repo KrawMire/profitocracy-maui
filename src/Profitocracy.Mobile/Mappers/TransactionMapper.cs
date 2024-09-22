@@ -1,7 +1,7 @@
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate.Entities;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate.ValueObjects;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Factories;
+using Profitocracy.Core.Domain.Model.Transactions;
+using Profitocracy.Core.Domain.Model.Transactions.Entities;
+using Profitocracy.Core.Domain.Model.Transactions.Factories;
+using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Transaction;
 

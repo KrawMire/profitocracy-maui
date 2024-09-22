@@ -1,13 +1,13 @@
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate.Entities;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate.ValueObjects;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Factories;
-using Profitocracy.Infrastructure.Common.Abstractions;
+using Profitocracy.Core.Domain.Model.Transactions;
+using Profitocracy.Core.Domain.Model.Transactions.Entities;
+using Profitocracy.Core.Domain.Model.Transactions.Factories;
+using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
+using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Mappers;
 
-public class TransactionMapper : IInfrastructureMapper<Transaction, TransactionModel>
+internal class TransactionMapper : IInfrastructureMapper<Transaction, TransactionModel>
 {
 	public Transaction MapToDomain(TransactionModel model)
 	{

@@ -1,12 +1,12 @@
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Repositories;
-using Profitocracy.Infrastructure.Common.Abstractions;
+using Profitocracy.Core.Domain.Model.Categories;
+using Profitocracy.Core.Persistence;
+using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Category;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Repositories;
 
-public class CategoryRepository : ICategoryRepository
+internal class CategoryRepository : ICategoryRepository
 {
 	private readonly DbConnection _dbConnection;
 	private readonly IInfrastructureMapper<Category, CategoryModel> _mapper;

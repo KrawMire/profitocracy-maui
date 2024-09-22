@@ -2,7 +2,7 @@ using SQLite;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 
-public class TransactionModel
+internal class TransactionModel
 {
 	[PrimaryKey]
 	public Guid Id { get; set; }

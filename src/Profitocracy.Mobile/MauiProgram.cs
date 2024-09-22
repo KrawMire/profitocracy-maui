@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Profitocracy.BusinessLogic;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
+using Profitocracy.Core.Domain.Model.Categories;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Infrastructure;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Mappers;

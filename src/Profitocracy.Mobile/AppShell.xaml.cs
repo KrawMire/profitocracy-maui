@@ -1,4 +1,4 @@
-﻿using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
+﻿using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Constants;
 using Profitocracy.Mobile.Views.Setup;
 
@@ -6,22 +6,21 @@ namespace Profitocracy.Mobile;
 
 public partial class AppShell : Shell
 {
-	private readonly IProfileService _profileService;
+	private readonly IProfileRepository _profileRepository;
 	
-	public AppShell(IProfileService profileService)
+	public AppShell(IProfileRepository profileRepository)
 	{
 		InitializeComponent();
 		
 		Routing.RegisterRoute(RoutesConstants.SetupPage, typeof(SetupPage));
-
-		_profileService = profileService ?? throw new ArgumentNullException(nameof(profileService));
+		_profileRepository = profileRepository;
 	}
 
 	private async void AppShell_OnLoaded(object? sender, EventArgs e)
 	{
 		try
 		{
-			var profile = await _profileService.GetCurrentProfileId();
+			var profile = await _profileRepository.GetCurrentProfileId();
 			
 			if (profile is null)
 			{

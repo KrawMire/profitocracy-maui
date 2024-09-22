@@ -1,12 +1,12 @@
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Repositories;
-using Profitocracy.Infrastructure.Common.Abstractions;
+using Profitocracy.Core.Domain.Model.Transactions;
+using Profitocracy.Core.Persistence;
+using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Repositories;
 
-public class TransactionRepository(
+internal class TransactionRepository(
 	DbConnection dbConnection, 
 	IInfrastructureMapper<Transaction, TransactionModel> mapper) : ITransactionRepository
 {

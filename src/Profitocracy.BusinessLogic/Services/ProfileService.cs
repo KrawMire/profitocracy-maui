@@ -1,9 +1,7 @@
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Repositories;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate.Entities;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Repositories;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
-using Profitocracy.Domain.Boundaries.TransactionBoundary.Repositories;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Profiles.Entities;
+using Profitocracy.Core.Domain.Services;
+using Profitocracy.Core.Persistence;
 
 namespace Profitocracy.BusinessLogic.Services;
 
@@ -21,16 +19,6 @@ internal class ProfileService : IProfileService
 		_profileRepository = profileRepository ?? throw new ArgumentNullException(nameof(profileRepository));
 		_transactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
 		_categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
-	}
-
-	public Task<Profile> Create(Profile profile)
-	{
-		return _profileRepository.Create(profile);
-	}
-
-	public Task<Guid?> GetCurrentProfileId()
-	{
-		return _profileRepository.GetCurrentProfileId();
 	}
 
 	public async Task<Profile?> GetCurrentProfile()

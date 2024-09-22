@@ -1,5 +1,5 @@
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Factories;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Profiles.Factories;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Profile;
 

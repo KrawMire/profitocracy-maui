@@ -1,6 +1,6 @@
 using System.Globalization;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Profile;
 
@@ -9,15 +9,15 @@ namespace Profitocracy.Mobile.ViewModels.Setup;
 public class SetupPageViewModel : BaseNotifyObject
 {
     private string _name = "";
-    private string _initialBalance;
+    private string _initialBalance = "0";
 
-    private readonly IProfileService _profileService;
+    private readonly IProfileRepository _profileRepository;
     private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
     
-    public SetupPageViewModel(IProfileService profileService, IPresentationMapper<Profile, ProfileModel> mapper)
+    public SetupPageViewModel(IProfileRepository profileRepository, IPresentationMapper<Profile, ProfileModel> mapper)
     {
-        _profileService = profileService ?? throw new ArgumentNullException(nameof(profileService));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _profileRepository = profileRepository;
+        _mapper = mapper;
     }
 
     public string Name
@@ -64,6 +64,6 @@ public class SetupPageViewModel : BaseNotifyObject
         };
 
         var domainProfile = _mapper.MapToDomain(profile);
-        await _profileService.Create(domainProfile);
+        await _profileRepository.Create(domainProfile);
     }
 }

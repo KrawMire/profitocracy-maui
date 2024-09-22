@@ -137,7 +137,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Profitocracy.BusinessLogic\Profitocracy.BusinessLogic.csproj" />
-      <ProjectReference Include="..\Profitocracy.Domain\Profitocracy.Domain.csproj" />
+      <ProjectReference Include="..\Profitocracy.Core\Profitocracy.Core.csproj" />
       <ProjectReference Include="..\Profitocracy.Infrastructure\Profitocracy.Infrastructure.csproj" />
     </ItemGroup>
 

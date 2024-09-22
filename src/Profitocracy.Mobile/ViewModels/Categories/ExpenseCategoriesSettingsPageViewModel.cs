@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Aggregate;
-using Profitocracy.Domain.Boundaries.CategoryBoundary.Services;
-using Profitocracy.Domain.Boundaries.ProfileBoundary.Services;
+using Profitocracy.Core.Domain.Model.Categories;
+using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Category;
 
@@ -9,25 +8,25 @@ namespace Profitocracy.Mobile.ViewModels.Categories;
 
 public class ExpenseCategoriesSettingsPageViewModel : BaseNotifyObject
 {
-    private readonly IProfileService _profileService;
-    private readonly ICategoryService _categoryService;
+    private readonly IProfileRepository _profileRepository;
+    private readonly ICategoryRepository _categoryRepository;
     private readonly IPresentationMapper<Category, CategoryModel> _categoryMapper;
 
     public ExpenseCategoriesSettingsPageViewModel(
-        IProfileService profileService,
-        ICategoryService categoryService, 
+        IProfileRepository profileRepository,
+        ICategoryRepository categoryService, 
         IPresentationMapper<Category, CategoryModel> categoryMapper)
     {
-        _profileService = profileService ?? throw new ArgumentNullException(nameof(profileService));
-        _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
-        _categoryMapper = categoryMapper ?? throw new ArgumentNullException(nameof(categoryMapper));
+        _profileRepository = profileRepository;
+        _categoryRepository = categoryService;
+        _categoryMapper = categoryMapper;
     }
     
     public readonly ObservableCollection<CategoryModel> Categories = [];
 
     public async void Initialize()
     {
-        var profileId = await _profileService.GetCurrentProfileId();
+        var profileId = await _profileRepository.GetCurrentProfileId();
 
         if (profileId is null)
         {
@@ -35,7 +34,7 @@ public class ExpenseCategoriesSettingsPageViewModel : BaseNotifyObject
             return;
         }
         
-        var categories = await _categoryService.GetAllByProfileId((Guid)profileId);
+        var categories = await _categoryRepository.GetAllByProfileId((Guid)profileId);
         Categories.Clear();
 
         foreach (var category in categories)
