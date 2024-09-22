@@ -71,7 +71,7 @@ public class Profile : AggregateRoot<Guid>
 			DateTo = new DateTime(
 				currentDate.Year,
 				currentDate.Month,
-				DateTime.DaysInMonth(currentDate.Year, currentDate.Month))
+				day: DateTime.DaysInMonth(currentDate.Year, currentDate.Month))
 		};
 	}
 
@@ -83,47 +83,47 @@ public class Profile : AggregateRoot<Guid>
 	/// <summary>
 	/// Name of profile
 	/// </summary>
-	public string Name { get; set; }
+	public string Name { get; }
 	
 	/// <summary>
 	/// Initial balance from date when profile was created
 	/// </summary>
-	public AnchorDate StartDate { get; set; }
+	public AnchorDate StartDate { get; private set; }
 	
 	/// <summary>
 	/// Start and end dates of billing period
 	/// </summary>
-	public TimePeriod BillingPeriod { get; set; }
+	public TimePeriod BillingPeriod { get; }
 	
 	/// <summary>
 	/// Current balance
 	/// </summary>
-	public decimal Balance { get; set; }
+	public decimal Balance { get; private set; }
 	
 	/// <summary>
 	/// Total saved amount
 	/// </summary>
-	public decimal SavedBalance { get; set; }
+	public decimal SavedBalance { get; private set; }
 	
 	/// <summary>
 	/// Calculations of expenses by types: main, secondary and saved
 	/// </summary>
-	public ProfileExpenses Expenses { get; private set; }
+	public ProfileExpenses Expenses { get; }
 	
 	/// <summary>
 	/// Result of expenses calculations for every category
 	/// </summary>
-	public List<ProfileCategory> CategoriesBalances { get; set; }
+	public List<ProfileCategory> CategoriesBalances { get; }
 	
 	/// <summary>
 	/// Profile settings
 	/// </summary>
-	public ProfileSettings Settings { get; set; }
+	public ProfileSettings Settings { get; }
 
 	/// <summary>
 	/// Is this profile currently using by user
 	/// </summary>
-	public bool IsCurrent { get; set; }
+	public bool IsCurrent { get; }
 
 	/// <summary>
 	/// Process transaction and
@@ -154,11 +154,20 @@ public class Profile : AggregateRoot<Guid>
 	}
 	
 	/// <summary>
+	/// Add profile categories to transaction processing
+	/// </summary>
+	/// <param name="categories">List of categories to add to profile</param>
+	public void AddCategories(IEnumerable<ProfileCategory> categories)
+	{
+		CategoriesBalances.AddRange(categories);
+	}
+	
+	/// <summary>
 	/// Process transaction and
 	/// project results in profile
 	/// </summary>
 	/// <param name="transaction">Transaction to handle</param>
-	public void HandleTransaction(Transaction transaction)
+	private void HandleTransaction(Transaction transaction)
 	{
 		if (transaction.Type == TransactionType.Income)
 		{

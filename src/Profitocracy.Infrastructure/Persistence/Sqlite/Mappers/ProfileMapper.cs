@@ -17,15 +17,17 @@ internal class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
 			.AddCurrency(model.CurrencyCode, model.CurrencyName, model.CurrencySymbol)
 			.AddIsCurrent(model.IsCurrent);
 
-		if (model.Categories is not null)
+		if (model.Categories is null)
 		{
-			foreach (var modelCategory in model.Categories)
-			{
-				builder.AddCategoryExpense(
-					modelCategory.CategoryId, 
-					modelCategory.Name, 
-					modelCategory.PlannedAmount);
-			}	
+			return builder.Build();
+		}
+		
+		foreach (var modelCategory in model.Categories)
+		{
+			builder.AddCategoryExpense(
+				modelCategory.CategoryId, 
+				modelCategory.Name, 
+				modelCategory.PlannedAmount);
 		}
 
 		return builder.Build();

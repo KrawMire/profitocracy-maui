@@ -39,15 +39,14 @@ internal class ProfileService : IProfileService
 
 		if (categories.Count > 0)
 		{
-			foreach (var category in categories)
+			var profileCategories = categories.Select(c => new ProfileCategory(c.Id)
 			{
-				profile.CategoriesBalances.Add(new ProfileCategory(category.Id)
-				{
-					Name = category.Name,
-					ActualAmount = 0,
-					PlannedAmount = category.PlannedAmount
-				});
-			}	
+				Name = c.Name,
+				ActualAmount = 0,
+				PlannedAmount = c.PlannedAmount
+			});
+			
+			profile.AddCategories(profileCategories);
 		}
 		
 		profile.HandleTransactions(transactions);
