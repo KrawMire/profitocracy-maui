@@ -8,7 +8,7 @@ public partial class AddTransactionPage : ContentPage
 	
 	public AddTransactionPage(AddTransactionPageViewModel viewModel)
 	{
-		ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+		ViewModel = viewModel;
 		BindingContext = ViewModel;
 	
 		InitializeComponent();

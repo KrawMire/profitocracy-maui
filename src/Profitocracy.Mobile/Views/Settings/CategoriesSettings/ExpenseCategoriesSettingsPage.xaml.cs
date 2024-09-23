@@ -8,7 +8,7 @@ public partial class ExpenseCategoriesSettingsPage : ContentPage
 	
 	public ExpenseCategoriesSettingsPage(ExpenseCategoriesSettingsPageViewModel viewModel)
 	{
-		ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+		ViewModel = viewModel;
 		BindingContext = ViewModel;
 		
 		InitializeComponent();

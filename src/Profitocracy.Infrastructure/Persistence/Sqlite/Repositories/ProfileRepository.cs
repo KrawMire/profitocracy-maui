@@ -15,8 +15,8 @@ internal class ProfileRepository : IProfileRepository
 		DbConnection connection,
 		IInfrastructureMapper<Profile, ProfileModel> mapper)
 	{
-		_dbConnection = connection ?? throw new ArgumentNullException(nameof(connection));
-		_mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+		_dbConnection = connection;
+		_mapper = mapper;
 	}
 	
 	public async Task<Profile> Create(Profile profile)

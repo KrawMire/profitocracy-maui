@@ -16,9 +16,9 @@ internal class ProfileService : IProfileService
 		ITransactionRepository transactionRepository, 
 		ICategoryRepository categoryRepository)
 	{
-		_profileRepository = profileRepository ?? throw new ArgumentNullException(nameof(profileRepository));
-		_transactionRepository = transactionRepository ?? throw new ArgumentNullException(nameof(transactionRepository));
-		_categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
+		_profileRepository = profileRepository;
+		_transactionRepository = transactionRepository;
+		_categoryRepository = categoryRepository;
 	}
 
 	public async Task<Profile?> GetCurrentProfile()

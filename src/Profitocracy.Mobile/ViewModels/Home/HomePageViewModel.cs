@@ -355,8 +355,8 @@ public class HomePageViewModel : BaseNotifyObject
     
     public HomePageViewModel(IProfileService profileService, IPresentationMapper<Profile, ProfileModel> mapper)
     {
-        _profileService = profileService ?? throw new ArgumentNullException(nameof(profileService));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _profileService = profileService;
+        _mapper = mapper;
     }
 
     public async void Initialize()

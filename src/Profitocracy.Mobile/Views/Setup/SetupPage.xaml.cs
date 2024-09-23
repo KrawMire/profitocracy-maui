@@ -10,7 +10,7 @@ public partial class SetupPage : ContentPage
 	{
 		InitializeComponent();
 		
-		ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+		ViewModel = viewModel;
 		BindingContext = ViewModel;
 	}
 	

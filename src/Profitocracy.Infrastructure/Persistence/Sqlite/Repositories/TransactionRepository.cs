@@ -6,12 +6,18 @@ using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Repositories;
 
-internal class TransactionRepository(
-	DbConnection dbConnection, 
-	IInfrastructureMapper<Transaction, TransactionModel> mapper) : ITransactionRepository
+internal class TransactionRepository : ITransactionRepository
 {
-	private readonly DbConnection _dbConnection = dbConnection ?? throw new ArgumentNullException(nameof(dbConnection));
-	private readonly IInfrastructureMapper<Transaction, TransactionModel> _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+	private readonly DbConnection _dbConnection;
+	private readonly IInfrastructureMapper<Transaction, TransactionModel> _mapper;
+
+	public TransactionRepository(
+		DbConnection dbConnection, 
+		IInfrastructureMapper<Transaction, TransactionModel> mapper)
+	{
+		_dbConnection = dbConnection;
+		_mapper = mapper;
+	}
 
 	public async Task<List<Transaction>> GetAllByProfileId(Guid profileId)
 	{

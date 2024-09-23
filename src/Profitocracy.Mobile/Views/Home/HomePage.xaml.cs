@@ -8,7 +8,7 @@ public partial class HomePage : ContentPage
 	
 	public HomePage(HomePageViewModel viewModel)
 	{
-		ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+		ViewModel = viewModel;
 		BindingContext = ViewModel;
 		InitializeComponent();
 

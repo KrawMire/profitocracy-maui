@@ -15,8 +15,8 @@ internal class CategoryRepository : ICategoryRepository
 		DbConnection connection,
 		IInfrastructureMapper<Category, CategoryModel> mapper)
 	{
-		_dbConnection = connection ?? throw new ArgumentNullException(nameof(connection));
-		_mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+		_dbConnection = connection;
+		_mapper = mapper;
 	}
 	
 	public async Task<List<Category>> GetAllByProfileId(Guid profileId)
