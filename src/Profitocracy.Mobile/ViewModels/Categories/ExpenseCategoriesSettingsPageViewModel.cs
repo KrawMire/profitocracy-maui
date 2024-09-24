@@ -14,14 +14,14 @@ public class ExpenseCategoriesSettingsPageViewModel : BaseNotifyObject
 
     public ExpenseCategoriesSettingsPageViewModel(
         IProfileRepository profileRepository,
-        ICategoryRepository categoryService, 
+        ICategoryRepository categoryRepository,
         IPresentationMapper<Category, CategoryModel> categoryMapper)
     {
         _profileRepository = profileRepository;
-        _categoryRepository = categoryService;
+        _categoryRepository = categoryRepository;
         _categoryMapper = categoryMapper;
     }
-    
+
     public readonly ObservableCollection<CategoryModel> Categories = [];
 
     public async void Initialize()
@@ -33,7 +33,7 @@ public class ExpenseCategoriesSettingsPageViewModel : BaseNotifyObject
             await Shell.Current.DisplayAlert("Error", "Cannot find current profile", "OK");
             return;
         }
-        
+
         var categories = await _categoryRepository.GetAllByProfileId((Guid)profileId);
         Categories.Clear();
 

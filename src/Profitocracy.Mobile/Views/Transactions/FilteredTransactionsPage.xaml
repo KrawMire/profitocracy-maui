@@ -4,33 +4,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transaction"
              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             x:Class="Profitocracy.Mobile.Views.Transactions.TransactionsPage"
-             Title="{x:Static resx:AppResources.Transactions}"
-             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-             NavigatedTo="UpdateTransactionsList">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <CollectionView x:Name="TransactionsCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="transactions:TransactionModel">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItemView Width="56"
-                                               Padding="24"
-                                               BackgroundColor="Tomato"
-                                               Invoked="SwipeItem_OnInvoked">
-                                    <VerticalStackLayout VerticalOptions="Center">
-                                        <Image Source="bin.png" 
-                                               Width="10" />
-                                    </VerticalStackLayout>
-                                </SwipeItemView>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        
+             x:Class="Profitocracy.Mobile.Views.Transactions.FilteredTransactionsPage"
+             Shell.PresentationMode="ModalAnimated">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <FlexLayout Grid.Row="0" 
+                        JustifyContent="SpaceBetween"
+                        Padding="16">
+                <Label Style="{StaticResource PageTitle}"
+                       Text="{x:Static resx:AppResources.Transactions}"/>    
+                <Border Style="{StaticResource CloseButton}"
+                        VerticalOptions="End"
+                        x:Name="CloseButton">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CloseButton_OnClicked" />
+                    </Border.GestureRecognizers>
+                    <Label Style="{StaticResource CloseButtonContent}"
+                           Text="X"/>
+                </Border>
+            </FlexLayout>
+            <CollectionView Grid.Row="1" x:Name="TransactionsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="transactions:TransactionModel">
                         <Border Style="{StaticResource TransactionCard}">
                             <StackLayout>
                                 <FlexLayout JustifyContent="SpaceBetween">
@@ -95,30 +94,9 @@
                                 </FlexLayout>
                             </StackLayout>
                         </Border>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
-        <Button Grid.Row="0"
-                Text="+"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                FontAttributes="Bold"
-                BackgroundColor="{StaticResource Primary}"
-                WidthRequest="60"
-                HeightRequest="60"
-                CornerRadius="30"
-                Margin="0,0,16,16"
-                FontSize="25"
-                x:Name="AddTransactionButton" 
-                Clicked="AddTransactionButton_OnClicked">
-            <Button.Shadow>
-                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
-                        Offset="0,8"
-                        Radius="16"
-                        Opacity="0.9" />
-            </Button.Shadow>
-        </Button>
-    </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

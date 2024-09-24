@@ -1,8 +1,7 @@
 using Profitocracy.Mobile.Models.Transaction;
 using Profitocracy.Mobile.ViewModels.Transactions;
-using Profitocracy.Mobile.Views.Transactions;
 
-namespace Profitocracy.Mobile.Views.Pages.Transactions;
+namespace Profitocracy.Mobile.Views.Transactions;
 
 public partial class TransactionsPage : ContentPage
 {
@@ -43,7 +42,10 @@ public partial class TransactionsPage : ContentPage
 	{
 		if (sender is not SwipeItemView swipeItem)
 		{
-			await DisplayAlert("Error", "Internal error. Try again", "OK");
+			await DisplayAlert(
+				"Error", 
+				"Internal error. Try again", 
+				"OK");
 			return;
 		}
 
@@ -51,7 +53,10 @@ public partial class TransactionsPage : ContentPage
 
 		if (transaction?.Id is null)
 		{
-			await DisplayAlert("Error", "Cannot find transaction to delete", "OK");
+			await DisplayAlert(
+				"Error", 
+				"Cannot find transaction to delete", 
+				"OK");
 			return;
 		}
 		

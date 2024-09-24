@@ -421,13 +421,14 @@
     <Style TargetType="Border" x:Key="CloseButton">
         <Setter Property="WidthRequest" Value="24"/>
         <Setter Property="HeightRequest" Value="24"/>
-        <Setter Property="Padding" Value="8"/>
         <Setter Property="StrokeThickness" Value="0"/>
         <Setter Property="StrokeShape" Value="RoundRectangle 16"/>
         <Setter Property="BackgroundColor" Value="{StaticResource Gray300}"/>
     </Style>
     
     <Style TargetType="Label" x:Key="CloseButtonContent">
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="OpenSansSemibold"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="TextColor" Value="{StaticResource White}"/>

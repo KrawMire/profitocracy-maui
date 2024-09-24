@@ -1,5 +1,6 @@
 using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Core.Persistence;
+using Profitocracy.Core.Specifications;
 using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
@@ -51,6 +52,46 @@ internal class TransactionRepository : ITransactionRepository
 			.Where(t => t.Timestamp >= dateFrom)
 			.Where(t => t.Timestamp <= dateTo)
 			.ToListAsync();
+
+		if (transactions is null)
+		{
+			return [];
+		}
+
+		return transactions
+			.Select(_mapper.MapToDomain)
+			.ToList();
+	}
+
+	public async Task<List<Transaction>> GetFiltered(TransactionsSpecification spec)
+	{
+		await _dbConnection.Init();
+
+		var query = _dbConnection.Database.Table<TransactionModel>();
+
+		if (spec.SpendingType is not null)
+		{
+			query = query.Where(t => t.SpendingType.Equals(spec.SpendingType));
+		}
+
+		if (spec.CategoryId is not null)
+		{
+			query = query.Where(t => t.CategoryId == spec.CategoryId);
+		}
+
+		if (spec.FromDate is not null)
+		{
+			query = query.Where(t => t.Timestamp >= spec.FromDate);
+		}
+
+		if (spec.ToDate is not null)
+		{
+			query = query.Where(t => t.Timestamp <= spec.ToDate);
+		}
+
+		query = query.OrderByDescending(t => t.Timestamp);
+		
+		var transactions = await query.ToListAsync();
 
 		if (transactions is null)
 		{

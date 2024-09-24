@@ -433,6 +433,7 @@ public class HomePageViewModel : BaseNotifyObject
             if (expense.PlannedAmount is null or 0)
             {
                 categoryExpense = new DisplayCategoryExpense(
+                    expense.CategoryId,
                     expense.Name, 
                     NumberUtils.RoundDecimal(expense.ActualAmount),
                     false,
@@ -442,6 +443,7 @@ public class HomePageViewModel : BaseNotifyObject
             else
             {
                 categoryExpense = new DisplayCategoryExpense(
+                    expense.CategoryId,
                     expense.Name, 
                     NumberUtils.RoundDecimal(expense.ActualAmount),
                     true,

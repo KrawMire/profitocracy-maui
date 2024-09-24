@@ -14,8 +14,7 @@ using Profitocracy.Mobile.ViewModels.Categories;
 using Profitocracy.Mobile.ViewModels.Home;
 using Profitocracy.Mobile.ViewModels.Setup;
 using Profitocracy.Mobile.ViewModels.Transactions;
-using Profitocracy.Mobile.Views.Pages.Home;
-using Profitocracy.Mobile.Views.Pages.Transactions;
+using Profitocracy.Mobile.Views.Home;
 using Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 using Profitocracy.Mobile.Views.Setup;
 using Profitocracy.Mobile.Views.Transactions;
@@ -73,6 +72,7 @@ public static class MauiProgram
 			.AddTransient<HomePageViewModel>()
 			.AddTransient<SetupPageViewModel>()
 			.AddTransient<AddTransactionPageViewModel>()
+			.AddTransient<FilteredTransactionsPageViewModel>()
 			.AddTransient<TransactionPageViewModel>()
 			.AddTransient<ExpenseCategoriesSettingsPageViewModel>()
 			.AddTransient<AddExpenseCategoryPageViewModel>();
@@ -86,6 +86,7 @@ public static class MauiProgram
 			.AddSingleton<HomePage>()
 			.AddSingleton<SetupPage>()
 			.AddSingleton<TransactionsPage>()
+			.AddTransient<FilteredTransactionsPage>()
 			.AddTransient<AddTransactionPage>()
 			.AddTransient<ExpenseCategoriesSettingsPage>()
 			.AddTransient<AddExpenseCategoryPage>();

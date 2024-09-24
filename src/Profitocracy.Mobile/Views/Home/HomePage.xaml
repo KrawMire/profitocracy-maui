@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:displaymodels="clr-namespace:Profitocracy.Mobile.Models.DisplayModels"
              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             x:Class="Profitocracy.Mobile.Views.Pages.Home.HomePage"
+             x:Class="Profitocracy.Mobile.Views.Home.HomePage"
              Title="{x:Static resx:AppResources.Home}"
              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
              NavigatedTo="HomePage_OnNavigated">
@@ -107,7 +107,11 @@
                     <Label Style="{StaticResource ExpenseCardTitle}"
                            Text="{x:Static resx:AppResources.SpendingTypes}"/>
                         
-                    <StackLayout Margin="0,16,0,0">
+                    <StackLayout x:Name="MainExpenses"
+                                 Margin="0,16,0,0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="MainSpendingTypeLayout_OnTapped" />
+                        </StackLayout.GestureRecognizers>
                         <Label Style="{StaticResource ExpenseCardSubtitle}"
                                Text="{x:Static resx:AppResources.Main}"/>
                         <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
@@ -121,7 +125,11 @@
                         </FlexLayout>
                     </StackLayout>
                     
-                    <StackLayout Margin="0,16,0,0">
+                    <StackLayout x:Name="SecondaryExpenses"
+                                 Margin="0,16,0,0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SecondarySpendingTypeLayout_OnTapped" />
+                        </StackLayout.GestureRecognizers>
                         <Label Style="{StaticResource ExpenseCardSubtitle}"
                                Text="{x:Static resx:AppResources.Secondary}"/>
                         <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
@@ -135,7 +143,11 @@
                         </FlexLayout>
                     </StackLayout>
                     
-                    <StackLayout Margin="0,16,0,0">
+                    <StackLayout x:Name="SavedExpenses" 
+                                 Margin="0,16,0,0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SavedSpendingTypeLayout_OnTapped" />
+                        </StackLayout.GestureRecognizers>
                         <Label Style="{StaticResource ExpenseCardSubtitle}"
                                Text="{x:Static resx:AppResources.Saved}"/>
                         <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
@@ -167,6 +179,10 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="displaymodels:DisplayCategoryExpense">
                                 <StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="CategoryLayout_OnTapped" />
+                                    </StackLayout.GestureRecognizers>
+                                    
                                     <StackLayout Margin="0,16,0,0"
                                                  IsVisible="{Binding IsShowRatio}">
                                         <Label Style="{StaticResource ExpenseCardSubtitle}"
