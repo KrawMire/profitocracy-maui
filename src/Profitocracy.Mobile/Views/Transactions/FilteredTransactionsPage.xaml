@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transaction"
+             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+             x:Class="Profitocracy.Mobile.Views.Transactions.FilteredTransactionsPage"
+             Shell.PresentationMode="ModalAnimated">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <FlexLayout Grid.Row="0" 
+                        JustifyContent="SpaceBetween"
+                        Padding="16">
+                <Label Style="{StaticResource PageTitle}"
+                       Text="{x:Static resx:AppResources.Transactions}"/>    
+                <Border Style="{StaticResource CloseButton}"
+                        VerticalOptions="End"
+                        x:Name="CloseButton">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CloseButton_OnClicked" />
+                    </Border.GestureRecognizers>
+                    <Label Style="{StaticResource CloseButtonContent}"
+                           Text="X"/>
+                </Border>
+            </FlexLayout>
+            <CollectionView Grid.Row="1" x:Name="TransactionsCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="transactions:TransactionModel">
+                        <Border Style="{StaticResource TransactionCard}">
+                            <StackLayout>
+                                <FlexLayout JustifyContent="SpaceBetween">
+                                    <StackLayout>
+                                        <Label Text="{Binding DisplaySpendingType}">
+                                            <Label.Style>
+                                                <Style TargetType="Label">
+                                                    <Style.Triggers>
+                                                        <DataTrigger TargetType="Label"
+                                                                     Binding="{Binding IsIncome}"
+                                                                     Value="True">
+                                                            <Setter Property="FontSize" Value="18"/>
+                                                            <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                            <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label"
+                                                                     Binding="{Binding IsIncome}"
+                                                                     Value="False">
+                                                            <Setter Property="FontSize" Value="18"/>
+                                                            <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Label.Style>
+                                        </Label>
+                                        <Label Style="{StaticResource TransactionCardCategory}"
+                                               Margin="0,4,0,0"
+                                               Text="{Binding Category.Name, FallbackValue=''}"/>
+                                        <Label Style="{StaticResource TransactionCardDescription}"
+                                               Margin="0,4,0,0"
+                                               Text="{Binding Description}"/>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label HorizontalTextAlignment="End"
+                                               Text="{Binding DisplayAmount}">
+                                            <Label.Style>
+                                                <Style TargetType="Label">
+                                                    <Style.Triggers>
+                                                        <DataTrigger TargetType="Label"
+                                                                     Binding="{Binding IsIncome}"
+                                                                     Value="True">
+                                                            <Setter Property="FontSize" Value="18"/>
+                                                            <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                            <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="Label"
+                                                                     Binding="{Binding IsIncome}"
+                                                                     Value="False">
+                                                            <Setter Property="FontSize" Value="18"/>
+                                                            <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+                                                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Label.Style>
+                                        </Label>
+                                        <Label Style="{StaticResource TransactionCardDate}"
+                                               Margin="0,4,0,0"
+                                               Text="{Binding Timestamp, StringFormat='{0:dd/MM/yyyy hh:mm}'}"/>
+                                    </StackLayout>
+                                </FlexLayout>
+                            </StackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
