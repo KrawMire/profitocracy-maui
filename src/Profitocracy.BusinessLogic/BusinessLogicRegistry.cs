@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Profitocracy.BusinessLogic.Services;
 using Profitocracy.Core.Domain.Services;
 
 namespace Profitocracy.BusinessLogic;

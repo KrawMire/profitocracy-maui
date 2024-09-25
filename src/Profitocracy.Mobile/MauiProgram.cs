@@ -1,15 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Profitocracy.BusinessLogic;
-using Profitocracy.Core.Domain.Model.Categories;
-using Profitocracy.Core.Domain.Model.Profiles;
-using Profitocracy.Core.Domain.Model.Transactions;
+using Profitocracy.Core;
 using Profitocracy.Infrastructure;
-using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Mappers;
-using Profitocracy.Mobile.Models.Category;
-using Profitocracy.Mobile.Models.Profile;
-using Profitocracy.Mobile.Models.Transaction;
 using Profitocracy.Mobile.ViewModels.Categories;
 using Profitocracy.Mobile.ViewModels.Home;
 using Profitocracy.Mobile.ViewModels.Setup;
@@ -37,9 +29,7 @@ public static class MauiProgram
 			})
 			.RegisterAppServices()
 			.RegisterViewModels()
-			.RegisterViews()
-			.RegisterModels()
-			.RegisterPresentationMappers();
+			.RegisterViews();
 
 		
 #if DEBUG
@@ -53,7 +43,7 @@ public static class MauiProgram
 		
 		builder.Services
 			.RegisterInfrastructureServices(infrastructureConfig)
-			.RegisterServices()
+			.RegisterCoreServices()
 			.AddSingleton<TransactionsPage>();
 
 		return builder.Build();
@@ -93,19 +83,4 @@ public static class MauiProgram
 		
 		return mauiAppBuilder;
 	}
-
-	private static MauiAppBuilder RegisterModels(this MauiAppBuilder mauiAppBuilder)
-	{
-		return mauiAppBuilder;
-	}
-	
-	private static MauiAppBuilder RegisterPresentationMappers(this MauiAppBuilder mauiAppBuilder)
-	{
-		_ = mauiAppBuilder.Services
-			.AddTransient<IPresentationMapper<Profile, ProfileModel>, ProfileMapper>()
-			.AddTransient<IPresentationMapper<Transaction, TransactionModel>, TransactionMapper>()
-			.AddTransient<IPresentationMapper<Category, CategoryModel>, CategoryMapper>();
-		
-		return mauiAppBuilder;
-	} 
 }

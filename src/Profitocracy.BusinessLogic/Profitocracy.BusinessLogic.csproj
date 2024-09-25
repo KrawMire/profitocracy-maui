@@ -14,4 +14,8 @@
       <ProjectReference Include="..\Profitocracy.Core\Profitocracy.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>
