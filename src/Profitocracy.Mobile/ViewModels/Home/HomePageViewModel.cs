@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
+using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
 using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
-using Profitocracy.Core.Domain.Services;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models;
 using Profitocracy.Mobile.Utils;

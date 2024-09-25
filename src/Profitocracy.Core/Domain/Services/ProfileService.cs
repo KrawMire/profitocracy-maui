@@ -1,3 +1,4 @@
+using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Profiles;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
 using Profitocracy.Core.Persistence;

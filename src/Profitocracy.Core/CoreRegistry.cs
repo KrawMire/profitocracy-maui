@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Services;
 
 namespace Profitocracy.Core;

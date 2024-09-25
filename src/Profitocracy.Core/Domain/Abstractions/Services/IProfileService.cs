@@ -1,6 +1,6 @@
 using Profitocracy.Core.Domain.Model.Profiles;
 
-namespace Profitocracy.Core.Domain.Services;
+namespace Profitocracy.Core.Domain.Abstractions.Services;
 
 public interface IProfileService
 {

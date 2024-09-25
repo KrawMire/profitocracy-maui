@@ -1,6 +1,6 @@
 using Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 
-namespace Profitocracy.Mobile.Views.Pages.Settings;
+namespace Profitocracy.Mobile.Views.Settings;
 
 public partial class SettingsPage : ContentPage
 {
