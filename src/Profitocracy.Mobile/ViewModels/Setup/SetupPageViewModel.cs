@@ -23,32 +23,20 @@ public class SetupPageViewModel : BaseNotifyObject
     public string Name
     {
         get => _name;
-        set
-        {
-            if (_name == value)
-            {
-                return;
-            }
-            
-            _name = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _name, value);
     }
 
     public string InitialBalance
     {
         get => _initialBalance;
-        set
-        {
-            _initialBalance = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _initialBalance, value);
     }
 
     public async void CreateFirstProfile()
     {
-        _initialBalance = _initialBalance
-            .Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
+        _initialBalance = _initialBalance.Replace(
+            ",", 
+            CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
         
         if (!decimal.TryParse(_initialBalance, out var numValue))
         {

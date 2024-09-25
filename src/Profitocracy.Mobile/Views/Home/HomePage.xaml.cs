@@ -85,7 +85,7 @@ public partial class HomePage : ContentPage
 		filteredPage.Initialize(
 			categoryId: null, 
 			type,
-			dateFrom:DateTime.Parse(ViewModel.DateFrom),
+			dateFrom: DateTime.Parse(ViewModel.DateFrom),
 			dateTo: DateTime.Parse(ViewModel.DateTo));
 
 		await Navigation.PushModalAsync(filteredPage);

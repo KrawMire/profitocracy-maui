@@ -71,51 +71,31 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     public bool IsIncome
     {
         get => _isIncome;
-        set
-        {
-            _isIncome = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _isIncome, value);
     }
 
     public bool IsExpense
     {
         get => _isExpense;
-        set
-        {
-            _isExpense = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _isExpense, value);
     }
     
     public bool IsMain
     {
         get => _isMain;
-        set
-        {
-            _isMain = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _isMain, value);
     }
     
     public bool IsSecondary
     {
         get => _isSecondary;
-        set
-        {
-            _isSecondary = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _isSecondary, value);
     }
     
     public bool IsSaved
     {
         get => _isSaved;
-        set
-        {
-            _isSaved = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _isSaved, value);
     }
     
     public int TransactionType
@@ -123,26 +103,28 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         get => _model.Type;
         set
         {
-            if (value != _model.Type)
+            if (_model.Type == value)
             {
-                _model.Type = value;
+                return;
+            }
+            
+            _model.Type = value;
 
-                if (value == 0)
-                {
+            switch (value)
+            {
+                case 0:
                     IsIncome = true;
                     IsExpense = false;
                     SpendingType = null;
-                }
-
-                if (value == 1)
-                {
+                    break;
+                case 1:
                     IsIncome = false;
                     IsExpense = true;
                     SpendingType = 0;
-                }
-                
-                OnPropertyChanged();
+                    break;
             }
+
+            OnPropertyChanged();
         }
     }
     
@@ -151,47 +133,45 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         get => _model.SpendingType;
         set
         {
-            if (value != _model.SpendingType)
+            if (_model.SpendingType == value)
             {
-                _model.SpendingType = value;
-
-                switch (value)
-                {
-                    case 0:
-                        IsMain = true;
-                        IsSecondary = false;
-                        IsSaved = false;
-                        break;
-                    case 1:
-                        IsMain = false;
-                        IsSecondary = true;
-                        IsSaved = false;
-                        break;
-                    case 2:
-                        IsMain = false;
-                        IsSecondary = false;
-                        IsSaved = true;
-                        break;
-                    default:
-                        IsMain = true;
-                        IsSecondary = false;
-                        IsSaved = false;
-                        break;
-                }
-                
-                OnPropertyChanged();
+                return;
             }
+            
+            _model.SpendingType = value;
+
+            switch (value)
+            {
+                case 0:
+                    IsMain = true;
+                    IsSecondary = false;
+                    IsSaved = false;
+                    break;
+                case 1:
+                    IsMain = false;
+                    IsSecondary = true;
+                    IsSaved = false;
+                    break;
+                case 2:
+                    IsMain = false;
+                    IsSecondary = false;
+                    IsSaved = true;
+                    break;
+                default:
+                    IsMain = true;
+                    IsSecondary = false;
+                    IsSaved = false;
+                    break;
+            }
+                
+            OnPropertyChanged();
         }
     }
     
     public string Amount
     {
         get => _amount;
-        set
-        {
-            _amount = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _amount, value);
     }
 
     public string Description

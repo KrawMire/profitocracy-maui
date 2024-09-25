@@ -7,7 +7,7 @@ namespace Profitocracy.Mobile.ViewModels.Categories;
 
 public class AddExpenseCategoryPageViewModel : BaseNotifyObject
 {
-    private CategoryModel _model;
+    private readonly CategoryModel _model;
     private bool _isPlannedAmountPresent;
     private string? _plannedAmountStr;
 
@@ -25,7 +25,7 @@ public class AddExpenseCategoryPageViewModel : BaseNotifyObject
         _mapper = mapper;
 
         _isPlannedAmountPresent = true;
-        _model = new CategoryModel()
+        _model = new CategoryModel
         {
             ProfileId = Guid.Empty,
             Name = string.Empty,
@@ -61,11 +61,7 @@ public class AddExpenseCategoryPageViewModel : BaseNotifyObject
     public string PlannedAmount
     {
         get => _plannedAmountStr ?? string.Empty;
-        set
-        {
-            _plannedAmountStr = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _plannedAmountStr, value);
     }
 
     public async Task CreateCategory()
