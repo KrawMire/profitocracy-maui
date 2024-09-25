@@ -1,9 +1,8 @@
 using Profitocracy.Core.Domain.Model.Profiles;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
-using Profitocracy.Core.Domain.Services;
 using Profitocracy.Core.Persistence;
 
-namespace Profitocracy.BusinessLogic.Services;
+namespace Profitocracy.Core.Domain.Services;
 
 internal class ProfileService : IProfileService
 {

@@ -1,4 +1,4 @@
-using Profitocracy.Mobile.Models.Transaction;
+using Profitocracy.Mobile.Models.Transactions;
 using Profitocracy.Mobile.ViewModels.Transactions;
 
 namespace Profitocracy.Mobile.Views.Transactions;

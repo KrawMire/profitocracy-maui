@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Profiles.Entities;
+using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
 using Profitocracy.Core.Domain.Services;
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Models.DisplayModels;
-using Profitocracy.Mobile.Models.Profile;
+using Profitocracy.Mobile.Models;
 using Profitocracy.Mobile.Utils;
 
 namespace Profitocracy.Mobile.ViewModels.Home;
@@ -40,7 +40,6 @@ public class HomePageViewModel : BaseNotifyObject
     private bool _isDisplayNoCategories;
     
     private readonly IProfileService _profileService;
-    private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
 
     public string ProfileName
     {
@@ -188,24 +187,16 @@ public class HomePageViewModel : BaseNotifyObject
     
     public ObservableCollection<DisplayCategoryExpense> CategoriesExpenses = [];
     
-    public HomePageViewModel(IProfileService profileService, IPresentationMapper<Profile, ProfileModel> mapper)
+    public HomePageViewModel(IProfileService profileService)
     {
         _profileService = profileService;
-        _mapper = mapper;
     }
 
     public async void Initialize()
     {
-        var currentProfile = await _profileService.GetCurrentProfile();
+        var profile = await _profileService.GetCurrentProfile();
 
-        if (currentProfile is null)
-        {
-            return;
-        }
-        
-        var profile = _mapper.MapToModel(currentProfile);
-
-        if (profile.Expenses is null)
+        if (profile is null)
         {
             return;
         }
@@ -213,12 +204,12 @@ public class HomePageViewModel : BaseNotifyObject
         ProfileName = profile.Name;
         Balance = NumberUtils.RoundDecimal(profile.Balance);
         TotalSavedAmount = profile.SavedBalance;
-        DateFrom = profile.BillingDateFrom.ToShortDateString();
-        DateTo = profile.BillingDateTo.ToShortDateString();
+        DateFrom = profile.BillingPeriod.DateFrom.ToShortDateString();
+        DateTo = profile.BillingPeriod.DateTo.ToShortDateString();
         
         InitializeExpenses(profile.Expenses);
 
-        if (profile.CategoriesBalances is not null && profile.CategoriesBalances.Count > 0)
+        if (profile.CategoriesBalances.Count > 0)
         {
             IsDisplayNoCategories = false;
             InitializeCategoriesExpenses(profile.CategoriesBalances);
@@ -229,7 +220,7 @@ public class HomePageViewModel : BaseNotifyObject
         }
     }
 
-    private void InitializeExpenses(ProfileExpensesModel expenses)
+    private void InitializeExpenses(ProfileExpenses expenses)
     {
         TotalActualAmount = NumberUtils.RoundDecimal(expenses.TotalBalance.ActualAmount);
         TotalPlannedAmount = NumberUtils.RoundDecimal(expenses.TotalBalance.PlannedAmount);
@@ -247,7 +238,7 @@ public class HomePageViewModel : BaseNotifyObject
         InitializeExpenseRatios(expenses);
     }
     
-    private void InitializeExpenseRatios(ProfileExpensesModel expenses)
+    private void InitializeExpenseRatios(ProfileExpenses expenses)
     {
         TotalBalanceRatio = GetExpenseRatio(expenses.TotalBalance.ActualAmount, expenses.TotalBalance.PlannedAmount);
         DailyFromActualRatio = GetExpenseRatio(expenses.DailyFromActualBalance.ActualAmount, expenses.DailyFromActualBalance.PlannedAmount);
@@ -257,7 +248,7 @@ public class HomePageViewModel : BaseNotifyObject
         SavedRatio = GetExpenseRatio(expenses.Saved.ActualAmount, expenses.Saved.PlannedAmount);
     }
 
-    private void InitializeCategoriesExpenses(List<CategoryExpenseModel> expenses)
+    private void InitializeCategoriesExpenses(List<ProfileCategory> expenses)
     {
         CategoriesExpenses.Clear();
         
@@ -268,7 +259,7 @@ public class HomePageViewModel : BaseNotifyObject
             if (expense.PlannedAmount is null or 0)
             {
                 categoryExpense = new DisplayCategoryExpense(
-                    expense.CategoryId,
+                    expense.Id,
                     expense.Name, 
                     NumberUtils.RoundDecimal(expense.ActualAmount),
                     false,
@@ -278,7 +269,7 @@ public class HomePageViewModel : BaseNotifyObject
             else
             {
                 categoryExpense = new DisplayCategoryExpense(
-                    expense.CategoryId,
+                    expense.Id,
                     expense.Name, 
                     NumberUtils.RoundDecimal(expense.ActualAmount),
                     true,

@@ -1,8 +1,7 @@
 using System.Globalization;
-using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Profiles.Factories;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Models.Profile;
 
 namespace Profitocracy.Mobile.ViewModels.Setup;
 
@@ -12,12 +11,10 @@ public class SetupPageViewModel : BaseNotifyObject
     private string _initialBalance = "0";
 
     private readonly IProfileRepository _profileRepository;
-    private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
     
-    public SetupPageViewModel(IProfileRepository profileRepository, IPresentationMapper<Profile, ProfileModel> mapper)
+    public SetupPageViewModel(IProfileRepository profileRepository)
     {
         _profileRepository = profileRepository;
-        _mapper = mapper;
     }
 
     public string Name
@@ -43,15 +40,12 @@ public class SetupPageViewModel : BaseNotifyObject
             throw new Exception("Balance must be a number");
         }
         
-        var profile = new ProfileModel
-        {
-            Name = _name,
-            InitialBalance = numValue,
-            StartDate = DateTime.Now,
-            IsCurrent = true
-        };
-
-        var domainProfile = _mapper.MapToDomain(profile);
-        await _profileRepository.Create(domainProfile);
+        var profile = new ProfileBuilder()
+            .AddName(_name)
+            .AddStartDate(DateTime.Now, numValue)
+            .AddIsCurrent(true)
+            .Build();
+        
+        await _profileRepository.Create(profile);
     }
 }

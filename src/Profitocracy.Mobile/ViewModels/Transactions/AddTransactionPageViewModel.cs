@@ -1,18 +1,16 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
-using Profitocracy.Core.Domain.Model.Categories;
-using Profitocracy.Core.Domain.Model.Transactions;
+using Profitocracy.Core.Domain.Model.Transactions.Entities;
+using Profitocracy.Core.Domain.Model.Transactions.Factories;
+using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Models.Category;
-using Profitocracy.Mobile.Models.Transaction;
+using Profitocracy.Mobile.Models.Categories;
 
 namespace Profitocracy.Mobile.ViewModels.Transactions;
 
 public class AddTransactionPageViewModel : BaseNotifyObject
 {
-    private readonly IPresentationMapper<Category, CategoryModel> _categoryMapper;
-    private readonly IPresentationMapper<Transaction, TransactionModel> _mapper;
     private readonly IProfileRepository _profileRepository;
     private readonly ITransactionRepository _transactionRepository;
     private readonly ICategoryRepository _categoryRepository;
@@ -24,9 +22,13 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         Name = "None"
     };
     
-    private TransactionModel _model;
+    private DateTime _timestamp = DateTime.Now;
     private string _amount = string.Empty;
-
+    
+    private string? _description;
+    private int _transactionType;
+    private int? _spendingType;
+    
     private bool _isIncome;
     private bool _isExpense;
     private bool _isMain;
@@ -34,28 +36,17 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     private bool _isSaved;
         
     public AddTransactionPageViewModel(
-        IPresentationMapper<Transaction, TransactionModel> mapper,
-        IPresentationMapper<Category, CategoryModel> categoryMapper,
         IProfileRepository profileRepository,
         ITransactionRepository transactionRepository, 
         ICategoryRepository categoryRepository)
     {
-        _mapper = mapper;
-        _categoryMapper = categoryMapper;
         _profileRepository = profileRepository;
         _transactionRepository = transactionRepository;
         _categoryRepository = categoryRepository;
 
-        _model = new TransactionModel
-        {
-            Amount = decimal.Zero,
-            ProfileId = Guid.Empty,
-            Type = 1,
-            SpendingType = 0,
-            Timestamp = DateTime.Now,
-            Description = null
-        };
-
+        _transactionType = 1;
+        _spendingType = 0;
+        
         _isExpense = true;
         _isIncome = false;
 
@@ -100,15 +91,15 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     
     public int TransactionType
     {
-        get => _model.Type;
+        get => _transactionType;
         set
         {
-            if (_model.Type == value)
+            if (_transactionType == value)
             {
                 return;
             }
             
-            _model.Type = value;
+            _transactionType = value;
 
             switch (value)
             {
@@ -130,15 +121,15 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     
     public int? SpendingType
     {
-        get => _model.SpendingType;
+        get => _spendingType;
         set
         {
-            if (_model.SpendingType == value)
+            if (_spendingType == value)
             {
                 return;
             }
             
-            _model.SpendingType = value;
+            _spendingType = value;
 
             switch (value)
             {
@@ -173,23 +164,19 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         get => _amount;
         set => SetProperty(ref _amount, value);
     }
+    
+    public DateTime Timestamp
+    {
+        get => _timestamp;
+        set => SetProperty(ref _timestamp, value);
+    }
 
     public string Description
     {
-        get => _model.Description ?? "";
+        get => _description ?? "";
         set
         {
-            _model.Description = string.IsNullOrWhiteSpace(value) ? null : value;
-            OnPropertyChanged();
-        }
-    }
-
-    public DateTime Timestamp
-    {
-        get => _model.Timestamp;
-        set
-        {
-            _model.Timestamp = value;
+            _description = string.IsNullOrWhiteSpace(value) ? null : value;
             OnPropertyChanged();
         }
     }
@@ -209,23 +196,20 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         
         foreach (var category in categories)
         {
-            AvailableCategories.Add(_categoryMapper.MapToModel(category));
+            AvailableCategories.Add(CategoryModel.FromDomain(category));
         }
     }
 
     public async Task CreateTransaction()
     {
-        _amount = _amount
-            .Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
+        _amount = _amount.Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
         
-        if (!decimal.TryParse(_amount, out var val))
+        if (!decimal.TryParse(_amount, out var amount))
         {
             throw new Exception("Amount must be a number");
         }
-
-        _model.Amount = val;
         
-        if (_model.Type < 0)
+        if (_transactionType < 0)
         {
             throw new Exception("Invalid transaction type");
         }
@@ -237,25 +221,34 @@ public class AddTransactionPageViewModel : BaseNotifyObject
             throw new Exception("Current profile was not found");
         }
 
-        _model.ProfileId = (Guid)currentProfileId;
-
+        TransactionCategory? category = null;
+        
         if (Category?.Id is not null)
         {
             if (Category.Id.Equals(NoneCategory.Id))
             {
-                _model.Category = null;
+                category = null;
             }
             else
             {
-                _model.Category = new TransactionCategoryModel
+                category = new TransactionCategory((Guid)Category.Id)
                 {
-                    Name = Category.Name,
-                    CategoryId = (Guid)Category.Id
+                    Name = Category.Name
                 };   
             }
         }
-
-        var transaction = _mapper.MapToDomain(_model);
+        
+        var transaction = TransactionFactory.CreateTransaction(
+            id: null,
+            amount,
+            (Guid)currentProfileId,
+            (TransactionType)_transactionType,
+            _spendingType is null or -1 ? null : (SpendingType)_spendingType,
+            _timestamp,
+            _description,
+            geoTag: null,
+            category);
+        
         await _transactionRepository.Create(transaction);
     }
 }

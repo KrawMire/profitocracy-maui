@@ -1,4 +1,4 @@
-namespace Profitocracy.Mobile.Models.Transaction;
+namespace Profitocracy.Mobile.Models.Transactions;
 
 public class TransactionCategoryModel
 {

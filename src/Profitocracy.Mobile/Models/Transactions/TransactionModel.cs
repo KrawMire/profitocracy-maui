@@ -1,6 +1,6 @@
 using Profitocracy.Mobile.Resources.Strings;
 
-namespace Profitocracy.Mobile.Models.Transaction;
+namespace Profitocracy.Mobile.Models.Transactions;
 
 public class TransactionModel
 {
@@ -36,5 +36,31 @@ public class TransactionModel
 
             return $"-{Amount}";
         }
+    }
+
+    public static TransactionModel FromDomain(Core.Domain.Model.Transactions.Transaction transaction)
+    {
+        TransactionCategoryModel? category = null;
+
+        if (transaction.Category is not null)
+        {
+            category = new TransactionCategoryModel
+            {
+                CategoryId = transaction.Category.Id,
+                Name = transaction.Category.Name
+            };
+        }
+		
+        return new TransactionModel
+        {
+            Id = transaction.Id,
+            Amount = transaction.Amount,
+            ProfileId = transaction.ProfileId,
+            Type = (int)transaction.Type,
+            SpendingType = transaction.SpendingType is null ? null : (int)transaction.SpendingType,
+            Description = transaction.Description,
+            Timestamp = transaction.Timestamp,
+            Category = category
+        };
     }
 }

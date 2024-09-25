@@ -1,5 +1,5 @@
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
-using Profitocracy.Mobile.Models.DisplayModels;
+using Profitocracy.Mobile.Models;
 using Profitocracy.Mobile.ViewModels.Home;
 using Profitocracy.Mobile.Views.Transactions;
 

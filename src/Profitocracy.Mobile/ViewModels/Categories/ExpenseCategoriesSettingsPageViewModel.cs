@@ -1,8 +1,7 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Core.Domain.Model.Categories;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Models.Category;
+using Profitocracy.Mobile.Models.Categories;
 
 namespace Profitocracy.Mobile.ViewModels.Categories;
 
@@ -10,16 +9,13 @@ public class ExpenseCategoriesSettingsPageViewModel : BaseNotifyObject
 {
     private readonly IProfileRepository _profileRepository;
     private readonly ICategoryRepository _categoryRepository;
-    private readonly IPresentationMapper<Category, CategoryModel> _categoryMapper;
 
     public ExpenseCategoriesSettingsPageViewModel(
         IProfileRepository profileRepository,
-        ICategoryRepository categoryRepository,
-        IPresentationMapper<Category, CategoryModel> categoryMapper)
+        ICategoryRepository categoryRepository)
     {
         _profileRepository = profileRepository;
         _categoryRepository = categoryRepository;
-        _categoryMapper = categoryMapper;
     }
 
     public readonly ObservableCollection<CategoryModel> Categories = [];
@@ -39,7 +35,7 @@ public class ExpenseCategoriesSettingsPageViewModel : BaseNotifyObject
 
         foreach (var category in categories)
         {
-            Categories.Add(_categoryMapper.MapToModel(category));
+            Categories.Add(CategoryModel.FromDomain(category));
         }
     }
 }

@@ -1,8 +1,7 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Models.Transaction;
+using Profitocracy.Mobile.Models.Transactions;
 
 namespace Profitocracy.Mobile.ViewModels.Transactions;
 
@@ -10,16 +9,13 @@ public class TransactionPageViewModel : BaseNotifyObject
 {
     private readonly ITransactionRepository _transactionRepository;
     private readonly IProfileRepository _profileRepository;
-    private readonly IPresentationMapper<Transaction, TransactionModel> _mapper;
     
     public TransactionPageViewModel(
-        IPresentationMapper<Transaction, TransactionModel> mapper,
         IProfileRepository profileRepository,
         ITransactionRepository transactionRepository)
     {
         _transactionRepository = transactionRepository;
         _profileRepository = profileRepository;
-        _mapper = mapper;
     }
 
     public readonly ObservableCollection<TransactionModel> Transactions = [];
@@ -40,7 +36,7 @@ public class TransactionPageViewModel : BaseNotifyObject
 
         foreach (var transaction in transactions)
         {
-            Transactions.Add(_mapper.MapToModel(transaction));
+            Transactions.Add(TransactionModel.FromDomain(transaction));
         }
     }
 

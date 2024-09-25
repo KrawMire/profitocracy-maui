@@ -1,4 +1,4 @@
-namespace Profitocracy.Mobile.Models.DisplayModels;
+namespace Profitocracy.Mobile.Models;
 
 public record DisplayCategoryExpense(
     Guid Id,
