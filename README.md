@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/promo.png" alt="Title image" />
+  <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/app-promo.png" alt="Title image" />
 </p>
 
 <p align="center">
