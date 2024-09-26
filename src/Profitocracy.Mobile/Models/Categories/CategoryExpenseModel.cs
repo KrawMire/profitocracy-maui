@@ -1,6 +1,6 @@
-namespace Profitocracy.Mobile.Models;
+namespace Profitocracy.Mobile.Models.Categories;
 
-public record DisplayCategoryExpense(
+public record CategoryExpenseModel(
     Guid Id,
     string Name,
     decimal ActualAmount,

@@ -3,7 +3,7 @@ using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
 using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Models;
+using Profitocracy.Mobile.Models.Categories;
 using Profitocracy.Mobile.Utils;
 
 namespace Profitocracy.Mobile.ViewModels.Home;
@@ -185,7 +185,7 @@ public class HomePageViewModel : BaseNotifyObject
         set => SetProperty(ref _isDisplayNoCategories, value);
     }
     
-    public ObservableCollection<DisplayCategoryExpense> CategoriesExpenses = [];
+    public ObservableCollection<CategoryExpenseModel> CategoriesExpenses = [];
     
     public HomePageViewModel(IProfileService profileService)
     {
@@ -254,11 +254,11 @@ public class HomePageViewModel : BaseNotifyObject
         
         foreach (var expense in expenses)
         {
-            DisplayCategoryExpense categoryExpense;
+            CategoryExpenseModel categoryExpense;
             
             if (expense.PlannedAmount is null or 0)
             {
-                categoryExpense = new DisplayCategoryExpense(
+                categoryExpense = new CategoryExpenseModel(
                     expense.Id,
                     expense.Name, 
                     NumberUtils.RoundDecimal(expense.ActualAmount),
@@ -268,7 +268,7 @@ public class HomePageViewModel : BaseNotifyObject
             }
             else
             {
-                categoryExpense = new DisplayCategoryExpense(
+                categoryExpense = new CategoryExpenseModel(
                     expense.Id,
                     expense.Name, 
                     NumberUtils.RoundDecimal(expense.ActualAmount),

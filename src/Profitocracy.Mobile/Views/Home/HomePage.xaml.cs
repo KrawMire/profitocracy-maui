@@ -1,5 +1,5 @@
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
-using Profitocracy.Mobile.Models;
+using Profitocracy.Mobile.Models.Categories;
 using Profitocracy.Mobile.ViewModels.Home;
 using Profitocracy.Mobile.Views.Transactions;
 
@@ -25,7 +25,7 @@ public partial class HomePage : ContentPage
 
 	private async void CategoryLayout_OnTapped(object? sender, TappedEventArgs e)
 	{
-		if ((sender as StackLayout)?.BindingContext is not DisplayCategoryExpense category)
+		if ((sender as StackLayout)?.BindingContext is not CategoryExpenseModel category)
 		{
 			await DisplayAlert(
 				"Error",
