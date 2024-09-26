@@ -62,16 +62,14 @@ public class Profile : AggregateRoot<Guid>
 				PlannedAmount = 0
 			}
 		};
-		
-		var currentDate = DateTime.Now;
 
 		BillingPeriod = new TimePeriod
 		{
-			DateFrom = new DateTime(currentDate.Year, currentDate.Month, 1),
+			DateFrom = new DateTime(StartDate.Timestamp.Year, StartDate.Timestamp.Month, 1),
 			DateTo = new DateTime(
-				currentDate.Year,
-				currentDate.Month,
-				day: DateTime.DaysInMonth(currentDate.Year, currentDate.Month))
+				StartDate.Timestamp.Year,
+				StartDate.Timestamp.Month,
+				day: DateTime.DaysInMonth(StartDate.Timestamp.Year, StartDate.Timestamp.Month))
 		};
 	}
 
@@ -93,7 +91,7 @@ public class Profile : AggregateRoot<Guid>
 	/// <summary>
 	/// Start and end dates of billing period
 	/// </summary>
-	public TimePeriod BillingPeriod { get; }
+	public TimePeriod BillingPeriod { get; private set; }
 	
 	/// <summary>
 	/// Current balance
@@ -145,6 +143,15 @@ public class Profile : AggregateRoot<Guid>
 			{
 				InitialBalance = Balance, 
 				Timestamp = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day)
+			};
+			
+			BillingPeriod = new TimePeriod
+			{
+				DateFrom = new DateTime(currentDate.Year, currentDate.Month, 1),
+				DateTo = new DateTime(
+					currentDate.Year,
+					currentDate.Month,
+					day: DateTime.DaysInMonth(currentDate.Year, currentDate.Month))
 			};
 			
 			NeedUpdate = true;

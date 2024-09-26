@@ -57,7 +57,13 @@ internal class ProfileService : IProfileService
 		}
 		
 		profile = await _profileRepository.Update(profile);
-		profile.HandleTransactions(transactions);
+		
+		var currentTransactions = await _transactionRepository.GetForPeriod(
+			profile.Id, 
+			profile.BillingPeriod.DateFrom, 
+			profile.BillingPeriod.DateTo);
+		
+		profile.HandleTransactions(currentTransactions);
 
 		return profile;
 	}
