@@ -2,8 +2,8 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transaction"
              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+             xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transactions"
              x:Class="Profitocracy.Mobile.Views.Transactions.TransactionsPage"
              Title="{x:Static resx:AppResources.Transactions}"
              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"

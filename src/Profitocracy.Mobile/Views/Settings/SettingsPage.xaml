@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             x:Class="Profitocracy.Mobile.Views.Pages.Settings.SettingsPage"
+             x:Class="Profitocracy.Mobile.Views.Settings.SettingsPage"
              Title="{x:Static resx:AppResources.Settings}"
              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
     <ScrollView Padding="16"

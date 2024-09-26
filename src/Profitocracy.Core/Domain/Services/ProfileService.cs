@@ -1,9 +1,9 @@
+using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Profiles;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
-using Profitocracy.Core.Domain.Services;
 using Profitocracy.Core.Persistence;
 
-namespace Profitocracy.BusinessLogic.Services;
+namespace Profitocracy.Core.Domain.Services;
 
 internal class ProfileService : IProfileService
 {
@@ -57,7 +57,13 @@ internal class ProfileService : IProfileService
 		}
 		
 		profile = await _profileRepository.Update(profile);
-		profile.HandleTransactions(transactions);
+		
+		var currentTransactions = await _transactionRepository.GetForPeriod(
+			profile.Id, 
+			profile.BillingPeriod.DateFrom, 
+			profile.BillingPeriod.DateTo);
+		
+		profile.HandleTransactions(currentTransactions);
 
 		return profile;
 	}

@@ -1,24 +1,19 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Core.Specifications;
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Models.Transaction;
+using Profitocracy.Mobile.Models.Transactions;
 
 namespace Profitocracy.Mobile.ViewModels.Transactions;
 
 public class FilteredTransactionsPageViewModel : BaseNotifyObject
 {
-    private readonly IPresentationMapper<Transaction, TransactionModel> _transactionMapper;
     private readonly ITransactionRepository _transactionRepository;
 
-    public FilteredTransactionsPageViewModel(
-        ITransactionRepository transactionRepository, 
-        IPresentationMapper<Transaction, TransactionModel> transactionMapper)
+    public FilteredTransactionsPageViewModel(ITransactionRepository transactionRepository)
     {
         _transactionRepository = transactionRepository;
-        _transactionMapper = transactionMapper;
     }
 
     public readonly ObservableCollection<TransactionModel> Transactions = [];
@@ -39,7 +34,7 @@ public class FilteredTransactionsPageViewModel : BaseNotifyObject
 
         foreach (var transaction in transactions)
         {
-            Transactions.Add(_transactionMapper.MapToModel(transaction));
+            Transactions.Add(TransactionModel.FromDomain(transaction));
         }
     }
 }

@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Core.Domain.Model.Profiles;
-using Profitocracy.Core.Domain.Services;
+using Profitocracy.Core.Domain.Abstractions.Services;
+using Profitocracy.Core.Domain.Model.Profiles.Entities;
+using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Models.DisplayModels;
-using Profitocracy.Mobile.Models.Profile;
+using Profitocracy.Mobile.Models.Categories;
 using Profitocracy.Mobile.Utils;
 
 namespace Profitocracy.Mobile.ViewModels.Home;
@@ -40,337 +40,163 @@ public class HomePageViewModel : BaseNotifyObject
     private bool _isDisplayNoCategories;
     
     private readonly IProfileService _profileService;
-    private readonly IPresentationMapper<Profile, ProfileModel> _mapper;
 
     public string ProfileName
     {
         get => _profileName;
-        set
-        {
-            if (_profileName != value)
-            {
-                _profileName = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _profileName, value);
     }
     
     public decimal Balance
     {
         get => _balance;
-        set
-        {
-            if (value != _balance)
-            {
-                _balance = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _balance, value);
     }
     
     public decimal TotalActualAmount
     {
         get => _totalActualAmount;
-        set
-        {
-            if (value != _totalActualAmount)
-            {
-                _totalActualAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _totalActualAmount, value);
     }
     
     public decimal TotalPlannedAmount
     {
         get => _totalPlannedAmount;
-        set
-        {
-            if (value != _totalPlannedAmount)
-            {
-                _totalPlannedAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _totalPlannedAmount, value);
     }
     
     public decimal TotalSavedAmount
     {
         get => _totalSavedAmount;
-        set
-        {
-            if (value != _totalSavedAmount)
-            {
-                _totalSavedAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _totalSavedAmount, value);
     }
     
     public decimal DailyFromActualActualAmount
     {
         get => _dailyFromActualActualAmount;
-        set
-        {
-            if (value != _dailyFromActualActualAmount)
-            {
-                _dailyFromActualActualAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _dailyFromActualActualAmount, value);
     }
     
     public decimal DailyFromActualPlannedAmount
     {
         get => _dailyFromActualPlannedAmount;
-        set
-        {
-            if (value != _dailyFromActualPlannedAmount)
-            {
-                _dailyFromActualPlannedAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _dailyFromActualPlannedAmount, value);
     }
     
     public decimal DailyFromInitialActualAmount
     {
         get => _dailyFromInitialActualAmount;
-        set
-        {
-            if (value != _dailyFromInitialActualAmount)
-            {
-                _dailyFromInitialActualAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _dailyFromInitialActualAmount, value);
     }
     
     public decimal DailyFromInitialPlannedAmount
     {
         get => _dailyFromInitialPlannedAmount;
-        set
-        {
-            if (value != _dailyFromInitialPlannedAmount)
-            {
-                _dailyFromInitialPlannedAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _dailyFromInitialPlannedAmount, value);
     }
     
     public decimal MainActualAmount
     {
         get => _mainActualAmount;
-        set
-        {
-            if (value != _mainActualAmount)
-            {
-                _mainActualAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _mainActualAmount, value);
     }
     
     public decimal MainPlannedAmount
     {
         get => _mainPlannedAmount;
-        set
-        {
-            if (value != _mainPlannedAmount)
-            {
-                _mainPlannedAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _mainPlannedAmount, value);
     }
     
     public decimal SecondaryActualAmount
     {
         get => _secondaryActualAmount;
-        set
-        {
-            if (value != _secondaryActualAmount)
-            {
-                _secondaryActualAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _secondaryActualAmount, value);
     }
     
     public decimal SecondaryPlannedAmount
     {
         get => _secondaryPlannedAmount;
-        set
-        {
-            if (value != _secondaryPlannedAmount)
-            {
-                _secondaryPlannedAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _secondaryPlannedAmount, value);
     }
     
     public decimal SavedActualAmount
     {
         get => _savedActualAmount;
-        set
-        {
-            if (value != _savedActualAmount)
-            {
-                _savedActualAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _savedActualAmount, value);
     }
     
     public decimal SavedPlannedAmount
     {
         get => _savedPlannedAmount;
-        set
-        {
-            if (value != _savedPlannedAmount)
-            {
-                _savedPlannedAmount = value;
-                OnPropertyChanged();
-            }
-        }
+        set => SetProperty(ref _savedPlannedAmount, value);
     }
     
     public float TotalBalanceRatio
     {
         get => _totalBalanceRatio;
-        private set
-        {
-            if (_totalBalanceRatio != value)
-            {
-                _totalBalanceRatio = value;
-                OnPropertyChanged();   
-            }
-        }
+        private set => SetProperty(ref _totalBalanceRatio, value);
     }
 
     public float DailyFromActualRatio
     {
         get => _dailyFromActualRatio;
-        private set
-        {
-            if (_dailyFromActualRatio != value)
-            {
-                _dailyFromActualRatio = value;
-                OnPropertyChanged();
-            }
-        }
+        private set => SetProperty(ref _dailyFromActualRatio, value);
     }
 
     public float DailyFromInitialRatio
     {
         get => _dailyFromInitialRatio;
-        private set
-        {
-            if (_dailyFromInitialRatio != value)
-            {
-                _dailyFromInitialRatio = value;
-                OnPropertyChanged();
-            }
-        }
+        private set => SetProperty(ref _dailyFromInitialRatio, value);
     }
 
     public float MainExpensesRatio
     {
         get => _mainExpensesRatio;
-        private set
-        {
-            if (_mainExpensesRatio != value)
-            {
-                _mainExpensesRatio = value;
-                OnPropertyChanged();
-            }
-        }
+        private set => SetProperty(ref _mainExpensesRatio, value);
     }
 
     public float SecondaryExpensesRatio
     {
         get => _secondaryExpensesRatio;
-        private set
-        {
-            if (_secondaryExpensesRatio != value)
-            {
-                _secondaryExpensesRatio = value;
-                OnPropertyChanged();
-            }
-        }
+        private set => SetProperty(ref _secondaryExpensesRatio, value);
     }
 
     public float SavedRatio
     {
         get => _savedRatio;
-        private set
-        {
-            if (_savedRatio != value)
-            {
-                _savedRatio = value;
-                OnPropertyChanged();
-            }
-        }
+        private set => SetProperty(ref _savedRatio, value);
     }
 
     public string DateFrom
     {
         get => _dateFrom;
-        private set
-        {
-            if (_dateFrom != value)
-            {
-                _dateFrom = value;
-                OnPropertyChanged();
-            }
-        }
+        private set => SetProperty(ref _dateFrom, value);
     }
 
     public string DateTo
     {
         get => _dateTo;
-        private set
-        {
-            if (_dateTo != value)
-            {
-                _dateTo = value;
-                OnPropertyChanged();
-            }
-        }
+        private set => SetProperty(ref _dateTo, value);
     }
     
     public bool IsDisplayNoCategories
     {
         get => _isDisplayNoCategories;
-        set
-        {
-            _isDisplayNoCategories = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _isDisplayNoCategories, value);
     }
     
-    public ObservableCollection<DisplayCategoryExpense> CategoriesExpenses = [];
+    public ObservableCollection<CategoryExpenseModel> CategoriesExpenses = [];
     
-    public HomePageViewModel(IProfileService profileService, IPresentationMapper<Profile, ProfileModel> mapper)
+    public HomePageViewModel(IProfileService profileService)
     {
         _profileService = profileService;
-        _mapper = mapper;
     }
 
     public async void Initialize()
     {
-        var currentProfile = await _profileService.GetCurrentProfile();
+        var profile = await _profileService.GetCurrentProfile();
 
-        if (currentProfile is null)
-        {
-            return;
-        }
-        
-        var profile = _mapper.MapToModel(currentProfile);
-
-        if (profile.Expenses is null)
+        if (profile is null)
         {
             return;
         }
@@ -378,12 +204,12 @@ public class HomePageViewModel : BaseNotifyObject
         ProfileName = profile.Name;
         Balance = NumberUtils.RoundDecimal(profile.Balance);
         TotalSavedAmount = profile.SavedBalance;
-        DateFrom = profile.BillingDateFrom.ToString("dd.MM.yyyy");
-        DateTo = profile.BillingDateTo.ToString("dd.MM.yyyy");
+        DateFrom = profile.BillingPeriod.DateFrom.ToShortDateString();
+        DateTo = profile.BillingPeriod.DateTo.ToShortDateString();
         
         InitializeExpenses(profile.Expenses);
 
-        if (profile.CategoriesBalances is not null && profile.CategoriesBalances.Count > 0)
+        if (profile.CategoriesBalances.Count > 0)
         {
             IsDisplayNoCategories = false;
             InitializeCategoriesExpenses(profile.CategoriesBalances);
@@ -394,7 +220,7 @@ public class HomePageViewModel : BaseNotifyObject
         }
     }
 
-    private void InitializeExpenses(ProfileExpensesModel expenses)
+    private void InitializeExpenses(ProfileExpenses expenses)
     {
         TotalActualAmount = NumberUtils.RoundDecimal(expenses.TotalBalance.ActualAmount);
         TotalPlannedAmount = NumberUtils.RoundDecimal(expenses.TotalBalance.PlannedAmount);
@@ -412,7 +238,7 @@ public class HomePageViewModel : BaseNotifyObject
         InitializeExpenseRatios(expenses);
     }
     
-    private void InitializeExpenseRatios(ProfileExpensesModel expenses)
+    private void InitializeExpenseRatios(ProfileExpenses expenses)
     {
         TotalBalanceRatio = GetExpenseRatio(expenses.TotalBalance.ActualAmount, expenses.TotalBalance.PlannedAmount);
         DailyFromActualRatio = GetExpenseRatio(expenses.DailyFromActualBalance.ActualAmount, expenses.DailyFromActualBalance.PlannedAmount);
@@ -422,18 +248,18 @@ public class HomePageViewModel : BaseNotifyObject
         SavedRatio = GetExpenseRatio(expenses.Saved.ActualAmount, expenses.Saved.PlannedAmount);
     }
 
-    private void InitializeCategoriesExpenses(List<CategoryExpenseModel> expenses)
+    private void InitializeCategoriesExpenses(List<ProfileCategory> expenses)
     {
         CategoriesExpenses.Clear();
         
         foreach (var expense in expenses)
         {
-            DisplayCategoryExpense categoryExpense;
+            CategoryExpenseModel categoryExpense;
             
             if (expense.PlannedAmount is null or 0)
             {
-                categoryExpense = new DisplayCategoryExpense(
-                    expense.CategoryId,
+                categoryExpense = new CategoryExpenseModel(
+                    expense.Id,
                     expense.Name, 
                     NumberUtils.RoundDecimal(expense.ActualAmount),
                     false,
@@ -442,8 +268,8 @@ public class HomePageViewModel : BaseNotifyObject
             }
             else
             {
-                categoryExpense = new DisplayCategoryExpense(
-                    expense.CategoryId,
+                categoryExpense = new CategoryExpenseModel(
+                    expense.Id,
                     expense.Name, 
                     NumberUtils.RoundDecimal(expense.ActualAmount),
                     true,

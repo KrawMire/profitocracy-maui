@@ -2,8 +2,8 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transaction"
              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+             xmlns:transactions1="clr-namespace:Profitocracy.Mobile.Models.Transactions"
              x:Class="Profitocracy.Mobile.Views.Transactions.FilteredTransactionsPage"
              Shell.PresentationMode="ModalAnimated">
     <ContentPage.Content>
@@ -29,7 +29,7 @@
             </FlexLayout>
             <CollectionView Grid.Row="1" x:Name="TransactionsCollectionView">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="transactions:TransactionModel">
+                    <DataTemplate x:DataType="transactions1:TransactionModel">
                         <Border Style="{StaticResource TransactionCard}">
                             <StackLayout>
                                 <FlexLayout JustifyContent="SpaceBetween">
