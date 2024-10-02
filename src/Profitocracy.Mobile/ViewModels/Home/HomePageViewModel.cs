@@ -41,6 +41,8 @@ public class HomePageViewModel : BaseNotifyObject
     
     private readonly IProfileService _profileService;
 
+    public Guid ProfileId { get; private set; }
+    
     public string ProfileName
     {
         get => _profileName;
@@ -201,6 +203,7 @@ public class HomePageViewModel : BaseNotifyObject
             return;
         }
 
+        ProfileId = profile.Id;
         ProfileName = profile.Name;
         Balance = NumberUtils.RoundDecimal(profile.Balance);
         TotalSavedAmount = profile.SavedBalance;

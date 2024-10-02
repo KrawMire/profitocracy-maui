@@ -46,6 +46,7 @@ public partial class HomePage : ContentPage
 		}
 		
 		filteredPage.Initialize(
+			ViewModel.ProfileId,
 			category.Id, 
 			spendingType: null, 
 			dateFrom:DateTime.Parse(ViewModel.DateFrom),
@@ -83,6 +84,7 @@ public partial class HomePage : ContentPage
 		}
 		
 		filteredPage.Initialize(
+			ViewModel.ProfileId,
 			categoryId: null, 
 			type,
 			dateFrom: DateTime.Parse(ViewModel.DateFrom),

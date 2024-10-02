@@ -67,7 +67,9 @@ internal class TransactionRepository : ITransactionRepository
 	{
 		await _dbConnection.Init();
 
-		var query = _dbConnection.Database.Table<TransactionModel>();
+		var query = _dbConnection.Database
+			.Table<TransactionModel>()
+			.Where(t => t.ProfileId == spec.ProfileId);
 
 		if (spec.SpendingType is not null)
 		{
