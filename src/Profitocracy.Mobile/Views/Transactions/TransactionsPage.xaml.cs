@@ -5,9 +5,9 @@ namespace Profitocracy.Mobile.Views.Transactions;
 
 public partial class TransactionsPage : ContentPage
 {
-	public readonly TransactionPageViewModel ViewModel;
+	public readonly TransactionsPageViewModel ViewModel;
 	
-	public TransactionsPage(TransactionPageViewModel viewModel)
+	public TransactionsPage(TransactionsPageViewModel viewModel)
 	{
 		ViewModel = viewModel;
 		BindingContext = ViewModel;
