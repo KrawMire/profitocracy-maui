@@ -446,6 +446,11 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
     </Style>
     
+    <Style TargetType="DatePicker" x:Key="BasicDatePicker">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightContent}, Dark={StaticResource DarkContent}}"/>
+    </Style>
+    
     <!-- Home page -->
     <Style TargetType="Border" x:Key="ProfileExpenseCard">
         <Setter Property="Padding" Value="18"/>
@@ -524,6 +529,18 @@
     </Style>
     
     <!-- Transactions page -->
+    <Style TargetType="Label" x:Key="DateRangeTitle">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+        <Setter Property="TextColor" Value="{StaticResource LightContent}"/>
+    </Style>
+    
+    <Style TargetType="Border" x:Key="DateRangeCard">
+        <Setter Property="Padding" Value="8, 8, 8,16"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryLight}, Dark={StaticResource SecondaryDark}}"/>
+    </Style>
+    
     <Style TargetType="Border" x:Key="TransactionCard">
         <Setter Property="Padding" Value="8"/>
         <Setter Property="StrokeThickness" Value="0"/>

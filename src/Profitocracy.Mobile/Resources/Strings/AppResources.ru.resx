@@ -129,4 +129,7 @@
     <data name="SpecifyPlannedAmount" xml:space="preserve">
         <value>Указать планируемую сумму</value>
     </data>
+    <data name="DateRange" xml:space="preserve">
+        <value>Отфильтровать по дате</value>
+    </data>
 </root>

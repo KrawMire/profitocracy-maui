@@ -4,8 +4,9 @@ namespace Profitocracy.Core.Specifications;
 
 public record TransactionsSpecification
 {
+    public Guid? ProfileId { get; init; }
     public Guid? CategoryId { get; init; }
     public SpendingType? SpendingType { get; init; }
-    public DateTime? FromDate { get; init; } = null;
-    public DateTime? ToDate { get; init; } = null;
+    public DateTime? FromDate { get; init; }
+    public DateTime? ToDate { get; init; }
 }

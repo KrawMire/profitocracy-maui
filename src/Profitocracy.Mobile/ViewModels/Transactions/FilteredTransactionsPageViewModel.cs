@@ -18,12 +18,13 @@ public class FilteredTransactionsPageViewModel : BaseNotifyObject
 
     public readonly ObservableCollection<TransactionModel> Transactions = [];
 
-    public async Task Initialize(Guid? categoryId, SpendingType? spendingType, DateTime dateFrom, DateTime dateTo)
+    public async Task Initialize(Guid profileId, Guid? categoryId, SpendingType? spendingType, DateTime dateFrom, DateTime dateTo)
     {
         Transactions.Clear();
         
         var specs = new TransactionsSpecification
         {
+            ProfileId = profileId,
             CategoryId = categoryId,
             SpendingType = spendingType,
             FromDate = dateFrom,

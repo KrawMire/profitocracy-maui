@@ -266,5 +266,11 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("SpecifyPlannedAmount", resourceCulture);
             }
         }
+        
+        internal static string DateRange {
+            get {
+                return ResourceManager.GetString("DateRange", resourceCulture);
+            }
+        }
     }
 }

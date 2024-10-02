@@ -10,10 +10,47 @@
              NavigatedTo="UpdateTransactionsList">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <CollectionView x:Name="TransactionsCollectionView">
+        <Border Grid.Row="0"
+                Style="{StaticResource DateRangeCard}">
+            <Border.Shadow>
+                <Shadow Brush="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
+                        Offset="0,8"
+                        Radius="16"
+                        Opacity="0.9" />
+            </Border.Shadow>
+            <StackLayout>
+                <Label Style="{StaticResource DateRangeTitle}"
+                       Margin="0, 8, 0,0"
+                       Text="{x:Static resx:AppResources.DateRange}"/>
+                <Grid Margin="0, 8, 0, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0"
+                                 Padding="0,0,16,0">
+                        <DatePicker Style="{StaticResource BasicDatePicker}"
+                                    Date="{Binding FromDate, Mode=TwoWay}"/>
+                    </StackLayout>
+                    <Label Grid.Column="1" 
+                           Style="{StaticResource DateRangeTitle}"
+                           VerticalTextAlignment="Center"
+                           Text="-"/>
+                    <StackLayout Grid.Column="2"
+                                 Padding="16, 0, 0,  0">
+                        <DatePicker Style="{StaticResource BasicDatePicker}"
+                                    Date="{Binding ToDate, Mode=TwoWay}"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Border>
+        
+        <CollectionView Grid.Row="1" x:Name="TransactionsCollectionView">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="transactions:TransactionModel">
                     <SwipeView>
@@ -100,7 +137,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         
-        <Button Grid.Row="0"
+        <Button Grid.Row="1"
                 Text="+"
                 HorizontalOptions="End"
                 VerticalOptions="End"

@@ -129,4 +129,7 @@
     <data name="SaveCategory" xml:space="preserve">
         <value>Save category</value>
     </data>
+    <data name="DateRange" xml:space="preserve">
+        <value>Filter by date</value>
+    </data>
 </root>

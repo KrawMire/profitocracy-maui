@@ -63,7 +63,7 @@ public static class MauiProgram
 			.AddTransient<SetupPageViewModel>()
 			.AddTransient<AddTransactionPageViewModel>()
 			.AddTransient<FilteredTransactionsPageViewModel>()
-			.AddTransient<TransactionPageViewModel>()
+			.AddTransient<TransactionsPageViewModel>()
 			.AddTransient<ExpenseCategoriesSettingsPageViewModel>()
 			.AddTransient<AddExpenseCategoryPageViewModel>();
 		
