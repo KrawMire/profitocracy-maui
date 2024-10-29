@@ -50,7 +50,9 @@ internal class ProfileService : IProfileService
 			profile.AddCategories(profileCategories);
 		}
 		
-		profile.HandleTransactions(transactions);
+		var currentDate = DateTime.Now;
+		
+		profile.HandleTransactions(transactions, currentDate);
 
 		if (!profile.NeedUpdate)
 		{
@@ -64,7 +66,7 @@ internal class ProfileService : IProfileService
 			profile.BillingPeriod.DateFrom, 
 			profile.BillingPeriod.DateTo);
 		
-		profile.HandleTransactions(currentTransactions);
+		profile.HandleTransactions(currentTransactions, currentDate);
 
 		return profile;
 	}
