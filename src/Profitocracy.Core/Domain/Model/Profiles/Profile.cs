@@ -182,8 +182,8 @@ public class Profile : AggregateRoot<Guid>
 	
 	private void RecalculateExpenses(DateTime currentDate)
 	{
-		var daysInInitialPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day;
-		var daysInActualPeriod = BillingPeriod.DateTo.Day - currentDate.Day;
+		var daysInInitialPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day + 1;
+		var daysInActualPeriod = BillingPeriod.DateTo.Day - currentDate.Day + 1;
 		
 		daysInInitialPeriod = daysInInitialPeriod == 0 ? 1 : daysInInitialPeriod;
 		daysInActualPeriod = daysInActualPeriod == 0 ? 1 : daysInActualPeriod;

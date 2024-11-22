@@ -1,5 +1,8 @@
 namespace Profitocracy.Mobile.Utils;
 
+/// <summary>
+/// Contains common methods for working with numbers
+/// </summary>
 public static class NumberUtils
 {
     public static decimal RoundDecimal(decimal? num, int decimals = 2)
