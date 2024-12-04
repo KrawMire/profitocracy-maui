@@ -76,7 +76,7 @@ public class Profile : AggregateRoot<Guid>
 	/// <summary>
 	/// Does profile need to be updated and saved
 	/// </summary>
-	public bool NeedUpdate { get; private set; }
+	public bool IsNewPeriod { get; private set; }
 	
 	/// <summary>
 	/// Name of profile
@@ -129,7 +129,7 @@ public class Profile : AggregateRoot<Guid>
 	/// </summary>
 	/// <param name="transactions">Transactions to handle</param>
 	/// <param name="currentDate">Current date</param>
-	public void HandleTransactions(List<Transaction> transactions, DateTime currentDate)
+	public void HandleTransactions(ICollection<Transaction> transactions, DateTime currentDate)
 	{
 		foreach (var transaction in transactions)
 		{
@@ -138,9 +138,11 @@ public class Profile : AggregateRoot<Guid>
 		
 		if (StartDate.Timestamp.Month != currentDate.Month)
 		{
+			IsNewPeriod = true;
+			
 			StartDate = new AnchorDate
 			{
-				InitialBalance = Balance, 
+				InitialBalance = Balance,
 				Timestamp = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day)
 			};
 			
@@ -152,8 +154,6 @@ public class Profile : AggregateRoot<Guid>
 					currentDate.Month,
 					day: DateTime.DaysInMonth(currentDate.Year, currentDate.Month))
 			};
-			
-			NeedUpdate = true;
 		}
 		
 		RecalculateExpenses(currentDate);
@@ -191,6 +191,7 @@ public class Profile : AggregateRoot<Guid>
 		Expenses.TotalBalance.PlannedAmount += StartDate.InitialBalance;
 		Expenses.DailyFromActualBalance.PlannedAmount = Balance / daysInActualPeriod;
 		Expenses.DailyFromInitialBalance.PlannedAmount = Expenses.TotalBalance.PlannedAmount / daysInInitialPeriod;
+		
 		Expenses.Main.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.5m;
 		Expenses.Secondary.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.3m;
 		Expenses.Saved.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.2m;

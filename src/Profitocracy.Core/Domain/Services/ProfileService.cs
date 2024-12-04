@@ -54,7 +54,7 @@ internal class ProfileService : IProfileService
 		
 		profile.HandleTransactions(transactions, currentDate);
 
-		if (!profile.NeedUpdate)
+		if (!profile.IsNewPeriod)
 		{
 			return profile;
 		}
