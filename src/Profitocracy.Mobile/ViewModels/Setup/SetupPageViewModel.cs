@@ -29,7 +29,7 @@ public class SetupPageViewModel : BaseNotifyObject
         set => SetProperty(ref _initialBalance, value);
     }
 
-    public async void CreateFirstProfile()
+    public async Task CreateFirstProfile()
     {
         _initialBalance = _initialBalance.Replace(
             ",", 

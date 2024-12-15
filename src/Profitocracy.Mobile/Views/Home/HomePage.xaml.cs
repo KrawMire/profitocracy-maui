@@ -18,9 +18,9 @@ public partial class HomePage : ContentPage
 		CategoriesExpensesCollectionView.ItemsSource = _viewModel.CategoriesExpenses;
 	}
 
-	private void HomePage_OnNavigated(object? sender, EventArgs e)
+	private async void HomePage_OnNavigated(object? sender, EventArgs e)
 	{
-		_viewModel.Initialize();
+		await _viewModel.Initialize();
 	}
 
 	private async void CategoryLayout_OnTapped(object? sender, TappedEventArgs e)
@@ -45,7 +45,7 @@ public partial class HomePage : ContentPage
 			return;
 		}
 		
-		filteredPage.Initialize(
+		await filteredPage.Initialize(
 			_viewModel.ProfileId,
 			category.Id, 
 			spendingType: null, 
