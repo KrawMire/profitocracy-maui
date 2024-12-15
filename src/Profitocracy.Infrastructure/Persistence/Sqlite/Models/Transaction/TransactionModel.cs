@@ -2,6 +2,10 @@ using SQLite;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 
+/// <summary>
+/// Persistence representation for
+/// <see cref="Profitocracy.Core.Domain.Model.Transactions.Transaction"/> domain model 
+/// </summary>
 internal class TransactionModel
 {
 	[PrimaryKey]

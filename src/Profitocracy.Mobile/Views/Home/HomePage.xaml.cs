@@ -7,20 +7,20 @@ namespace Profitocracy.Mobile.Views.Home;
 
 public partial class HomePage : ContentPage
 {
-	public readonly HomePageViewModel ViewModel;
+	private readonly HomePageViewModel _viewModel;
 	
 	public HomePage(HomePageViewModel viewModel)
 	{
-		ViewModel = viewModel;
-		BindingContext = ViewModel;
+		_viewModel = viewModel;
+		BindingContext = _viewModel;
 		InitializeComponent();
 
-		CategoriesExpensesCollectionView.ItemsSource = ViewModel.CategoriesExpenses;
+		CategoriesExpensesCollectionView.ItemsSource = _viewModel.CategoriesExpenses;
 	}
 
 	private void HomePage_OnNavigated(object? sender, EventArgs e)
 	{
-		ViewModel.Initialize();
+		_viewModel.Initialize();
 	}
 
 	private async void CategoryLayout_OnTapped(object? sender, TappedEventArgs e)
@@ -46,11 +46,11 @@ public partial class HomePage : ContentPage
 		}
 		
 		filteredPage.Initialize(
-			ViewModel.ProfileId,
+			_viewModel.ProfileId,
 			category.Id, 
 			spendingType: null, 
-			dateFrom:DateTime.Parse(ViewModel.DateFrom),
-			dateTo: DateTime.Parse(ViewModel.DateTo));
+			dateFrom:DateTime.Parse(_viewModel.DateFrom),
+			dateTo: DateTime.Parse(_viewModel.DateTo));
 		
 		await Navigation.PushModalAsync(filteredPage);
 	}
@@ -84,11 +84,11 @@ public partial class HomePage : ContentPage
 		}
 		
 		filteredPage.Initialize(
-			ViewModel.ProfileId,
+			_viewModel.ProfileId,
 			categoryId: null, 
 			type,
-			dateFrom: DateTime.Parse(ViewModel.DateFrom),
-			dateTo: DateTime.Parse(ViewModel.DateTo));
+			dateFrom: DateTime.Parse(_viewModel.DateFrom),
+			dateTo: DateTime.Parse(_viewModel.DateTo));
 
 		await Navigation.PushModalAsync(filteredPage);
 	}

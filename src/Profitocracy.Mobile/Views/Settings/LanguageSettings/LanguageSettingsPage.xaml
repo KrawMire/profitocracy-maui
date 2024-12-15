@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+             x:Class="Profitocracy.Mobile.Views.Settings.LanguageSettings.LanguageSettingsPage"
+             Title="{x:Static resx:AppResources.Language}"
+             Loaded="LanguageSettingsPage_OnLoaded"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+    <ContentPage.Content>
+        <ScrollView Padding="16"
+                VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <Border Style="{StaticResource ThemeSettingsButton}"
+                        Margin="0,8,0,0" >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EnglishLanguage_OnSelected"/>
+                    </Border.GestureRecognizers>
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsEnglish}"
+                                     Value="True">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButtonActive}"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsEnglish}"
+                                     Value="False">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButton}"/>
+                        </DataTrigger>
+                    </Border.Triggers>
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="{x:Static resx:AppResources.EnglishLanguage}" 
+                               VerticalOptions="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsEnglish}"
+                                             Value="True">
+                                    <Setter Property="TextColor" Value="{StaticResource DarkPrimaryText}"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsEnglish}"
+                                             Value="False">
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                </DataTrigger>
+                            </Label.Triggers>   
+                        </Label>
+                    </FlexLayout>
+                </Border>
+                
+                <Border Style="{StaticResource ThemeSettingsButton}"
+                        Margin="0,8,0,0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="RussianLanguage_OnSelected"/>
+                    </Border.GestureRecognizers>
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsRussian}"
+                                     Value="True">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButtonActive}"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsRussian}"
+                                     Value="False">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButton}"/>
+                        </DataTrigger>
+                    </Border.Triggers>
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="{x:Static resx:AppResources.RussianLanguage}" 
+                               VerticalOptions="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsRussian}"
+                                             Value="True">
+                                    <Setter Property="TextColor" Value="{StaticResource DarkPrimaryText}"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsRussian}"
+                                             Value="False">
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                </DataTrigger>
+                            </Label.Triggers>   
+                        </Label>
+                    </FlexLayout>
+                </Border>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

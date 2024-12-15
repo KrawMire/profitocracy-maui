@@ -2,9 +2,11 @@
 
 public partial class App : Application
 {
-	public App(AppShell appShell)
+	public App(AppInit appInit, IServiceProvider serviceProvider)
 	{
 		InitializeComponent();
-		MainPage = appShell;
+		appInit.Initialized += (_, _) => MainPage = serviceProvider.GetRequiredService<AppShell>();
+
+		MainPage = appInit;
 	}
 }

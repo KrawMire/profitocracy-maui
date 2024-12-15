@@ -76,7 +76,7 @@ public class Profile : AggregateRoot<Guid>
 	/// <summary>
 	/// Does profile need to be updated and saved
 	/// </summary>
-	public bool NeedUpdate { get; private set; }
+	public bool IsNewPeriod { get; private set; }
 	
 	/// <summary>
 	/// Name of profile
@@ -128,20 +128,21 @@ public class Profile : AggregateRoot<Guid>
 	/// project results in profile
 	/// </summary>
 	/// <param name="transactions">Transactions to handle</param>
-	public void HandleTransactions(List<Transaction> transactions)
+	/// <param name="currentDate">Current date</param>
+	public void HandleTransactions(ICollection<Transaction> transactions, DateTime currentDate)
 	{
 		foreach (var transaction in transactions)
 		{
-			HandleTransaction(transaction);
+			HandleTransaction(transaction, currentDate);
 		}
-
-		var currentDate = DateTime.Now;
 		
 		if (StartDate.Timestamp.Month != currentDate.Month)
 		{
+			IsNewPeriod = true;
+			
 			StartDate = new AnchorDate
 			{
-				InitialBalance = Balance, 
+				InitialBalance = Balance,
 				Timestamp = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day)
 			};
 			
@@ -153,11 +154,9 @@ public class Profile : AggregateRoot<Guid>
 					currentDate.Month,
 					day: DateTime.DaysInMonth(currentDate.Year, currentDate.Month))
 			};
-			
-			NeedUpdate = true;
 		}
 		
-		RecalculateExpenses();
+		RecalculateExpenses(currentDate);
 	}
 	
 	/// <summary>
@@ -169,12 +168,7 @@ public class Profile : AggregateRoot<Guid>
 		CategoriesBalances.AddRange(categories);
 	}
 	
-	/// <summary>
-	/// Process transaction and
-	/// project results in profile
-	/// </summary>
-	/// <param name="transaction">Transaction to handle</param>
-	private void HandleTransaction(Transaction transaction)
+	private void HandleTransaction(Transaction transaction, DateTime currentDate)
 	{
 		if (transaction.Type == TransactionType.Income)
 		{
@@ -182,18 +176,14 @@ public class Profile : AggregateRoot<Guid>
 		}
 		else
 		{
-			HandleExpenseTransaction(transaction);
+			HandleExpenseTransaction(transaction, currentDate);
 		}
 	}
 	
-	/// <summary>
-	/// Recalculate expenses
-	/// </summary>
-	private void RecalculateExpenses()
+	private void RecalculateExpenses(DateTime currentDate)
 	{
-		var currentDay = DateTime.Now;
-		var daysInInitialPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day;
-		var daysInActualPeriod = BillingPeriod.DateTo.Day - currentDay.Day;
+		var daysInInitialPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day + 1;
+		var daysInActualPeriod = BillingPeriod.DateTo.Day - currentDate.Day + 1;
 		
 		daysInInitialPeriod = daysInInitialPeriod == 0 ? 1 : daysInInitialPeriod;
 		daysInActualPeriod = daysInActualPeriod == 0 ? 1 : daysInActualPeriod;
@@ -201,6 +191,7 @@ public class Profile : AggregateRoot<Guid>
 		Expenses.TotalBalance.PlannedAmount += StartDate.InitialBalance;
 		Expenses.DailyFromActualBalance.PlannedAmount = Balance / daysInActualPeriod;
 		Expenses.DailyFromInitialBalance.PlannedAmount = Expenses.TotalBalance.PlannedAmount / daysInInitialPeriod;
+		
 		Expenses.Main.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.5m;
 		Expenses.Secondary.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.3m;
 		Expenses.Saved.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.2m;
@@ -212,11 +203,11 @@ public class Profile : AggregateRoot<Guid>
 		Expenses.TotalBalance.PlannedAmount += transaction.Amount;
 	}
 
-	private void HandleExpenseTransaction(Transaction transaction)
+	private void HandleExpenseTransaction(Transaction transaction, DateTime currentDate)
 	{
 		Balance -= transaction.Amount;
 
-		if (transaction.Timestamp.Day == DateTime.Now.Day)
+		if (transaction.Timestamp.Day == currentDate.Day)
 		{
 			Expenses.DailyFromInitialBalance.ActualAmount += transaction.Amount;
 			Expenses.DailyFromActualBalance.ActualAmount += transaction.Amount;

@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Profitocracy.Core.Domain.Model.Categories;
 using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Settings;
 using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Infrastructure.Abstractions.Internal;
@@ -8,6 +9,7 @@ using Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Mappers;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Category;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Profile;
+using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Settings;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Repositories;
 
@@ -35,7 +37,8 @@ public static class InfrastructureRegistry
 		return services
 			.AddTransient<IInfrastructureMapper<Transaction, TransactionModel>, TransactionMapper>()
 			.AddTransient<IInfrastructureMapper<Profile, ProfileModel>, ProfileMapper>()
-			.AddTransient<IInfrastructureMapper<Category, CategoryModel>, CategoryMapper>();
+			.AddTransient<IInfrastructureMapper<Category, CategoryModel>, CategoryMapper>()
+			.AddTransient<IInfrastructureMapper<Settings, SettingsModel>, SettingsMapper>();
 	}
 
 	private static IServiceCollection RegisterRepositories(this IServiceCollection services)
@@ -43,6 +46,7 @@ public static class InfrastructureRegistry
 		return services
 			.AddTransient<ITransactionRepository, TransactionRepository>()
 			.AddTransient<IProfileRepository, ProfileRepository>()
-			.AddTransient<ICategoryRepository, CategoryRepository>();
+			.AddTransient<ICategoryRepository, CategoryRepository>()
+			.AddTransient<ISettingsRepository, SettingsRepository>();
 	}
 }

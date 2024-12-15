@@ -272,5 +272,53 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("DateRange", resourceCulture);
             }
         }
+        
+        internal static string LightThemeText {
+            get {
+                return ResourceManager.GetString("LightThemeText", resourceCulture);
+            }
+        }
+        
+        internal static string DarkThemeText {
+            get {
+                return ResourceManager.GetString("DarkThemeText", resourceCulture);
+            }
+        }
+        
+        internal static string SystemThemeText {
+            get {
+                return ResourceManager.GetString("SystemThemeText", resourceCulture);
+            }
+        }
+        
+        internal static string EnglishLanguage {
+            get {
+                return ResourceManager.GetString("EnglishLanguage", resourceCulture);
+            }
+        }
+        
+        internal static string RussianLanguage {
+            get {
+                return ResourceManager.GetString("RussianLanguage", resourceCulture);
+            }
+        }
+        
+        internal static string ChangeLanguageAlertTitle {
+            get {
+                return ResourceManager.GetString("ChangeLanguageAlertTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ChangeLanguageAlertMessage {
+            get {
+                return ResourceManager.GetString("ChangeLanguageAlertMessage", resourceCulture);
+            }
+        }
+        
+        internal static string ChangeLanguageAlertOk {
+            get {
+                return ResourceManager.GetString("ChangeLanguageAlertOk", resourceCulture);
+            }
+        }
     }
 }

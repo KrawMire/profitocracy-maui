@@ -20,16 +20,30 @@ public partial class AppShell : Shell
 	{
 		try
 		{
-			var profile = await _profileRepository.GetCurrentProfileId();
-			
-			if (profile is null)
-			{
-				await Current.GoToAsync(RoutesConstants.SetupPage);
-			}
+			await InitializeApplication();
 		}
 		catch (Exception ex)
 		{
-			await DisplayAlert("Alert", ex.Message, "OK");
+			await DisplayAlert("Critical error", ex.Message, "OK");
+		}
+	}
+
+	private async Task InitializeApplication()
+	{
+		await CheckProfileExists();
+	}
+
+	/// <summary>
+	/// Should be called last, because if there is no existing
+	/// profile, user will be redirected to the Setup page.
+	/// </summary>
+	private async Task CheckProfileExists()
+	{
+		var profile = await _profileRepository.GetCurrentProfileId();
+			
+		if (profile is null)
+		{
+			await Current.GoToAsync(RoutesConstants.SetupPage);
 		}
 	}
 }

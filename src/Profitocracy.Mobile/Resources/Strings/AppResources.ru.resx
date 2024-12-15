@@ -132,4 +132,28 @@
     <data name="DateRange" xml:space="preserve">
         <value>Отфильтровать по дате</value>
     </data>
+    <data name="LightThemeText" xml:space="preserve">
+        <value>Светлая</value>
+    </data>
+    <data name="DarkThemeText" xml:space="preserve">
+        <value>Темная</value>
+    </data>
+    <data name="SystemThemeText" xml:space="preserve">
+        <value>Системная</value>
+    </data>
+    <data name="EnglishLanguage" xml:space="preserve">
+        <value>Английский</value>
+    </data>
+    <data name="RussianLanguage" xml:space="preserve">
+        <value>Русский</value>
+    </data>
+    <data name="ChangeLanguageAlertMessage" xml:space="preserve">
+        <value>Чтобы изменения вступили в силу, требуется перезапустить приложение.</value>
+    </data>
+    <data name="ChangeLanguageAlertTitle" xml:space="preserve">
+        <value>Предупреждение</value>
+    </data>
+    <data name="ChangeLanguageAlertOk" xml:space="preserve">
+        <value>Понятно</value>
+    </data>
 </root>

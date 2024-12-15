@@ -21,6 +21,7 @@ internal class ProfileService : IProfileService
 		_categoryRepository = categoryRepository;
 	}
 
+	/// <inheritdoc />
 	public async Task<Profile?> GetCurrentProfile()
 	{
 		var profile = await _profileRepository.GetCurrentProfile();
@@ -49,9 +50,11 @@ internal class ProfileService : IProfileService
 			profile.AddCategories(profileCategories);
 		}
 		
-		profile.HandleTransactions(transactions);
+		var currentDate = DateTime.Now;
+		
+		profile.HandleTransactions(transactions, currentDate);
 
-		if (!profile.NeedUpdate)
+		if (!profile.IsNewPeriod)
 		{
 			return profile;
 		}
@@ -63,8 +66,26 @@ internal class ProfileService : IProfileService
 			profile.BillingPeriod.DateFrom, 
 			profile.BillingPeriod.DateTo);
 		
-		profile.HandleTransactions(currentTransactions);
+		profile.HandleTransactions(currentTransactions, currentDate);
 
 		return profile;
+	}
+
+	/// <inheritdoc />
+	public async Task<Profile?> GetCurrentProfileForPeriod(DateTime dateFrom, DateTime dateTo)
+	{
+		var profile = await _profileRepository.GetCurrentProfile();
+
+		if (profile is null)
+		{
+			return null;
+		}
+
+		var transactions = await _transactionRepository.GetForPeriod(
+			profile.Id,
+			dateFrom,
+			dateTo);
+
+		throw new NotImplementedException();
 	}
 }

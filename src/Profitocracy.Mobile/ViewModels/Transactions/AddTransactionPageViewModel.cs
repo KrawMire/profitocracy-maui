@@ -18,7 +18,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     private static readonly CategoryModel NoneCategory = new()
     {
         Id = Guid.NewGuid(),
-        ProfileId = default,
+        ProfileId = Guid.Empty,
         Name = "None"
     };
     
