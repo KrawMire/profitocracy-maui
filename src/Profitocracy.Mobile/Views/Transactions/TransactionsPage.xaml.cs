@@ -17,7 +17,7 @@ public partial class TransactionsPage : ContentPage
 		TransactionsCollectionView.ItemsSource = _viewModel.Transactions;
 	}
 
-	private async void UpdateTransactionsList(object? sender, EventArgs e)
+	private async void TransactionsPage_NavigatedTo(object? sender, EventArgs e)
 	{
 		await _viewModel.Initialize();
 	}

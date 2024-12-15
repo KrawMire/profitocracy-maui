@@ -20,7 +20,7 @@ public class ExpenseCategoriesSettingsPageViewModel : BaseNotifyObject
 
     public readonly ObservableCollection<CategoryModel> Categories = [];
 
-    public async void Initialize()
+    public async Task Initialize()
     {
         var profileId = await _profileRepository.GetCurrentProfileId();
 

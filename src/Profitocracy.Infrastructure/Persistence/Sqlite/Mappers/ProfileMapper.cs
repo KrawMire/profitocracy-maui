@@ -35,7 +35,7 @@ internal class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
 
 	public ProfileModel MapToModel(Profile entity)
 	{
-		var categories = entity.CategoriesBalances
+		var categories = entity.CategoriesExpenses
 			.Select(c => new ProfileCategoryModel
 			{
 				CategoryId = c.Id,

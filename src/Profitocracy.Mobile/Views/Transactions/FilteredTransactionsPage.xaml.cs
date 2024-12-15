@@ -22,7 +22,12 @@ public partial class FilteredTransactionsPage : ContentPage
         await Navigation.PopModalAsync();
     }
     
-    public async void Initialize(Guid profileId, Guid? categoryId, SpendingType? spendingType, DateTime dateFrom, DateTime dateTo)
+    public async Task Initialize(
+        Guid profileId, 
+        Guid? categoryId, 
+        SpendingType? spendingType, 
+        DateTime dateFrom, 
+        DateTime dateTo)
     {
         await _viewModel.Initialize(profileId, categoryId, spendingType, dateFrom, dateTo);
     }

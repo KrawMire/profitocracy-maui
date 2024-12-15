@@ -18,7 +18,7 @@ public class Profile : AggregateRoot<Guid>
 		string name,
 		AnchorDate startDate,
 		decimal savedBalance,
-		List<ProfileCategory> categoriesBalances,
+		List<ProfileCategory> categoriesExpenses,
 		ProfileSettings settings,
 		bool isCurrent) : base(id)
 	{
@@ -26,7 +26,7 @@ public class Profile : AggregateRoot<Guid>
 		StartDate = startDate;
 		Balance = StartDate.InitialBalance;
 		SavedBalance = savedBalance;
-		CategoriesBalances = categoriesBalances;
+		CategoriesExpenses = categoriesExpenses;
 		Settings = settings;
 		IsCurrent = isCurrent;
 		Expenses = new ProfileExpenses
@@ -65,16 +65,29 @@ public class Profile : AggregateRoot<Guid>
 
 		BillingPeriod = new TimePeriod
 		{
-			DateFrom = new DateTime(StartDate.Timestamp.Year, StartDate.Timestamp.Month, 1),
+			DateFrom = new DateTime(
+				StartDate.Timestamp.Year, 
+				StartDate.Timestamp.Month, 
+				day: 1,
+				hour: 0,
+				minute: 0,
+				second: 0,
+				millisecond: 0),
 			DateTo = new DateTime(
 				StartDate.Timestamp.Year,
 				StartDate.Timestamp.Month,
-				day: DateTime.DaysInMonth(StartDate.Timestamp.Year, StartDate.Timestamp.Month))
+				day: DateTime.DaysInMonth(StartDate.Timestamp.Year, StartDate.Timestamp.Month),
+				hour: 23,
+				minute: 59,
+				second: 59,
+				millisecond: 999)
 		};
+
+		_todayInitialBalance = Balance;
 	}
 
 	/// <summary>
-	/// Does profile need to be updated and saved
+	/// Is billing period of profile new
 	/// </summary>
 	public bool IsNewPeriod { get; private set; }
 	
@@ -111,7 +124,7 @@ public class Profile : AggregateRoot<Guid>
 	/// <summary>
 	/// Result of expenses calculations for every category
 	/// </summary>
-	public List<ProfileCategory> CategoriesBalances { get; }
+	public List<ProfileCategory> CategoriesExpenses { get; }
 	
 	/// <summary>
 	/// Profile settings
@@ -123,6 +136,13 @@ public class Profile : AggregateRoot<Guid>
 	/// </summary>
 	public bool IsCurrent { get; }
 
+	/// <summary>
+	/// This field is used to correctly calculate money for today.
+	/// Without this field we will see decreasing amount of
+	/// PlannedAmount of DailyFromActualBalance
+	/// </summary>
+	private decimal _todayInitialBalance;
+	
 	/// <summary>
 	/// Process transaction and
 	/// project results in profile
@@ -165,7 +185,7 @@ public class Profile : AggregateRoot<Guid>
 	/// <param name="categories">List of categories to add to profile</param>
 	public void AddCategories(IEnumerable<ProfileCategory> categories)
 	{
-		CategoriesBalances.AddRange(categories);
+		CategoriesExpenses.AddRange(categories);
 	}
 	
 	private void HandleTransaction(Transaction transaction, DateTime currentDate)
@@ -176,6 +196,11 @@ public class Profile : AggregateRoot<Guid>
 		}
 		else
 		{
+			if (transaction.SpendingType != SpendingType.Saved && transaction.Timestamp < BillingPeriod.DateFrom)
+			{
+				return;
+			}
+			
 			HandleExpenseTransaction(transaction, currentDate);
 		}
 	}
@@ -185,11 +210,12 @@ public class Profile : AggregateRoot<Guid>
 		var daysInInitialPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day + 1;
 		var daysInActualPeriod = BillingPeriod.DateTo.Day - currentDate.Day + 1;
 		
+		// Used to prevent division by zero
 		daysInInitialPeriod = daysInInitialPeriod == 0 ? 1 : daysInInitialPeriod;
 		daysInActualPeriod = daysInActualPeriod == 0 ? 1 : daysInActualPeriod;
 
 		Expenses.TotalBalance.PlannedAmount += StartDate.InitialBalance;
-		Expenses.DailyFromActualBalance.PlannedAmount = Balance / daysInActualPeriod;
+		Expenses.DailyFromActualBalance.PlannedAmount = _todayInitialBalance / daysInActualPeriod;
 		Expenses.DailyFromInitialBalance.PlannedAmount = Expenses.TotalBalance.PlannedAmount / daysInInitialPeriod;
 		
 		Expenses.Main.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.5m;
@@ -224,7 +250,7 @@ public class Profile : AggregateRoot<Guid>
 				HandleSecondarySpendingTransaction(transaction);
 				break;
 			case SpendingType.Saved:
-				HandleSavingSpendingTransaction(transaction);
+				HandleSavingSpendingTransaction(transaction, currentDate);
 				break;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(transaction.SpendingType));
@@ -246,15 +272,20 @@ public class Profile : AggregateRoot<Guid>
 		Expenses.Secondary.ActualAmount += transaction.Amount;
 	}
 	
-	private void HandleSavingSpendingTransaction(Transaction transaction)
+	private void HandleSavingSpendingTransaction(Transaction transaction, DateTime currentDate)
 	{
+		if (transaction.Timestamp.Month == currentDate.Month)
+		{
+			Expenses.Saved.ActualAmount = transaction.Amount;	
+		}
+		
 		SavedBalance += transaction.Amount;
-		Expenses.Saved.ActualAmount = transaction.Amount;
 	}
 
 	private void HandleCategoryTransaction(Transaction transaction)
 	{
-		var category = CategoriesBalances.Find(c => c.Id.Equals(transaction.Category!.Id));
+		var category = CategoriesExpenses
+			.Find(c => c.Id.Equals(transaction.Category!.Id));
 
 		if (category is null)
 		{

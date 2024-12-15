@@ -37,7 +37,7 @@ public class TransactionsPageViewModel : BaseNotifyObject
         set
         {
             SetProperty(ref _fromDate, value);
-            InitializeTransactions();
+            _ = InitializeTransactions();
         }
     }
     
@@ -46,8 +46,17 @@ public class TransactionsPageViewModel : BaseNotifyObject
         get => _toDate;
         set
         {
-            SetProperty(ref _toDate, value);
-            InitializeTransactions();
+            var newValue = new DateTime(
+                value.Year, 
+                value.Month, 
+                value.Day,
+                hour: 0,
+                minute: 0,
+                second: 0,
+                millisecond: 0);
+            
+            SetProperty(ref _toDate, newValue);
+            _ = InitializeTransactions();
         }
     }
     
@@ -66,7 +75,7 @@ public class TransactionsPageViewModel : BaseNotifyObject
             return;
         }
         
-        InitializeTransactions();
+        await InitializeTransactions();
     }
     
     public async Task DeleteTransaction(Guid transactionId)
@@ -76,7 +85,7 @@ public class TransactionsPageViewModel : BaseNotifyObject
         Transactions.Remove(Transactions.Single(t => t.Id == deletedId));
     }
 
-    private async void InitializeTransactions()
+    private async Task InitializeTransactions()
     {
         if (_profileId is null)
         {
