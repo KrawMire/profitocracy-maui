@@ -43,7 +43,7 @@
             <Border Style="{StaticResource SettingsButton}"
                     Margin="0,8,0,0" >
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer/>
+                    <TapGestureRecognizer Tapped="ThemeButton_OnClicked"/>
                 </Border.GestureRecognizers>
                 <FlexLayout JustifyContent="SpaceBetween">
                     <Label Style="{StaticResource SettingsButtonText}"
@@ -55,7 +55,7 @@
             <Border Style="{StaticResource SettingsButton}"
                     Margin="0,8,0,0" >
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer/>
+                    <TapGestureRecognizer Tapped="LanguageButton_OnClicked"/>
                 </Border.GestureRecognizers>
                 <FlexLayout JustifyContent="SpaceBetween">
                     <Label Style="{StaticResource SettingsButtonText}"

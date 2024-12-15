@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+             x:Class="Profitocracy.Mobile.Views.Settings.ThemeSettings.ThemeSettingsPage"
+             Title="{x:Static resx:AppResources.Theme}"
+             Loaded="ThemeSettingsPage_OnLoaded"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+    <ContentPage.Content>
+        <ScrollView Padding="16"
+                VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <Border Style="{StaticResource ThemeSettingsButton}"
+                        Margin="0,8,0,0" >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LightTheme_OnSelected"/>
+                    </Border.GestureRecognizers>
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsLightTheme}"
+                                     Value="True">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButtonActive}"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsLightTheme}"
+                                     Value="False">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButton}"/>
+                        </DataTrigger>
+                    </Border.Triggers>
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="{x:Static resx:AppResources.LightThemeText}" 
+                               VerticalOptions="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsLightTheme}"
+                                             Value="True">
+                                    <Setter Property="TextColor" Value="{StaticResource DarkPrimaryText}"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsLightTheme}"
+                                             Value="False">
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                </DataTrigger>
+                            </Label.Triggers>   
+                        </Label>
+                    </FlexLayout>
+                </Border>
+                
+                <Border Style="{StaticResource ThemeSettingsButton}"
+                        Margin="0,8,0,0" >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="DarkTheme_OnSelected"/>
+                    </Border.GestureRecognizers>
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsDarkTheme}"
+                                     Value="True">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButtonActive}"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsDarkTheme}"
+                                     Value="False">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButton}"/>
+                        </DataTrigger>
+                    </Border.Triggers>
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="{x:Static resx:AppResources.DarkThemeText}" 
+                               VerticalOptions="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsDarkTheme}"
+                                             Value="True">
+                                    <Setter Property="TextColor" Value="{StaticResource DarkPrimaryText}"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsDarkTheme}"
+                                             Value="False">
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                </DataTrigger>
+                            </Label.Triggers>   
+                        </Label>
+                    </FlexLayout>
+                </Border>
+                
+                <Border Margin="0,8,0,0" >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SystemTheme_OnSelected"/>
+                    </Border.GestureRecognizers>
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsSystemTheme}"
+                                     Value="True">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButtonActive}"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Border"
+                                     Binding="{Binding IsSystemTheme}"
+                                     Value="False">
+                            <Setter Property="Style" Value="{StaticResource ThemeSettingsButton}"/>
+                        </DataTrigger>
+                    </Border.Triggers>
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Style="{StaticResource SettingsButtonText}"
+                               Text="{x:Static resx:AppResources.SystemThemeText}" 
+                               VerticalOptions="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsSystemTheme}"
+                                             Value="True">
+                                    <Setter Property="TextColor" Value="{StaticResource DarkPrimaryText}"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsSystemTheme}"
+                                             Value="False">
+                                    <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryText}, Dark={StaticResource DarkPrimaryText}}"/>
+                                </DataTrigger>
+                            </Label.Triggers>    
+                        </Label>
+                    </FlexLayout>
+                </Border>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

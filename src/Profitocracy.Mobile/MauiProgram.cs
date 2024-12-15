@@ -4,10 +4,13 @@ using Profitocracy.Core;
 using Profitocracy.Infrastructure;
 using Profitocracy.Mobile.ViewModels.Categories;
 using Profitocracy.Mobile.ViewModels.Home;
+using Profitocracy.Mobile.ViewModels.Settings;
 using Profitocracy.Mobile.ViewModels.Setup;
 using Profitocracy.Mobile.ViewModels.Transactions;
 using Profitocracy.Mobile.Views.Home;
 using Profitocracy.Mobile.Views.Settings.CategoriesSettings;
+using Profitocracy.Mobile.Views.Settings.LanguageSettings;
+using Profitocracy.Mobile.Views.Settings.ThemeSettings;
 using Profitocracy.Mobile.Views.Setup;
 using Profitocracy.Mobile.Views.Transactions;
 
@@ -51,7 +54,9 @@ public static class MauiProgram
 	
 	private static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
 	{
-		_ = mauiAppBuilder.Services.AddSingleton<AppShell>();
+		_ = mauiAppBuilder.Services
+			.AddSingleton<AppShell>()
+			.AddSingleton<AppInit>();
 
 		return mauiAppBuilder;
 	}
@@ -65,7 +70,9 @@ public static class MauiProgram
 			.AddTransient<FilteredTransactionsPageViewModel>()
 			.AddTransient<TransactionsPageViewModel>()
 			.AddTransient<ExpenseCategoriesSettingsPageViewModel>()
-			.AddTransient<AddExpenseCategoryPageViewModel>();
+			.AddTransient<AddExpenseCategoryPageViewModel>()
+			.AddTransient<LanguageSettingsViewModel>()
+			.AddTransient<ThemeSettingsPageViewModel>();
 		
 		return mauiAppBuilder;
 	}
@@ -79,6 +86,8 @@ public static class MauiProgram
 			.AddTransient<FilteredTransactionsPage>()
 			.AddTransient<AddTransactionPage>()
 			.AddTransient<ExpenseCategoriesSettingsPage>()
+			.AddTransient<ThemeSettingsPage>()
+			.AddTransient<LanguageSettingsPage>()
 			.AddTransient<AddExpenseCategoryPage>();
 		
 		return mauiAppBuilder;
