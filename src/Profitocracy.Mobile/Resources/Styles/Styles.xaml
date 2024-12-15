@@ -415,7 +415,7 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray600}}"/>
     </Style>
     
-    <!-- New Styles -->
+    <!-- Application-specific styles -->
     
     <!-- Common -->
     <Style TargetType="Border" x:Key="CloseButton">
@@ -638,5 +638,20 @@
         <Setter Property="FontFamily" Value="OpenSansSemibold"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="TextColor" Value="{StaticResource White}"/>
+    </Style>
+    
+    <!-- Theme and language settings page -->
+    <Style TargetType="Border" x:Key="ThemeSettingsButton">
+        <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="Padding" Value="16,12"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightContent}, Dark={StaticResource DarkContent}}"/>
+    </Style>
+    
+    <Style TargetType="Border" x:Key="ThemeSettingsButtonActive">
+        <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="Padding" Value="16,12"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
     </Style>
 </ResourceDictionary>

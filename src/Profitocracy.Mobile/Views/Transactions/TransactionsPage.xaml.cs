@@ -5,21 +5,21 @@ namespace Profitocracy.Mobile.Views.Transactions;
 
 public partial class TransactionsPage : ContentPage
 {
-	public readonly TransactionsPageViewModel ViewModel;
+	private readonly TransactionsPageViewModel _viewModel;
 	
 	public TransactionsPage(TransactionsPageViewModel viewModel)
 	{
-		ViewModel = viewModel;
-		BindingContext = ViewModel;
+		_viewModel = viewModel;
+		BindingContext = _viewModel;
 		
 		InitializeComponent();
 
-		TransactionsCollectionView.ItemsSource = ViewModel.Transactions;
+		TransactionsCollectionView.ItemsSource = _viewModel.Transactions;
 	}
 
 	private async void UpdateTransactionsList(object? sender, EventArgs e)
 	{
-		await ViewModel.Initialize();
+		await _viewModel.Initialize();
 	}
 
 	private async void AddTransactionButton_OnClicked(object? sender, EventArgs e)
@@ -60,6 +60,6 @@ public partial class TransactionsPage : ContentPage
 			return;
 		}
 		
-		await ViewModel.DeleteTransaction((Guid)transaction.Id);
+		await _viewModel.DeleteTransaction((Guid)transaction.Id);
 	}
 }

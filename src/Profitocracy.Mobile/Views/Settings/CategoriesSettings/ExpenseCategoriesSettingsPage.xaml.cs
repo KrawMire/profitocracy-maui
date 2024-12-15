@@ -4,21 +4,21 @@ namespace Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 
 public partial class ExpenseCategoriesSettingsPage : ContentPage
 {
-	public ExpenseCategoriesSettingsPageViewModel ViewModel;
+	private readonly ExpenseCategoriesSettingsPageViewModel _viewModel;
 	
 	public ExpenseCategoriesSettingsPage(ExpenseCategoriesSettingsPageViewModel viewModel)
 	{
-		ViewModel = viewModel;
-		BindingContext = ViewModel;
+		_viewModel = viewModel;
+		BindingContext = _viewModel;
 		
 		InitializeComponent();
 
-		CategoriesCollectionView.ItemsSource = ViewModel.Categories;
+		CategoriesCollectionView.ItemsSource = _viewModel.Categories;
 	}
 
 	private void UpdateCategoriesList(object? sender, EventArgs e)
 	{
-		ViewModel.Initialize();
+		_viewModel.Initialize();
 	}
 
 	private async void AddCategoryButton_OnClicked(object? sender, EventArgs e)

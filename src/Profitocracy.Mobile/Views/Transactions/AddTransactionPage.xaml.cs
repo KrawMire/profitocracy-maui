@@ -4,16 +4,16 @@ namespace Profitocracy.Mobile.Views.Transactions;
 
 public partial class AddTransactionPage : ContentPage
 {
-	public readonly AddTransactionPageViewModel ViewModel;
+	private readonly AddTransactionPageViewModel _viewModel;
 	
 	public AddTransactionPage(AddTransactionPageViewModel viewModel)
 	{
-		ViewModel = viewModel;
-		BindingContext = ViewModel;
+		_viewModel = viewModel;
+		BindingContext = _viewModel;
 	
 		InitializeComponent();
-		
-		CategoryPicker.ItemsSource = ViewModel.AvailableCategories;
+
+		CategoryPicker.ItemsSource = _viewModel.AvailableCategories;
 	}
 
 	private async void CloseButton_OnClicked(object? sender, EventArgs e)
@@ -25,7 +25,7 @@ public partial class AddTransactionPage : ContentPage
 	{
 		try
 		{
-			await ViewModel.CreateTransaction();
+			await _viewModel.CreateTransaction();
 			await Navigation.PopModalAsync();
 		}
 		catch (Exception ex)
@@ -38,7 +38,7 @@ public partial class AddTransactionPage : ContentPage
 	{
 		try
 		{
-			await ViewModel.Initialize();
+			await _viewModel.Initialize();
 		}
 		catch (Exception ex)
 		{
@@ -48,26 +48,26 @@ public partial class AddTransactionPage : ContentPage
 
 	private void IncomeButton_OnClicked(object? sender, EventArgs e)
 	{
-		ViewModel.TransactionType = 0;
+		_viewModel.TransactionType = 0;
 	}
 
 	private void ExpenseButton_OnClicked(object? sender, EventArgs e)
 	{
-		ViewModel.TransactionType = 1;
+		_viewModel.TransactionType = 1;
 	}
 
 	private void MainTypeButton_OnClicked(object? sender, EventArgs e)
 	{
-		ViewModel.SpendingType = 0;
+		_viewModel.SpendingType = 0;
 	}
 
 	private void SecondaryTypeButton_OnClicked(object? sender, EventArgs e)
 	{
-		ViewModel.SpendingType = 1;
+		_viewModel.SpendingType = 1;
 	}
 
 	private void SavedTypeButton_OnClicked(object? sender, EventArgs e)
 	{
-		ViewModel.SpendingType = 2;
+		_viewModel.SpendingType = 2;
 	}
 }

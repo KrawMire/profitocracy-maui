@@ -4,14 +4,14 @@ namespace Profitocracy.Mobile.Views.Setup;
 
 public partial class SetupPage : ContentPage
 {
-	public readonly SetupPageViewModel ViewModel;
+	private readonly SetupPageViewModel _viewModel;
 	
 	public SetupPage(SetupPageViewModel viewModel)
 	{
 		InitializeComponent();
 		
-		ViewModel = viewModel;
-		BindingContext = ViewModel;
+		_viewModel = viewModel;
+		BindingContext = _viewModel;
 	}
 	
 	protected override bool OnBackButtonPressed()
@@ -23,7 +23,7 @@ public partial class SetupPage : ContentPage
 	{
 		try
 		{
-			ViewModel.CreateFirstProfile();
+			_viewModel.CreateFirstProfile();
 			await Navigation.PopModalAsync();
 		}
 		catch (Exception ex)

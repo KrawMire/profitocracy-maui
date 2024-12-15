@@ -4,14 +4,14 @@ namespace Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 
 public partial class AddExpenseCategoryPage : ContentPage
 {
-    private readonly AddExpenseCategoryPageViewModel ViewModel;
+    private readonly AddExpenseCategoryPageViewModel _viewModel;
     
     public AddExpenseCategoryPage(AddExpenseCategoryPageViewModel viewModel)
     {
         InitializeComponent();
         
-        ViewModel = viewModel;
-        BindingContext = ViewModel;
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
     }
 
     private async void CloseButton_OnClicked(object? sender, EventArgs e)
@@ -23,7 +23,7 @@ public partial class AddExpenseCategoryPage : ContentPage
     {
         try
         {
-            await ViewModel.CreateCategory();
+            await _viewModel.CreateCategory();
             await Navigation.PopModalAsync();
         }
         catch (Exception ex)

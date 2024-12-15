@@ -132,4 +132,28 @@
     <data name="DateRange" xml:space="preserve">
         <value>Filter by date</value>
     </data>
+    <data name="LightThemeText" xml:space="preserve">
+        <value>Light</value>
+    </data>
+    <data name="DarkThemeText" xml:space="preserve">
+        <value>Dark</value>
+    </data>
+    <data name="SystemThemeText" xml:space="preserve">
+        <value>System</value>
+    </data>
+    <data name="EnglishLanguage" xml:space="preserve">
+        <value>English</value>
+    </data>
+    <data name="RussianLanguage" xml:space="preserve">
+        <value>Russian</value>
+    </data>
+    <data name="ChangeLanguageAlertTitle" xml:space="preserve">
+        <value>Warning</value>
+    </data>
+    <data name="ChangeLanguageAlertMessage" xml:space="preserve">
+        <value>To make the changes take effect, you need to restart the application.</value>
+    </data>
+    <data name="ChangeLanguageAlertOk" xml:space="preserve">
+        <value>Ok</value>
+    </data>
 </root>
