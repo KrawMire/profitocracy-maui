@@ -239,6 +239,10 @@ public class Profile : AggregateRoot<Guid>
 			Expenses.DailyFromInitialBalance.ActualAmount += transaction.Amount;
 			Expenses.DailyFromActualBalance.ActualAmount += transaction.Amount;
 		}
+		else
+		{
+			_todayInitialBalance -= transaction.Amount;
+		}
 
 		Expenses.TotalBalance.ActualAmount += transaction.Amount;
 		

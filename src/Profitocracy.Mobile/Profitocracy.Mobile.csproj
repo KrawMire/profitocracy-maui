@@ -29,8 +29,8 @@
         <ApplicationId>com.krawmire.profitocracy</ApplicationId>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.3.2</ApplicationDisplayVersion>
-        <ApplicationVersion>16</ApplicationVersion>
+        <ApplicationDisplayVersion>1.3.3</ApplicationDisplayVersion>
+        <ApplicationVersion>17</ApplicationVersion>
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">12.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
