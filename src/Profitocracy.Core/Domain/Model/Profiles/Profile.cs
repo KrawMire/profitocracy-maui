@@ -82,6 +82,8 @@ public class Profile : AggregateRoot<Guid>
 				second: 59,
 				millisecond: 999)
 		};
+
+		_todayInitialBalance = Balance;
 	}
 
 	/// <summary>
@@ -134,6 +136,13 @@ public class Profile : AggregateRoot<Guid>
 	/// </summary>
 	public bool IsCurrent { get; }
 
+	/// <summary>
+	/// This field is used to correctly calculate money for today.
+	/// Without this field we will see decreasing amount of
+	/// PlannedAmount of DailyFromActualBalance
+	/// </summary>
+	private decimal _todayInitialBalance;
+	
 	/// <summary>
 	/// Process transaction and
 	/// project results in profile
@@ -196,11 +205,12 @@ public class Profile : AggregateRoot<Guid>
 		var daysInInitialPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day + 1;
 		var daysInActualPeriod = BillingPeriod.DateTo.Day - currentDate.Day + 1;
 		
+		// Used to prevent division by zero
 		daysInInitialPeriod = daysInInitialPeriod == 0 ? 1 : daysInInitialPeriod;
 		daysInActualPeriod = daysInActualPeriod == 0 ? 1 : daysInActualPeriod;
 
 		Expenses.TotalBalance.PlannedAmount += StartDate.InitialBalance;
-		Expenses.DailyFromActualBalance.PlannedAmount = Balance / daysInActualPeriod;
+		Expenses.DailyFromActualBalance.PlannedAmount = _todayInitialBalance / daysInActualPeriod;
 		Expenses.DailyFromInitialBalance.PlannedAmount = Expenses.TotalBalance.PlannedAmount / daysInInitialPeriod;
 		
 		Expenses.Main.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.5m;
