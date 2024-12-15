@@ -46,7 +46,16 @@ public class TransactionsPageViewModel : BaseNotifyObject
         get => _toDate;
         set
         {
-            SetProperty(ref _toDate, value);
+            var newValue = new DateTime(
+                value.Year, 
+                value.Month, 
+                value.Day,
+                hour: 0,
+                minute: 0,
+                second: 0,
+                millisecond: 0);
+            
+            SetProperty(ref _toDate, newValue);
             _ = InitializeTransactions();
         }
     }

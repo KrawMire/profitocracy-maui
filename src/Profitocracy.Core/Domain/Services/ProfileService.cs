@@ -33,7 +33,7 @@ internal class ProfileService : IProfileService
 		
 		var transactions = await _transactionRepository.GetForPeriod(
 			profile.Id, 
-			profile.BillingPeriod.DateFrom, 
+			profile.BillingPeriod.DateFrom,
 			profile.BillingPeriod.DateTo);
 		
 		var categories = await _categoryRepository.GetAllByProfileId(profile.Id);

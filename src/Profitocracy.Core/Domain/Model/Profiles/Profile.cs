@@ -65,11 +65,22 @@ public class Profile : AggregateRoot<Guid>
 
 		BillingPeriod = new TimePeriod
 		{
-			DateFrom = new DateTime(StartDate.Timestamp.Year, StartDate.Timestamp.Month, 1),
+			DateFrom = new DateTime(
+				StartDate.Timestamp.Year, 
+				StartDate.Timestamp.Month, 
+				day: 1,
+				hour: 0,
+				minute: 0,
+				second: 0,
+				millisecond: 0),
 			DateTo = new DateTime(
 				StartDate.Timestamp.Year,
 				StartDate.Timestamp.Month,
-				day: DateTime.DaysInMonth(StartDate.Timestamp.Year, StartDate.Timestamp.Month))
+				day: DateTime.DaysInMonth(StartDate.Timestamp.Year, StartDate.Timestamp.Month),
+				hour: 23,
+				minute: 59,
+				second: 59,
+				millisecond: 999)
 		};
 	}
 
