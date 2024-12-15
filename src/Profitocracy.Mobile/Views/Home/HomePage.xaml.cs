@@ -83,7 +83,7 @@ public partial class HomePage : ContentPage
 			return;
 		}
 		
-		filteredPage.Initialize(
+		await filteredPage.Initialize(
 			_viewModel.ProfileId,
 			categoryId: null, 
 			type,

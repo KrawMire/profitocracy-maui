@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
 using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
@@ -38,6 +39,7 @@ public class HomePageViewModel : BaseNotifyObject
     private string _dateTo = string.Empty;
 
     private bool _isDisplayNoCategories;
+    private bool _isRefreshing = true;
     
     private readonly IProfileService _profileService;
 
@@ -186,15 +188,26 @@ public class HomePageViewModel : BaseNotifyObject
         get => _isDisplayNoCategories;
         set => SetProperty(ref _isDisplayNoCategories, value);
     }
+
+    public bool IsRefreshing
+    {
+        get => _isRefreshing;
+        set => SetProperty(ref _isRefreshing, value);
+    }
+    
+    public ICommand RefreshCommand { get; private set; }
     
     public ObservableCollection<CategoryExpenseModel> CategoriesExpenses = [];
     
     public HomePageViewModel(IProfileService profileService)
     {
         _profileService = profileService;
+        RefreshCommand = new Command(
+            execute: async void() => await Initialize(),
+            canExecute: () => !IsRefreshing);
     }
 
-    public async void Initialize()
+    public async Task Initialize()
     {
         var profile = await _profileService.GetCurrentProfile();
 
@@ -212,15 +225,17 @@ public class HomePageViewModel : BaseNotifyObject
         
         InitializeExpenses(profile.Expenses);
 
-        if (profile.CategoriesBalances.Count > 0)
+        if (profile.CategoriesExpenses.Count > 0)
         {
             IsDisplayNoCategories = false;
-            InitializeCategoriesExpenses(profile.CategoriesBalances);
+            InitializeCategoriesExpenses(profile.CategoriesExpenses);
         }
         else
         {
             IsDisplayNoCategories = true;
         }
+        
+        IsRefreshing = false;
     }
 
     private void InitializeExpenses(ProfileExpenses expenses)
