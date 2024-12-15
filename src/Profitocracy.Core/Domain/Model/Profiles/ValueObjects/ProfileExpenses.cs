@@ -9,30 +9,30 @@ public class ProfileExpenses
 	/// <summary>
 	/// Total amount of expenses
 	/// </summary>
-	public required ProfileExpense TotalBalance { get; set; }
+	public required ProfileExpense TotalBalance { get; init; }
 	
 	/// <summary>
 	/// Daily amounts from actual profile balance
 	/// </summary>
-	public required ProfileExpense DailyFromActualBalance { get; set; }
+	public required ProfileExpense DailyFromActualBalance { get; init; }
 	
 	/// <summary>
 	/// Daily amounts from initial profile balance
 	/// </summary>
-	public required ProfileExpense DailyFromInitialBalance { get; set; }
+	public required ProfileExpense DailyFromInitialBalance { get; init; }
 	
 	/// <summary>
 	/// Main expenses amount
 	/// </summary>
-	public required ProfileExpense Main { get; set; }
+	public required ProfileExpense Main { get; init; }
 	
 	/// <summary>
 	/// Secondary expenses amount
 	/// </summary>
-	public required ProfileExpense Secondary { get; set; }
+	public required ProfileExpense Secondary { get; init; }
 	
 	/// <summary>
 	/// Saved amount
 	/// </summary>
-	public required ProfileExpense Saved { get; set; }
+	public required ProfileExpense Saved { get; init; }
 }

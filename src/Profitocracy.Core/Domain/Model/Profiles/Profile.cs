@@ -18,7 +18,7 @@ public class Profile : AggregateRoot<Guid>
 		string name,
 		AnchorDate startDate,
 		decimal savedBalance,
-		List<ProfileCategory> categoriesBalances,
+		List<ProfileCategory> categoriesExpenses,
 		ProfileSettings settings,
 		bool isCurrent) : base(id)
 	{
@@ -26,7 +26,7 @@ public class Profile : AggregateRoot<Guid>
 		StartDate = startDate;
 		Balance = StartDate.InitialBalance;
 		SavedBalance = savedBalance;
-		CategoriesBalances = categoriesBalances;
+		CategoriesExpenses = categoriesExpenses;
 		Settings = settings;
 		IsCurrent = isCurrent;
 		Expenses = new ProfileExpenses
@@ -74,7 +74,7 @@ public class Profile : AggregateRoot<Guid>
 	}
 
 	/// <summary>
-	/// Does profile need to be updated and saved
+	/// Is billing period of profile new
 	/// </summary>
 	public bool IsNewPeriod { get; private set; }
 	
@@ -111,7 +111,7 @@ public class Profile : AggregateRoot<Guid>
 	/// <summary>
 	/// Result of expenses calculations for every category
 	/// </summary>
-	public List<ProfileCategory> CategoriesBalances { get; }
+	public List<ProfileCategory> CategoriesExpenses { get; }
 	
 	/// <summary>
 	/// Profile settings
@@ -165,7 +165,7 @@ public class Profile : AggregateRoot<Guid>
 	/// <param name="categories">List of categories to add to profile</param>
 	public void AddCategories(IEnumerable<ProfileCategory> categories)
 	{
-		CategoriesBalances.AddRange(categories);
+		CategoriesExpenses.AddRange(categories);
 	}
 	
 	private void HandleTransaction(Transaction transaction, DateTime currentDate)
@@ -254,7 +254,8 @@ public class Profile : AggregateRoot<Guid>
 
 	private void HandleCategoryTransaction(Transaction transaction)
 	{
-		var category = CategoriesBalances.Find(c => c.Id.Equals(transaction.Category!.Id));
+		var category = CategoriesExpenses
+			.Find(c => c.Id.Equals(transaction.Category!.Id));
 
 		if (category is null)
 		{
