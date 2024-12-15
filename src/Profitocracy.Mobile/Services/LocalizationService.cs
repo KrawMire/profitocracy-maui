@@ -30,6 +30,12 @@ public static class LocalizationService
         }
             
         var culture = new CultureInfo(language);
+        
+        
         AppResources.Culture = culture;
+        Thread.CurrentThread.CurrentCulture = culture;
+        Thread.CurrentThread.CurrentUICulture = culture;
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
     }
 }
