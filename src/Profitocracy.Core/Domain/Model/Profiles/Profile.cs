@@ -226,6 +226,7 @@ public class Profile : AggregateRoot<Guid>
 	
 	private void HandleIncomeTransaction(Transaction transaction)
 	{
+		_todayInitialBalance += transaction.Amount;
 		Balance += transaction.Amount;
 		Expenses.TotalBalance.PlannedAmount += transaction.Amount;
 	}
