@@ -23,7 +23,7 @@ public partial class SetupPage : ContentPage
 	{
 		try
 		{
-			_viewModel.CreateFirstProfile();
+			await _viewModel.CreateFirstProfile();
 			await Navigation.PopModalAsync();
 		}
 		catch (Exception ex)

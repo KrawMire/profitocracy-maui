@@ -16,9 +16,9 @@ public partial class ExpenseCategoriesSettingsPage : ContentPage
 		CategoriesCollectionView.ItemsSource = _viewModel.Categories;
 	}
 
-	private void UpdateCategoriesList(object? sender, EventArgs e)
+	private async void UpdateCategoriesList(object? sender, EventArgs e)
 	{
-		_viewModel.Initialize();
+		await _viewModel.Initialize();
 	}
 
 	private async void AddCategoryButton_OnClicked(object? sender, EventArgs e)
