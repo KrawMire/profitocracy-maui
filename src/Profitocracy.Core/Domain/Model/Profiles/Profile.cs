@@ -196,8 +196,9 @@ public class Profile : AggregateRoot<Guid>
 		}
 		else
 		{
-			if (transaction.SpendingType != SpendingType.Saved && transaction.Timestamp < BillingPeriod.DateFrom)
+			if (transaction.SpendingType == SpendingType.Saved && transaction.Timestamp < BillingPeriod.DateFrom)
 			{
+				HandleSavingSpendingTransaction(transaction, currentDate);
 				return;
 			}
 			
@@ -276,7 +277,7 @@ public class Profile : AggregateRoot<Guid>
 	{
 		if (transaction.Timestamp.Month == currentDate.Month)
 		{
-			Expenses.Saved.ActualAmount = transaction.Amount;	
+			Expenses.Saved.ActualAmount += transaction.Amount;	
 		}
 		
 		SavedBalance += transaction.Amount;
