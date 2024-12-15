@@ -196,6 +196,11 @@ public class Profile : AggregateRoot<Guid>
 		}
 		else
 		{
+			if (transaction.SpendingType != SpendingType.Saved && transaction.Timestamp < BillingPeriod.DateFrom)
+			{
+				return;
+			}
+			
 			HandleExpenseTransaction(transaction, currentDate);
 		}
 	}
@@ -245,7 +250,7 @@ public class Profile : AggregateRoot<Guid>
 				HandleSecondarySpendingTransaction(transaction);
 				break;
 			case SpendingType.Saved:
-				HandleSavingSpendingTransaction(transaction);
+				HandleSavingSpendingTransaction(transaction, currentDate);
 				break;
 			default:
 				throw new ArgumentOutOfRangeException(nameof(transaction.SpendingType));
@@ -267,10 +272,14 @@ public class Profile : AggregateRoot<Guid>
 		Expenses.Secondary.ActualAmount += transaction.Amount;
 	}
 	
-	private void HandleSavingSpendingTransaction(Transaction transaction)
+	private void HandleSavingSpendingTransaction(Transaction transaction, DateTime currentDate)
 	{
+		if (transaction.Timestamp.Month == currentDate.Month)
+		{
+			Expenses.Saved.ActualAmount = transaction.Amount;	
+		}
+		
 		SavedBalance += transaction.Amount;
-		Expenses.Saved.ActualAmount = transaction.Amount;
 	}
 
 	private void HandleCategoryTransaction(Transaction transaction)

@@ -1,7 +1,9 @@
 using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Profiles;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
+using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Core.Persistence;
+using Profitocracy.Core.Specifications;
 
 namespace Profitocracy.Core.Domain.Services;
 
@@ -31,10 +33,27 @@ internal class ProfileService : IProfileService
 			return null;
 		}
 		
+		return await PopulateAndProcessProfile(profile);
+	}
+
+	private async Task<Profile> PopulateAndProcessProfile(Profile profile)
+	{
+		var savingTransactions = await _transactionRepository.GetFiltered(
+			new TransactionsSpecification
+			{
+				ProfileId = profile.Id,
+				SpendingType = SpendingType.Saved,
+				ToDate = profile.BillingPeriod.DateFrom
+			});
+		
 		var transactions = await _transactionRepository.GetForPeriod(
 			profile.Id, 
 			profile.BillingPeriod.DateFrom,
 			profile.BillingPeriod.DateTo);
+		
+		transactions = transactions
+			.Concat(savingTransactions)
+			.ToList();
 		
 		var categories = await _categoryRepository.GetAllByProfileId(profile.Id);
 
@@ -59,18 +78,11 @@ internal class ProfileService : IProfileService
 			return profile;
 		}
 		
-		profile = await _profileRepository.Update(profile);
-		
-		var currentTransactions = await _transactionRepository.GetForPeriod(
-			profile.Id, 
-			profile.BillingPeriod.DateFrom, 
-			profile.BillingPeriod.DateTo);
-		
-		profile.HandleTransactions(currentTransactions, currentDate);
+		var updatedProfile = await _profileRepository.Update(profile);
+		return await PopulateAndProcessProfile(updatedProfile);
 
-		return profile;
-	}
-
+	} 
+	
 	/// <inheritdoc />
 	public async Task<Profile?> GetCurrentProfileForPeriod(DateTime dateFrom, DateTime dateTo)
 	{
