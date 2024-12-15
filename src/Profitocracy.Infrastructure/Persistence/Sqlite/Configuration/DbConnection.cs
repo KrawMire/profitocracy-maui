@@ -1,12 +1,21 @@
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Category;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Profile;
+using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Settings;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Transaction;
 using SQLite;
 
 namespace Profitocracy.Infrastructure.Persistence.Sqlite.Configuration;
 
-internal class DbConnection(InfrastructureConfiguration configuration)
+internal class DbConnection
 {
+	private SQLiteAsyncConnection? _database;
+	private readonly InfrastructureConfiguration _configuration;
+	
+	public DbConnection(InfrastructureConfiguration configuration)
+	{
+		_configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+	}
+	
 	public SQLiteAsyncConnection Database
 	{
 		get
@@ -19,10 +28,6 @@ internal class DbConnection(InfrastructureConfiguration configuration)
 			return _database;
 		}
 	}
-	
-	private SQLiteAsyncConnection? _database;
-	private readonly InfrastructureConfiguration _configuration = 
-		configuration ?? throw new ArgumentNullException(nameof(configuration));
 
 	public async Task Init()
 	{
@@ -45,6 +50,7 @@ internal class DbConnection(InfrastructureConfiguration configuration)
 		_ = await _database.CreateTableAsync<TransactionModel>();
 		_ = await _database.CreateTableAsync<CategoryModel>();
 		_ = await _database.CreateTableAsync<ProfileModel>();
+		_ = await _database.CreateTableAsync<SettingsModel>();
 	}
 
 	private string GetDatabasePath(string filename)

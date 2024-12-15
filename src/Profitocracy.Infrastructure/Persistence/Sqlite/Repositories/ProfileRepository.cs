@@ -64,6 +64,7 @@ internal class ProfileRepository : IProfileRepository
 	public async Task<Profile?> GetCurrentProfile()
 	{
 		await _dbConnection.Init();
+		
 		var profile = await _dbConnection.Database
 			.Table<ProfileModel>()
 			.Where(p => p.IsCurrent)
