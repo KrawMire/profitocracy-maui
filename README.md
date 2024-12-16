@@ -54,6 +54,21 @@ while creation process at **Settings** screen. Then you will be able to track th
 specified planned amount for the category, Profitocracy will just calculate and show you the total amount of expenses 
 for the category while current month.
 
+# Installation
+
+For now, the only platform you can install without needing to build the application by yourself is to install it to Android device
+through *.apk* file.
+
+I want to publish Profitocracy to a Google Play Store and Apple App Store, but it will happen later.
+
+## Android
+
+To install Profitocracy to an Android device, go to [latest release](https://github.com/KrawMire/profitocracy-maui/releases/latest) and install an attached *.apk* file. 
+Then click on it and follow the instructions.
+
+> If you want to try out a specific version of Profitocracy, go to [the list of releases](https://github.com/KrawMire/profitocracy-maui/releases) and select the version you would 
+> like to install.
+
 # Application appearance
 
 ## iOS
