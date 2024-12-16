@@ -29,25 +29,25 @@ life a little nicer and the final 20% toward paying down debt and/or adding to y
 
 ## Terminologies Used in Profitocracy
 
-### Profile
+### 💼 Profile
 
 Profile is an entity that tracks all of your expenses in a single place. 
 It also calculates amounts for main, secondary and saving expenses, your 
 every day expenses and expenses by categories.
 
-### Transaction
+### 🧾 Transaction
 
 Transaction is a unit of moving funds. It could be an income (salary, for example) or expense (food, apartments) operation.
 If it is expense operation your will need to specify the type of this expense - main, secondary or saving, - and its amount.
 Optionally, you can specify also spending category (`None` by default), description and date of this transaction.
 
-### Actual amount and planned amount of expenses
+### 💵 Actual amount and planned amount of expenses
 
 Almost everything that you can see at Home screen is an expense. Expense, in terms of Profitocracy, is an entity with
 two values: *actual amount* and *plannedAmount*. Actual amount is your actual amount of spending of any type or category.
 Planned amount is a planned by Profitocracy amount of money that you should not go beyond for every category or type.
 
-### Category
+### 📊 Category
 
 Category is a special aggregation unit for your transactions. You can specify its name and planned amount for a month 
 while creation process at **Settings** screen. Then you will be able to track them at **Home** screen. If you have not
