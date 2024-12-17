@@ -1,11 +1,13 @@
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
+using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Categories;
+using Profitocracy.Mobile.Resources.Strings;
 using Profitocracy.Mobile.ViewModels.Home;
 using Profitocracy.Mobile.Views.Transactions;
 
 namespace Profitocracy.Mobile.Views.Home;
 
-public partial class HomePage : ContentPage
+public partial class HomePage : BaseContentPage
 {
 	private readonly HomePageViewModel _viewModel;
 	
@@ -18,41 +20,20 @@ public partial class HomePage : ContentPage
 		CategoriesExpensesCollectionView.ItemsSource = _viewModel.CategoriesExpenses;
 	}
 
-	private async void HomePage_OnNavigated(object? sender, EventArgs e)
+	private void HomePage_OnNavigated(object? sender, EventArgs e)
 	{
-		await _viewModel.Initialize();
+		ProcessAction(async () =>
+		{
+			await _viewModel.Initialize();
+		});
 	}
 
-	private async void CategoryLayout_OnTapped(object? sender, TappedEventArgs e)
+	private void CategoryLayout_OnTapped(object? sender, TappedEventArgs e)
 	{
-		if ((sender as StackLayout)?.BindingContext is not CategoryExpenseModel category)
+		ProcessAction(async () =>
 		{
-			await DisplayAlert(
-				"Error",
-				"Cannot get category info",
-				"OK");
-			return;
-		}
-		
-		var filteredPage = Handler?.MauiContext?.Services.GetService<FilteredTransactionsPage>();
-
-		if (filteredPage is null)
-		{
-			await DisplayAlert(
-				"Error",
-				"Cannot show filtered transactions",
-				"OK");
-			return;
-		}
-		
-		await filteredPage.Initialize(
-			_viewModel.ProfileId,
-			category.Id, 
-			spendingType: null, 
-			dateFrom:DateTime.Parse(_viewModel.DateFrom),
-			dateTo: DateTime.Parse(_viewModel.DateTo));
-		
-		await Navigation.PushModalAsync(filteredPage);
+			await OpenFilteredTransactionsByCategoryPage(sender, e);	
+		});
 	}
 	
 	private void MainSpendingTypeLayout_OnTapped(object? sender, TappedEventArgs e)
@@ -70,17 +51,45 @@ public partial class HomePage : ContentPage
 		SpendingTypeLayout_OnTapped(SpendingType.Saved);
 	}
 	
-	private async void SpendingTypeLayout_OnTapped(SpendingType type)
+	private void SpendingTypeLayout_OnTapped(SpendingType type)
+	{
+		ProcessAction(async () =>
+		{
+			await OpenFilteredTransactionsBySpendingTypePage(type);
+		});
+	}
+
+	private async Task OpenFilteredTransactionsByCategoryPage(object? sender, TappedEventArgs e)
+	{
+		if ((sender as StackLayout)?.BindingContext is not CategoryExpenseModel category)
+		{
+			throw new Exception(AppResources.ErrorAlert_GetCategoryInfo);
+		}
+		
+		var filteredPage = Handler?.MauiContext?.Services.GetService<FilteredTransactionsPage>();
+
+		if (filteredPage is null)
+		{
+			throw new Exception(AppResources.ErrorAlert_ShowFilteredTransactions);
+		}
+		
+		await filteredPage.Initialize(
+			_viewModel.ProfileId,
+			category.Id, 
+			spendingType: null, 
+			dateFrom: DateTime.Parse(_viewModel.DateFrom),
+			dateTo: DateTime.Parse(_viewModel.DateTo));
+		
+		await Navigation.PushModalAsync(filteredPage);
+	}
+	
+	private async Task OpenFilteredTransactionsBySpendingTypePage(SpendingType type)
 	{
 		var filteredPage = Handler?.MauiContext?.Services.GetService<FilteredTransactionsPage>();
 		
 		if (filteredPage is null)
 		{
-			await DisplayAlert(
-				"Error", 
-				"Cannot show filtered transactions", 
-				"OK");
-			return;
+			throw new Exception(AppResources.ErrorAlert_ShowFilteredTransactions);
 		}
 		
 		await filteredPage.Initialize(

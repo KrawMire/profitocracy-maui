@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Profitocracy.Mobile.AppInit"
-             Loaded="AppInit_OnLoaded">
-    <ContentPage.Content>
+<abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              x:Class="Profitocracy.Mobile.AppInit"
+                              Loaded="AppInit_OnLoaded">
+    <abstractions:BaseContentPage.Content>
         
-    </ContentPage.Content>
-</ContentPage>
+    </abstractions:BaseContentPage.Content>
+</abstractions:BaseContentPage>

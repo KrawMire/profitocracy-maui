@@ -1,10 +1,11 @@
+using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Resources.Strings;
 using Profitocracy.Mobile.Services;
 using Profitocracy.Mobile.ViewModels.Settings;
 
 namespace Profitocracy.Mobile.Views.Settings.LanguageSettings;
 
-public partial class LanguageSettingsPage : ContentPage
+public partial class LanguageSettingsPage : BaseContentPage
 {
     private readonly LanguageSettingsViewModel _viewModel;
     
@@ -16,19 +17,28 @@ public partial class LanguageSettingsPage : ContentPage
         BindingContext = _viewModel;
     }
     
-    private async void LanguageSettingsPage_OnLoaded(object? sender, EventArgs e)
+    private void LanguageSettingsPage_OnLoaded(object? sender, EventArgs e)
     {
-        await _viewModel.Initialize();
+        ProcessAction(async () =>
+        {
+            await _viewModel.Initialize();
+        });
     }
     
-    private async void EnglishLanguage_OnSelected(object? sender, TappedEventArgs e)
+    private void EnglishLanguage_OnSelected(object? sender, TappedEventArgs e)
     {
-        await ChangeLanguage(LocalizationService.English);
+        ProcessAction(async () =>
+        {
+            await ChangeLanguage(LocalizationService.English);   
+        });
     }
     
-    private async void RussianLanguage_OnSelected(object? sender, TappedEventArgs e)
+    private void RussianLanguage_OnSelected(object? sender, TappedEventArgs e)
     {
-        await ChangeLanguage(LocalizationService.Russian);
+        ProcessAction(async () =>
+        {
+            await ChangeLanguage(LocalizationService.Russian);
+        });
     }
 
     private async Task ChangeLanguage(string language)

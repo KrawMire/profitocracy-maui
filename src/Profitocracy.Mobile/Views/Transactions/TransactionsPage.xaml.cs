@@ -1,9 +1,11 @@
+using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Transactions;
+using Profitocracy.Mobile.Resources.Strings;
 using Profitocracy.Mobile.ViewModels.Transactions;
 
 namespace Profitocracy.Mobile.Views.Transactions;
 
-public partial class TransactionsPage : ContentPage
+public partial class TransactionsPage : BaseContentPage
 {
 	private readonly TransactionsPageViewModel _viewModel;
 	
@@ -17,49 +19,46 @@ public partial class TransactionsPage : ContentPage
 		TransactionsCollectionView.ItemsSource = _viewModel.Transactions;
 	}
 
-	private async void TransactionsPage_NavigatedTo(object? sender, EventArgs e)
+	private void TransactionsPage_NavigatedTo(object? sender, EventArgs e)
 	{
-		await _viewModel.Initialize();
+		ProcessAction(async () =>
+		{
+			await _viewModel.Initialize();
+		});
 	}
 
-	private async void AddTransactionButton_OnClicked(object? sender, EventArgs e)
+	private void AddTransactionButton_OnClicked(object? sender, EventArgs e)
 	{
-		var addPage = Handler?.MauiContext?.Services.GetService<AddTransactionPage>();
-
-		if (addPage is null)
+		ProcessAction(async () =>
 		{
-			await DisplayAlert(
-				"Error", 
-				"Cannot open transaction adding page", 
-				"OK");
-			return;
-		}
+			var addPage = Handler?.MauiContext?.Services.GetService<AddTransactionPage>();
+
+			if (addPage is null)
+			{
+				throw new Exception(AppResources.ErrorAlert_OpenAddTransactionPage);
+			}
 		
-		await Navigation.PushModalAsync(addPage);
+			await Navigation.PushModalAsync(addPage);
+		});
 	}
 
-	private async void SwipeItem_OnInvoked(object? sender, EventArgs e)
+	private void SwipeItem_OnInvoked(object? sender, EventArgs e)
 	{
-		if (sender is not SwipeItemView swipeItem)
+		ProcessAction(async () =>
 		{
-			await DisplayAlert(
-				"Error", 
-				"Internal error. Try again", 
-				"OK");
-			return;
-		}
+			if (sender is not SwipeItemView swipeItem)
+			{
+				throw new Exception(AppResources.ErrorAlert_InternalErrorTryAgain);
+			}
 
-		var transaction = swipeItem.BindingContext as TransactionModel;
+			var transaction = swipeItem.BindingContext as TransactionModel;
 
-		if (transaction?.Id is null)
-		{
-			await DisplayAlert(
-				"Error", 
-				"Cannot find transaction to delete", 
-				"OK");
-			return;
-		}
+			if (transaction?.Id is null)
+			{
+				throw new Exception(AppResources.ErrorAlert_FindTransactionToDelete);
+			}
 		
-		await _viewModel.DeleteTransaction((Guid)transaction.Id);
+			await _viewModel.DeleteTransaction((Guid)transaction.Id);
+		});
 	}
 }

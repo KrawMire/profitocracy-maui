@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             x:Class="Profitocracy.Mobile.Views.Transactions.AddTransactionPage"
-             Loaded="AddTransactionPage_OnLoaded"
-             Shell.PresentationMode="ModalAnimated"
-             Padding="16">
-    <ContentPage.Content>
+<abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+                              xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              x:Class="Profitocracy.Mobile.Views.Transactions.AddTransactionPage"
+                              Loaded="AddTransactionPage_OnLoaded"
+                              Shell.PresentationMode="ModalAnimated"
+                              Padding="16">
+    <abstractions:BaseContentPage.Content>
         <Grid VerticalOptions="Fill"
               RowDefinitions="auto,auto,*,auto">
             <FlexLayout Grid.Row="0"
@@ -220,5 +221,5 @@
                     x:Name="AddTransactionButton"
                     Clicked="AddTransactionButton_OnClicked"/>
         </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    </abstractions:BaseContentPage.Content>
+</abstractions:BaseContentPage>
