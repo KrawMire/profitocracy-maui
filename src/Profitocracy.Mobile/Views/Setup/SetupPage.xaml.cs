@@ -1,8 +1,9 @@
+using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.ViewModels.Setup;
 
 namespace Profitocracy.Mobile.Views.Setup;
 
-public partial class SetupPage : ContentPage
+public partial class SetupPage : BaseContentPage
 {
 	private readonly SetupPageViewModel _viewModel;
 	
@@ -19,16 +20,12 @@ public partial class SetupPage : ContentPage
 		return true;
 	}
 	
-	private async void Button_OnClicked(object? sender, EventArgs e)
+	private void Button_OnClicked(object? sender, EventArgs e)
 	{
-		try
+		ProcessAction(async () =>
 		{
 			await _viewModel.CreateFirstProfile();
 			await Navigation.PopModalAsync();
-		}
-		catch (Exception ex)
-		{
-			await DisplayAlert("Error", ex.Message, "OK");
-		}
+		});
 	}
 }

@@ -1,8 +1,9 @@
+using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.ViewModels.Categories;
 
 namespace Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 
-public partial class AddExpenseCategoryPage : ContentPage
+public partial class AddExpenseCategoryPage : BaseContentPage
 {
     private readonly AddExpenseCategoryPageViewModel _viewModel;
     
@@ -14,21 +15,20 @@ public partial class AddExpenseCategoryPage : ContentPage
         BindingContext = _viewModel;
     }
 
-    private async void CloseButton_OnClicked(object? sender, EventArgs e)
+    private void CloseButton_OnClicked(object? sender, EventArgs e)
     {
-        await Navigation.PopModalAsync();
+        ProcessAction(async () =>
+        {
+            await Navigation.PopModalAsync(); 
+        });
     }
 
-    private async void AddCategoryButton_OnClicked(object? sender, EventArgs e)
+    private void AddCategoryButton_OnClicked(object? sender, EventArgs e)
     {
-        try
+        ProcessAction(async () =>
         {
             await _viewModel.CreateCategory();
             await Navigation.PopModalAsync();
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
+        });
     }
 }

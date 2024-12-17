@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             x:Class="Profitocracy.Mobile.Views.Settings.LanguageSettings.LanguageSettingsPage"
-             Title="{x:Static resx:AppResources.Language}"
-             Loaded="LanguageSettingsPage_OnLoaded"
-             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
-    <ContentPage.Content>
+<abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+                              xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              x:Class="Profitocracy.Mobile.Views.Settings.LanguageSettings.LanguageSettingsPage"
+                              Title="{x:Static resx:AppResources.Language}"
+                              Loaded="LanguageSettingsPage_OnLoaded"
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+    <abstractions:BaseContentPage.Content>
         <ScrollView Padding="16"
                 VerticalScrollBarVisibility="Never">
             <StackLayout>
@@ -86,5 +87,5 @@
                 </Border>
             </StackLayout>
         </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+    </abstractions:BaseContentPage.Content>
+</abstractions:BaseContentPage>

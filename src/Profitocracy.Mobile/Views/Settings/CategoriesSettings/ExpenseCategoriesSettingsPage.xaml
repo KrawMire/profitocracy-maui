@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
-             x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.ExpenseCategoriesSettingsPage"
-             Title="{x:Static resx:AppResources.Categories}"
-             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-             NavigatedTo="UpdateCategoriesList"
-             Loaded="UpdateCategoriesList"
-             Padding="8">
-    <ContentPage.Content>
+<abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+                              xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
+                              xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.ExpenseCategoriesSettingsPage"
+                              Title="{x:Static resx:AppResources.Categories}"
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+                              NavigatedTo="UpdateCategoriesList"
+                              Loaded="UpdateCategoriesList"
+                              Padding="8">
+    <abstractions:BaseContentPage.Content>
         <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -78,5 +79,5 @@
             </Button.Shadow>
         </Button>
     </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    </abstractions:BaseContentPage.Content>
+</abstractions:BaseContentPage>

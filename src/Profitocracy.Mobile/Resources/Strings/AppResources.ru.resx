@@ -156,4 +156,52 @@
     <data name="ChangeLanguageAlertOk" xml:space="preserve">
         <value>Понятно</value>
     </data>
+    <data name="ErrorAlert_Title" xml:space="preserve">
+        <value>Ошибка</value>
+    </data>
+    <data name="ErrorAlert_Ok" xml:space="preserve">
+        <value>ОК</value>
+    </data>
+    <data name="ErrorAlert_Description" xml:space="preserve">
+        <value>Возникла ошибка</value>
+    </data>
+    <data name="ErrorAlert_GetCategoryInfo" xml:space="preserve">
+        <value>Не удалось получить информацию по категории</value>
+    </data>
+    <data name="ErrorAlert_ShowFilteredTransactions" xml:space="preserve">
+        <value>Не удалось открыть отфильтрованные транзакции</value>
+    </data>
+    <data name="ErrorAlert_OpenAddCategoryPage" xml:space="preserve">
+        <value>Не удалось открыть страницу создания новой категории</value>
+    </data>
+    <data name="ErrorAlert_OpenAddTransactionPage" xml:space="preserve">
+        <value>Не удалось открыть страницу создания транзакции</value>
+    </data>
+    <data name="ErrorAlert_InternalErrorTryAgain" xml:space="preserve">
+        <value>Произошла внутренняя ошибка. Попробуйте снова</value>
+    </data>
+    <data name="ErrorAlert_FindTransactionToDelete" xml:space="preserve">
+        <value>Не удалось найти транзакцию для удаления</value>
+    </data>
+    <data name="CommonError_PlannedAmountNumber" xml:space="preserve">
+        <value>Планируемая сумма должна быть числом</value>
+    </data>
+    <data name="CommonError_GetCurrentProfile" xml:space="preserve">
+        <value>Не удалось получить текущий профиль</value>
+    </data>
+    <data name="CommonError_GetSettings" xml:space="preserve">
+        <value>Не удалось получить настройки</value>
+    </data>
+    <data name="CommonError_BalanceNumber" xml:space="preserve">
+        <value>Баланс должен быть числом</value>
+    </data>
+    <data name="AddTransaction_NoneCategory" xml:space="preserve">
+        <value>Без категории</value>
+    </data>
+    <data name="CommonError_AmountNumber" xml:space="preserve">
+        <value>Сумма должна быть числом</value>
+    </data>
+    <data name="CommonError_TransactionType" xml:space="preserve">
+        <value>Неверный тип транзакции</value>
+    </data>
 </root>

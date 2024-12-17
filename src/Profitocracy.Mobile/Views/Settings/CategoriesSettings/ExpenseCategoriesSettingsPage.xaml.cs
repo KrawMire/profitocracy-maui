@@ -1,8 +1,10 @@
+using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Resources.Strings;
 using Profitocracy.Mobile.ViewModels.Categories;
 
 namespace Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 
-public partial class ExpenseCategoriesSettingsPage : ContentPage
+public partial class ExpenseCategoriesSettingsPage : BaseContentPage
 {
 	private readonly ExpenseCategoriesSettingsPageViewModel _viewModel;
 	
@@ -16,29 +18,36 @@ public partial class ExpenseCategoriesSettingsPage : ContentPage
 		CategoriesCollectionView.ItemsSource = _viewModel.Categories;
 	}
 
-	private async void UpdateCategoriesList(object? sender, EventArgs e)
+	private void UpdateCategoriesList(object? sender, EventArgs e)
 	{
-		await _viewModel.Initialize();
+		ProcessAction(async () =>
+		{
+			await _viewModel.Initialize();
+		});
 	}
 
-	private async void AddCategoryButton_OnClicked(object? sender, EventArgs e)
+	private void AddCategoryButton_OnClicked(object? sender, EventArgs e)
 	{
-		var addPage = Handler?.MauiContext?.Services.GetService<AddExpenseCategoryPage>();
-
-		if (addPage is null)
+		ProcessAction(async () =>
 		{
-			await DisplayAlert(
-				"Error",
-				"Cannot open category adding page",
-				"OK");
-			return;
-		}
-
-		await Navigation.PushModalAsync(addPage);
+			await OpenAddCategoryPage();
+		});
 	}
 
 	private void SwipeItem_OnInvoked(object? sender, EventArgs e)
 	{
 		
+	}
+	
+	private async Task OpenAddCategoryPage()
+	{
+		var addPage = Handler?.MauiContext?.Services.GetService<AddExpenseCategoryPage>();
+
+		if (addPage is null)
+		{
+			throw new Exception(AppResources.ErrorAlert_OpenAddCategoryPage);
+		}
+
+		await Navigation.PushModalAsync(addPage);
 	}
 }

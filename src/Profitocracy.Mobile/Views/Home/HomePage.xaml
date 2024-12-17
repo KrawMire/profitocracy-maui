@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
-             x:Class="Profitocracy.Mobile.Views.Home.HomePage"
-             Title="{x:Static resx:AppResources.Home}"
-             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-             NavigatedTo="HomePage_OnNavigated">
+<abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+                              xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
+                              xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              x:Class="Profitocracy.Mobile.Views.Home.HomePage"
+                              Title="{x:Static resx:AppResources.Home}"
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+                              NavigatedTo="HomePage_OnNavigated">
     <RefreshView IsRefreshing="{Binding IsRefreshing}"
                  Command="{Binding RefreshCommand}">
         <ScrollView VerticalScrollBarVisibility="Never">
@@ -217,4 +218,4 @@
             </VerticalStackLayout>
         </ScrollView>
     </RefreshView>
-</ContentPage>
+</abstractions:BaseContentPage>

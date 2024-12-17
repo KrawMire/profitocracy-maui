@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Profitocracy.Mobile.Views.Setup.SetupPage"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             ios:Page.ModalPresentationStyle="FullScreen"
-             Shell.PresentationMode="ModalAnimated"
-             Padding="16">
+<abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              x:Class="Profitocracy.Mobile.Views.Setup.SetupPage"
+                              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+                              xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              ios:Page.ModalPresentationStyle="FullScreen"
+                              Shell.PresentationMode="ModalAnimated"
+                              Padding="16">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False" 
                             IsEnabled="False" />
     </Shell.BackButtonBehavior>
-    <ContentPage.Content>
+    <abstractions:BaseContentPage.Content>
         <Grid VerticalOptions="Fill"
               RowDefinitions="auto,*,auto">
             <FlexLayout Grid.Row="0"
@@ -40,5 +41,5 @@
                     Text="{x:Static resx:AppResources.GoToExpenses}" 
                     Clicked="Button_OnClicked"/>
         </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    </abstractions:BaseContentPage.Content>
+</abstractions:BaseContentPage>

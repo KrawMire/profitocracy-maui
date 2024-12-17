@@ -6,6 +6,7 @@ using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Categories;
+using Profitocracy.Mobile.Resources.Strings;
 
 namespace Profitocracy.Mobile.ViewModels.Transactions;
 
@@ -19,7 +20,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     {
         Id = Guid.NewGuid(),
         ProfileId = Guid.Empty,
-        Name = "None"
+        Name = AppResources.AddTransaction_NoneCategory
     };
     
     private DateTime _timestamp = DateTime.Now;
@@ -187,7 +188,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         
         if (profileId is null)
         {
-            throw new Exception("Current profile was not found");
+            throw new Exception(AppResources.CommonError_GetCurrentProfile);
         }
         
         var categories = await _categoryRepository.GetAllByProfileId((Guid)profileId);
@@ -206,19 +207,19 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         
         if (!decimal.TryParse(_amount, out var amount))
         {
-            throw new Exception("Amount must be a number");
+            throw new Exception(AppResources.CommonError_AmountNumber);
         }
         
         if (_transactionType < 0)
         {
-            throw new Exception("Invalid transaction type");
+            throw new Exception(AppResources.CommonError_TransactionType);
         }
         
         var currentProfileId = await _profileRepository.GetCurrentProfileId();
 
         if (currentProfileId is null)
         {
-            throw new Exception("Current profile was not found");
+            throw new Exception(AppResources.CommonError_GetCurrentProfile);
         }
 
         TransactionCategory? category = null;

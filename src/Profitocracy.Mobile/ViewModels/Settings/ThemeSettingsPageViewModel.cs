@@ -1,6 +1,7 @@
 using Profitocracy.Core.Domain.Model.Settings.ValueObjects;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Resources.Strings;
 using Profitocracy.Mobile.Services;
 
 namespace Profitocracy.Mobile.ViewModels.Settings;
@@ -42,7 +43,7 @@ public class ThemeSettingsPageViewModel : BaseNotifyObject
 
         if (settings is null)
         {
-            throw new Exception("Cannot find settings");
+            throw new Exception(AppResources.CommonError_GetSettings);
         }
         
         InitializeThemeFlags(settings.Theme);
@@ -54,7 +55,7 @@ public class ThemeSettingsPageViewModel : BaseNotifyObject
 
         if (settings is null)
         {
-            throw new Exception("Cannot find settings");
+            throw new Exception(AppResources.CommonError_GetSettings);
         }
 
         settings.Theme = theme;

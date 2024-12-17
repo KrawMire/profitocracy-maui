@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-             xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transactions"
-             x:Class="Profitocracy.Mobile.Views.Transactions.TransactionsPage"
-             Title="{x:Static resx:AppResources.Transactions}"
-             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-             NavigatedTo="TransactionsPage_NavigatedTo">
+<abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
+                              xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transactions"
+                              xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              x:Class="Profitocracy.Mobile.Views.Transactions.TransactionsPage"
+                              Title="{x:Static resx:AppResources.Transactions}"
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+                              NavigatedTo="TransactionsPage_NavigatedTo">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -158,4 +159,4 @@
             </Button.Shadow>
         </Button>
     </Grid>
-</ContentPage>
+</abstractions:BaseContentPage>

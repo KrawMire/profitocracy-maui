@@ -1,5 +1,6 @@
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Resources.Strings;
 using Profitocracy.Mobile.Services;
 
 namespace Profitocracy.Mobile.ViewModels.Settings;
@@ -35,7 +36,7 @@ public class LanguageSettingsViewModel : BaseNotifyObject
 
         if (settings is null)
         {
-            throw new Exception("Cannot find settings");
+            throw new Exception(AppResources.CommonError_GetSettings);
         }
         
         InitializeThemeFlags(settings.Language);
@@ -47,7 +48,7 @@ public class LanguageSettingsViewModel : BaseNotifyObject
 
         if (settings is null)
         {
-            throw new Exception("Cannot find settings");
+            throw new Exception(AppResources.CommonError_GetSettings);
         }
         
         settings.Language = language;
