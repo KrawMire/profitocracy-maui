@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Categories;
+using Profitocracy.Mobile.Resources.Strings;
 
 namespace Profitocracy.Mobile.ViewModels.Categories;
 
@@ -26,8 +27,7 @@ public class ExpenseCategoriesSettingsPageViewModel : BaseNotifyObject
 
         if (profileId is null)
         {
-            await Shell.Current.DisplayAlert("Error", "Cannot find current profile", "OK");
-            return;
+            throw new Exception(AppResources.CommonError_GetCurrentProfile);
         }
 
         var categories = await _categoryRepository.GetAllByProfileId((Guid)profileId);

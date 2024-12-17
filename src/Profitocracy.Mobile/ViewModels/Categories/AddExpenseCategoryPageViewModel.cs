@@ -2,6 +2,7 @@ using Profitocracy.Core.Domain.Model.Categories;
 using Profitocracy.Core.Domain.Model.Categories.Factories;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Resources.Strings;
 
 namespace Profitocracy.Mobile.ViewModels.Categories;
 
@@ -66,7 +67,7 @@ public class AddExpenseCategoryPageViewModel : BaseNotifyObject
         {
             if (!decimal.TryParse(_plannedAmountStr, out var plannedAmount))
             {
-                throw new Exception("Planned amount must be a number");
+                throw new Exception(AppResources.CommonError_PlannedAmountNumber);
             }
 
             _category.PlannedAmount = plannedAmount;
@@ -80,7 +81,7 @@ public class AddExpenseCategoryPageViewModel : BaseNotifyObject
 
         if (profileId is null)
         {
-            throw new Exception("Cannot get current profile");
+            throw new Exception(AppResources.CommonError_GetCurrentProfile);
         }
 
         _category.ProfileId = (Guid)profileId;

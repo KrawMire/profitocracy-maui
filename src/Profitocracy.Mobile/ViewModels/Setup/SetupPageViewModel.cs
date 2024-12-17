@@ -2,6 +2,7 @@ using System.Globalization;
 using Profitocracy.Core.Domain.Model.Profiles.Factories;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
+using Profitocracy.Mobile.Resources.Strings;
 
 namespace Profitocracy.Mobile.ViewModels.Setup;
 
@@ -37,7 +38,7 @@ public class SetupPageViewModel : BaseNotifyObject
         
         if (!decimal.TryParse(_initialBalance, out var numValue))
         {
-            throw new Exception("Balance must be a number");
+            throw new Exception(AppResources.CommonError_BalanceNumber);
         }
         
         var profile = new ProfileBuilder()

@@ -3,6 +3,7 @@ using Profitocracy.Core.Persistence;
 using Profitocracy.Core.Specifications;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Transactions;
+using Profitocracy.Mobile.Resources.Strings;
 
 namespace Profitocracy.Mobile.ViewModels.Transactions;
 
@@ -68,11 +69,7 @@ public class TransactionsPageViewModel : BaseNotifyObject
 
         if (_profileId is null)
         {
-            await Shell.Current.DisplayAlert(
-                "Error", 
-                "Cannot find current profile", 
-                "OK");
-            return;
+            throw new Exception(AppResources.CommonError_GetCurrentProfile);
         }
         
         await InitializeTransactions();
