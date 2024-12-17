@@ -374,5 +374,47 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("ErrorAlert_FindTransactionToDelete", resourceCulture);
             }
         }
+        
+        internal static string CommonError_PlannedAmountNumber {
+            get {
+                return ResourceManager.GetString("CommonError_PlannedAmountNumber", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_GetCurrentProfile {
+            get {
+                return ResourceManager.GetString("CommonError_GetCurrentProfile", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_GetSettings {
+            get {
+                return ResourceManager.GetString("CommonError_GetSettings", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_BalanceNumber {
+            get {
+                return ResourceManager.GetString("CommonError_BalanceNumber", resourceCulture);
+            }
+        }
+        
+        internal static string AddTransaction_NoneCategory {
+            get {
+                return ResourceManager.GetString("AddTransaction_NoneCategory", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_AmountNumber {
+            get {
+                return ResourceManager.GetString("CommonError_AmountNumber", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_TransactionType {
+            get {
+                return ResourceManager.GetString("CommonError_TransactionType", resourceCulture);
+            }
+        }
     }
 }

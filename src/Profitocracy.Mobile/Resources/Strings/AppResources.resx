@@ -183,4 +183,25 @@
     <data name="ErrorAlert_FindTransactionToDelete" xml:space="preserve">
         <value>Cannot find transaction to delete</value>
     </data>
+    <data name="CommonError_PlannedAmountNumber" xml:space="preserve">
+        <value>Planned amount must be a number</value>
+    </data>
+    <data name="CommonError_GetCurrentProfile" xml:space="preserve">
+        <value>Cannot get current profile</value>
+    </data>
+    <data name="CommonError_GetSettings" xml:space="preserve">
+        <value>Cannot find settings</value>
+    </data>
+    <data name="CommonError_BalanceNumber" xml:space="preserve">
+        <value>Balance must be a number</value>
+    </data>
+    <data name="AddTransaction_NoneCategory" xml:space="preserve">
+        <value>None</value>
+    </data>
+    <data name="CommonError_AmountNumber" xml:space="preserve">
+        <value>Amount must be a number</value>
+    </data>
+    <data name="CommonError_TransactionType" xml:space="preserve">
+        <value>Invalid transaction type</value>
+    </data>
 </root>
