@@ -80,36 +80,36 @@ There we will look at all the steps to set up **Profitocracy** for comfortable u
 After the first launch of the **Profitocracy** you will be moved to **Setup** screen 
 to create your first profile and specify initial balance.
 
-![First launch. Setup screen](./docs/assets/getting_started/first_launch.gif)
+<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/first_launch.gif" width="250" />
 
 ## 2. Appearance
 
 At **Settings** screen you can change application theme (*Light/Dark/System*) and select
 a language (*English/Russian*).
 
-![Theme and language selection](./docs/assets/getting_started/theme_lang.gif)
+<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/theme_lang.gif" width="250" />
 
 ## 3. Creation and Setting Up Categories
 
 First you need to do after your first profile creation is to 
 create needed spending categories and specify their planned amounts.
 
-![Categories creation](./docs/assets/getting_started/categories.gif)
+<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/categories.gif" width="250" />
 
 ## 4. Transaction Creation
 
 The application is fully set up and now you are able to create transaction. Let's do it!
 
-![Transaction creation process](./docs/assets/getting_started/transactions.gif)
+<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/transactions.gif" width="250" />
 
 ## 5. Viewing Transactions by Spending Type and Category
 
 On **Home** screen you can tap at spending type name or a category 
 name to look at the list of transactions.
 
-![Filtered transactions](./docs/assets/getting_started/filtered_transactions.gif)
+<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/filtered_transactions.gif" width="250" />
 
-# Application Appearance
+# Application Screenshots
 
 ## iOS
 
