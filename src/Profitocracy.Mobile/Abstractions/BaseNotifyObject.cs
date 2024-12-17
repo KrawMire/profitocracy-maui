@@ -4,7 +4,8 @@ using System.Runtime.CompilerServices;
 namespace Profitocracy.Mobile.Abstractions;
 
 /// <summary>
-/// Base notification
+/// Base type for objects which should notify
+/// users about any inner state updates
 /// </summary>
 public abstract class BaseNotifyObject : INotifyPropertyChanged
 {

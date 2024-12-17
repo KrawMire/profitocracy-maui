@@ -320,5 +320,59 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("ChangeLanguageAlertOk", resourceCulture);
             }
         }
+        
+        internal static string ErrorAlert_Title {
+            get {
+                return ResourceManager.GetString("ErrorAlert_Title", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorAlert_Ok {
+            get {
+                return ResourceManager.GetString("ErrorAlert_Ok", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorAlert_Description {
+            get {
+                return ResourceManager.GetString("ErrorAlert_Description", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorAlert_GetCategoryInfo {
+            get {
+                return ResourceManager.GetString("ErrorAlert_GetCategoryInfo", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorAlert_ShowFilteredTransactions {
+            get {
+                return ResourceManager.GetString("ErrorAlert_ShowFilteredTransactions", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorAlert_OpenAddCategoryPage {
+            get {
+                return ResourceManager.GetString("ErrorAlert_OpenAddCategoryPage", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorAlert_OpenAddTransactionPage {
+            get {
+                return ResourceManager.GetString("ErrorAlert_OpenAddTransactionPage", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorAlert_InternalErrorTryAgain {
+            get {
+                return ResourceManager.GetString("ErrorAlert_InternalErrorTryAgain", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorAlert_FindTransactionToDelete {
+            get {
+                return ResourceManager.GetString("ErrorAlert_FindTransactionToDelete", resourceCulture);
+            }
+        }
     }
 }
