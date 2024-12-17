@@ -7,14 +7,14 @@
 **Profitocracy** is a budget control mobile application that helps
 people to track their expenses following 50-30-20 rule.
 
-## Key features of Profitocracy
+## Key Features of Profitocracy
 
 - 💰 **Track your expenses by following [50-30-20 rule](#503020rule);**
 - 📊 **Create, set limits and track your own spending categories;**
 - 📅 **Automatically plan your budget for the month;**
-- 🔒 **Profitocracy does not send your data to third parties. All your data is stored on your device**;
+- 🔒 **Profitocracy does not send your data to third parties. All your data is stored on your device.**
 
-## Supported platforms
+## Supported Platforms
 
 Profitocracy is created using .NET MAUI and can be launched on different platforms, but the main of them are:
 
@@ -66,14 +66,54 @@ I want to publish Profitocracy to a Google Play Store and Apple App Store, but i
 To install Profitocracy to an Android device, go to [latest release](https://github.com/KrawMire/profitocracy-maui/releases/latest) and install an attached *.apk* file. 
 Then click on it and follow the instructions.
 
-> If you want to try out a specific version of Profitocracy, go to [the list of releases](https://github.com/KrawMire/profitocracy-maui/releases) and select the version you would 
-> like to install.
+> If you want to try out a specific version of Profitocracy, go to 
+> [the list of releases](https://github.com/KrawMire/profitocracy-maui/releases) 
+> and select the version you would like to install.
 
-# Application appearance
+# Gettings Started
+
+All the steps were recorded on iOS device, but it is also correct for Android and other operating systems.
+There we will look at all the steps to set up **Profitocracy** for comfortable use.
+
+## 1. First Launch
+
+After the first launch of the **Profitocracy** you will be moved to **Setup** screen 
+to create your first profile and specify initial balance.
+
+![First launch. Setup screen](./docs/assets/getting_started/first_launch.gif)
+
+## 2. Appearance
+
+At **Settings** screen you can change application theme (*Light/Dark/System*) and select
+a language (*English/Russian*).
+
+![Theme and language selection](./docs/assets/getting_started/theme_lang.gif)
+
+## 3. Creation and Setting Up Categories
+
+First you need to do after your first profile creation is to 
+create needed spending categories and specify their planned amounts.
+
+![Categories creation](./docs/assets/getting_started/categories.gif)
+
+## 4. Transaction Creation
+
+The application is fully set up and now you are able to create transaction. Let's do it!
+
+![Transaction creation process](./docs/assets/getting_started/transactions.gif)
+
+## 5. Viewing Transactions by Spending Type and Category
+
+On **Home** screen you can tap at spending type name or a category 
+name to look at the list of transactions.
+
+![Filtered transactions](./docs/assets/getting_started/filtered_transactions.gif)
+
+# Application Appearance
 
 ## iOS
 
-### Light theme
+### Light Theme
 
 <p float="left">
   <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_light_homepage.png" width="200" />
@@ -84,7 +124,7 @@ Then click on it and follow the instructions.
   <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_light_addcategorypage.png" width="200" />
 </p>
 
-### Dark theme
+### Dark Theme
 
 <p float="left">
   <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/ios_dark_homepage.png" width="200" />
@@ -97,7 +137,7 @@ Then click on it and follow the instructions.
 
 ## Android
 
-### Light theme
+### Light Theme
 
 <p float="left">
   <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_light_homepage.png" width="200" />
@@ -108,7 +148,7 @@ Then click on it and follow the instructions.
   <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_light_addcategorypage.png" width="200" />
 </p>
 
-### Dark theme
+### Dark Theme
 
 <p float="left">
   <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/android_dark_homepage.png" width="200" />
