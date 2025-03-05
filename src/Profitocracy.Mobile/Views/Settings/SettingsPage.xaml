@@ -5,12 +5,12 @@
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               x:Class="Profitocracy.Mobile.Views.Settings.SettingsPage"
-                              Title="{x:Static resx:AppResources.Settings}"
+                              Title="{x:Static resx:AppResources.Pages_Settings}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
     <ScrollView Padding="16"
                 VerticalScrollBarVisibility="Never">
         <StackLayout>
-            <Label Text="{x:Static resx:AppResources.Application}"
+            <Label Text="{x:Static resx:AppResources.Settings_Application}"
                    Style="{StaticResource SettingsGroupTitle}"
                    Margin="0,0,0,0"/>
             <Border Style="{StaticResource SettingsButton}"
@@ -20,7 +20,7 @@
                 </Border.GestureRecognizers>
                 <FlexLayout JustifyContent="SpaceBetween">
                     <Label Style="{StaticResource SettingsButtonText}"
-                           Text="{x:Static resx:AppResources.Profiles}" />
+                           Text="{x:Static resx:AppResources.Settings_Profiles}" />
                     <Label Style="{StaticResource SettingsButtonText}"
                            Text=">" />
                 </FlexLayout>
@@ -32,13 +32,13 @@
                 </Border.GestureRecognizers>
                 <FlexLayout JustifyContent="SpaceBetween">
                     <Label Style="{StaticResource SettingsButtonText}"
-                           Text="{x:Static resx:AppResources.Categories}" />
+                           Text="{x:Static resx:AppResources.Settings_Categories}" />
                     <Label Style="{StaticResource SettingsButtonText}"
                            Text=">" />
                 </FlexLayout>
             </Border>
             
-            <Label Text="{x:Static resx:AppResources.General}"
+            <Label Text="{x:Static resx:AppResources.Settings_General}"
                    Style="{StaticResource SettingsGroupTitle}"
                    Margin="0,16,0,0"/>
             <Border Style="{StaticResource SettingsButton}"
@@ -48,7 +48,7 @@
                 </Border.GestureRecognizers>
                 <FlexLayout JustifyContent="SpaceBetween">
                     <Label Style="{StaticResource SettingsButtonText}"
-                           Text="{x:Static resx:AppResources.Theme}" />
+                           Text="{x:Static resx:AppResources.Settings_Theme}" />
                     <Label Style="{StaticResource SettingsButtonText}"
                            Text=">" />
                 </FlexLayout>
@@ -60,7 +60,7 @@
                 </Border.GestureRecognizers>
                 <FlexLayout JustifyContent="SpaceBetween">
                     <Label Style="{StaticResource SettingsButtonText}"
-                           Text="{x:Static resx:AppResources.Language}" />
+                           Text="{x:Static resx:AppResources.Settings_Language}" />
                     <Label Style="{StaticResource SettingsButtonText}"
                            Text=">" />
                 </FlexLayout>

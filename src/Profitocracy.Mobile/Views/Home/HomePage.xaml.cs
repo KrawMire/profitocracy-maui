@@ -63,14 +63,14 @@ public partial class HomePage : BaseContentPage
 	{
 		if ((sender as StackLayout)?.BindingContext is not CategoryExpenseModel category)
 		{
-			throw new Exception(AppResources.ErrorAlert_GetCategoryInfo);
+			throw new Exception(AppResources.CommonError_GetCategoryInfo);
 		}
 		
 		var filteredPage = Handler?.MauiContext?.Services.GetService<FilteredTransactionsPage>();
 
 		if (filteredPage is null)
 		{
-			throw new Exception(AppResources.ErrorAlert_ShowFilteredTransactions);
+			throw new Exception(AppResources.CommonError_ShowFilteredTransactions);
 		}
 		
 		await filteredPage.Initialize(
@@ -89,7 +89,7 @@ public partial class HomePage : BaseContentPage
 		
 		if (filteredPage is null)
 		{
-			throw new Exception(AppResources.ErrorAlert_ShowFilteredTransactions);
+			throw new Exception(AppResources.CommonError_ShowFilteredTransactions);
 		}
 		
 		await filteredPage.Initialize(

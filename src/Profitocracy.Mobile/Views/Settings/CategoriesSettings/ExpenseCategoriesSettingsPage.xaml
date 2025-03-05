@@ -7,7 +7,7 @@
                               xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.ExpenseCategoriesSettingsPage"
-                              Title="{x:Static resx:AppResources.Categories}"
+                              Title="{x:Static resx:AppResources.Pages_Categories}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                               NavigatedTo="UpdateCategoriesList"
                               Loaded="UpdateCategoriesList"

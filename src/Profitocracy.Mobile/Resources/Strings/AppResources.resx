@@ -18,142 +18,142 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="CreateFirstProfile" xml:space="preserve">
-        <value>Create first profile</value>
+    <data name="Setup_FirstProfile" xml:space="preserve">
+        <value>First profile</value>
     </data>
-    <data name="Home" xml:space="preserve">
+    <data name="Pages_Home" xml:space="preserve">
         <value>Home</value>
     </data>
-    <data name="Balance" xml:space="preserve">
+    <data name="Home_Balance" xml:space="preserve">
         <value>Balance</value>
     </data>
-    <data name="DailyAmounts" xml:space="preserve">
+    <data name="Home_DailyAmounts" xml:space="preserve">
         <value>Daily amounts</value>
     </data>
-    <data name="FromInitialBalance" xml:space="preserve">
+    <data name="Home_FromInitialBalance" xml:space="preserve">
         <value>From initial balance</value>
     </data>
-    <data name="FromActualBalance" xml:space="preserve">
+    <data name="Home_FromActualBalance" xml:space="preserve">
         <value>From actual balance</value>
     </data>
-    <data name="SpendingTypes" xml:space="preserve">
+    <data name="Home_SpendingTypes" xml:space="preserve">
         <value>Spending types</value>
     </data>
-    <data name="Main" xml:space="preserve">
+    <data name="Home_Main" xml:space="preserve">
         <value>Main</value>
     </data>
-    <data name="Secondary" xml:space="preserve">
+    <data name="Home_Secondary" xml:space="preserve">
         <value>Secondary</value>
     </data>
-    <data name="Saved" xml:space="preserve">
+    <data name="Home_Saved" xml:space="preserve">
         <value>Saved</value>
     </data>
-    <data name="Categories" xml:space="preserve">
+    <data name="Settings_Categories" xml:space="preserve">
         <value>Categories</value>
     </data>
-    <data name="ThereIsNoCategories" xml:space="preserve">
+    <data name="Home_NoCategories" xml:space="preserve">
         <value>There is no categories</value>
     </data>
-    <data name="SavedBalance" xml:space="preserve">
+    <data name="Home_SavedBalance" xml:space="preserve">
         <value>Saved</value>
     </data>
-    <data name="ProfileName" xml:space="preserve">
+    <data name="Setup_ProfileName" xml:space="preserve">
         <value>Profile name</value>
     </data>
-    <data name="InitialBalance" xml:space="preserve">
+    <data name="Setup_InitialBalance" xml:space="preserve">
         <value>Initial balance</value>
     </data>
-    <data name="GoToExpenses" xml:space="preserve">
+    <data name="Setup_GoToExpenses" xml:space="preserve">
         <value>Go to expenses</value>
     </data>
-    <data name="Transactions" xml:space="preserve">
+    <data name="Pages_Transactions" xml:space="preserve">
         <value>Transactions</value>
     </data>
-    <data name="Income" xml:space="preserve">
+    <data name="AddTransaction_Income" xml:space="preserve">
         <value>Income</value>
     </data>
-    <data name="Settings" xml:space="preserve">
+    <data name="Pages_Settings" xml:space="preserve">
         <value>Settings</value>
     </data>
-    <data name="AddNewTransaction" xml:space="preserve">
-        <value>Add new transaction</value>
+    <data name="Pages_NewTransaction" xml:space="preserve">
+        <value>New transaction</value>
     </data>
-    <data name="Expense" xml:space="preserve">
+    <data name="AddTransaction_Expense" xml:space="preserve">
         <value>Expense</value>
     </data>
-    <data name="Category" xml:space="preserve">
+    <data name="AddTransaction_Category" xml:space="preserve">
         <value>Category</value>
     </data>
-    <data name="Amount" xml:space="preserve">
+    <data name="AddTransaction_Amount" xml:space="preserve">
         <value>Amount</value>
     </data>
-    <data name="Description" xml:space="preserve">
+    <data name="AddTransaction_Description" xml:space="preserve">
         <value>Description</value>
     </data>
-    <data name="Date" xml:space="preserve">
+    <data name="AddTransaction_Date" xml:space="preserve">
         <value>Date</value>
     </data>
-    <data name="SaveTransaction" xml:space="preserve">
+    <data name="AddTransaction_SaveTransaction" xml:space="preserve">
         <value>Save transaction</value>
     </data>
-    <data name="Application" xml:space="preserve">
+    <data name="Settings_Application" xml:space="preserve">
         <value>Application</value>
     </data>
-    <data name="General" xml:space="preserve">
+    <data name="Settings_General" xml:space="preserve">
         <value>General</value>
     </data>
-    <data name="Profiles" xml:space="preserve">
+    <data name="Settings_Profiles" xml:space="preserve">
         <value>Profiles</value>
     </data>
-    <data name="Theme" xml:space="preserve">
+    <data name="Settings_Theme" xml:space="preserve">
         <value>Theme</value>
     </data>
-    <data name="Language" xml:space="preserve">
+    <data name="Settings_Language" xml:space="preserve">
         <value>Language</value>
     </data>
-    <data name="NoLimits" xml:space="preserve">
+    <data name="Categories_NoLimits" xml:space="preserve">
         <value>No limits</value>
     </data>
-    <data name="AddNewCategory" xml:space="preserve">
-        <value>Add new category</value>
+    <data name="Pages_NewCategory" xml:space="preserve">
+        <value>New category</value>
     </data>
-    <data name="CategoryName" xml:space="preserve">
+    <data name="AddCategory_CategoryName" xml:space="preserve">
         <value>Category name</value>
     </data>
-    <data name="SpecifyPlannedAmount" xml:space="preserve">
+    <data name="AddCategory_SpecifyPlannedAmount" xml:space="preserve">
         <value>Specify planned amount</value>
     </data>
-    <data name="PlannedAmount" xml:space="preserve">
+    <data name="AddCategory_PlannedAmount" xml:space="preserve">
         <value>Planned amount</value>
     </data>
-    <data name="SaveCategory" xml:space="preserve">
+    <data name="AddCategory_SaveCategory" xml:space="preserve">
         <value>Save category</value>
     </data>
-    <data name="DateRange" xml:space="preserve">
+    <data name="Transactions_DateRange" xml:space="preserve">
         <value>Filter by date</value>
     </data>
-    <data name="LightThemeText" xml:space="preserve">
+    <data name="ThemeSettings_LightTheme" xml:space="preserve">
         <value>Light</value>
     </data>
-    <data name="DarkThemeText" xml:space="preserve">
+    <data name="ThemeSettings_Dark" xml:space="preserve">
         <value>Dark</value>
     </data>
-    <data name="SystemThemeText" xml:space="preserve">
+    <data name="ThemeSettings_System" xml:space="preserve">
         <value>System</value>
     </data>
-    <data name="EnglishLanguage" xml:space="preserve">
+    <data name="Languages_English" xml:space="preserve">
         <value>English</value>
     </data>
-    <data name="RussianLanguage" xml:space="preserve">
+    <data name="Languages_Russian" xml:space="preserve">
         <value>Russian</value>
     </data>
-    <data name="ChangeLanguageAlertTitle" xml:space="preserve">
+    <data name="InfoAlert_ChangeLanguage_Title" xml:space="preserve">
         <value>Warning</value>
     </data>
-    <data name="ChangeLanguageAlertMessage" xml:space="preserve">
+    <data name="InfoAlert_ChangeLanguage_Message" xml:space="preserve">
         <value>To make the changes take effect, you need to restart the application.</value>
     </data>
-    <data name="ChangeLanguageAlertOk" xml:space="preserve">
+    <data name="InfoAlert_ChangeLanguage_Ok" xml:space="preserve">
         <value>Ok</value>
     </data>
     <data name="ErrorAlert_Title" xml:space="preserve">
@@ -165,22 +165,22 @@
     <data name="ErrorAlert_Description" xml:space="preserve">
         <value>An error occurred</value>
     </data>
-    <data name="ErrorAlert_GetCategoryInfo" xml:space="preserve">
+    <data name="CommonError_GetCategoryInfo" xml:space="preserve">
         <value>Cannot get category info</value>
     </data>
-    <data name="ErrorAlert_ShowFilteredTransactions" xml:space="preserve">
+    <data name="CommonError_ShowFilteredTransactions" xml:space="preserve">
         <value>Cannot show filtered transactions</value>
     </data>
-    <data name="ErrorAlert_OpenAddCategoryPage" xml:space="preserve">
+    <data name="CommonError_OpenAddCategoryPage" xml:space="preserve">
         <value>Cannot open category adding page</value>
     </data>
-    <data name="ErrorAlert_OpenAddTransactionPage" xml:space="preserve">
+    <data name="CommonError_OpenAddTransactionPage" xml:space="preserve">
         <value>Cannot open transaction adding page</value>
     </data>
-    <data name="ErrorAlert_InternalErrorTryAgain" xml:space="preserve">
+    <data name="CommonError_InternalErrorTryAgain" xml:space="preserve">
         <value>An internal error occurred. Try again</value>
     </data>
-    <data name="ErrorAlert_FindTransactionToDelete" xml:space="preserve">
+    <data name="CommonError_FindTransactionToDelete" xml:space="preserve">
         <value>Cannot find transaction to delete</value>
     </data>
     <data name="CommonError_PlannedAmountNumber" xml:space="preserve">
@@ -203,5 +203,38 @@
     </data>
     <data name="CommonError_TransactionType" xml:space="preserve">
         <value>Invalid transaction type</value>
+    </data>
+    <data name="Pages_Language" xml:space="preserve">
+        <value>Language</value>
+    </data>
+    <data name="Pages_Categories" xml:space="preserve">
+        <value>Categories</value>
+    </data>
+    <data name="Pages_Theme" xml:space="preserve">
+        <value>Theme</value>
+    </data>
+    <data name="Home_Categories" xml:space="preserve">
+        <value>Categories expenses</value>
+    </data>
+    <data name="AddTransaction_Main" xml:space="preserve">
+        <value>Main</value>
+    </data>
+    <data name="AddTransaction_Secondary" xml:space="preserve">
+        <value>Secondary</value>
+    </data>
+    <data name="AddTransaction_Saved" xml:space="preserve">
+        <value>Saved</value>
+    </data>
+    <data name="Transactions_Main" xml:space="preserve">
+        <value>Main</value>
+    </data>
+    <data name="Transactions_Secondary" xml:space="preserve">
+        <value>Secondary</value>
+    </data>
+    <data name="Transactions_Saved" xml:space="preserve">
+        <value>Saved</value>
+    </data>
+    <data name="Transactions_Income" xml:space="preserve">
+        <value>Income</value>
     </data>
 </root>

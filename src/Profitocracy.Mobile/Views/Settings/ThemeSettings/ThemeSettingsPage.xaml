@@ -5,7 +5,7 @@
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               x:Class="Profitocracy.Mobile.Views.Settings.ThemeSettings.ThemeSettingsPage"
-                              Title="{x:Static resx:AppResources.Theme}"
+                              Title="{x:Static resx:AppResources.Pages_Theme}"
                               Loaded="ThemeSettingsPage_OnLoaded"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
     <abstractions:BaseContentPage.Content>
@@ -31,7 +31,7 @@
                     </Border.Triggers>
                     <FlexLayout JustifyContent="SpaceBetween">
                         <Label Style="{StaticResource SettingsButtonText}"
-                               Text="{x:Static resx:AppResources.LightThemeText}" 
+                               Text="{x:Static resx:AppResources.ThemeSettings_LightTheme}" 
                                VerticalOptions="Center">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label"
@@ -68,7 +68,7 @@
                     </Border.Triggers>
                     <FlexLayout JustifyContent="SpaceBetween">
                         <Label Style="{StaticResource SettingsButtonText}"
-                               Text="{x:Static resx:AppResources.DarkThemeText}" 
+                               Text="{x:Static resx:AppResources.ThemeSettings_Dark}" 
                                VerticalOptions="Center">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label"
@@ -104,7 +104,7 @@
                     </Border.Triggers>
                     <FlexLayout JustifyContent="SpaceBetween">
                         <Label Style="{StaticResource SettingsButtonText}"
-                               Text="{x:Static resx:AppResources.SystemThemeText}" 
+                               Text="{x:Static resx:AppResources.ThemeSettings_System}" 
                                VerticalOptions="Center">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label"

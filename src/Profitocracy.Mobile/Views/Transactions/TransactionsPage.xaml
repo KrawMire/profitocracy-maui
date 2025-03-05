@@ -6,7 +6,7 @@
                               xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transactions"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               x:Class="Profitocracy.Mobile.Views.Transactions.TransactionsPage"
-                              Title="{x:Static resx:AppResources.Transactions}"
+                              Title="{x:Static resx:AppResources.Pages_Transactions}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                               NavigatedTo="TransactionsPage_NavigatedTo">
     <Grid>
@@ -26,7 +26,7 @@
             <StackLayout>
                 <Label Style="{StaticResource DateRangeTitle}"
                        Margin="0, 8, 0,0"
-                       Text="{x:Static resx:AppResources.DateRange}"/>
+                       Text="{x:Static resx:AppResources.Transactions_DateRange}"/>
                 <Grid Margin="0, 8, 0, 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

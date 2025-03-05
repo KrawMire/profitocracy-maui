@@ -17,7 +17,7 @@
                         JustifyContent="SpaceBetween"
                         Padding="16">
                 <Label Style="{StaticResource PageTitle}"
-                       Text="{x:Static resx:AppResources.Transactions}"/>    
+                       Text="{x:Static resx:AppResources.Pages_Transactions}"/>    
                 <Border Style="{StaticResource CloseButton}"
                         VerticalOptions="End"
                         x:Name="CloseButton">

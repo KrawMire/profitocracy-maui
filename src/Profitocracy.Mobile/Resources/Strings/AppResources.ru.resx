@@ -18,142 +18,142 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="CreateFirstProfile" xml:space="preserve">
-        <value>Создайте первый профиль</value>
+    <data name="Setup_FirstProfile" xml:space="preserve">
+        <value>Первый профиль</value>
     </data>
-    <data name="Home" xml:space="preserve">
+    <data name="Pages_Home" xml:space="preserve">
         <value>Главная</value>
     </data>
-    <data name="Balance" xml:space="preserve">
+    <data name="Home_Balance" xml:space="preserve">
         <value>Баланс</value>
     </data>
-    <data name="DailyAmounts" xml:space="preserve">
+    <data name="Home_DailyAmounts" xml:space="preserve">
         <value>Дневные расходы</value>
     </data>
-    <data name="FromActualBalance" xml:space="preserve">
+    <data name="Home_FromActualBalance" xml:space="preserve">
         <value>От текущего баланса</value>
     </data>
-    <data name="FromInitialBalance" xml:space="preserve">
+    <data name="Home_FromInitialBalance" xml:space="preserve">
         <value>От начального баланса</value>
     </data>
-    <data name="SpendingTypes" xml:space="preserve">
+    <data name="Home_SpendingTypes" xml:space="preserve">
         <value>Типы расходов</value>
     </data>
-    <data name="Categories" xml:space="preserve">
+    <data name="Settings_Categories" xml:space="preserve">
         <value>Категории</value>
     </data>
-    <data name="Main" xml:space="preserve">
+    <data name="Home_Main" xml:space="preserve">
         <value>Основные</value>
     </data>
-    <data name="Saved" xml:space="preserve">
+    <data name="Home_Saved" xml:space="preserve">
         <value>Отложенные</value>
     </data>
-    <data name="Secondary" xml:space="preserve">
+    <data name="Home_Secondary" xml:space="preserve">
         <value>Второстепенные</value>
     </data>
-    <data name="ThereIsNoCategories" xml:space="preserve">
+    <data name="Home_NoCategories" xml:space="preserve">
         <value>Пока что нет категорий</value>
     </data>
-    <data name="SavedBalance" xml:space="preserve">
+    <data name="Home_SavedBalance" xml:space="preserve">
         <value>Отложено</value>
     </data>
-    <data name="GoToExpenses" xml:space="preserve">
+    <data name="Setup_GoToExpenses" xml:space="preserve">
         <value>Перейти к расходам</value>
     </data>
-    <data name="InitialBalance" xml:space="preserve">
+    <data name="Setup_InitialBalance" xml:space="preserve">
         <value>Начальный баланс</value>
     </data>
-    <data name="ProfileName" xml:space="preserve">
+    <data name="Setup_ProfileName" xml:space="preserve">
         <value>Название профиля</value>
     </data>
-    <data name="Transactions" xml:space="preserve">
+    <data name="Pages_Transactions" xml:space="preserve">
         <value>Транзакции</value>
     </data>
-    <data name="Income" xml:space="preserve">
+    <data name="AddTransaction_Income" xml:space="preserve">
         <value>Доход</value>
     </data>
-    <data name="Settings" xml:space="preserve">
+    <data name="Pages_Settings" xml:space="preserve">
         <value>Настройки</value>
     </data>
-    <data name="AddNewTransaction" xml:space="preserve">
+    <data name="Pages_NewTransaction" xml:space="preserve">
         <value>Новая транзакция</value>
     </data>
-    <data name="Amount" xml:space="preserve">
+    <data name="AddTransaction_Amount" xml:space="preserve">
         <value>Сумма</value>
     </data>
-    <data name="Category" xml:space="preserve">
+    <data name="AddTransaction_Category" xml:space="preserve">
         <value>Категория</value>
     </data>
-    <data name="Date" xml:space="preserve">
+    <data name="AddTransaction_Date" xml:space="preserve">
         <value>Дата</value>
     </data>
-    <data name="Description" xml:space="preserve">
+    <data name="AddTransaction_Description" xml:space="preserve">
         <value>Описание</value>
     </data>
-    <data name="Expense" xml:space="preserve">
+    <data name="AddTransaction_Expense" xml:space="preserve">
         <value>Расход</value>
     </data>
-    <data name="SaveTransaction" xml:space="preserve">
+    <data name="AddTransaction_SaveTransaction" xml:space="preserve">
         <value>Сохранить транзакцию</value>
     </data>
-    <data name="Application" xml:space="preserve">
+    <data name="Settings_Application" xml:space="preserve">
         <value>Настройки приложения</value>
     </data>
-    <data name="General" xml:space="preserve">
+    <data name="Settings_General" xml:space="preserve">
         <value>Основные</value>
     </data>
-    <data name="Language" xml:space="preserve">
+    <data name="Settings_Language" xml:space="preserve">
         <value>Язык</value>
     </data>
-    <data name="Profiles" xml:space="preserve">
+    <data name="Settings_Profiles" xml:space="preserve">
         <value>Профили</value>
     </data>
-    <data name="Theme" xml:space="preserve">
+    <data name="Settings_Theme" xml:space="preserve">
         <value>Тема</value>
     </data>
-    <data name="AddNewCategory" xml:space="preserve">
+    <data name="Pages_NewCategory" xml:space="preserve">
         <value>Новая категория</value>
     </data>
-    <data name="CategoryName" xml:space="preserve">
+    <data name="AddCategory_CategoryName" xml:space="preserve">
         <value>Название категории</value>
     </data>
-    <data name="NoLimits" xml:space="preserve">
+    <data name="Categories_NoLimits" xml:space="preserve">
         <value>Без ограничений</value>
     </data>
-    <data name="PlannedAmount" xml:space="preserve">
+    <data name="AddCategory_PlannedAmount" xml:space="preserve">
         <value>Планируемая сумма</value>
     </data>
-    <data name="SaveCategory" xml:space="preserve">
+    <data name="AddCategory_SaveCategory" xml:space="preserve">
         <value>Сохранить категорию</value>
     </data>
-    <data name="SpecifyPlannedAmount" xml:space="preserve">
+    <data name="AddCategory_SpecifyPlannedAmount" xml:space="preserve">
         <value>Указать планируемую сумму</value>
     </data>
-    <data name="DateRange" xml:space="preserve">
+    <data name="Transactions_DateRange" xml:space="preserve">
         <value>Отфильтровать по дате</value>
     </data>
-    <data name="LightThemeText" xml:space="preserve">
+    <data name="ThemeSettings_LightTheme" xml:space="preserve">
         <value>Светлая</value>
     </data>
-    <data name="DarkThemeText" xml:space="preserve">
+    <data name="ThemeSettings_Dark" xml:space="preserve">
         <value>Темная</value>
     </data>
-    <data name="SystemThemeText" xml:space="preserve">
+    <data name="ThemeSettings_System" xml:space="preserve">
         <value>Системная</value>
     </data>
-    <data name="EnglishLanguage" xml:space="preserve">
+    <data name="Languages_English" xml:space="preserve">
         <value>Английский</value>
     </data>
-    <data name="RussianLanguage" xml:space="preserve">
+    <data name="Languages_Russian" xml:space="preserve">
         <value>Русский</value>
     </data>
-    <data name="ChangeLanguageAlertMessage" xml:space="preserve">
+    <data name="InfoAlert_ChangeLanguage_Message" xml:space="preserve">
         <value>Чтобы изменения вступили в силу, требуется перезапустить приложение.</value>
     </data>
-    <data name="ChangeLanguageAlertTitle" xml:space="preserve">
+    <data name="InfoAlert_ChangeLanguage_Title" xml:space="preserve">
         <value>Предупреждение</value>
     </data>
-    <data name="ChangeLanguageAlertOk" xml:space="preserve">
+    <data name="InfoAlert_ChangeLanguage_Ok" xml:space="preserve">
         <value>Понятно</value>
     </data>
     <data name="ErrorAlert_Title" xml:space="preserve">
@@ -165,22 +165,22 @@
     <data name="ErrorAlert_Description" xml:space="preserve">
         <value>Возникла ошибка</value>
     </data>
-    <data name="ErrorAlert_GetCategoryInfo" xml:space="preserve">
+    <data name="CommonError_GetCategoryInfo" xml:space="preserve">
         <value>Не удалось получить информацию по категории</value>
     </data>
-    <data name="ErrorAlert_ShowFilteredTransactions" xml:space="preserve">
+    <data name="CommonError_ShowFilteredTransactions" xml:space="preserve">
         <value>Не удалось открыть отфильтрованные транзакции</value>
     </data>
-    <data name="ErrorAlert_OpenAddCategoryPage" xml:space="preserve">
+    <data name="CommonError_OpenAddCategoryPage" xml:space="preserve">
         <value>Не удалось открыть страницу создания новой категории</value>
     </data>
-    <data name="ErrorAlert_OpenAddTransactionPage" xml:space="preserve">
+    <data name="CommonError_OpenAddTransactionPage" xml:space="preserve">
         <value>Не удалось открыть страницу создания транзакции</value>
     </data>
-    <data name="ErrorAlert_InternalErrorTryAgain" xml:space="preserve">
+    <data name="CommonError_InternalErrorTryAgain" xml:space="preserve">
         <value>Произошла внутренняя ошибка. Попробуйте снова</value>
     </data>
-    <data name="ErrorAlert_FindTransactionToDelete" xml:space="preserve">
+    <data name="CommonError_FindTransactionToDelete" xml:space="preserve">
         <value>Не удалось найти транзакцию для удаления</value>
     </data>
     <data name="CommonError_PlannedAmountNumber" xml:space="preserve">
@@ -203,5 +203,38 @@
     </data>
     <data name="CommonError_TransactionType" xml:space="preserve">
         <value>Неверный тип транзакции</value>
+    </data>
+    <data name="Pages_Language" xml:space="preserve">
+        <value>Язык</value>
+    </data>
+    <data name="Pages_Categories" xml:space="preserve">
+        <value>Категории</value>
+    </data>
+    <data name="Pages_Theme" xml:space="preserve">
+        <value>Тема</value>
+    </data>
+    <data name="Home_Categories" xml:space="preserve">
+        <value>Расходы по категориям</value>
+    </data>
+    <data name="AddTransaction_Secondary" xml:space="preserve">
+        <value>Второстепенные</value>
+    </data>
+    <data name="AddTransaction_Saved" xml:space="preserve">
+        <value>Отложенные</value>
+    </data>
+    <data name="AddTransaction_Main" xml:space="preserve">
+        <value>Основные</value>
+    </data>
+    <data name="Transactions_Income" xml:space="preserve">
+        <value>Доход</value>
+    </data>
+    <data name="Transactions_Main" xml:space="preserve">
+        <value>Основные</value>
+    </data>
+    <data name="Transactions_Saved" xml:space="preserve">
+        <value>Отложенные</value>
+    </data>
+    <data name="Transactions_Secondary" xml:space="preserve">
+        <value>Второстепенные</value>
     </data>
 </root>

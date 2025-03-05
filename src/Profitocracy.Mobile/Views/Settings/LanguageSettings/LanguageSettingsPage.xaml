@@ -5,7 +5,7 @@
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               x:Class="Profitocracy.Mobile.Views.Settings.LanguageSettings.LanguageSettingsPage"
-                              Title="{x:Static resx:AppResources.Language}"
+                              Title="{x:Static resx:AppResources.Pages_Language}"
                               Loaded="LanguageSettingsPage_OnLoaded"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
     <abstractions:BaseContentPage.Content>
@@ -31,7 +31,7 @@
                     </Border.Triggers>
                     <FlexLayout JustifyContent="SpaceBetween">
                         <Label Style="{StaticResource SettingsButtonText}"
-                               Text="{x:Static resx:AppResources.EnglishLanguage}" 
+                               Text="{x:Static resx:AppResources.Languages_English}" 
                                VerticalOptions="Center">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label"
@@ -68,7 +68,7 @@
                     </Border.Triggers>
                     <FlexLayout JustifyContent="SpaceBetween">
                         <Label Style="{StaticResource SettingsButtonText}"
-                               Text="{x:Static resx:AppResources.RussianLanguage}" 
+                               Text="{x:Static resx:AppResources.Languages_Russian}" 
                                VerticalOptions="Center">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label"

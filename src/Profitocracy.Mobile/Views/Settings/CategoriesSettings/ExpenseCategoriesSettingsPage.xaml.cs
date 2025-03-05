@@ -45,7 +45,7 @@ public partial class ExpenseCategoriesSettingsPage : BaseContentPage
 
 		if (addPage is null)
 		{
-			throw new Exception(AppResources.ErrorAlert_OpenAddCategoryPage);
+			throw new Exception(AppResources.CommonError_OpenAddCategoryPage);
 		}
 
 		await Navigation.PushModalAsync(addPage);
