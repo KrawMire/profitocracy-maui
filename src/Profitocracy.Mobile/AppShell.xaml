@@ -8,13 +8,13 @@
        x:Class="Profitocracy.Mobile.AppShell"
        Loaded="AppShell_OnLoaded">
     <TabBar>
-        <Tab Title="{x:Static resx:AppResources.Home}" Icon="home.png">
+        <Tab Title="{x:Static resx:AppResources.Pages_Home}" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate home:HomePage}"/>
         </Tab>
-        <Tab Title="{x:Static resx:AppResources.Transactions}" Icon="transactions.png">
+        <Tab Title="{x:Static resx:AppResources.Pages_Transactions}" Icon="transactions.png">
             <ShellContent ContentTemplate="{DataTemplate transactions:TransactionsPage}"/>
         </Tab>
-        <Tab Title="{x:Static resx:AppResources.Settings}" Icon="settings.png">
+        <Tab Title="{x:Static resx:AppResources.Pages_Settings}" Icon="settings.png">
             <ShellContent ContentTemplate="{DataTemplate settings:SettingsPage}"/>
         </Tab>
     </TabBar>

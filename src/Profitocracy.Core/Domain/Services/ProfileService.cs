@@ -7,6 +7,11 @@ using Profitocracy.Core.Specifications;
 
 namespace Profitocracy.Core.Domain.Services;
 
+/// <summary>
+/// This internal implementation of <see cref="IProfileService"/> is used
+/// because only it should know about <see cref="Profile"/> implementation
+/// details and how to deal with them. 
+/// </summary>
 internal class ProfileService : IProfileService
 {
 	private readonly IProfileRepository _profileRepository;

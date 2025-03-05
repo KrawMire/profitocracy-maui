@@ -35,7 +35,7 @@ public partial class TransactionsPage : BaseContentPage
 
 			if (addPage is null)
 			{
-				throw new Exception(AppResources.ErrorAlert_OpenAddTransactionPage);
+				throw new Exception(AppResources.CommonError_OpenAddTransactionPage);
 			}
 		
 			await Navigation.PushModalAsync(addPage);
@@ -48,14 +48,14 @@ public partial class TransactionsPage : BaseContentPage
 		{
 			if (sender is not SwipeItemView swipeItem)
 			{
-				throw new Exception(AppResources.ErrorAlert_InternalErrorTryAgain);
+				throw new Exception(AppResources.CommonError_InternalErrorTryAgain);
 			}
 
 			var transaction = swipeItem.BindingContext as TransactionModel;
 
 			if (transaction?.Id is null)
 			{
-				throw new Exception(AppResources.ErrorAlert_FindTransactionToDelete);
+				throw new Exception(AppResources.CommonError_FindTransactionToDelete);
 			}
 		
 			await _viewModel.DeleteTransaction((Guid)transaction.Id);

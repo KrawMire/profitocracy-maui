@@ -46,8 +46,8 @@ public partial class LanguageSettingsPage : BaseContentPage
         await _viewModel.ChangeLanguage(language);
         
         await DisplayAlert(
-            AppResources.ChangeLanguageAlertTitle, 
-            AppResources.ChangeLanguageAlertMessage,
-            AppResources.ChangeLanguageAlertOk);
+            AppResources.InfoAlert_ChangeLanguage_Title, 
+            AppResources.InfoAlert_ChangeLanguage_Message,
+            AppResources.InfoAlert_ChangeLanguage_Ok);
     }
 }

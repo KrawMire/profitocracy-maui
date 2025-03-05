@@ -17,10 +17,9 @@ public class HomePageViewModel : BaseNotifyObject
     private decimal _totalActualAmount;
     private decimal _totalPlannedAmount;
     private decimal _totalSavedAmount;
-    private decimal _dailyFromActualActualAmount;
-    private decimal _dailyFromActualPlannedAmount;
-    private decimal _dailyFromInitialActualAmount;
-    private decimal _dailyFromInitialPlannedAmount;
+    private decimal _todayActualAmount;
+    private decimal _todayPlannedAmount;
+    private decimal _balanceForTomorrow;
     private decimal _mainActualAmount;
     private decimal _mainPlannedAmount;
     private decimal _secondaryActualAmount;
@@ -29,8 +28,7 @@ public class HomePageViewModel : BaseNotifyObject
     private decimal _savedPlannedAmount;
     
     private float _totalBalanceRatio;
-    private float _dailyFromActualRatio;
-    private float _dailyFromInitialRatio;
+    private float _todayBalanceRatio;
     private float _mainExpensesRatio;
     private float _secondaryExpensesRatio;
     private float _savedRatio;
@@ -75,28 +73,22 @@ public class HomePageViewModel : BaseNotifyObject
         set => SetProperty(ref _totalSavedAmount, value);
     }
     
-    public decimal DailyFromActualActualAmount
+    public decimal TodayActualAmount
     {
-        get => _dailyFromActualActualAmount;
-        set => SetProperty(ref _dailyFromActualActualAmount, value);
+        get => _todayActualAmount;
+        set => SetProperty(ref _todayActualAmount, value);
     }
     
-    public decimal DailyFromActualPlannedAmount
+    public decimal TodayPlannedAmount
     {
-        get => _dailyFromActualPlannedAmount;
-        set => SetProperty(ref _dailyFromActualPlannedAmount, value);
+        get => _todayPlannedAmount;
+        set => SetProperty(ref _todayPlannedAmount, value);
     }
-    
-    public decimal DailyFromInitialActualAmount
+
+    public decimal BalanceForTomorrow
     {
-        get => _dailyFromInitialActualAmount;
-        set => SetProperty(ref _dailyFromInitialActualAmount, value);
-    }
-    
-    public decimal DailyFromInitialPlannedAmount
-    {
-        get => _dailyFromInitialPlannedAmount;
-        set => SetProperty(ref _dailyFromInitialPlannedAmount, value);
+        get => _balanceForTomorrow;
+        set => SetProperty(ref _balanceForTomorrow, value);
     }
     
     public decimal MainActualAmount
@@ -141,16 +133,10 @@ public class HomePageViewModel : BaseNotifyObject
         private set => SetProperty(ref _totalBalanceRatio, value);
     }
 
-    public float DailyFromActualRatio
+    public float TodayBalanceRatio
     {
-        get => _dailyFromActualRatio;
-        private set => SetProperty(ref _dailyFromActualRatio, value);
-    }
-
-    public float DailyFromInitialRatio
-    {
-        get => _dailyFromInitialRatio;
-        private set => SetProperty(ref _dailyFromInitialRatio, value);
+        get => _todayBalanceRatio;
+        private set => SetProperty(ref _todayBalanceRatio, value);
     }
 
     public float MainExpensesRatio
@@ -186,7 +172,7 @@ public class HomePageViewModel : BaseNotifyObject
     public bool IsDisplayNoCategories
     {
         get => _isDisplayNoCategories;
-        set => SetProperty(ref _isDisplayNoCategories, value);
+        private set => SetProperty(ref _isDisplayNoCategories, value);
     }
 
     public bool IsRefreshing
@@ -197,16 +183,28 @@ public class HomePageViewModel : BaseNotifyObject
     
     public ICommand RefreshCommand { get; private set; }
     
-    public ObservableCollection<CategoryExpenseModel> CategoriesExpenses = [];
+    public readonly ObservableCollection<CategoryExpenseModel> CategoriesExpenses = [];
     
     public HomePageViewModel(IProfileService profileService)
     {
         _profileService = profileService;
         RefreshCommand = new Command(
-            execute: async void() => await Initialize(),
+            execute: Refresh,
             canExecute: () => !IsRefreshing);
     }
 
+    private async void Refresh()
+    {
+        try
+        {
+            await Initialize();
+        }
+        catch (Exception)
+        {
+            // Ignored
+        }
+    }
+    
     public async Task Initialize()
     {
         var profile = await _profileService.GetCurrentProfile();
@@ -242,10 +240,9 @@ public class HomePageViewModel : BaseNotifyObject
     {
         TotalActualAmount = NumberUtils.RoundDecimal(expenses.TotalBalance.ActualAmount);
         TotalPlannedAmount = NumberUtils.RoundDecimal(expenses.TotalBalance.PlannedAmount);
-        DailyFromActualActualAmount = NumberUtils.RoundDecimal(expenses.DailyFromActualBalance.ActualAmount);
-        DailyFromActualPlannedAmount = NumberUtils.RoundDecimal(expenses.DailyFromActualBalance.PlannedAmount);
-        DailyFromInitialActualAmount = NumberUtils.RoundDecimal(expenses.DailyFromInitialBalance.ActualAmount);
-        DailyFromInitialPlannedAmount = NumberUtils.RoundDecimal(expenses.DailyFromInitialBalance.PlannedAmount);
+        TodayActualAmount = NumberUtils.RoundDecimal(expenses.TodayBalance.ActualAmount);
+        TodayPlannedAmount = NumberUtils.RoundDecimal(expenses.TodayBalance.PlannedAmount);
+        BalanceForTomorrow = NumberUtils.RoundDecimal(expenses.TomorrowBalance);
         MainActualAmount = NumberUtils.RoundDecimal(expenses.Main.ActualAmount);
         MainPlannedAmount = NumberUtils.RoundDecimal(expenses.Main.PlannedAmount);
         SecondaryActualAmount = NumberUtils.RoundDecimal(expenses.Secondary.ActualAmount);
@@ -258,59 +255,59 @@ public class HomePageViewModel : BaseNotifyObject
     
     private void InitializeExpenseRatios(ProfileExpenses expenses)
     {
-        TotalBalanceRatio = GetExpenseRatio(expenses.TotalBalance.ActualAmount, expenses.TotalBalance.PlannedAmount);
-        DailyFromActualRatio = GetExpenseRatio(expenses.DailyFromActualBalance.ActualAmount, expenses.DailyFromActualBalance.PlannedAmount);
-        DailyFromInitialRatio = GetExpenseRatio(expenses.DailyFromInitialBalance.ActualAmount, expenses.DailyFromInitialBalance.PlannedAmount);
-        MainExpensesRatio = GetExpenseRatio(expenses.Main.ActualAmount, expenses.Main.PlannedAmount);
-        SecondaryExpensesRatio = GetExpenseRatio(expenses.Secondary.ActualAmount, expenses.Secondary.PlannedAmount);
-        SavedRatio = GetExpenseRatio(expenses.Saved.ActualAmount, expenses.Saved.PlannedAmount);
+        TotalBalanceRatio = GetExpenseRatio(expenses.TotalBalance);
+        TodayBalanceRatio = GetExpenseRatio(expenses.TodayBalance);
+        MainExpensesRatio = GetExpenseRatio(expenses.Main);
+        SecondaryExpensesRatio = GetExpenseRatio(expenses.Secondary);
+        SavedRatio = GetExpenseRatio(expenses.Saved);
     }
 
-    private void InitializeCategoriesExpenses(List<ProfileCategory> expenses)
+    private void InitializeCategoriesExpenses(List<ProfileCategory> categories)
     {
         CategoriesExpenses.Clear();
         
-        foreach (var expense in expenses)
+        foreach (var category in categories)
         {
-            CategoryExpenseModel categoryExpense;
+            decimal? plannedAmount = null;
+            float? ratio = null;
             
-            if (expense.PlannedAmount is null or 0)
+            var showRatio = category.PlannedAmount is not (null or 0);
+
+            if (showRatio)
             {
-                categoryExpense = new CategoryExpenseModel(
-                    expense.Id,
-                    expense.Name, 
-                    NumberUtils.RoundDecimal(expense.ActualAmount),
-                    false,
-                    null, 
-                    null);
+                plannedAmount = category.PlannedAmount;
+                ratio = GetCategoryRatio(category);
             }
-            else
-            {
-                categoryExpense = new CategoryExpenseModel(
-                    expense.Id,
-                    expense.Name, 
-                    NumberUtils.RoundDecimal(expense.ActualAmount),
-                    true,
-                    NumberUtils.RoundDecimal(expense.PlannedAmount),
-                    GetExpenseRatio(expense.ActualAmount, expense.PlannedAmount));
-            }
+            
+            var categoryExpense = new CategoryExpenseModel(
+                Id: category.Id,
+                Name: category.Name, 
+                ActualAmount: NumberUtils.RoundDecimal(category.ActualAmount),
+                IsShowRatio: showRatio,
+                PlannedAmount: plannedAmount,
+                Ratio: ratio);
             
             CategoriesExpenses.Add(categoryExpense);
         }
     }
     
-    private float GetExpenseRatio(decimal? actualAmount, decimal? plannedAmount)
+    private static float GetExpenseRatio(ProfileExpense expense)
     {
-        if (actualAmount is null || plannedAmount is null)
-        {
-            return 1;
-        }
-        
-        if (plannedAmount == 0)
+        if (expense.PlannedAmount == 0)
         {
             return 1;
         }
 
-        return (float)(actualAmount / plannedAmount);
+        return NumberUtils.GetFloatRatio(expense.ActualAmount, expense.PlannedAmount);
+    }
+    
+    private static float GetCategoryRatio(ProfileCategory category)
+    {
+        if (category.PlannedAmount is null or 0)
+        {
+            return 1;
+        }
+
+        return NumberUtils.GetFloatRatio(category.ActualAmount, (decimal)category.PlannedAmount);
     }
 }

@@ -6,7 +6,7 @@
                               xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               x:Class="Profitocracy.Mobile.Views.Home.HomePage"
-                              Title="{x:Static resx:AppResources.Home}"
+                              Title="{x:Static resx:AppResources.Pages_Home}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                               NavigatedTo="HomePage_OnNavigated">
     <RefreshView IsRefreshing="{Binding IsRefreshing}"
@@ -38,7 +38,7 @@
                         <FlexLayout JustifyContent="SpaceBetween"
                                     Margin="0, 16, 0, 0">
                             <Label Style="{StaticResource ProfileExpenseCardSubtitle}"
-                                   Text="{x:Static resx:AppResources.Balance}"/>
+                                   Text="{x:Static resx:AppResources.Home_Balance}"/>
                             <Label Style="{StaticResource ProfileExpenseCardBalance}"
                                    Text="{Binding Balance}"/>
                         </FlexLayout>
@@ -55,7 +55,7 @@
                         <FlexLayout JustifyContent="SpaceBetween"
                                     Margin="0, 16, 0, 0">
                             <Label Style="{StaticResource ProfileExpenseCardSubtitle}" 
-                                   Text="{x:Static resx:AppResources.SavedBalance}" />
+                                   Text="{x:Static resx:AppResources.Home_SavedBalance}" />
                             <Label Style="{StaticResource ProfileExpenseCardBalance}"
                                    Text="{Binding TotalSavedAmount}" />
                         </FlexLayout>
@@ -66,7 +66,7 @@
                         Margin="0, 16, 0, 0">
                     <StackLayout>
                         <Label Style="{StaticResource ExpenseCardTitle}"
-                               Text="{x:Static resx:AppResources.DailyAmounts}"/>
+                               Text="{x:Static resx:AppResources.Home_DailyAmounts}"/>
                         <Grid Margin="0, 16, 0, 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -75,30 +75,24 @@
                             <StackLayout Grid.Column="0"
                                          Padding="0, 0, 8, 0">
                                 <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                       Text="{x:Static resx:AppResources.FromInitialBalance}"/>
+                                       Text="{x:Static resx:AppResources.Home_TodayBalance}"/>
                                 <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                              Margin="0,8,0,0"
-                                             Progress="{Binding DailyFromInitialRatio}"/>
+                                             Progress="{Binding TodayBalanceRatio}"/>
                                 <FlexLayout JustifyContent="SpaceBetween">
                                     <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                           Text="{Binding DailyFromInitialActualAmount}"/>
+                                           Text="{Binding TodayActualAmount}"/>
                                     <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                           Text="{Binding DailyFromInitialPlannedAmount}" />
+                                           Text="{Binding TodayPlannedAmount}" />
                                 </FlexLayout>
                             </StackLayout>
                             <StackLayout Grid.Column="1"
                                          Padding="8, 0, 0, 0">
                                 <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                       Text="{x:Static resx:AppResources.FromActualBalance}"/>
-                                <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
-                                             Margin="0,8,0,0"
-                                             Progress="{Binding DailyFromActualRatio}"/>
-                                <FlexLayout JustifyContent="SpaceBetween">
-                                    <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                           Text="{Binding DailyFromActualActualAmount}"/>
-                                    <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                           Text="{Binding DailyFromActualPlannedAmount}" />
-                                </FlexLayout>
+                                       Text="{x:Static resx:AppResources.Home_TomorrowBalance}"/>
+                                <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                       Margin="0,8,0,0"
+                                       Text="{Binding BalanceForTomorrow}"/>
                             </StackLayout>
                         </Grid>
                     </StackLayout>
@@ -108,7 +102,7 @@
                         Margin="0, 16, 0, 0">
                     <StackLayout>
                         <Label Style="{StaticResource ExpenseCardTitle}"
-                               Text="{x:Static resx:AppResources.SpendingTypes}"/>
+                               Text="{x:Static resx:AppResources.Home_SpendingTypes}"/>
                             
                         <StackLayout x:Name="MainExpenses"
                                      Margin="0,16,0,0">
@@ -116,7 +110,7 @@
                                 <TapGestureRecognizer Tapped="MainSpendingTypeLayout_OnTapped" />
                             </StackLayout.GestureRecognizers>
                             <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                   Text="{x:Static resx:AppResources.Main}"/>
+                                   Text="{x:Static resx:AppResources.Home_Main}"/>
                             <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                          Margin="0,8,0,0"
                                          Progress="{Binding MainExpensesRatio}"/>
@@ -134,7 +128,7 @@
                                 <TapGestureRecognizer Tapped="SecondarySpendingTypeLayout_OnTapped" />
                             </StackLayout.GestureRecognizers>
                             <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                   Text="{x:Static resx:AppResources.Secondary}"/>
+                                   Text="{x:Static resx:AppResources.Home_Secondary}"/>
                             <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                          Margin="0,8,0,0"
                                          Progress="{Binding SecondaryExpensesRatio}"/>
@@ -152,7 +146,7 @@
                                 <TapGestureRecognizer Tapped="SavedSpendingTypeLayout_OnTapped" />
                             </StackLayout.GestureRecognizers>
                             <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                   Text="{x:Static resx:AppResources.Saved}"/>
+                                   Text="{x:Static resx:AppResources.Home_Saved}"/>
                             <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                          Margin="0,8,0,0"
                                          Progress="{Binding SavedRatio}"/>
@@ -170,11 +164,11 @@
                         Margin="0, 16, 0, 0">
                     <StackLayout>
                         <Label Style="{StaticResource ExpenseCardTitle}"
-                               Text="{x:Static resx:AppResources.Categories}"/>
+                               Text="{x:Static resx:AppResources.Home_Categories}"/>
                         
                         <Label Style="{StaticResource ExpenseCardSubtitle}" 
                                IsVisible="{Binding IsDisplayNoCategories}" 
-                               Text="{x:Static resx:AppResources.ThereIsNoCategories}"
+                               Text="{x:Static resx:AppResources.Home_NoCategories}"
                                Margin="0,16,0,0"
                                HorizontalTextAlignment="Center"/> 
                         

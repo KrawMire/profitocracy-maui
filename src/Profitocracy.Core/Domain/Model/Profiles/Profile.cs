@@ -31,12 +31,8 @@ public class Profile : AggregateRoot<Guid>
 		IsCurrent = isCurrent;
 		Expenses = new ProfileExpenses
 		{
-			DailyFromActualBalance = new ProfileExpense
-			{
-				ActualAmount = 0,
-				PlannedAmount = 0
-			},
-			DailyFromInitialBalance = new ProfileExpense
+			TomorrowBalance = 0,
+			TodayBalance = new ProfileExpense
 			{
 				ActualAmount = 0,
 				PlannedAmount = 0
@@ -208,16 +204,16 @@ public class Profile : AggregateRoot<Guid>
 	
 	private void RecalculateExpenses(DateTime currentDate)
 	{
-		var daysInInitialPeriod = BillingPeriod.DateTo.Day - BillingPeriod.DateFrom.Day + 1;
 		var daysInActualPeriod = BillingPeriod.DateTo.Day - currentDate.Day + 1;
+		var daysInPeriodFromTomorrow = daysInActualPeriod - 1;
 		
 		// Used to prevent division by zero
-		daysInInitialPeriod = daysInInitialPeriod == 0 ? 1 : daysInInitialPeriod;
 		daysInActualPeriod = daysInActualPeriod == 0 ? 1 : daysInActualPeriod;
+		daysInPeriodFromTomorrow = daysInPeriodFromTomorrow == 0 ? 1 : daysInPeriodFromTomorrow;
 
 		Expenses.TotalBalance.PlannedAmount += StartDate.InitialBalance;
-		Expenses.DailyFromActualBalance.PlannedAmount = _todayInitialBalance / daysInActualPeriod;
-		Expenses.DailyFromInitialBalance.PlannedAmount = Expenses.TotalBalance.PlannedAmount / daysInInitialPeriod;
+		Expenses.TodayBalance.PlannedAmount = _todayInitialBalance / daysInActualPeriod;
+		Expenses.TomorrowBalance = Balance / daysInPeriodFromTomorrow;
 		
 		Expenses.Main.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.5m;
 		Expenses.Secondary.PlannedAmount = Expenses.TotalBalance.PlannedAmount * 0.3m;
@@ -237,8 +233,7 @@ public class Profile : AggregateRoot<Guid>
 
 		if (transaction.Timestamp.Day == currentDate.Day)
 		{
-			Expenses.DailyFromInitialBalance.ActualAmount += transaction.Amount;
-			Expenses.DailyFromActualBalance.ActualAmount += transaction.Amount;
+			Expenses.TodayBalance.ActualAmount += transaction.Amount;
 		}
 		else
 		{
@@ -259,7 +254,7 @@ public class Profile : AggregateRoot<Guid>
 				HandleSavingSpendingTransaction(transaction, currentDate);
 				break;
 			default:
-				throw new ArgumentOutOfRangeException(nameof(transaction.SpendingType));
+				throw new ArgumentOutOfRangeException(nameof(transaction), "Spending type is out of range");
 		}
 
 		if (transaction.Category is not null)
@@ -290,8 +285,7 @@ public class Profile : AggregateRoot<Guid>
 
 	private void HandleCategoryTransaction(Transaction transaction)
 	{
-		var category = CategoriesExpenses
-			.Find(c => c.Id.Equals(transaction.Category!.Id));
+		var category = CategoriesExpenses.Find(c => c.Id.Equals(transaction.Category!.Id));
 
 		if (category is null)
 		{

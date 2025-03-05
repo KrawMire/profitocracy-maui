@@ -1,3 +1,4 @@
+using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Mobile.Resources.Strings;
 
 namespace Profitocracy.Mobile.Models.Transactions;
@@ -6,10 +7,10 @@ public class TransactionModel
 {
     private readonly string[] _spendingTypes =
     [
-        AppResources.Main,
-        AppResources.Secondary,
-        AppResources.Saved,
-        AppResources.Income
+        AppResources.Transactions_Main,
+        AppResources.Transactions_Secondary,
+        AppResources.Transactions_Saved,
+        AppResources.Transactions_Income
     ];
     
     public Guid? Id { get; set; }
@@ -38,7 +39,7 @@ public class TransactionModel
         }
     }
 
-    public static TransactionModel FromDomain(Core.Domain.Model.Transactions.Transaction transaction)
+    public static TransactionModel FromDomain(Transaction transaction)
     {
         TransactionCategoryModel? category = null;
 
