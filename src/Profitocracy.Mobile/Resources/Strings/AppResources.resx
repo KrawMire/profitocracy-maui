@@ -30,11 +30,11 @@
     <data name="Home_DailyAmounts" xml:space="preserve">
         <value>Daily amounts</value>
     </data>
-    <data name="Home_FromInitialBalance" xml:space="preserve">
-        <value>From initial balance</value>
+    <data name="Home_TomorrowBalance" xml:space="preserve">
+        <value>Tomorrow</value>
     </data>
-    <data name="Home_FromActualBalance" xml:space="preserve">
-        <value>From actual balance</value>
+    <data name="Home_TodayBalance" xml:space="preserve">
+        <value>Today</value>
     </data>
     <data name="Home_SpendingTypes" xml:space="preserve">
         <value>Spending types</value>

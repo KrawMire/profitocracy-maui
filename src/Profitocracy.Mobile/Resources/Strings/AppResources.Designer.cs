@@ -69,15 +69,15 @@ namespace Profitocracy.Mobile.Resources.Strings {
             }
         }
         
-        internal static string Home_FromInitialBalance {
+        internal static string Home_TomorrowBalance {
             get {
-                return ResourceManager.GetString("Home_FromInitialBalance", resourceCulture);
+                return ResourceManager.GetString("Home_TomorrowBalance", resourceCulture);
             }
         }
         
-        internal static string Home_FromActualBalance {
+        internal static string Home_TodayBalance {
             get {
-                return ResourceManager.GetString("Home_FromActualBalance", resourceCulture);
+                return ResourceManager.GetString("Home_TodayBalance", resourceCulture);
             }
         }
         

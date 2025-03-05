@@ -75,30 +75,24 @@
                             <StackLayout Grid.Column="0"
                                          Padding="0, 0, 8, 0">
                                 <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                       Text="{x:Static resx:AppResources.Home_FromInitialBalance}"/>
+                                       Text="{x:Static resx:AppResources.Home_TodayBalance}"/>
                                 <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
                                              Margin="0,8,0,0"
-                                             Progress="{Binding DailyFromInitialRatio}"/>
+                                             Progress="{Binding TodayBalanceRatio}"/>
                                 <FlexLayout JustifyContent="SpaceBetween">
                                     <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                           Text="{Binding DailyFromInitialActualAmount}"/>
+                                           Text="{Binding TodayActualAmount}"/>
                                     <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                           Text="{Binding DailyFromInitialPlannedAmount}" />
+                                           Text="{Binding TodayPlannedAmount}" />
                                 </FlexLayout>
                             </StackLayout>
                             <StackLayout Grid.Column="1"
                                          Padding="8, 0, 0, 0">
                                 <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                       Text="{x:Static resx:AppResources.Home_FromActualBalance}"/>
-                                <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
-                                             Margin="0,8,0,0"
-                                             Progress="{Binding DailyFromActualRatio}"/>
-                                <FlexLayout JustifyContent="SpaceBetween">
-                                    <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                           Text="{Binding DailyFromActualActualAmount}"/>
-                                    <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                           Text="{Binding DailyFromActualPlannedAmount}" />
-                                </FlexLayout>
+                                       Text="{x:Static resx:AppResources.Home_TomorrowBalance}"/>
+                                <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                       Margin="0,8,0,0"
+                                       Text="{Binding BalanceForTomorrow}"/>
                             </StackLayout>
                         </Grid>
                     </StackLayout>

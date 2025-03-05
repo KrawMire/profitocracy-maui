@@ -30,11 +30,11 @@
     <data name="Home_DailyAmounts" xml:space="preserve">
         <value>Дневные расходы</value>
     </data>
-    <data name="Home_FromActualBalance" xml:space="preserve">
-        <value>От текущего баланса</value>
+    <data name="Home_TodayBalance" xml:space="preserve">
+        <value>Сегодня</value>
     </data>
-    <data name="Home_FromInitialBalance" xml:space="preserve">
-        <value>От начального баланса</value>
+    <data name="Home_TomorrowBalance" xml:space="preserve">
+        <value>Завтра</value>
     </data>
     <data name="Home_SpendingTypes" xml:space="preserve">
         <value>Типы расходов</value>
