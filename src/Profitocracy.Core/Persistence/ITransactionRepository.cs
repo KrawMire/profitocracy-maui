@@ -17,6 +17,13 @@ public interface ITransactionRepository
 	Task<List<Transaction>> GetAllByProfileId(Guid profileId);
 
 	/// <summary>
+	/// Retrieves a transaction by its unique identifier.
+	/// </summary>
+	/// <param name="transactionId">The identifier of the transaction to retrieve.</param>
+	/// <returns>The transaction with the specified identifier, or null if not found.</returns>
+	Task<Transaction?> GetById(Guid transactionId);
+
+	/// <summary>
 	/// Retrieves a list of transactions for a specific profile within a given date range.
 	/// </summary>
 	/// <param name="profileId">The identifier of the profile for which to retrieve transactions.</param>
@@ -38,6 +45,13 @@ public interface ITransactionRepository
 	/// <param name="transaction">The transaction to create</param>
 	/// <returns>The created transaction</returns>
 	Task<Transaction> Create(Transaction transaction);
+
+	/// <summary>
+	/// Updates an existing transaction with new details.
+	/// </summary>
+	/// <param name="transaction">The transaction object containing updated information.</param>
+	/// <returns>The updated transaction instance.</returns>
+	Task<Transaction> Update(Transaction transaction);
 
 	/// <summary>
 	/// Delete transaction by its ID
