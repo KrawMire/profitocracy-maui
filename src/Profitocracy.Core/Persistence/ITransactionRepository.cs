@@ -54,6 +54,13 @@ public interface ITransactionRepository
 	Task<Transaction> Update(Transaction transaction);
 
 	/// <summary>
+	/// Clears categories references in transactions which reference a category with specified ID.
+	/// </summary>
+	/// <param name="categoryId">The identifier of the category.</param>
+	/// <returns>The identifier of the category for which transactions were cleared.</returns>
+	Task<Guid> ClearWithCategory(Guid categoryId);
+
+	/// <summary>
 	/// Delete transaction by its ID
 	/// </summary>
 	/// <param name="transactionId">ID of transaction to delete</param>

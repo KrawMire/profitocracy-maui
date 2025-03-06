@@ -41,7 +41,7 @@ internal class CategoryRepository : ICategoryRepository
 		await _dbConnection.Init();
 
 		var categoryToCreate = _mapper.MapToModel(category);
-		_ = await _dbConnection.Database.InsertAsync(categoryToCreate);
+		await _dbConnection.Database.InsertAsync(categoryToCreate);
 
 		var createdCategory = await _dbConnection.Database
 			.Table<CategoryModel>()
@@ -51,8 +51,14 @@ internal class CategoryRepository : ICategoryRepository
 		return _mapper.MapToDomain(createdCategory);
 	}
 
-	public Task<Guid> Delete(Guid categoryId)
+	public async Task<Guid> Delete(Guid categoryId)
 	{
-		throw new NotImplementedException();
+		await _dbConnection.Init();
+
+		await _dbConnection.Database
+			.Table<CategoryModel>()
+			.DeleteAsync(c => c.Id == categoryId);
+		
+		return categoryId;
 	}
 }

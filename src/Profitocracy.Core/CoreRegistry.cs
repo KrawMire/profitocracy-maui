@@ -8,6 +8,8 @@ public static class CoreRegistry
 {
     public static IServiceCollection RegisterCoreServices(this IServiceCollection services)
     {
-        return services.AddTransient<IProfileService, ProfileService>();
+        return services
+            .AddTransient<ICalculationService, CalculationService>()
+            .AddTransient<ICategoryService, CategoryService>();
     } 
 }

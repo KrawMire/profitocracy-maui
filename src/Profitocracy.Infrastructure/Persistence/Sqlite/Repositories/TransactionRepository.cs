@@ -149,6 +149,28 @@ internal class TransactionRepository : ITransactionRepository
 		return _mapper.MapToDomain(updatedTransaction);
 	}
 
+	public async Task<Guid> ClearWithCategory(Guid categoryId)
+	{
+		await _dbConnection.Init();
+
+		var transactionsToUpdate = await _dbConnection.Database
+			.Table<TransactionModel>()
+			.Where(t => t.CategoryId == categoryId)
+			.ToListAsync();
+		
+		foreach (var transaction in transactionsToUpdate)
+		{
+			transaction.CategoryId = null;
+			transaction.CategoryName = null;
+			
+			await _dbConnection.Database.UpdateAsync(transaction);
+		}
+		
+		await _dbConnection.Database.UpdateAllAsync(transactionsToUpdate);
+		
+		return categoryId;
+	}
+
 	public async Task<Guid> Delete(Guid transactionId)
 	{
 		await _dbConnection.Init();
