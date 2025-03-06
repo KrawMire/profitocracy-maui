@@ -44,6 +44,8 @@
     <Color x:Key="SecondaryGreen">#17b802</Color>
     <Color x:Key="MidnightBlue">#190649</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>
+    <Color x:Key="DangerRed">#FF6752</Color>
+    <Color x:Key="InfoBlue">#5B8FFF</Color>
 
     <!-- Gray colors -->
     <Color x:Key="Gray50">#F7F7F7</Color>

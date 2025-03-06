@@ -36,12 +36,25 @@ internal class CategoryRepository : ICategoryRepository
 		return domainCategories;
 	}
 
+	public async Task<Category?> GetById(Guid categoryId)
+	{
+		await _dbConnection.Init();
+		
+		var category = await _dbConnection.Database
+			.Table<CategoryModel>()
+			.FirstOrDefaultAsync(c => c.Id == categoryId);
+
+		return category is not null
+			? _mapper.MapToDomain(category)
+			: null;
+	}
+
 	public async Task<Category> Create(Category category)
 	{
 		await _dbConnection.Init();
 
 		var categoryToCreate = _mapper.MapToModel(category);
-		_ = await _dbConnection.Database.InsertAsync(categoryToCreate);
+		await _dbConnection.Database.InsertAsync(categoryToCreate);
 
 		var createdCategory = await _dbConnection.Database
 			.Table<CategoryModel>()
@@ -51,8 +64,29 @@ internal class CategoryRepository : ICategoryRepository
 		return _mapper.MapToDomain(createdCategory);
 	}
 
-	public Task<Guid> Delete(Guid categoryId)
+	public async Task<Category> Update(Category category)
 	{
-		throw new NotImplementedException();
+		await _dbConnection.Init();
+		
+		var categoryToUpdate = _mapper.MapToModel(category);
+		await _dbConnection.Database.UpdateAsync(categoryToUpdate);
+		
+		var updatedCategory = await _dbConnection.Database
+			.Table<CategoryModel>()
+			.Where(c => c.Id == categoryToUpdate.Id)
+			.FirstOrDefaultAsync();
+
+		return _mapper.MapToDomain(updatedCategory);
+	}
+
+	public async Task<Guid> Delete(Guid categoryId)
+	{
+		await _dbConnection.Init();
+
+		await _dbConnection.Database
+			.Table<CategoryModel>()
+			.DeleteAsync(c => c.Id == categoryId);
+		
+		return categoryId;
 	}
 }

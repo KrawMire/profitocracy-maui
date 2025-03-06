@@ -5,7 +5,9 @@
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Home"
                               x:Class="Profitocracy.Mobile.Views.Home.HomePage"
+                              x:DataType="viewmodel:HomePageViewModel"
                               Title="{x:Static resx:AppResources.Pages_Home}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                               NavigatedTo="HomePage_OnNavigated">
@@ -69,11 +71,11 @@
                                Text="{x:Static resx:AppResources.Home_DailyAmounts}"/>
                         <Grid Margin="0, 16, 0, 0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="64" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <StackLayout Grid.Column="0"
-                                         Padding="0, 0, 8, 0">
+                            <StackLayout Grid.Column="0">
                                 <Label Style="{StaticResource ExpenseCardSubtitle}"
                                        Text="{x:Static resx:AppResources.Home_TodayBalance}"/>
                                 <ProgressBar Style="{StaticResource ExpenseCardProgressBar}"
@@ -86,8 +88,7 @@
                                            Text="{Binding TodayPlannedAmount}" />
                                 </FlexLayout>
                             </StackLayout>
-                            <StackLayout Grid.Column="1"
-                                         Padding="8, 0, 0, 0">
+                            <StackLayout Grid.Column="2">
                                 <Label Style="{StaticResource ExpenseCardSubtitle}"
                                        Text="{x:Static resx:AppResources.Home_TomorrowBalance}"/>
                                 <Label Style="{StaticResource ExpenseCardSubtitle}"

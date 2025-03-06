@@ -15,8 +15,8 @@
         <ApplicationTitle>Profitocracy</ApplicationTitle>
         <ApplicationId>com.krawmire.profitocracy</ApplicationId>
         
-        <ApplicationVersion>20</ApplicationVersion>
-        <ApplicationDisplayVersion>1.4.0</ApplicationDisplayVersion>
+        <ApplicationVersion>21</ApplicationVersion>
+        <ApplicationDisplayVersion>1.5.0</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
@@ -29,10 +29,11 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
-        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.90" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.40" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.40" />
+        
+        <!-- Development dependencies -->
+        <PackageReference Condition="'$(Configuration)' != 'Release'" Include="Microsoft.Extensions.Logging.Debug" Version="9.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -57,60 +58,9 @@
         <MauiImage Update="Resources\Images\settings.png" BaseSize="24,24" />
 
         <!-- Used by the rest of the application -->
-        <MauiImage Update="Resources\Images\bin_red.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\bin.png" BaseSize="20,20" />
+        <MauiImage Update="Resources\Images\edit.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\currencies.png" BaseSize="20,20" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <MauiXaml Update="Pages\Home\HomePage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Pages\Settings\SettingsPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Pages\Transactions\TransactionsPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Pages\CurrencyRates\CurrencyRatesPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Views\Settings\CategoriesSettings\ExpenseCategoriesSettingsPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Pages\Settings\SettingsPage.xaml.cs">
-        <DependentUpon>SettingsPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Pages\Transactions\TransactionsPage.xaml.cs">
-        <DependentUpon>TransactionsPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Pages\Home\HomePage.xaml.cs">
-        <DependentUpon>HomePage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Pages\CurrencyRates\CurrencyRatesPage.xaml.cs">
-        <DependentUpon>CurrencyRatesPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Views\Settings\CategoriesSettings\ExpenseCategoriesSettingsPage.xaml.cs">
-        <DependentUpon>ExpenseCategoriesSettingsPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Resources\Strings\AppResources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>AppResources.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Strings\AppResources.ru.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>AppResources.ru.resx</DependentUpon>
-      </Compile>
     </ItemGroup>
 
     <ItemGroup>

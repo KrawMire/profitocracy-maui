@@ -4,7 +4,9 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Settings"
                               x:Class="Profitocracy.Mobile.Views.Settings.ThemeSettings.ThemeSettingsPage"
+                              x:DataType="viewmodel:ThemeSettingsPageViewModel"
                               Title="{x:Static resx:AppResources.Pages_Theme}"
                               Loaded="ThemeSettingsPage_OnLoaded"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">

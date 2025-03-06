@@ -4,8 +4,11 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
-                              x:Class="Profitocracy.Mobile.Views.Transactions.AddTransactionPage"
-                              Loaded="AddTransactionPage_OnLoaded"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Transactions"
+                              xmlns:categorymodel="clr-namespace:Profitocracy.Mobile.Models.Categories"
+                              x:Class="Profitocracy.Mobile.Views.Transactions.EditTransactionPage"
+                              x:DataType="viewmodel:EditTransactionPageViewModel"
+                              Loaded="EditTransactionPage_OnLoaded"
                               Shell.PresentationMode="ModalAnimated"
                               Padding="16">
     <abstractions:BaseContentPage.Content>
@@ -190,8 +193,8 @@
                             <Label Text="{x:Static resx:AppResources.AddTransaction_Category}"/>
                             <Picker Margin="0,4,0,0"
                                     x:Name="CategoryPicker"
-                                    ItemDisplayBinding="{Binding Name}"
-                                    SelectedItem="{Binding Category}"/>
+                                    SelectedItem="{Binding Category}"
+                                    ItemDisplayBinding="{Binding Name}" />
                         </StackLayout>
                     
                         <StackLayout Margin="0,16,0,0">
@@ -218,8 +221,7 @@
             <Button Grid.Row="3"
                     Text="{x:Static resx:AppResources.AddTransaction_SaveTransaction}"
                     VerticalOptions="End"
-                    x:Name="AddTransactionButton"
-                    Clicked="AddTransactionButton_OnClicked"/>
+                    Clicked="EditTransactionButton_OnClicked"/>
         </Grid>
     </abstractions:BaseContentPage.Content>
 </abstractions:BaseContentPage>

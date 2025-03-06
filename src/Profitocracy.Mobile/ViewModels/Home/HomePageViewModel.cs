@@ -39,7 +39,7 @@ public class HomePageViewModel : BaseNotifyObject
     private bool _isDisplayNoCategories;
     private bool _isRefreshing = true;
     
-    private readonly IProfileService _profileService;
+    private readonly ICalculationService _calculationService;
 
     public Guid ProfileId { get; private set; }
     
@@ -185,9 +185,9 @@ public class HomePageViewModel : BaseNotifyObject
     
     public readonly ObservableCollection<CategoryExpenseModel> CategoriesExpenses = [];
     
-    public HomePageViewModel(IProfileService profileService)
+    public HomePageViewModel(ICalculationService calculationService)
     {
-        _profileService = profileService;
+        _calculationService = calculationService;
         RefreshCommand = new Command(
             execute: Refresh,
             canExecute: () => !IsRefreshing);
@@ -207,7 +207,7 @@ public class HomePageViewModel : BaseNotifyObject
     
     public async Task Initialize()
     {
-        var profile = await _profileService.GetCurrentProfile();
+        var profile = await _calculationService.GetCurrentProfile();
 
         if (profile is null)
         {
@@ -222,6 +222,7 @@ public class HomePageViewModel : BaseNotifyObject
         DateTo = profile.BillingPeriod.DateTo.ToShortDateString();
         
         InitializeExpenses(profile.Expenses);
+        CategoriesExpenses.Clear();
 
         if (profile.CategoriesExpenses.Count > 0)
         {
@@ -264,8 +265,6 @@ public class HomePageViewModel : BaseNotifyObject
 
     private void InitializeCategoriesExpenses(List<ProfileCategory> categories)
     {
-        CategoriesExpenses.Clear();
-        
         foreach (var category in categories)
         {
             decimal? plannedAmount = null;

@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Profitocracy.Core;
 using Profitocracy.Infrastructure;
 using Profitocracy.Mobile.ViewModels.Categories;
@@ -24,7 +23,6 @@ public static class MauiProgram
 		
 		builder
 			.UseMauiApp<App>()
-			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -66,11 +64,11 @@ public static class MauiProgram
 		_ = mauiAppBuilder.Services
 			.AddTransient<HomePageViewModel>()
 			.AddTransient<SetupPageViewModel>()
-			.AddTransient<AddTransactionPageViewModel>()
+			.AddTransient<EditTransactionPageViewModel>()
 			.AddTransient<FilteredTransactionsPageViewModel>()
 			.AddTransient<TransactionsPageViewModel>()
 			.AddTransient<ExpenseCategoriesSettingsPageViewModel>()
-			.AddTransient<AddExpenseCategoryPageViewModel>()
+			.AddTransient<EditExpenseCategoryPageViewModel>()
 			.AddTransient<LanguageSettingsViewModel>()
 			.AddTransient<ThemeSettingsPageViewModel>();
 		
@@ -84,11 +82,11 @@ public static class MauiProgram
 			.AddSingleton<SetupPage>()
 			.AddSingleton<TransactionsPage>()
 			.AddTransient<FilteredTransactionsPage>()
-			.AddTransient<AddTransactionPage>()
+			.AddTransient<EditTransactionPage>()
 			.AddTransient<ExpenseCategoriesSettingsPage>()
 			.AddTransient<ThemeSettingsPage>()
 			.AddTransient<LanguageSettingsPage>()
-			.AddTransient<AddExpenseCategoryPage>();
+			.AddTransient<EditExpenseCategoryPage>();
 		
 		return mauiAppBuilder;
 	}

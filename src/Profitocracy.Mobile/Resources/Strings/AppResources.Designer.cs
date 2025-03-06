@@ -357,9 +357,9 @@ namespace Profitocracy.Mobile.Resources.Strings {
             }
         }
         
-        internal static string CommonError_OpenAddTransactionPage {
+        internal static string CommonError_OpenEditTransactionPage {
             get {
-                return ResourceManager.GetString("CommonError_OpenAddTransactionPage", resourceCulture);
+                return ResourceManager.GetString("CommonError_OpenEditTransactionPage", resourceCulture);
             }
         }
         
@@ -480,6 +480,42 @@ namespace Profitocracy.Mobile.Resources.Strings {
         internal static string Transactions_Income {
             get {
                 return ResourceManager.GetString("Transactions_Income", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_FindTransactionToEdit {
+            get {
+                return ResourceManager.GetString("CommonError_FindTransactionToEdit", resourceCulture);
+            }
+        }
+        
+        internal static string InfoAlert_FeatureNotAvailable_Message {
+            get {
+                return ResourceManager.GetString("InfoAlert_FeatureNotAvailable_Message", resourceCulture);
+            }
+        }
+        
+        internal static string InfoAlert_FeatureNotAvailable_Title {
+            get {
+                return ResourceManager.GetString("InfoAlert_FeatureNotAvailable_Title", resourceCulture);
+            }
+        }
+        
+        internal static string InfoAlert_FeatureNotAvailable_Ok {
+            get {
+                return ResourceManager.GetString("InfoAlert_FeatureNotAvailable_Ok", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_FindCategoryToDelete {
+            get {
+                return ResourceManager.GetString("CommonError_FindCategoryToDelete", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_FindCategoryToEdit {
+            get {
+                return ResourceManager.GetString("CommonError_FindCategoryToEdit", resourceCulture);
             }
         }
     }

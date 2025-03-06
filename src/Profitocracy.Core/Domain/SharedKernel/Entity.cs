@@ -2,7 +2,7 @@ namespace Profitocracy.Core.Domain.SharedKernel;
 
 public abstract class Entity<T>
 {
-	public Entity(T id)
+	protected Entity(T id)
 	{
 		Id = id;
 	}

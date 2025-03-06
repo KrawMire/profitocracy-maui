@@ -8,17 +8,17 @@ using Profitocracy.Core.Specifications;
 namespace Profitocracy.Core.Domain.Services;
 
 /// <summary>
-/// This internal implementation of <see cref="IProfileService"/> is used
+/// This internal implementation of <see cref="ICalculationService"/> is used
 /// because only it should know about <see cref="Profile"/> implementation
 /// details and how to deal with them. 
 /// </summary>
-internal class ProfileService : IProfileService
+internal class CalculationService : ICalculationService
 {
 	private readonly IProfileRepository _profileRepository;
 	private readonly ITransactionRepository _transactionRepository;
 	private readonly ICategoryRepository _categoryRepository;
 	
-	public ProfileService(
+	public CalculationService(
 		IProfileRepository profileRepository, 
 		ITransactionRepository transactionRepository, 
 		ICategoryRepository categoryRepository)
@@ -84,25 +84,8 @@ internal class ProfileService : IProfileService
 		}
 		
 		var updatedProfile = await _profileRepository.Update(profile);
+		
+		// Supposed to be executed a maximum of 2 times
 		return await PopulateAndProcessProfile(updatedProfile);
-
-	} 
-	
-	/// <inheritdoc />
-	public async Task<Profile?> GetCurrentProfileForPeriod(DateTime dateFrom, DateTime dateTo)
-	{
-		var profile = await _profileRepository.GetCurrentProfile();
-
-		if (profile is null)
-		{
-			return null;
-		}
-
-		var transactions = await _transactionRepository.GetForPeriod(
-			profile.Id,
-			dateFrom,
-			dateTo);
-
-		throw new NotImplementedException();
 	}
 }

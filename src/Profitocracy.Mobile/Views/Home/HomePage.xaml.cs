@@ -13,8 +13,7 @@ public partial class HomePage : BaseContentPage
 	
 	public HomePage(HomePageViewModel viewModel)
 	{
-		_viewModel = viewModel;
-		BindingContext = _viewModel;
+		BindingContext = _viewModel = viewModel;
 		InitializeComponent();
 
 		CategoriesExpensesCollectionView.ItemsSource = _viewModel.CategoriesExpenses;

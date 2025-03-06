@@ -2,10 +2,12 @@
 
 <abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                              x:Class="Profitocracy.Mobile.Views.Setup.SetupPage"
                               xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Setup"
+                              x:Class="Profitocracy.Mobile.Views.Setup.SetupPage"
+                              x:DataType="viewmodel:SetupPageViewModel"
                               ios:Page.ModalPresentationStyle="FullScreen"
                               Shell.PresentationMode="ModalAnimated"
                               Padding="16">

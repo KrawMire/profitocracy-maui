@@ -5,7 +5,9 @@
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transactions"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Transactions"
                               x:Class="Profitocracy.Mobile.Views.Transactions.TransactionsPage"
+                              x:DataType="viewmodel:TransactionsPageViewModel"
                               Title="{x:Static resx:AppResources.Pages_Transactions}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                               NavigatedTo="TransactionsPage_NavigatedTo">
@@ -57,12 +59,23 @@
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItemView Width="56"
+                                <SwipeItemView x:Name="DeleteTransactionSwipeItem"
+                                               Width="56"
                                                Padding="24"
-                                               BackgroundColor="Tomato"
-                                               Invoked="SwipeItem_OnInvoked">
+                                               BackgroundColor="{StaticResource DangerRed}"
+                                               Invoked="DeleteTransactionSwipeItem_OnInvoked">
                                     <VerticalStackLayout VerticalOptions="Center">
                                         <Image Source="bin.png" 
+                                               Width="10" />
+                                    </VerticalStackLayout>
+                                </SwipeItemView>
+                                <SwipeItemView x:Name="EditTransactionSwipeItem"
+                                               Width="56"
+                                               Padding="24"
+                                               BackgroundColor="{StaticResource InfoBlue}"
+                                               Invoked="EditTransactionSwipeItem_OnInvoked">
+                                    <VerticalStackLayout VerticalOptions="Center">
+                                        <Image Source="edit.png" 
                                                Width="10" />
                                     </VerticalStackLayout>
                                 </SwipeItemView>

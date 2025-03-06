@@ -42,6 +42,20 @@ internal class TransactionRepository : ITransactionRepository
 		return domainTransactions;
 	}
 
+	public async Task<Transaction?> GetById(Guid transactionId)
+	{
+		await _dbConnection.Init();
+
+		var transaction = await _dbConnection.Database
+			.Table<TransactionModel>()
+			.Where(t => t.Id.Equals(transactionId))
+			.FirstOrDefaultAsync();
+
+		return transaction is not null 
+			? _mapper.MapToDomain(transaction) 
+			: null;
+	}
+
 	public async Task<List<Transaction>> GetForPeriod(Guid profileId, DateTime dateFrom, DateTime dateTo)
 	{
 		await _dbConnection.Init();
@@ -110,7 +124,7 @@ internal class TransactionRepository : ITransactionRepository
 		await _dbConnection.Init();
 		
 		var transactionToCreate = _mapper.MapToModel(transaction);
-		_ = await _dbConnection.Database.InsertAsync(transactionToCreate);
+		await _dbConnection.Database.InsertAsync(transactionToCreate);
 		
 		var createdTransaction = await _dbConnection.Database
 			.Table<TransactionModel>()
@@ -120,11 +134,65 @@ internal class TransactionRepository : ITransactionRepository
 		return _mapper.MapToDomain(createdTransaction);
 	}
 
+	public async Task<Transaction> Update(Transaction transaction)
+	{
+		await _dbConnection.Init();
+		
+		var transactionToUpdate = _mapper.MapToModel(transaction);
+		await _dbConnection.Database.UpdateAsync(transactionToUpdate);
+		
+		var updatedTransaction = await _dbConnection.Database
+			.Table<TransactionModel>()
+			.Where(t => t.Id.Equals(transaction.Id))
+			.FirstOrDefaultAsync();
+
+		return _mapper.MapToDomain(updatedTransaction);
+	}
+
+	public async Task<Guid> ClearWithCategory(Guid categoryId)
+	{
+		await _dbConnection.Init();
+
+		var transactionsToUpdate = await _dbConnection.Database
+			.Table<TransactionModel>()
+			.Where(t => t.CategoryId == categoryId)
+			.ToListAsync();
+		
+		foreach (var transaction in transactionsToUpdate)
+		{
+			transaction.CategoryId = null;
+			transaction.CategoryName = null;
+		}
+		
+		await _dbConnection.Database.UpdateAllAsync(transactionsToUpdate);
+		
+		return categoryId;
+	}
+
+	public async Task<Guid> ChangeCategoryName(Guid categoryId, string newName)
+	{
+		await _dbConnection.Init();
+
+		var transactionsToUpdate = await _dbConnection.Database
+			.Table<TransactionModel>()
+			.Where(t => t.CategoryId == categoryId)
+			.ToListAsync();
+		
+		foreach (var transaction in transactionsToUpdate)
+		{
+			transaction.CategoryName = newName;
+		}
+		
+		await _dbConnection.Database.UpdateAllAsync(transactionsToUpdate);
+		
+		return categoryId;
+	}
+
 	public async Task<Guid> Delete(Guid transactionId)
 	{
 		await _dbConnection.Init();
 
-		_ = await _dbConnection.Database
+		await _dbConnection.Database
 			.Table<TransactionModel>()
 			.DeleteAsync(t => t.Id == transactionId);
 

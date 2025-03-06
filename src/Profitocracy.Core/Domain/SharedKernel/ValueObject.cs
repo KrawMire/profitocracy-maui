@@ -1,6 +1,3 @@
 namespace Profitocracy.Core.Domain.SharedKernel;
 
-public abstract class ValueObject
-{
-	
-}
+public abstract class ValueObject;
