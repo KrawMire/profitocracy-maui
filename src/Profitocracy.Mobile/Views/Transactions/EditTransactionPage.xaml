@@ -193,9 +193,8 @@
                             <Label Text="{x:Static resx:AppResources.AddTransaction_Category}"/>
                             <Picker Margin="0,4,0,0"
                                     x:Name="CategoryPicker"
-                                    ItemsSource="{Binding AvailableCategories}"
                                     SelectedItem="{Binding Category}"
-                                    ItemDisplayBinding="{Binding Source={RelativeSource AncestorType={x:Type TypeName=categorymodel:CategoryModel}}, Path=Name}" />
+                                    ItemDisplayBinding="{Binding Name}" />
                         </StackLayout>
                     
                         <StackLayout Margin="0,16,0,0">
