@@ -488,5 +488,29 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("CommonError_FindTransactionToEdit", resourceCulture);
             }
         }
+        
+        internal static string InfoAlert_FeatureNotAvailable_Message {
+            get {
+                return ResourceManager.GetString("InfoAlert_FeatureNotAvailable_Message", resourceCulture);
+            }
+        }
+        
+        internal static string InfoAlert_FeatureNotAvailable_Title {
+            get {
+                return ResourceManager.GetString("InfoAlert_FeatureNotAvailable_Title", resourceCulture);
+            }
+        }
+        
+        internal static string InfoAlert_FeatureNotAvailable_Ok {
+            get {
+                return ResourceManager.GetString("InfoAlert_FeatureNotAvailable_Ok", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_FindCategoryToDelete {
+            get {
+                return ResourceManager.GetString("CommonError_FindCategoryToDelete", resourceCulture);
+            }
+        }
     }
 }

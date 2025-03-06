@@ -240,4 +240,16 @@
     <data name="CommonError_FindTransactionToEdit" xml:space="preserve">
         <value>Не удалось найти транзакцию для редактирования</value>
     </data>
+    <data name="InfoAlert_FeatureNotAvailable_Message" xml:space="preserve">
+        <value>Эта функция пока не доступна. Но скоро мы её добавим</value>
+    </data>
+    <data name="InfoAlert_FeatureNotAvailable_Title" xml:space="preserve">
+        <value>Пока не доступно</value>
+    </data>
+    <data name="InfoAlert_FeatureNotAvailable_Ok" xml:space="preserve">
+        <value>Понятно</value>
+    </data>
+    <data name="CommonError_FindCategoryToDelete" xml:space="preserve">
+        <value>Не удалось найти категорию для удаления</value>
+    </data>
 </root>

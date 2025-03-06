@@ -154,7 +154,7 @@
         <value>To make the changes take effect, you need to restart the application.</value>
     </data>
     <data name="InfoAlert_ChangeLanguage_Ok" xml:space="preserve">
-        <value>Ok</value>
+        <value>OK</value>
     </data>
     <data name="ErrorAlert_Title" xml:space="preserve">
         <value>Error</value>
@@ -239,5 +239,17 @@
     </data>
     <data name="CommonError_FindTransactionToEdit" xml:space="preserve">
         <value>Cannot find transaction to edit</value>
+    </data>
+    <data name="InfoAlert_FeatureNotAvailable_Message" xml:space="preserve">
+        <value>This feature is not available yet. We will implement it soon</value>
+    </data>
+    <data name="InfoAlert_FeatureNotAvailable_Title" xml:space="preserve">
+        <value>Not Available Yet</value>
+    </data>
+    <data name="InfoAlert_FeatureNotAvailable_Ok" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="CommonError_FindCategoryToDelete" xml:space="preserve">
+        <value>Cannot find category to delete</value>
     </data>
 </root>
