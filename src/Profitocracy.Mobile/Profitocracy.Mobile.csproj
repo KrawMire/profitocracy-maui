@@ -29,10 +29,11 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
-        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.90" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.40" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.40" />
+        
+        <!-- Development dependencies -->
+        <PackageReference Condition="'$(Configuration)' != 'Release'" Include="Microsoft.Extensions.Logging.Debug" Version="9.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -57,7 +58,6 @@
         <MauiImage Update="Resources\Images\settings.png" BaseSize="24,24" />
 
         <!-- Used by the rest of the application -->
-        <MauiImage Update="Resources\Images\bin_red.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\bin.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\edit.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\currencies.png" BaseSize="20,20" />
