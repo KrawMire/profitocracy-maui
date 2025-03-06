@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
+using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Core.Domain.Model.Transactions.Entities;
 using Profitocracy.Core.Domain.Model.Transactions.Factories;
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
@@ -10,7 +11,7 @@ using Profitocracy.Mobile.Resources.Strings;
 
 namespace Profitocracy.Mobile.ViewModels.Transactions;
 
-public class AddTransactionPageViewModel : BaseNotifyObject
+public class EditTransactionPageViewModel : BaseNotifyObject
 {
     private readonly IProfileRepository _profileRepository;
     private readonly ITransactionRepository _transactionRepository;
@@ -22,6 +23,8 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         ProfileId = Guid.Empty,
         Name = AppResources.AddTransaction_NoneCategory
     };
+
+    private Guid? _transactionId;
     
     private DateTime _timestamp = DateTime.Now;
     private string _amount = string.Empty;
@@ -35,8 +38,8 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     private bool _isMain;
     private bool _isSecondary;
     private bool _isSaved;
-        
-    public AddTransactionPageViewModel(
+    
+    public EditTransactionPageViewModel(
         IProfileRepository profileRepository,
         ITransactionRepository transactionRepository, 
         ICategoryRepository categoryRepository)
@@ -45,6 +48,8 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         _transactionRepository = transactionRepository;
         _categoryRepository = categoryRepository;
 
+        _transactionId = null;
+        
         _transactionType = 1;
         _spendingType = 0;
         
@@ -57,9 +62,13 @@ public class AddTransactionPageViewModel : BaseNotifyObject
     }
     
     public readonly ObservableCollection<CategoryModel> AvailableCategories = [];
-    
     public CategoryModel? Category { get; set; }
 
+    public Guid TransactionId
+    {
+        set => _transactionId = value;
+    }
+    
     public bool IsIncome
     {
         get => _isIncome;
@@ -174,7 +183,7 @@ public class AddTransactionPageViewModel : BaseNotifyObject
 
     public string Description
     {
-        get => _description ?? "";
+        get => _description ?? string.Empty;
         set
         {
             _description = string.IsNullOrWhiteSpace(value) ? null : value;
@@ -199,48 +208,96 @@ public class AddTransactionPageViewModel : BaseNotifyObject
         {
             AvailableCategories.Add(CategoryModel.FromDomain(category));
         }
+
+        if (_transactionId is not null)
+        {
+            await InitializeEditableTransaction();
+        }
     }
 
-    public async Task CreateTransaction()
+    private async Task InitializeEditableTransaction()
+    {
+        // Using null-forgiving operator because caller have already done null check
+        var transaction = await _transactionRepository.GetById((Guid)_transactionId!);
+
+        if (transaction is null)
+        {
+            throw new ArgumentNullException(AppResources.CommonError_FindTransactionToEdit);
+        }
+
+        var isIncomeTransaction = 
+            transaction.Type == Core.Domain.Model.Transactions.ValueObjects.TransactionType.Income;
+
+        IsIncome = isIncomeTransaction;
+        IsExpense = !isIncomeTransaction;
+        IsMain = transaction.SpendingType == Core.Domain.Model.Transactions.ValueObjects.SpendingType.Main;
+        IsSecondary = transaction.SpendingType == Core.Domain.Model.Transactions.ValueObjects.SpendingType.Secondary;
+        IsSaved = transaction.SpendingType == Core.Domain.Model.Transactions.ValueObjects.SpendingType.Saved;
+        
+        TransactionType = (int)transaction.Type;
+        SpendingType = isIncomeTransaction ? null : (int?)transaction.SpendingType;
+        Amount = transaction.Amount.ToString(CultureInfo.CurrentCulture);
+        Timestamp = transaction.Timestamp;
+        Description = transaction.Description!;
+        
+        if (transaction.Category is not null)
+        {
+            Category = AvailableCategories.FirstOrDefault(c => c.Id == transaction.Category.Id);   
+        }
+    }
+
+    public Task SaveTransaction()
+    {
+        return _transactionId is null
+            ? CreateTransaction()
+            : UpdateTransaction();
+    }
+
+    private async Task CreateTransaction()
+    {
+        var transaction = await BuildTransaction(null);
+        await _transactionRepository.Create(transaction);
+    }
+    
+    private async Task UpdateTransaction()
+    {
+        var transaction = await BuildTransaction(_transactionId);
+        await _transactionRepository.Update(transaction);
+    }
+    
+    private async Task<Transaction> BuildTransaction(Guid? transactionId)
     {
         _amount = _amount.Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
         
         if (!decimal.TryParse(_amount, out var amount))
         {
-            throw new Exception(AppResources.CommonError_AmountNumber);
+            throw new InvalidCastException(AppResources.CommonError_AmountNumber);
         }
         
         if (_transactionType < 0)
         {
-            throw new Exception(AppResources.CommonError_TransactionType);
+            throw new ArgumentOutOfRangeException(AppResources.CommonError_TransactionType);
         }
         
         var currentProfileId = await _profileRepository.GetCurrentProfileId();
 
         if (currentProfileId is null)
         {
-            throw new Exception(AppResources.CommonError_GetCurrentProfile);
+            throw new ArgumentNullException(AppResources.CommonError_GetCurrentProfile);
         }
 
         TransactionCategory? category = null;
         
-        if (Category?.Id is not null)
+        if (Category?.Id is not null && !Category.Id.Equals(NoneCategory.Id))
         {
-            if (Category.Id.Equals(NoneCategory.Id))
+            category = new TransactionCategory((Guid)Category.Id)
             {
-                category = null;
-            }
-            else
-            {
-                category = new TransactionCategory((Guid)Category.Id)
-                {
-                    Name = Category.Name
-                };   
-            }
+                Name = Category.Name
+            };
         }
         
-        var transaction = TransactionFactory.CreateTransaction(
-            id: null,
+        return TransactionFactory.CreateTransaction(
+            id: transactionId,
             amount,
             (Guid)currentProfileId,
             (TransactionType)_transactionType,
@@ -249,7 +306,5 @@ public class AddTransactionPageViewModel : BaseNotifyObject
             _description,
             geoTag: null,
             category);
-        
-        await _transactionRepository.Create(transaction);
     }
 }

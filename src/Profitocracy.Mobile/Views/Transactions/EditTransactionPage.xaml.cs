@@ -3,20 +3,35 @@ using Profitocracy.Mobile.ViewModels.Transactions;
 
 namespace Profitocracy.Mobile.Views.Transactions;
 
-public partial class AddTransactionPage : BaseContentPage
+public partial class EditTransactionPage : BaseContentPage
 {
-	private readonly AddTransactionPageViewModel _viewModel;
+	private readonly EditTransactionPageViewModel _viewModel;
 	
-	public AddTransactionPage(AddTransactionPageViewModel viewModel)
+	public EditTransactionPage(EditTransactionPageViewModel viewModel)
 	{
-		_viewModel = viewModel;
-		BindingContext = _viewModel;
-	
 		InitializeComponent();
-
+		
+		BindingContext = _viewModel = viewModel;
 		CategoryPicker.ItemsSource = _viewModel.AvailableCategories;
 	}
 
+	public void AddTransactionId(Guid transactionId)
+	{
+		_viewModel.TransactionId = transactionId;
+	}
+
+	private void EditTransactionPage_OnLoaded(object? sender, EventArgs e)
+	{
+		ProcessAction(async () =>
+		{
+			await _viewModel.Initialize();
+			if (_viewModel.Category is not null)
+			{
+				CategoryPicker.SelectedItem = _viewModel.Category;	
+			}
+		});
+	}
+	
 	private void CloseButton_OnClicked(object? sender, EventArgs e)
 	{
 		ProcessAction(async () =>
@@ -25,20 +40,12 @@ public partial class AddTransactionPage : BaseContentPage
 		});
 	}
 
-	private void AddTransactionButton_OnClicked(object? sender, EventArgs e)
+	private void EditTransactionButton_OnClicked(object? sender, EventArgs e)
 	{
 		ProcessAction(async () =>
 		{
-			await _viewModel.CreateTransaction();
+			await _viewModel.SaveTransaction();
 			await Navigation.PopModalAsync();
-		});
-	}
-
-	private void AddTransactionPage_OnLoaded(object? sender, EventArgs e)
-	{
-		ProcessAction(async () =>
-		{
-			await _viewModel.Initialize();
 		});
 	}
 

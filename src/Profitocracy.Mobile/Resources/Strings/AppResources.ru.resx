@@ -174,8 +174,8 @@
     <data name="CommonError_OpenAddCategoryPage" xml:space="preserve">
         <value>Не удалось открыть страницу создания новой категории</value>
     </data>
-    <data name="CommonError_OpenAddTransactionPage" xml:space="preserve">
-        <value>Не удалось открыть страницу создания транзакции</value>
+    <data name="CommonError_OpenEditTransactionPage" xml:space="preserve">
+        <value>Не удалось открыть страницу редактирования транзакции</value>
     </data>
     <data name="CommonError_InternalErrorTryAgain" xml:space="preserve">
         <value>Произошла внутренняя ошибка. Попробуйте снова</value>
@@ -236,5 +236,8 @@
     </data>
     <data name="Transactions_Secondary" xml:space="preserve">
         <value>Второстепенные</value>
+    </data>
+    <data name="CommonError_FindTransactionToEdit" xml:space="preserve">
+        <value>Не удалось найти транзакцию для редактирования</value>
     </data>
 </root>

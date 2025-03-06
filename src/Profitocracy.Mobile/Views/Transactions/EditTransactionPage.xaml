@@ -4,8 +4,8 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
-                              x:Class="Profitocracy.Mobile.Views.Transactions.AddTransactionPage"
-                              Loaded="AddTransactionPage_OnLoaded"
+                              x:Class="Profitocracy.Mobile.Views.Transactions.EditTransactionPage"
+                              Loaded="EditTransactionPage_OnLoaded"
                               Shell.PresentationMode="ModalAnimated"
                               Padding="16">
     <abstractions:BaseContentPage.Content>
@@ -218,8 +218,7 @@
             <Button Grid.Row="3"
                     Text="{x:Static resx:AppResources.AddTransaction_SaveTransaction}"
                     VerticalOptions="End"
-                    x:Name="AddTransactionButton"
-                    Clicked="AddTransactionButton_OnClicked"/>
+                    Clicked="EditTransactionButton_OnClicked"/>
         </Grid>
     </abstractions:BaseContentPage.Content>
 </abstractions:BaseContentPage>

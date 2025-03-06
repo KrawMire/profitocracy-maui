@@ -11,11 +11,9 @@ public partial class TransactionsPage : BaseContentPage
 	
 	public TransactionsPage(TransactionsPageViewModel viewModel)
 	{
-		_viewModel = viewModel;
-		BindingContext = _viewModel;
-		
 		InitializeComponent();
-
+		
+		BindingContext = _viewModel = viewModel;
 		TransactionsCollectionView.ItemsSource = _viewModel.Transactions;
 	}
 
@@ -31,34 +29,63 @@ public partial class TransactionsPage : BaseContentPage
 	{
 		ProcessAction(async () =>
 		{
-			var addPage = Handler?.MauiContext?.Services.GetService<AddTransactionPage>();
+			var editPage = Handler?.MauiContext?.Services.GetService<EditTransactionPage>();
 
-			if (addPage is null)
+			if (editPage is null)
 			{
-				throw new Exception(AppResources.CommonError_OpenAddTransactionPage);
+				throw new ArgumentNullException(AppResources.CommonError_OpenEditTransactionPage);
 			}
 		
-			await Navigation.PushModalAsync(addPage);
+			await Navigation.PushModalAsync(editPage);
 		});
 	}
 
-	private void SwipeItem_OnInvoked(object? sender, EventArgs e)
+	private void DeleteTransactionSwipeItem_OnInvoked(object? sender, EventArgs e)
 	{
 		ProcessAction(async () =>
 		{
 			if (sender is not SwipeItemView swipeItem)
 			{
-				throw new Exception(AppResources.CommonError_InternalErrorTryAgain);
+				throw new InvalidCastException(AppResources.CommonError_InternalErrorTryAgain);
 			}
 
 			var transaction = swipeItem.BindingContext as TransactionModel;
 
 			if (transaction?.Id is null)
 			{
-				throw new Exception(AppResources.CommonError_FindTransactionToDelete);
+				throw new ArgumentNullException(AppResources.CommonError_FindTransactionToDelete);
 			}
 		
 			await _viewModel.DeleteTransaction((Guid)transaction.Id);
+		});
+	}
+
+	private void EditTransactionSwipeItem_OnInvoked(object? sender, EventArgs e)
+	{
+		ProcessAction(async () =>
+		{
+			if (sender is not SwipeItemView swipeItem)
+			{
+				throw new InvalidCastException(AppResources.CommonError_InternalErrorTryAgain);
+			}
+			
+			var transaction = swipeItem.BindingContext as TransactionModel;
+
+			if (transaction?.Id is null)
+			{
+				throw new ArgumentNullException(AppResources.CommonError_FindTransactionToEdit);
+			}
+			
+			var editPage = Handler?.MauiContext?.Services.GetService<EditTransactionPage>();
+
+			if (editPage is null)
+			{
+				throw new ArgumentNullException(AppResources.CommonError_OpenEditTransactionPage);
+			}
+		
+			editPage.AddTransactionId((Guid)transaction.Id);
+			
+			await Navigation.PushModalAsync(editPage);
 		});
 	}
 }

@@ -357,9 +357,9 @@ namespace Profitocracy.Mobile.Resources.Strings {
             }
         }
         
-        internal static string CommonError_OpenAddTransactionPage {
+        internal static string CommonError_OpenEditTransactionPage {
             get {
-                return ResourceManager.GetString("CommonError_OpenAddTransactionPage", resourceCulture);
+                return ResourceManager.GetString("CommonError_OpenEditTransactionPage", resourceCulture);
             }
         }
         
@@ -480,6 +480,12 @@ namespace Profitocracy.Mobile.Resources.Strings {
         internal static string Transactions_Secondary {
             get {
                 return ResourceManager.GetString("Transactions_Secondary", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_FindTransactionToEdit {
+            get {
+                return ResourceManager.GetString("CommonError_FindTransactionToEdit", resourceCulture);
             }
         }
     }

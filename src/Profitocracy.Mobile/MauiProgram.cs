@@ -66,7 +66,7 @@ public static class MauiProgram
 		_ = mauiAppBuilder.Services
 			.AddTransient<HomePageViewModel>()
 			.AddTransient<SetupPageViewModel>()
-			.AddTransient<AddTransactionPageViewModel>()
+			.AddTransient<EditTransactionPageViewModel>()
 			.AddTransient<FilteredTransactionsPageViewModel>()
 			.AddTransient<TransactionsPageViewModel>()
 			.AddTransient<ExpenseCategoriesSettingsPageViewModel>()
@@ -84,7 +84,7 @@ public static class MauiProgram
 			.AddSingleton<SetupPage>()
 			.AddSingleton<TransactionsPage>()
 			.AddTransient<FilteredTransactionsPage>()
-			.AddTransient<AddTransactionPage>()
+			.AddTransient<EditTransactionPage>()
 			.AddTransient<ExpenseCategoriesSettingsPage>()
 			.AddTransient<ThemeSettingsPage>()
 			.AddTransient<LanguageSettingsPage>()

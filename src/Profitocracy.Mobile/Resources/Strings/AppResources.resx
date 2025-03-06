@@ -174,8 +174,8 @@
     <data name="CommonError_OpenAddCategoryPage" xml:space="preserve">
         <value>Cannot open category adding page</value>
     </data>
-    <data name="CommonError_OpenAddTransactionPage" xml:space="preserve">
-        <value>Cannot open transaction adding page</value>
+    <data name="CommonError_OpenEditTransactionPage" xml:space="preserve">
+        <value>Cannot open transaction edit page</value>
     </data>
     <data name="CommonError_InternalErrorTryAgain" xml:space="preserve">
         <value>An internal error occurred. Try again</value>
@@ -236,5 +236,8 @@
     </data>
     <data name="Transactions_Income" xml:space="preserve">
         <value>Income</value>
+    </data>
+    <data name="CommonError_FindTransactionToEdit" xml:space="preserve">
+        <value>Cannot find transaction to edit</value>
     </data>
 </root>
