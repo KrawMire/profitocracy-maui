@@ -512,5 +512,11 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("CommonError_FindCategoryToDelete", resourceCulture);
             }
         }
+        
+        internal static string CommonError_FindCategoryToEdit {
+            get {
+                return ResourceManager.GetString("CommonError_FindCategoryToEdit", resourceCulture);
+            }
+        }
     }
 }

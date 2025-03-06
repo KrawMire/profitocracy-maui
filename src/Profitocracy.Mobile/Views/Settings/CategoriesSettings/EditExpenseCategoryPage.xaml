@@ -5,10 +5,11 @@
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Categories"
-                              x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.AddExpenseCategoryPage"
-                              x:DataType="viewmodel:AddExpenseCategoryPageViewModel"
+                              x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.EditExpenseCategoryPage"
+                              x:DataType="viewmodel:EditExpenseCategoryPageViewModel"
                               Padding="16"
-                              Shell.PresentationMode="ModalAnimated">
+                              Shell.PresentationMode="ModalAnimated"
+                              Loaded="EditExpenseCategoryPage_OnLoaded">
     <abstractions:BaseContentPage.Content>
         <Grid VerticalOptions="Fill"
               RowDefinitions="auto,*,auto">

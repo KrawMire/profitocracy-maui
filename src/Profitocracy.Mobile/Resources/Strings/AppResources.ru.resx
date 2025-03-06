@@ -76,7 +76,7 @@
         <value>Настройки</value>
     </data>
     <data name="Pages_NewTransaction" xml:space="preserve">
-        <value>Новая транзакция</value>
+        <value>Транзакция</value>
     </data>
     <data name="AddTransaction_Amount" xml:space="preserve">
         <value>Сумма</value>
@@ -112,7 +112,7 @@
         <value>Тема</value>
     </data>
     <data name="Pages_NewCategory" xml:space="preserve">
-        <value>Новая категория</value>
+        <value>Категория</value>
     </data>
     <data name="AddCategory_CategoryName" xml:space="preserve">
         <value>Название категории</value>
@@ -251,5 +251,8 @@
     </data>
     <data name="CommonError_FindCategoryToDelete" xml:space="preserve">
         <value>Не удалось найти категорию для удаления</value>
+    </data>
+    <data name="CommonError_FindCategoryToEdit" xml:space="preserve">
+        <value>Не удалось найти категорию для редактирования</value>
     </data>
 </root>

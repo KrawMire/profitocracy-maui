@@ -76,7 +76,7 @@
         <value>Settings</value>
     </data>
     <data name="Pages_NewTransaction" xml:space="preserve">
-        <value>New transaction</value>
+        <value>Transaction</value>
     </data>
     <data name="AddTransaction_Expense" xml:space="preserve">
         <value>Expense</value>
@@ -115,7 +115,7 @@
         <value>No limits</value>
     </data>
     <data name="Pages_NewCategory" xml:space="preserve">
-        <value>New category</value>
+        <value>Category</value>
     </data>
     <data name="AddCategory_CategoryName" xml:space="preserve">
         <value>Category name</value>
@@ -251,5 +251,8 @@
     </data>
     <data name="CommonError_FindCategoryToDelete" xml:space="preserve">
         <value>Cannot find category to delete</value>
+    </data>
+    <data name="CommonError_FindCategoryToEdit" xml:space="preserve">
+        <value>Cannot find category to edit</value>
     </data>
 </root>

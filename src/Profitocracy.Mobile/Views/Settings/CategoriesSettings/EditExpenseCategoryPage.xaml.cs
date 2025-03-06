@@ -3,11 +3,11 @@ using Profitocracy.Mobile.ViewModels.Categories;
 
 namespace Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 
-public partial class AddExpenseCategoryPage : BaseContentPage
+public partial class EditExpenseCategoryPage : BaseContentPage
 {
-    private readonly AddExpenseCategoryPageViewModel _viewModel;
+    private readonly EditExpenseCategoryPageViewModel _viewModel;
     
-    public AddExpenseCategoryPage(AddExpenseCategoryPageViewModel viewModel)
+    public EditExpenseCategoryPage(EditExpenseCategoryPageViewModel viewModel)
     {
         InitializeComponent();
         
@@ -15,6 +15,19 @@ public partial class AddExpenseCategoryPage : BaseContentPage
         BindingContext = _viewModel;
     }
 
+    public void AddCategoryId(Guid categoryId)
+    {
+        _viewModel.CategoryId = categoryId;
+    }
+    
+    private void EditExpenseCategoryPage_OnLoaded(object? sender, EventArgs e)
+    {
+        ProcessAction(async () =>
+        {
+            await _viewModel.Initialize();
+        });
+    }
+    
     private void CloseButton_OnClicked(object? sender, EventArgs e)
     {
         ProcessAction(async () =>
@@ -27,7 +40,7 @@ public partial class AddExpenseCategoryPage : BaseContentPage
     {
         ProcessAction(async () =>
         {
-            await _viewModel.CreateCategory();
+            await _viewModel.SaveCategory();
             await Navigation.PopModalAsync();
         });
     }

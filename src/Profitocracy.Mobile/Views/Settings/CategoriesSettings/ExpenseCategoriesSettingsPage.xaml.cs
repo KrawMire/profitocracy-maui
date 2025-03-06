@@ -29,7 +29,7 @@ public partial class ExpenseCategoriesSettingsPage : BaseContentPage
 	{
 		ProcessAction(async () =>
 		{
-			await OpenAddCategoryPage();
+			await OpenEditCategoryPage(null);
 		});
 	}
 
@@ -37,7 +37,19 @@ public partial class ExpenseCategoriesSettingsPage : BaseContentPage
 	{
 		ProcessAction(async () =>
 		{
-			throw new NotImplementedException();
+			if (sender is not SwipeItemView swipeItem)
+			{
+				throw new InvalidCastException(AppResources.CommonError_InternalErrorTryAgain);
+			}
+			
+			var category = swipeItem.BindingContext as CategoryModel;
+
+			if (category?.Id is null)
+			{
+				throw new ArgumentNullException(AppResources.CommonError_FindCategoryToDelete);
+			}
+			
+			await OpenEditCategoryPage((Guid)category.Id);
 		});
 	}
 
@@ -61,13 +73,18 @@ public partial class ExpenseCategoriesSettingsPage : BaseContentPage
 		});
 	}
 	
-	private async Task OpenAddCategoryPage()
+	private async Task OpenEditCategoryPage(Guid? categoryId)
 	{
-		var addPage = Handler?.MauiContext?.Services.GetService<AddExpenseCategoryPage>();
+		var addPage = Handler?.MauiContext?.Services.GetService<EditExpenseCategoryPage>();
 
 		if (addPage is null)
 		{
 			throw new ArgumentNullException(AppResources.CommonError_OpenAddCategoryPage);
+		}
+
+		if (categoryId is not null)
+		{
+			addPage.AddCategoryId((Guid)categoryId);
 		}
 
 		await Navigation.PushModalAsync(addPage);
