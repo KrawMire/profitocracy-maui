@@ -59,58 +59,8 @@
         <!-- Used by the rest of the application -->
         <MauiImage Update="Resources\Images\bin_red.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\bin.png" BaseSize="20,20" />
+        <MauiImage Update="Resources\Images\edit.png" BaseSize="20,20" />
         <MauiImage Update="Resources\Images\currencies.png" BaseSize="20,20" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <MauiXaml Update="Pages\Home\HomePage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Pages\Settings\SettingsPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Pages\Transactions\TransactionsPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Pages\CurrencyRates\CurrencyRatesPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-        <MauiXaml Update="Views\Settings\CategoriesSettings\ExpenseCategoriesSettingsPage.xaml">
-            <SubType>Designer</SubType>
-        </MauiXaml>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Pages\Settings\SettingsPage.xaml.cs">
-        <DependentUpon>SettingsPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Pages\Transactions\TransactionsPage.xaml.cs">
-        <DependentUpon>TransactionsPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Pages\Home\HomePage.xaml.cs">
-        <DependentUpon>HomePage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Pages\CurrencyRates\CurrencyRatesPage.xaml.cs">
-        <DependentUpon>CurrencyRatesPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Views\Settings\CategoriesSettings\ExpenseCategoriesSettingsPage.xaml.cs">
-        <DependentUpon>ExpenseCategoriesSettingsPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Resources\Strings\AppResources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>AppResources.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Strings\AppResources.ru.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>AppResources.ru.resx</DependentUpon>
-      </Compile>
     </ItemGroup>
 
     <ItemGroup>
