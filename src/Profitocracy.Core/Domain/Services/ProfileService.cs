@@ -84,8 +84,9 @@ internal class ProfileService : IProfileService
 		}
 		
 		var updatedProfile = await _profileRepository.Update(profile);
+		
+		// Supposed to be executed a maximum of 2 times
 		return await PopulateAndProcessProfile(updatedProfile);
-
 	} 
 	
 	/// <inheritdoc />
