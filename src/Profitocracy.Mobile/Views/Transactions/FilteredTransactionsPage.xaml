@@ -3,9 +3,11 @@
 <abstractions:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
-                              xmlns:transactions1="clr-namespace:Profitocracy.Mobile.Models.Transactions"
+                              xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transactions"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Transactions"
                               x:Class="Profitocracy.Mobile.Views.Transactions.FilteredTransactionsPage"
+                              x:DataType="viewmodel:FilteredTransactionsPageViewModel"
                               Shell.PresentationMode="ModalAnimated">
     <abstractions:BaseContentPage.Content>
         <Grid>
@@ -30,7 +32,7 @@
             </FlexLayout>
             <CollectionView Grid.Row="1" x:Name="TransactionsCollectionView">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="transactions1:TransactionModel">
+                    <DataTemplate x:DataType="transactions:TransactionModel">
                         <Border Style="{StaticResource TransactionCard}">
                             <StackLayout>
                                 <FlexLayout JustifyContent="SpaceBetween">

@@ -4,7 +4,9 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Categories"
                               x:Class="Profitocracy.Mobile.Views.Settings.CategoriesSettings.AddExpenseCategoryPage"
+                              x:DataType="viewmodel:AddExpenseCategoryPageViewModel"
                               Padding="16"
                               Shell.PresentationMode="ModalAnimated">
     <abstractions:BaseContentPage.Content>

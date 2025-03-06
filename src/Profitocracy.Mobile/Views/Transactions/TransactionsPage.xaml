@@ -5,7 +5,9 @@
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:transactions="clr-namespace:Profitocracy.Mobile.Models.Transactions"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Transactions"
                               x:Class="Profitocracy.Mobile.Views.Transactions.TransactionsPage"
+                              x:DataType="viewmodel:TransactionsPageViewModel"
                               Title="{x:Static resx:AppResources.Pages_Transactions}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                               NavigatedTo="TransactionsPage_NavigatedTo">

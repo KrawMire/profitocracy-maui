@@ -12,7 +12,6 @@ public partial class EditTransactionPage : BaseContentPage
 		InitializeComponent();
 		
 		BindingContext = _viewModel = viewModel;
-		CategoryPicker.ItemsSource = _viewModel.AvailableCategories;
 	}
 
 	public void AddTransactionId(Guid transactionId)

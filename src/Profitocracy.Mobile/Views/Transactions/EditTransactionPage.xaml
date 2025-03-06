@@ -4,7 +4,10 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Transactions"
+                              xmlns:categorymodel="clr-namespace:Profitocracy.Mobile.Models.Categories"
                               x:Class="Profitocracy.Mobile.Views.Transactions.EditTransactionPage"
+                              x:DataType="viewmodel:EditTransactionPageViewModel"
                               Loaded="EditTransactionPage_OnLoaded"
                               Shell.PresentationMode="ModalAnimated"
                               Padding="16">
@@ -190,8 +193,9 @@
                             <Label Text="{x:Static resx:AppResources.AddTransaction_Category}"/>
                             <Picker Margin="0,4,0,0"
                                     x:Name="CategoryPicker"
-                                    ItemDisplayBinding="{Binding Name}"
-                                    SelectedItem="{Binding Category}"/>
+                                    ItemsSource="{Binding AvailableCategories}"
+                                    SelectedItem="{Binding Category}"
+                                    ItemDisplayBinding="{Binding Source={RelativeSource AncestorType={x:Type TypeName=categorymodel:CategoryModel}}, Path=Name}" />
                         </StackLayout>
                     
                         <StackLayout Margin="0,16,0,0">

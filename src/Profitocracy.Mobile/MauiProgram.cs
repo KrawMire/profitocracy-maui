@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Profitocracy.Core;
 using Profitocracy.Infrastructure;
 using Profitocracy.Mobile.ViewModels.Categories;
@@ -24,12 +23,6 @@ public static class MauiProgram
 		
 		builder
 			.UseMauiApp<App>()
-			.UseMauiCommunityToolkit()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
 			.RegisterAppServices()
 			.RegisterViewModels()
 			.RegisterViews();

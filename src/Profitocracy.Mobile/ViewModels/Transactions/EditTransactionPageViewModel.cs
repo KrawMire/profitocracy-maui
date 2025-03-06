@@ -60,8 +60,8 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         _isSecondary = false;
         _isSaved = false;
     }
-    
-    public readonly ObservableCollection<CategoryModel> AvailableCategories = [];
+
+    public ObservableCollection<CategoryModel> AvailableCategories { get; } = [];
     public CategoryModel? Category { get; set; }
 
     public Guid TransactionId

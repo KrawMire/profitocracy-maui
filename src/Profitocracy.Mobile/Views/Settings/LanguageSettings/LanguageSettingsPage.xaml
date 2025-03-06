@@ -4,7 +4,9 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
+                              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Settings"
                               x:Class="Profitocracy.Mobile.Views.Settings.LanguageSettings.LanguageSettingsPage"
+                              x:DataType="viewmodel:LanguageSettingsViewModel"
                               Title="{x:Static resx:AppResources.Pages_Language}"
                               Loaded="LanguageSettingsPage_OnLoaded"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
