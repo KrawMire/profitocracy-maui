@@ -36,6 +36,19 @@ internal class CategoryRepository : ICategoryRepository
 		return domainCategories;
 	}
 
+	public async Task<Category?> GetById(Guid categoryId)
+	{
+		await _dbConnection.Init();
+		
+		var category = await _dbConnection.Database
+			.Table<CategoryModel>()
+			.FirstOrDefaultAsync(c => c.Id == categoryId);
+
+		return category is not null
+			? _mapper.MapToDomain(category)
+			: null;
+	}
+
 	public async Task<Category> Create(Category category)
 	{
 		await _dbConnection.Init();
@@ -49,6 +62,21 @@ internal class CategoryRepository : ICategoryRepository
 			.FirstAsync();
 
 		return _mapper.MapToDomain(createdCategory);
+	}
+
+	public async Task<Category> Update(Category category)
+	{
+		await _dbConnection.Init();
+		
+		var categoryToUpdate = _mapper.MapToModel(category);
+		await _dbConnection.Database.UpdateAsync(categoryToUpdate);
+		
+		var updatedCategory = await _dbConnection.Database
+			.Table<CategoryModel>()
+			.Where(c => c.Id == categoryToUpdate.Id)
+			.FirstOrDefaultAsync();
+
+		return _mapper.MapToDomain(updatedCategory);
 	}
 
 	public async Task<Guid> Delete(Guid categoryId)

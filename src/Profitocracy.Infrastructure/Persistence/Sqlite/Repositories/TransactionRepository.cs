@@ -162,8 +162,25 @@ internal class TransactionRepository : ITransactionRepository
 		{
 			transaction.CategoryId = null;
 			transaction.CategoryName = null;
-			
-			await _dbConnection.Database.UpdateAsync(transaction);
+		}
+		
+		await _dbConnection.Database.UpdateAllAsync(transactionsToUpdate);
+		
+		return categoryId;
+	}
+
+	public async Task<Guid> ChangeCategoryName(Guid categoryId, string newName)
+	{
+		await _dbConnection.Init();
+
+		var transactionsToUpdate = await _dbConnection.Database
+			.Table<TransactionModel>()
+			.Where(t => t.CategoryId == categoryId)
+			.ToListAsync();
+		
+		foreach (var transaction in transactionsToUpdate)
+		{
+			transaction.CategoryName = newName;
 		}
 		
 		await _dbConnection.Database.UpdateAllAsync(transactionsToUpdate);

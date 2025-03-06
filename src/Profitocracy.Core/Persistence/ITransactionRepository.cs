@@ -61,6 +61,14 @@ public interface ITransactionRepository
 	Task<Guid> ClearWithCategory(Guid categoryId);
 
 	/// <summary>
+	/// Updates the name of a specified category for all transactions.
+	/// </summary>
+	/// <param name="categoryId">The unique identifier of the category to be updated.</param>
+	/// <param name="newName">The new name of category.</param>
+	/// <returns>The unique identifier of the updated category.</returns>
+	Task<Guid> ChangeCategoryName(Guid categoryId, string newName);
+
+	/// <summary>
 	/// Delete transaction by its ID
 	/// </summary>
 	/// <param name="transactionId">ID of transaction to delete</param>
