@@ -105,6 +105,16 @@ internal class TransactionRepository : ITransactionRepository
 			query = query.Where(t => t.Timestamp <= spec.ToDate);
 		}
 
+		if (spec.IsMultiCurrency is not null)
+		{
+			query = query.Where(t => t.DestinationCurrencyCode != null);
+		}
+
+		if (spec.Destination is not null)
+		{
+			query = query.Where(t => t.Destination == (short)spec.Destination);
+		}
+
 		query = query.OrderByDescending(t => t.Timestamp);
 		
 		var transactions = await query.ToListAsync();

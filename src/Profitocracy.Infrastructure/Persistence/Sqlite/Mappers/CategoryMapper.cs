@@ -1,4 +1,5 @@
 using Profitocracy.Core.Domain.Model.Categories;
+using Profitocracy.Core.Domain.Model.Categories.Factories;
 using Profitocracy.Infrastructure.Abstractions.Internal;
 using Profitocracy.Infrastructure.Persistence.Sqlite.Models.Category;
 
@@ -8,12 +9,11 @@ internal class CategoryMapper : IInfrastructureMapper<Category, CategoryModel>
 {
 	public Category MapToDomain(CategoryModel model)
 	{
-		return new Category(model.Id)
-		{
-			Name = model.Name,
-			ProfileId = model.ProfileId,
-			PlannedAmount = model.PlannedAmount
-		};
+		return CategoryFactory.CreateCategory(
+			model.Id,
+			model.ProfileId,
+			model.Name,
+			model.PlannedAmount);
 	}
 
 	public CategoryModel MapToModel(Category entity)

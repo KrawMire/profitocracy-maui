@@ -31,6 +31,27 @@ internal class TransactionMapper : IInfrastructureMapper<Transaction, Transactio
 			};
 		}
 		
+		if (model.DestinationCurrencyCode is not null)
+		{
+			// The model is supposed to be a multi currency transaction,
+			// so we suppress warnings related to null reference with
+			// null-forgiving operator (!)
+			return TransactionFactory.CreateMultiCurrencyTransaction(
+				model.Id,
+				model.Amount,
+				(decimal)model.DestinationAmount!,
+				CurrencyMapper.Currencies[model.SourceCurrencyCode!],
+				CurrencyMapper.Currencies[model.DestinationCurrencyCode],
+				model.ProfileId,
+				(TransactionType)model.Type,
+				model.SpendingType is null ? null : (SpendingType)model.SpendingType,
+				(TransactionDestination)model.Destination!,
+				model.Timestamp,
+				model.Description,
+				geoTag,
+				category);
+		}
+		
 		return TransactionFactory.CreateTransaction(
 			model.Id,
 			model.Amount,
@@ -45,7 +66,7 @@ internal class TransactionMapper : IInfrastructureMapper<Transaction, Transactio
 
 	public TransactionModel MapToModel(Transaction entity)
 	{
-		return new TransactionModel
+		var model = new TransactionModel
 		{
 			Id = entity.Id,
 			Amount = entity.Amount,
@@ -59,5 +80,15 @@ internal class TransactionMapper : IInfrastructureMapper<Transaction, Transactio
 			CategoryId = entity.Category?.Id,
 			CategoryName = entity.Category?.Name
 		};
+
+		if (entity is MultiCurrencyTransaction multiTransaction)
+		{
+			model.Destination = (short)multiTransaction.Destination;
+			model.DestinationAmount = multiTransaction.DestinationAmount;
+			model.SourceCurrencyCode = multiTransaction.SourceCurrency.Code;
+			model.DestinationCurrencyCode = multiTransaction.DestinationCurrency.Code;
+		}
+
+		return model;
 	}
 }

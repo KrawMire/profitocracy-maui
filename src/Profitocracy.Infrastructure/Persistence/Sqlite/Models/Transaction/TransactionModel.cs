@@ -20,4 +20,9 @@ internal class TransactionModel
 	public double? GeoTagLatitude { get; set; }
 	public Guid? CategoryId { get; set; }
 	public string? CategoryName { get; set; }
+	
+	public short? Destination { get; set; }
+	public decimal? DestinationAmount { get; set; }
+	public string? SourceCurrencyCode { get; set; }
+	public string? DestinationCurrencyCode { get; set; }
 }
