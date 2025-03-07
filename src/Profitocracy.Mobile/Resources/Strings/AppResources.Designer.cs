@@ -518,5 +518,11 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("CommonError_FindCategoryToEdit", resourceCulture);
             }
         }
+        
+        internal static string Pages_Overview {
+            get {
+                return ResourceManager.GetString("Pages_Overview", resourceCulture);
+            }
+        }
     }
 }

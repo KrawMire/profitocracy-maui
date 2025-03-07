@@ -255,4 +255,7 @@
     <data name="CommonError_FindCategoryToEdit" xml:space="preserve">
         <value>Cannot find category to edit</value>
     </data>
+    <data name="Pages_Overview" xml:space="preserve">
+        <value>Overview</value>
+    </data>
 </root>
