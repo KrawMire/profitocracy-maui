@@ -1,3 +1,4 @@
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 using Profitocracy.Core.Domain.Model.Transactions.Entities;
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 
@@ -28,5 +29,38 @@ public class TransactionFactory
 			description,
 			geoTag,
 			category);
-	} 
+	}
+
+	public static MultiCurrencyTransaction CreateMultiCurrencyTransaction(
+		Guid? id,
+		decimal amount,
+		decimal destinationAmount,
+		Currency sourceCurrency,
+		Currency destinationCurrency,
+		Guid profileId,
+		TransactionType type,
+		SpendingType? spendingType,
+		TransactionDestination destination,
+		DateTime timestamp,
+		string? description,
+		TransactionGeoTag? geoTag,
+		TransactionCategory? category)
+	{
+		id ??= Guid.NewGuid();
+
+		return new MultiCurrencyTransaction(
+			(Guid)id,
+			amount,
+			destinationAmount,
+			sourceCurrency,
+			destinationCurrency,
+			profileId,
+			type,
+			spendingType,
+			destination,
+			timestamp,
+			description,
+			geoTag,
+			category);
+	}
 }
