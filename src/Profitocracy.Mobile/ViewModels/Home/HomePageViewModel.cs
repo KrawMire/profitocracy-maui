@@ -5,6 +5,7 @@ using Profitocracy.Core.Domain.Model.Profiles.Entities;
 using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Categories;
+using Profitocracy.Mobile.Models.Profile;
 using Profitocracy.Mobile.Utils;
 
 namespace Profitocracy.Mobile.ViewModels.Home;
@@ -16,7 +17,6 @@ public class HomePageViewModel : BaseNotifyObject
     private decimal _balance;
     private decimal _totalActualAmount;
     private decimal _totalPlannedAmount;
-    private decimal _totalSavedAmount;
     private decimal _todayActualAmount;
     private decimal _todayPlannedAmount;
     private decimal _balanceForTomorrow;
@@ -38,6 +38,7 @@ public class HomePageViewModel : BaseNotifyObject
 
     private bool _isDisplayNoCategories;
     private bool _isRefreshing = true;
+    private bool _isShowSavedAmounts;
     
     private readonly ICalculationService _calculationService;
 
@@ -65,12 +66,6 @@ public class HomePageViewModel : BaseNotifyObject
     {
         get => _totalPlannedAmount;
         set => SetProperty(ref _totalPlannedAmount, value);
-    }
-    
-    public decimal TotalSavedAmount
-    {
-        get => _totalSavedAmount;
-        set => SetProperty(ref _totalSavedAmount, value);
     }
     
     public decimal TodayActualAmount
@@ -180,9 +175,16 @@ public class HomePageViewModel : BaseNotifyObject
         get => _isRefreshing;
         set => SetProperty(ref _isRefreshing, value);
     }
+
+    public bool IsShowSavedAmounts
+    {
+        get => _isShowSavedAmounts;
+        set => SetProperty(ref _isShowSavedAmounts, value);
+    }
     
     public ICommand RefreshCommand { get; private set; }
     
+    public readonly ObservableCollection<SavedAmountModel> SavedAmounts = [];
     public readonly ObservableCollection<CategoryExpenseModel> CategoriesExpenses = [];
     
     public HomePageViewModel(ICalculationService calculationService)
@@ -217,7 +219,6 @@ public class HomePageViewModel : BaseNotifyObject
         ProfileId = profile.Id;
         ProfileName = profile.Name;
         Balance = NumberUtils.RoundDecimal(profile.Balance);
-        TotalSavedAmount = profile.SavedBalance;
         DateFrom = profile.BillingPeriod.DateFrom.ToShortDateString();
         DateTo = profile.BillingPeriod.DateTo.ToShortDateString();
         
@@ -232,6 +233,15 @@ public class HomePageViewModel : BaseNotifyObject
         else
         {
             IsDisplayNoCategories = true;
+        }
+
+        SavedAmounts.Clear();
+        IsShowSavedAmounts = profile.SavedAmounts.Count > 0;
+        
+        foreach (var savedAmount in profile.SavedAmounts)
+        {
+            var savedAmountModel = SavedAmountModel.FromDomain(savedAmount);
+            SavedAmounts.Add(savedAmountModel);
         }
         
         IsRefreshing = false;

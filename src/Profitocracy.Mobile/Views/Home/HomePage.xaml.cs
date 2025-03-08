@@ -13,9 +13,13 @@ public partial class HomePage : BaseContentPage
 	
 	public HomePage(HomePageViewModel viewModel)
 	{
-		BindingContext = _viewModel = viewModel;
 		InitializeComponent();
 
+		BindingContext = _viewModel = viewModel;
+		SavedAmountsCollectionView.ItemsSource = _viewModel.SavedAmounts;
+		// This is a hot fix of a known issue related to collection view in iOS
+		SavedAmountsCollectionView.ItemSizingStrategy = ItemSizingStrategy.MeasureFirstItem;
+		
 		CategoriesExpensesCollectionView.ItemsSource = _viewModel.CategoriesExpenses;
 	}
 

@@ -5,13 +5,12 @@
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Transactions"
-                              xmlns:categorymodel="clr-namespace:Profitocracy.Mobile.Models.Categories"
                               x:Class="Profitocracy.Mobile.Views.Transactions.EditTransactionPage"
                               x:DataType="viewmodel:EditTransactionPageViewModel"
                               Loaded="EditTransactionPage_OnLoaded"
                               Shell.PresentationMode="ModalAnimated"
                               Padding="16">
-    <abstractions:BaseContentPage.Content>
+    <ScrollView>
         <Grid VerticalOptions="Fill"
               RowDefinitions="auto,auto,*,auto">
             <FlexLayout Grid.Row="0"
@@ -88,12 +87,43 @@
                         Margin="0,8">
                 <StackLayout>
                     <StackLayout IsVisible="{Binding IsIncome}">
-                        <StackLayout Margin="0,16,0,0">
-                            <Label Text="{x:Static resx:AppResources.AddTransaction_Amount}"/>
-                            <Entry Margin="0,4,0,0"
-                                   Keyboard="Numeric"
-                                   Text="{Binding Amount, Mode=TwoWay}"/>
-                        </StackLayout>
+                        <Border Style="{StaticResource TransactionAddAmountBorder}"
+                                Padding="16"
+                                Margin="0,16,0,0">
+                            <StackLayout>
+                                <FlexLayout JustifyContent="SpaceBetween">
+                                    <Label Text="{x:Static resx:AppResources.AddTransaction_WithdrawSavedFunds}"
+                                           Style="{StaticResource ExpenseCardSubtitle}"
+                                           VerticalTextAlignment="Start"/>
+                                    <Switch IsToggled="{Binding IsMultiCurrency, Mode=TwoWay}"/>    
+                                </FlexLayout>
+                                <StackLayout Margin="0,16,0,0">
+                                    <Label Text="{x:Static resx:AppResources.AddTransaction_Amount}"/>
+                                    <Entry Margin="0,4,0,0"
+                                           Keyboard="Numeric"
+                                           Text="{Binding Amount, Mode=TwoWay}"/>
+                                </StackLayout>
+                                <StackLayout Margin="0,16,0,0"
+                                             IsVisible="{Binding IsMultiCurrency}">
+                                    <Label Text="{x:Static resx:AppResources.AddTransaction_WithdrawAmount}" />
+                                    <Grid Margin="0,4,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Picker Grid.Column="0"
+                                                x:Name="IncomeCurrencyPicker"
+                                                SelectedItem="{Binding Currency}"
+                                                ItemDisplayBinding="{Binding Code}"/>
+                                        <Entry Grid.Column="2" 
+                                               Keyboard="Numeric"
+                                               Text="{Binding DestinationAmount, Mode=TwoWay}"/>
+                                    </Grid>
+                                </StackLayout>
+                            </StackLayout>
+                        </Border>
                 
                         <StackLayout Margin="0,16,0,0">
                             <Label Text="{x:Static resx:AppResources.AddTransaction_Description}"/>
@@ -189,19 +219,50 @@
                             </Button>
                         </Grid>
                     
+                        <Border Style="{StaticResource TransactionAddAmountBorder}"
+                                Padding="16"
+                                Margin="0,16,0,0">
+                            <StackLayout>
+                                <FlexLayout JustifyContent="SpaceBetween">
+                                    <Label Text="{x:Static resx:AppResources.AddTransaction_MultiCurrencyTransaction}"
+                                           Style="{StaticResource ExpenseCardSubtitle}"
+                                           VerticalTextAlignment="Start"/>
+                                    <Switch IsToggled="{Binding IsMultiCurrency, Mode=TwoWay}"/>    
+                                </FlexLayout>
+                                <StackLayout Margin="0,16,0,0"
+                                             IsVisible="{Binding IsMultiCurrency}">
+                                    <Label Text="{x:Static resx:AppResources.AddTransaction_OriginalCurrencyAmount}" />
+                                    <Grid Margin="0,4,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Picker Grid.Column="0"
+                                                x:Name="ExpenseCurrencyPicker"
+                                                SelectedItem="{Binding Currency}"
+                                                ItemDisplayBinding="{Binding Code}"/>
+                                        <Entry Grid.Column="2" 
+                                               Keyboard="Numeric"
+                                               Text="{Binding DestinationAmount, Mode=TwoWay}"/>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Margin="0,16,0,0">
+                                    <Label Text="{x:Static resx:AppResources.AddTransaction_Amount}"/>
+                                    <Entry Margin="0,4,0,0"
+                                           Keyboard="Numeric"
+                                           Text="{Binding Amount, Mode=TwoWay}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Border>
+                        
                         <StackLayout Margin="0,16,0,0">
                             <Label Text="{x:Static resx:AppResources.AddTransaction_Category}"/>
                             <Picker Margin="0,4,0,0"
                                     x:Name="CategoryPicker"
                                     SelectedItem="{Binding Category}"
                                     ItemDisplayBinding="{Binding Name}" />
-                        </StackLayout>
-                    
-                        <StackLayout Margin="0,16,0,0">
-                            <Label Text="{x:Static resx:AppResources.AddTransaction_Amount}"/>
-                            <Entry Margin="0,4,0,0"
-                                   Keyboard="Numeric"
-                                   Text="{Binding Amount, Mode=TwoWay}"/>
                         </StackLayout>
                     
                         <StackLayout Margin="0,16,0,0">
@@ -223,5 +284,5 @@
                     VerticalOptions="End"
                     Clicked="EditTransactionButton_OnClicked"/>
         </Grid>
-    </abstractions:BaseContentPage.Content>
+    </ScrollView>
 </abstractions:BaseContentPage>
