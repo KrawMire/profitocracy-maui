@@ -54,9 +54,6 @@
     <data name="Home_NoCategories" xml:space="preserve">
         <value>Пока что нет категорий</value>
     </data>
-    <data name="Home_SavedBalance" xml:space="preserve">
-        <value>Отложено</value>
-    </data>
     <data name="Setup_GoToExpenses" xml:space="preserve">
         <value>Перейти к расходам</value>
     </data>
@@ -79,7 +76,7 @@
         <value>Транзакция</value>
     </data>
     <data name="AddTransaction_Amount" xml:space="preserve">
-        <value>Сумма</value>
+        <value>Сумма в основной валюте</value>
     </data>
     <data name="AddTransaction_Category" xml:space="preserve">
         <value>Категория</value>
@@ -254,6 +251,36 @@
     </data>
     <data name="CommonError_FindCategoryToEdit" xml:space="preserve">
         <value>Не удалось найти категорию для редактирования</value>
+    </data>
+    <data name="Home_SavedAmounts" xml:space="preserve">
+        <value>Отложенные суммы</value>
+    </data>
+    <data name="CommonError_OriginalCurrencyAmountNumber" xml:space="preserve">
+        <value>Сумма в исходной валюте должна быть числом</value>
+    </data>
+    <data name="AddTransaction_MultiCurrencyTransaction" xml:space="preserve">
+        <value>Мультивалютная транзакция</value>
+    </data>
+    <data name="AddTransaction_OriginalCurrencyAmount" xml:space="preserve">
+        <value>Сумма в исходной валюте</value>
+    </data>
+    <data name="AddTransaction_WithdrawSavedFunds" xml:space="preserve">
+        <value>Вывести с отложенных средств</value>
+    </data>
+    <data name="AddTransaction_WithdrawAmount" xml:space="preserve">
+        <value>Сумма выведения</value>
+    </data>
+    <data name="Currencies_UsDollar" xml:space="preserve">
+        <value>Доллар США</value>
+    </data>
+    <data name="Currencies_SerbianDinar" xml:space="preserve">
+        <value>Сербский динар</value>
+    </data>
+    <data name="Currencies_RussianRuble" xml:space="preserve">
+        <value>Российский рубль</value>
+    </data>
+    <data name="Currencies_EuropeanEuro" xml:space="preserve">
+        <value>Европейский евро</value>
     </data>
     <data name="Pages_Overview" xml:space="preserve">
         <value>Сводка</value>

@@ -1,3 +1,5 @@
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
+
 namespace Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
 
 /// <summary>

@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
+using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Core.Domain.Model.Transactions.Entities;
 using Profitocracy.Core.Domain.Model.Transactions.Factories;
@@ -28,7 +30,9 @@ public class EditTransactionPageViewModel : BaseNotifyObject
     
     private DateTime _timestamp = DateTime.Now;
     private string _amount = string.Empty;
-    
+    private string _destinationAmount = string.Empty;
+
+    private Currency _currency;
     private string? _description;
     private int _transactionType;
     private int? _spendingType;
@@ -38,6 +42,8 @@ public class EditTransactionPageViewModel : BaseNotifyObject
     private bool _isMain;
     private bool _isSecondary;
     private bool _isSaved;
+    
+    private bool _isMultiCurrency;
     
     public EditTransactionPageViewModel(
         IProfileRepository profileRepository,
@@ -53,16 +59,31 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         _transactionType = 1;
         _spendingType = 0;
         
-        _isExpense = true;
         _isIncome = false;
-
+        
+        _isExpense = true;
         _isMain = true;
         _isSecondary = false;
         _isSaved = false;
+
+        _isMultiCurrency = false;
     }
 
+    public ObservableCollection<Currency> AvailableCurrencies { get; } =
+    [
+        Currency.AvailableCurrencies.Usd,
+        Currency.AvailableCurrencies.Eur,
+        Currency.AvailableCurrencies.Rub,
+        Currency.AvailableCurrencies.Rsd
+    ];
     public ObservableCollection<CategoryModel> AvailableCategories { get; } = [];
     public CategoryModel? Category { get; set; }
+
+    public Currency Currency
+    {
+        get => _currency; 
+        set => SetProperty(ref _currency, value);
+    }
 
     public Guid TransactionId
     {
@@ -98,6 +119,13 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         get => _isSaved;
         set => SetProperty(ref _isSaved, value);
     }
+    
+    public bool IsMultiCurrency
+    {
+        get => _isMultiCurrency;
+        set => SetProperty(ref _isMultiCurrency, value);
+    }
+
     
     public int TransactionType
     {
@@ -143,11 +171,6 @@ public class EditTransactionPageViewModel : BaseNotifyObject
 
             switch (value)
             {
-                case 0:
-                    IsMain = true;
-                    IsSecondary = false;
-                    IsSaved = false;
-                    break;
                 case 1:
                     IsMain = false;
                     IsSecondary = true;
@@ -175,6 +198,12 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         set => SetProperty(ref _amount, value);
     }
     
+    public string DestinationAmount
+    {
+        get => _destinationAmount;
+        set => SetProperty(ref _destinationAmount, value);
+    }
+    
     public DateTime Timestamp
     {
         get => _timestamp;
@@ -199,6 +228,8 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         {
             throw new Exception(AppResources.CommonError_GetCurrentProfile);
         }
+     
+        Currency = AvailableCurrencies[0];
         
         var categories = await _categoryRepository.GetAllByProfileId((Guid)profileId);
 
@@ -244,6 +275,13 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         {
             Category = AvailableCategories.FirstOrDefault(c => c.Id == transaction.Category.Id);   
         }
+
+        if (transaction is MultiCurrencyTransaction multiCurrencyTransaction)
+        {
+            IsMultiCurrency = true;
+            Currency = multiCurrencyTransaction.DestinationCurrency;
+            DestinationAmount = multiCurrencyTransaction.DestinationAmount.ToString(CultureInfo.CurrentCulture);
+        }
     }
 
     public Task SaveTransaction()
@@ -276,12 +314,12 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         
         if (_transactionType < 0)
         {
-            throw new ArgumentOutOfRangeException(AppResources.CommonError_TransactionType);
+            throw new IndexOutOfRangeException(AppResources.CommonError_TransactionType);
         }
         
-        var currentProfileId = await _profileRepository.GetCurrentProfileId();
+        var currentProfile = await _profileRepository.GetCurrentProfile();
 
-        if (currentProfileId is null)
+        if (currentProfile is null)
         {
             throw new ArgumentNullException(AppResources.CommonError_GetCurrentProfile);
         }
@@ -295,13 +333,58 @@ public class EditTransactionPageViewModel : BaseNotifyObject
                 Name = Category.Name
             };
         }
+
+        if (IsMultiCurrency)
+        {
+            return BuildMultiCurrencyTransaction(transactionId, amount, currentProfile, category);
+        }
         
         return TransactionFactory.CreateTransaction(
             id: transactionId,
             amount,
-            (Guid)currentProfileId,
+            currentProfile.Id,
             (TransactionType)_transactionType,
             _spendingType is null or -1 ? null : (SpendingType)_spendingType,
+            _timestamp,
+            _description,
+            geoTag: null,
+            category);
+    }
+
+    private MultiCurrencyTransaction BuildMultiCurrencyTransaction(
+        Guid? transactionId,
+        decimal amount,
+        Profile profile,
+        TransactionCategory? category)
+    {
+        _destinationAmount = _destinationAmount.Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
+        
+        if (!decimal.TryParse(_destinationAmount, out var destinationAmount))
+        {
+            throw new InvalidCastException(AppResources.CommonError_OriginalCurrencyAmountNumber);
+        }
+
+        var destination = _transactionType switch
+        {
+            // Transaction type is Income and Multi-currency, so
+            // it is taking from saved amounts to profile balance
+            0 => TransactionDestination.ProfileBalance,
+            // Transaction type is Expense, Multi-currency and spending
+            // type is saved, so it is saving funds in another currency
+            1 when _spendingType == 2 => TransactionDestination.SavingsBalance,
+            _ => TransactionDestination.Expense
+        };
+
+        return TransactionFactory.CreateMultiCurrencyTransaction(
+            id: transactionId,
+            amount,
+            destinationAmount,
+            profile.Settings.Currency,
+            Currency,
+            profile.Id,
+            (TransactionType)_transactionType,
+            _spendingType is null or -1 ? null : (SpendingType)_spendingType,
+            destination,
             _timestamp,
             _description,
             geoTag: null,

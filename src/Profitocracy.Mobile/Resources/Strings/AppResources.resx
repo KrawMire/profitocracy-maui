@@ -54,9 +54,6 @@
     <data name="Home_NoCategories" xml:space="preserve">
         <value>There is no categories</value>
     </data>
-    <data name="Home_SavedBalance" xml:space="preserve">
-        <value>Saved</value>
-    </data>
     <data name="Setup_ProfileName" xml:space="preserve">
         <value>Profile name</value>
     </data>
@@ -85,7 +82,7 @@
         <value>Category</value>
     </data>
     <data name="AddTransaction_Amount" xml:space="preserve">
-        <value>Amount</value>
+        <value>Amount in main currency</value>
     </data>
     <data name="AddTransaction_Description" xml:space="preserve">
         <value>Description</value>
@@ -254,6 +251,36 @@
     </data>
     <data name="CommonError_FindCategoryToEdit" xml:space="preserve">
         <value>Cannot find category to edit</value>
+    </data>
+    <data name="Home_SavedAmounts" xml:space="preserve">
+        <value>Saved Amounts</value>
+    </data>
+    <data name="CommonError_OriginalCurrencyAmountNumber" xml:space="preserve">
+        <value>Amount in original currency must be a number</value>
+    </data>
+    <data name="AddTransaction_MultiCurrencyTransaction" xml:space="preserve">
+        <value>Multicurrency Transaction</value>
+    </data>
+    <data name="AddTransaction_OriginalCurrencyAmount" xml:space="preserve">
+        <value>Amount in the original currency</value>
+    </data>
+    <data name="AddTransaction_WithdrawSavedFunds" xml:space="preserve">
+        <value>Withdraw from Saved Funds</value>
+    </data>
+    <data name="AddTransaction_WithdrawAmount" xml:space="preserve">
+        <value>Amount to withdraw</value>
+    </data>
+    <data name="Currencies_RussianRuble" xml:space="preserve">
+        <value>Russian Ruble</value>
+    </data>
+    <data name="Currencies_UsDollar" xml:space="preserve">
+        <value>US Dollar</value>
+    </data>
+    <data name="Currencies_SerbianDinar" xml:space="preserve">
+        <value>Serbian Dinar</value>
+    </data>
+    <data name="Currencies_EuropeanEuro" xml:space="preserve">
+        <value>European Euro</value>
     </data>
     <data name="Pages_Overview" xml:space="preserve">
         <value>Overview</value>

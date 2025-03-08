@@ -1,12 +1,16 @@
 using Profitocracy.Core.Domain.Model.Transactions.Entities;
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Core.Domain.SharedKernel;
+using Profitocracy.Core.Exceptions;
 
 namespace Profitocracy.Core.Domain.Model.Transactions;
 
+/// <summary>
+/// Basic representation of moving funds.
+/// </summary>
 public class Transaction : AggregateRoot<Guid>
 {
-	public Transaction(
+	internal Transaction(
 		Guid id,
 		decimal amount,
 		Guid profileId,
@@ -17,18 +21,17 @@ public class Transaction : AggregateRoot<Guid>
 		TransactionGeoTag? geoTag,
 		TransactionCategory? category): base(id)
 	{
+		if (type == TransactionType.Expense && spendingType is null)
+		{
+			throw new InvalidTransactionSpendingType("If transaction is expense then spendingType should be specified");
+		}
+		
 		Amount = amount;
 		ProfileId = profileId;
 		Timestamp = timestamp;
 		Description = description;
 		GeoTag = geoTag;
 		Category = category;
-
-		if (type == TransactionType.Expense && spendingType is null)
-		{
-			throw new Exception("If transaction is expense then spendingType should be specified");
-		}
-
 		Type = type;
 		SpendingType = spendingType;
 	}

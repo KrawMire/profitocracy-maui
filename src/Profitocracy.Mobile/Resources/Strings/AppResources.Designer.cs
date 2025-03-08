@@ -117,12 +117,6 @@ namespace Profitocracy.Mobile.Resources.Strings {
             }
         }
         
-        internal static string Home_SavedBalance {
-            get {
-                return ResourceManager.GetString("Home_SavedBalance", resourceCulture);
-            }
-        }
-        
         internal static string Setup_ProfileName {
             get {
                 return ResourceManager.GetString("Setup_ProfileName", resourceCulture);
@@ -522,6 +516,66 @@ namespace Profitocracy.Mobile.Resources.Strings {
         internal static string Pages_Overview {
             get {
                 return ResourceManager.GetString("Pages_Overview", resourceCulture);
+            }
+        }
+        
+        internal static string Home_SavedAmounts {
+            get {
+                return ResourceManager.GetString("Home_SavedAmounts", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_OriginalCurrencyAmountNumber {
+            get {
+                return ResourceManager.GetString("CommonError_OriginalCurrencyAmountNumber", resourceCulture);
+            }
+        }
+        
+        internal static string AddTransaction_MultiCurrencyTransaction {
+            get {
+                return ResourceManager.GetString("AddTransaction_MultiCurrencyTransaction", resourceCulture);
+            }
+        }
+        
+        internal static string AddTransaction_OriginalCurrencyAmount {
+            get {
+                return ResourceManager.GetString("AddTransaction_OriginalCurrencyAmount", resourceCulture);
+            }
+        }
+        
+        internal static string AddTransaction_WithdrawSavedFunds {
+            get {
+                return ResourceManager.GetString("AddTransaction_WithdrawSavedFunds", resourceCulture);
+            }
+        }
+        
+        internal static string AddTransaction_WithdrawAmount {
+            get {
+                return ResourceManager.GetString("AddTransaction_WithdrawAmount", resourceCulture);
+            }
+        }
+        
+        internal static string Currencies_RussianRuble {
+            get {
+                return ResourceManager.GetString("Currencies_RussianRuble", resourceCulture);
+            }
+        }
+        
+        internal static string Currencies_UsDollar {
+            get {
+                return ResourceManager.GetString("Currencies_UsDollar", resourceCulture);
+            }
+        }
+        
+        internal static string Currencies_SerbianDinar {
+            get {
+                return ResourceManager.GetString("Currencies_SerbianDinar", resourceCulture);
+            }
+        }
+        
+        internal static string Currencies_EuropeanEuro {
+            get {
+                return ResourceManager.GetString("Currencies_EuropeanEuro", resourceCulture);
             }
         }
     }

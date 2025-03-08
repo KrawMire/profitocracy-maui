@@ -4,6 +4,7 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
+                              xmlns:profile="clr-namespace:Profitocracy.Mobile.Models.Profile"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Home"
                               x:Class="Profitocracy.Mobile.Views.Home.HomePage"
@@ -54,13 +55,29 @@
                                        Text="{Binding TotalPlannedAmount}" />
                             </FlexLayout>
                         </StackLayout>
-                        <FlexLayout JustifyContent="SpaceBetween"
-                                    Margin="0, 16, 0, 0">
-                            <Label Style="{StaticResource ProfileExpenseCardSubtitle}" 
-                                   Text="{x:Static resx:AppResources.Home_SavedBalance}" />
-                            <Label Style="{StaticResource ProfileExpenseCardBalance}"
-                                   Text="{Binding TotalSavedAmount}" />
-                        </FlexLayout>
+                    </StackLayout>
+                </Border>
+                
+                <Border Style="{StaticResource ExpenseCard}"
+                        Margin="0, 16, 0, 0"
+                        IsVisible="{Binding IsShowSavedAmounts}">
+                    <StackLayout>
+                        <Label Style="{StaticResource ExpenseCardTitle}"
+                               Text="{x:Static resx:AppResources.Home_SavedAmounts}"/>
+                        <CollectionView x:Name="SavedAmountsCollectionView"
+                                        Margin="0,16,0,0">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="profile:SavedAmountModel">
+                                    <FlexLayout JustifyContent="SpaceBetween"
+                                                Margin="0,8,0,0">
+                                        <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                               Text="{Binding CurrencyName}"/>
+                                        <Label Style="{StaticResource ExpenseCardSubtitle}"
+                                               Text="{Binding Amount}"/> 
+                                    </FlexLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </StackLayout>
                 </Border>
                 

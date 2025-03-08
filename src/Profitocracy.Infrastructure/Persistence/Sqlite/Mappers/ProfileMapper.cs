@@ -11,10 +11,9 @@ internal class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
 	{
 		var builder = new ProfileBuilder(model.Id)
 			.AddBalance(model.Balance)
-			.AddSavedBalance(model.SavedBalance)
 			.AddName(model.Name)
 			.AddStartDate(model.StartTimestamp, model.InitialBalance)
-			.AddCurrency(model.CurrencyCode, model.CurrencyName, model.CurrencySymbol)
+			.AddCurrency(CurrencyMapper.Currencies[model.CurrencyCode])
 			.AddIsCurrent(model.IsCurrent);
 
 		if (model.Categories is null)
@@ -51,12 +50,9 @@ internal class ProfileMapper : IInfrastructureMapper<Profile, ProfileModel>
 			StartTimestamp = entity.StartDate.Timestamp,
 			InitialBalance = entity.StartDate.InitialBalance,
 			Balance = entity.Balance,
-			SavedBalance = entity.SavedBalance,
 			IsCurrent = entity.IsCurrent,
 			Categories = categories,
-			CurrencyCode = entity.Settings.Currency.Code,
-			CurrencyName = entity.Settings.Currency.Name,
-			CurrencySymbol = entity.Settings.Currency.Symbol
+			CurrencyCode = entity.Settings.Currency.Code
 		};
 	}
 }

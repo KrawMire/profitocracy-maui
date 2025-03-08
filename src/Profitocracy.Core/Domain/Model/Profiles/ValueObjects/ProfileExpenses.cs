@@ -1,10 +1,12 @@
+using Profitocracy.Core.Domain.SharedKernel;
+
 namespace Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
 
 /// <summary>
 /// Set of profile expenses.
 /// Contains types (main, secondary, saved) and daily amounts
 /// </summary>
-public class ProfileExpenses
+public class ProfileExpenses : ValueObject
 {
 	/// <summary>
 	/// Daily amount for tomorrow

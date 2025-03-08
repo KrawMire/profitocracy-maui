@@ -1,5 +1,6 @@
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
 using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 
 namespace Profitocracy.Core.Domain.Model.Profiles.Factories;
 
@@ -7,7 +8,6 @@ public class ProfileBuilder(Guid? profileId = null)
 {
 	private Guid _id = profileId ?? Guid.NewGuid();
 	private decimal _balance;
-	private decimal _savedBalance;
 	private string _name = "Default";
 	private bool _isCurrent = true;
 		
@@ -19,12 +19,6 @@ public class ProfileBuilder(Guid? profileId = null)
 	public ProfileBuilder AddBalance(decimal balance)
 	{
 		_balance = balance;
-		return this;
-	}
-
-	public ProfileBuilder AddSavedBalance(decimal savedBalance)
-	{
-		_savedBalance = savedBalance;
 		return this;
 	}
 	
@@ -55,17 +49,13 @@ public class ProfileBuilder(Guid? profileId = null)
 		return this;
 	}
 
-	public ProfileBuilder AddCurrency(string code, string name, string symbol)
+	public ProfileBuilder AddCurrency(Currency currency)
 	{
 		_settings = new ProfileSettings
 		{
-			Currency = new Currency
-			{
-				Code = code,
-				Name = name,
-				Symbol = symbol
-			}
+			Currency = currency
 		};
+		
 		return this;
 	}
 
@@ -84,14 +74,13 @@ public class ProfileBuilder(Guid? profileId = null)
 
 		if (_settings is null)
 		{
-			AddCurrency("USD", "US Dollar", "$");
+			AddCurrency(Currency.AvailableCurrencies.Usd);
 		}
 
 		return new Profile(
 			_id,
 			_name,
 			(AnchorDate)_startDate!,
-			_savedBalance,
 			_categories,
 			(ProfileSettings)_settings!,
 			_isCurrent);

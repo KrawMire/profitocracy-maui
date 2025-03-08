@@ -47,8 +47,18 @@ internal class CalculationService : ICalculationService
 			new TransactionsSpecification
 			{
 				ProfileId = profile.Id,
-				SpendingType = SpendingType.Saved,
-				ToDate = profile.BillingPeriod.DateFrom
+				Destination = TransactionDestination.SavingsBalance,
+				ToDate = profile.BillingPeriod.DateFrom,
+				IsMultiCurrency = true
+			});
+		
+		var withdrawTransactions = await _transactionRepository.GetFiltered(
+			new TransactionsSpecification
+			{
+				ProfileId = profile.Id,
+				Destination = TransactionDestination.ProfileBalance,
+				ToDate = profile.BillingPeriod.DateFrom,
+				IsMultiCurrency = true
 			});
 		
 		var transactions = await _transactionRepository.GetForPeriod(
@@ -58,6 +68,7 @@ internal class CalculationService : ICalculationService
 		
 		transactions = transactions
 			.Concat(savingTransactions)
+			.Concat(withdrawTransactions)
 			.ToList();
 		
 		var categories = await _categoryRepository.GetAllByProfileId(profile.Id);
