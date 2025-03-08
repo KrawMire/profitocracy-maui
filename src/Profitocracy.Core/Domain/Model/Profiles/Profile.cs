@@ -1,5 +1,6 @@
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
 using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 using Profitocracy.Core.Domain.Model.Transactions;
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Core.Domain.SharedKernel;
@@ -13,11 +14,10 @@ namespace Profitocracy.Core.Domain.Model.Profiles;
 /// </summary>
 public class Profile : AggregateRoot<Guid>
 {
-	public Profile(
+	internal Profile(
 		Guid id,
 		string name,
 		AnchorDate startDate,
-		decimal savedBalance,
 		List<ProfileCategory> categoriesExpenses,
 		ProfileSettings settings,
 		bool isCurrent) : base(id)
@@ -25,7 +25,6 @@ public class Profile : AggregateRoot<Guid>
 		Name = name;
 		StartDate = startDate;
 		Balance = StartDate.InitialBalance;
-		SavedBalance = savedBalance;
 		CategoriesExpenses = categoriesExpenses;
 		Settings = settings;
 		IsCurrent = isCurrent;
@@ -79,6 +78,8 @@ public class Profile : AggregateRoot<Guid>
 				millisecond: 999)
 		};
 
+		SavedAmounts = new Dictionary<Currency, decimal>();
+
 		_todayInitialBalance = Balance;
 	}
 
@@ -108,11 +109,6 @@ public class Profile : AggregateRoot<Guid>
 	public decimal Balance { get; private set; }
 	
 	/// <summary>
-	/// Total saved amount
-	/// </summary>
-	public decimal SavedBalance { get; private set; }
-	
-	/// <summary>
 	/// Calculations of expenses by types: main, secondary and saved
 	/// </summary>
 	public ProfileExpenses Expenses { get; }
@@ -121,6 +117,8 @@ public class Profile : AggregateRoot<Guid>
 	/// Result of expenses calculations for every category
 	/// </summary>
 	public List<ProfileCategory> CategoriesExpenses { get; }
+	
+	public Dictionary<Currency, decimal> SavedAmounts { get; }
 	
 	/// <summary>
 	/// Profile settings
@@ -149,7 +147,14 @@ public class Profile : AggregateRoot<Guid>
 	{
 		foreach (var transaction in transactions)
 		{
-			HandleTransaction(transaction, currentDate);
+			if (transaction is MultiCurrencyTransaction multiCurrencyTransaction)
+			{
+				HandleMultiCurrencyTransaction(multiCurrencyTransaction, currentDate);
+			}
+			else
+			{
+				HandleTransaction(transaction, currentDate);	
+			}
 		}
 		
 		if (StartDate.Timestamp.Month != currentDate.Month)
@@ -182,6 +187,58 @@ public class Profile : AggregateRoot<Guid>
 	public void AddCategories(IEnumerable<ProfileCategory> categories)
 	{
 		CategoriesExpenses.AddRange(categories);
+	}
+
+	private void HandleMultiCurrencyTransaction(MultiCurrencyTransaction transaction, DateTime currentDate)
+	{
+		switch(transaction.Destination)
+		{
+			case TransactionDestination.ProfileBalance:
+				HandleMultiCurrencyWithdrawalTransaction(transaction);
+				break;
+			case TransactionDestination.Expense:
+				HandleExpenseTransaction(transaction, currentDate);
+				break;
+			case TransactionDestination.SavingsBalance:
+				HandleMultiCurrencySavingTransaction(transaction, currentDate);
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(transaction), "Transaction destination is out of range");
+		}
+	}
+
+	private void HandleMultiCurrencyWithdrawalTransaction(MultiCurrencyTransaction transaction)
+	{
+		if (SavedAmounts.ContainsKey(transaction.DestinationCurrency))
+		{
+			SavedAmounts[transaction.DestinationCurrency] -= transaction.DestinationAmount;
+		}
+		else
+		{
+			SavedAmounts.Add(transaction.DestinationCurrency, -transaction.DestinationAmount);
+		}
+
+		if (BillingPeriod.DateFrom <= transaction.Timestamp && transaction.Timestamp <= BillingPeriod.DateTo)
+		{
+			HandleIncomeTransaction(transaction);	
+		}
+	}
+	
+	private void HandleMultiCurrencySavingTransaction(MultiCurrencyTransaction transaction, DateTime currentDate)
+	{
+		if (SavedAmounts.ContainsKey(transaction.DestinationCurrency))
+		{
+			SavedAmounts[transaction.DestinationCurrency] += transaction.DestinationAmount;
+		}
+		else
+		{
+			SavedAmounts.Add(transaction.DestinationCurrency, transaction.DestinationAmount);
+		}
+
+		if (BillingPeriod.DateFrom <= transaction.Timestamp && transaction.Timestamp <= BillingPeriod.DateTo)
+		{
+			HandleExpenseTransaction(transaction, currentDate);	
+		}
 	}
 	
 	private void HandleTransaction(Transaction transaction, DateTime currentDate)
@@ -277,10 +334,8 @@ public class Profile : AggregateRoot<Guid>
 	{
 		if (transaction.Timestamp.Month == currentDate.Month)
 		{
-			Expenses.Saved.ActualAmount += transaction.Amount;	
+			Expenses.Saved.ActualAmount += transaction.Amount;
 		}
-		
-		SavedBalance += transaction.Amount;
 	}
 
 	private void HandleCategoryTransaction(Transaction transaction)

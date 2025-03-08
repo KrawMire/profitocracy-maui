@@ -13,6 +13,8 @@ public partial class EditTransactionPage : BaseContentPage
 		
 		BindingContext = _viewModel = viewModel;
 		CategoryPicker.ItemsSource = _viewModel.AvailableCategories;
+		IncomeCurrencyPicker.ItemsSource = _viewModel.AvailableCurrencies;
+		ExpenseCurrencyPicker.ItemsSource = _viewModel.AvailableCurrencies;
 	}
 
 	public void AddTransactionId(Guid transactionId)
