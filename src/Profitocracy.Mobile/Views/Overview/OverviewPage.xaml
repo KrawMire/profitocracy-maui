@@ -8,48 +8,69 @@
              xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Overview"
              x:Class="Profitocracy.Mobile.Views.Overview.OverviewPage"
              x:DataType="viewmodel:OverviewPageViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
              Title="{x:Static resx:AppResources.Pages_Overview}">
     <ScrollView VerticalScrollBarVisibility="Never">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <StackLayout Padding="8,16">
+            <Picker />
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0,16,0,0">
+                <StackLayout>
+                    <Label Text="{x:Static resx:AppResources.Overview_CategoriesExpenses}"
+                           Style="{StaticResource SettingsGroupTitle}"/>
+                    <lvc:CartesianChart Series="{Binding CategoriesExpenses}"
+                                        XAxes="{Binding CategoriesExpensesNames}"
+                                        HeightRequest="320"/>
+                </StackLayout>
+            </Border>
             
-            <lvc:CartesianChart Grid.Column="1"
-                                Grid.Row="0"
-                                Series="{Binding CartesianSeries}"/>
-            <lvc:PieChart Grid.Column="0"
-                          Grid.Row="0" 
-                          Series="{Binding PieSeries}"
-                          Title="{Binding PieChartTitle}"/>
-            <lvc:CartesianChart Grid.Column="0"
-                                Grid.Row="1"
-                                Series="{Binding CartesianSeries}"/>
-            <lvc:PieChart Grid.Column="1"
-                          Grid.Row="1"
-                          Series="{Binding PieSeries}"
-                          Title="{Binding PieChartTitle}"/>
-            <lvc:PieChart Grid.Column="0"
-                          Grid.Row="2" 
-                          Series="{Binding PieSeries}"
-                          Title="{Binding PieChartTitle}"/>
-            <lvc:CartesianChart Grid.Column="1"
-                                Grid.Row="2"
-                                Series="{Binding CartesianSeries}"/>
-            <lvc:CartesianChart Grid.Column="0"
-                                Grid.Row="3"
-                                Series="{Binding CartesianSeries}"/>
-            <lvc:PieChart Grid.Column="1"
-                          Grid.Row="3"
-                          Series="{Binding PieSeries}"
-                          Title="{Binding PieChartTitle}"/>
-        </Grid>
+            <Grid Margin="0,16,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0" 
+                        Style="{StaticResource ExpenseCard}">
+                    <StackLayout>
+                        <Label Text="{x:Static resx:AppResources.Overview_SpendingTypes}"
+                               Style="{StaticResource SettingsGroupTitle}"/>
+                        <lvc:PieChart Series="{Binding SpendingTypeDistribution}"
+                                      HeightRequest="160"/>
+                    </StackLayout>
+                </Border>
+                
+                <Border Grid.Column="2" 
+                        Style="{StaticResource ExpenseCard}">
+                    <StackLayout>
+                        <Label Text="{x:Static resx:AppResources.Overview_IncomeExpense}"
+                               Style="{StaticResource SettingsGroupTitle}"/>
+                        <lvc:PieChart Series="{Binding IncomeAndExpense}"
+                                      HeightRequest="160"/>
+                    </StackLayout>
+                </Border>
+            </Grid>
+            
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0, 16, 0, 0">
+                <StackLayout>
+                    <Label Text="{x:Static resx:AppResources.Overview_CategoriesPlannedAndActual}"
+                           Style="{StaticResource SettingsGroupTitle}"/>
+                    <lvc:CartesianChart Series="{Binding PlannedAndActualCategoriesAmounts}"
+                                        HeightRequest="160"/>
+                </StackLayout>
+            </Border>
+            
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0, 16, 0, 0">
+                <StackLayout>
+                    <Label Text="{x:Static resx:AppResources.Overview_DailyExpenses}"
+                           Style="{StaticResource SettingsGroupTitle}"/>
+                    <lvc:CartesianChart Series="{Binding DailyExpenses}"
+                                        HeightRequest="320"/>
+                </StackLayout>
+            </Border>
+        </StackLayout>
     </ScrollView>
 </abstractions:BaseContentPage>

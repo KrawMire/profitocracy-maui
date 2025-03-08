@@ -513,12 +513,6 @@ namespace Profitocracy.Mobile.Resources.Strings {
             }
         }
         
-        internal static string Pages_Overview {
-            get {
-                return ResourceManager.GetString("Pages_Overview", resourceCulture);
-            }
-        }
-        
         internal static string Home_SavedAmounts {
             get {
                 return ResourceManager.GetString("Home_SavedAmounts", resourceCulture);
@@ -576,6 +570,48 @@ namespace Profitocracy.Mobile.Resources.Strings {
         internal static string Currencies_EuropeanEuro {
             get {
                 return ResourceManager.GetString("Currencies_EuropeanEuro", resourceCulture);
+            }
+        }
+        
+        internal static string Pages_Overview {
+            get {
+                return ResourceManager.GetString("Pages_Overview", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_CategoriesExpenses {
+            get {
+                return ResourceManager.GetString("Overview_CategoriesExpenses", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_SpendingTypes {
+            get {
+                return ResourceManager.GetString("Overview_SpendingTypes", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_IncomeExpense {
+            get {
+                return ResourceManager.GetString("Overview_IncomeExpense", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_CategoriesPlannedAndActual {
+            get {
+                return ResourceManager.GetString("Overview_CategoriesPlannedAndActual", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_DailyExpenses {
+            get {
+                return ResourceManager.GetString("Overview_DailyExpenses", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_WeeklyExpenses {
+            get {
+                return ResourceManager.GetString("Overview_WeeklyExpenses", resourceCulture);
             }
         }
     }

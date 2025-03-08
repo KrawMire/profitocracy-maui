@@ -285,4 +285,22 @@
     <data name="Pages_Overview" xml:space="preserve">
         <value>Overview</value>
     </data>
+    <data name="Overview_CategoriesExpenses" xml:space="preserve">
+        <value>Expenses by Category</value>
+    </data>
+    <data name="Overview_SpendingTypes" xml:space="preserve">
+        <value>Spending Types Expenses</value>
+    </data>
+    <data name="Overview_IncomeExpense" xml:space="preserve">
+        <value>Income and Expenses</value>
+    </data>
+    <data name="Overview_CategoriesPlannedAndActual" xml:space="preserve">
+        <value>Planned and Actual Expenses by Category</value>
+    </data>
+    <data name="Overview_DailyExpenses" xml:space="preserve">
+        <value>Daily expenses</value>
+    </data>
+    <data name="Overview_WeeklyExpenses" xml:space="preserve">
+        <value>Weekly Expenses</value>
+    </data>
 </root>

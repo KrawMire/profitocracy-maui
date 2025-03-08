@@ -285,4 +285,22 @@
     <data name="Pages_Overview" xml:space="preserve">
         <value>Сводка</value>
     </data>
+    <data name="Overview_CategoriesExpenses" xml:space="preserve">
+        <value>Расходы по категориям</value>
+    </data>
+    <data name="Overview_CategoriesPlannedAndActual" xml:space="preserve">
+        <value>Ожидаемые и фактические расходы по категориям</value>
+    </data>
+    <data name="Overview_DailyExpenses" xml:space="preserve">
+        <value>Дневные расходы</value>
+    </data>
+    <data name="Overview_IncomeExpense" xml:space="preserve">
+        <value>Доходы и расходы</value>
+    </data>
+    <data name="Overview_SpendingTypes" xml:space="preserve">
+        <value>Расходы по типам</value>
+    </data>
+    <data name="Overview_WeeklyExpenses" xml:space="preserve">
+        <value>Недельные расходы</value>
+    </data>
 </root>

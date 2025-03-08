@@ -579,69 +579,39 @@ namespace Profitocracy.Mobile.Resources.Strings {
             }
         }
         
-        internal static string Home_SavedAmounts {
+        internal static string Overview_CategoriesExpenses {
             get {
-                return ResourceManager.GetString("Home_SavedAmounts", resourceCulture);
+                return ResourceManager.GetString("Overview_CategoriesExpenses", resourceCulture);
             }
         }
         
-        internal static string CommonError_OriginalCurrencyAmountNumber {
+        internal static string Overview_CategoriesPlannedAndActual {
             get {
-                return ResourceManager.GetString("CommonError_OriginalCurrencyAmountNumber", resourceCulture);
+                return ResourceManager.GetString("Overview_CategoriesPlannedAndActual", resourceCulture);
             }
         }
         
-        internal static string AddTransaction_MultiCurrencyTransaction {
+        internal static string Overview_DailyExpenses {
             get {
-                return ResourceManager.GetString("AddTransaction_MultiCurrencyTransaction", resourceCulture);
+                return ResourceManager.GetString("Overview_DailyExpenses", resourceCulture);
             }
         }
         
-        internal static string AddTransaction_OriginalCurrencyAmount {
+        internal static string Overview_IncomeExpense {
             get {
-                return ResourceManager.GetString("AddTransaction_OriginalCurrencyAmount", resourceCulture);
+                return ResourceManager.GetString("Overview_IncomeExpense", resourceCulture);
             }
         }
         
-        internal static string AddTransaction_WithdrawSavedFunds {
+        internal static string Overview_SpendingTypes {
             get {
-                return ResourceManager.GetString("AddTransaction_WithdrawSavedFunds", resourceCulture);
+                return ResourceManager.GetString("Overview_SpendingTypes", resourceCulture);
             }
         }
         
-        internal static string AddTransaction_WithdrawAmount {
+        internal static string Overview_WeeklyExpenses {
             get {
-                return ResourceManager.GetString("AddTransaction_WithdrawAmount", resourceCulture);
-            }
-        }
-        
-        internal static string Currencies_UsDollar {
-            get {
-                return ResourceManager.GetString("Currencies_UsDollar", resourceCulture);
-            }
-        }
-        
-        internal static string Currencies_SerbianDinar {
-            get {
-                return ResourceManager.GetString("Currencies_SerbianDinar", resourceCulture);
-            }
-        }
-        
-        internal static string Currencies_RussianRuble {
-            get {
-                return ResourceManager.GetString("Currencies_RussianRuble", resourceCulture);
-            }
-        }
-        
-        internal static string Currencies_EuropeanEuro {
-            get {
-                return ResourceManager.GetString("Currencies_EuropeanEuro", resourceCulture);
-            }
-        }
-        
-        internal static string Pages_Overview {
-            get {
-                return ResourceManager.GetString("Pages_Overview", resourceCulture);
+                return ResourceManager.GetString("Overview_WeeklyExpenses", resourceCulture);
             }
         }
     }
