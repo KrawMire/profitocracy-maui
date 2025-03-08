@@ -5,7 +5,7 @@ public struct Currency : IEquatable<Currency>
     public static class AvailableCurrencies
     {
         public static readonly Currency Usd = new("USD", "$");
-        public static readonly Currency Euro = new("EUR", "\u20ac");
+        public static readonly Currency Eur = new("EUR", "\u20ac");
         public static readonly Currency Rub = new("RUB", "\u20bd");
         public static readonly Currency Rsd = new("RSD", "rsd.");
     }
