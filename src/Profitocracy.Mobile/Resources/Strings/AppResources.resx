@@ -303,4 +303,19 @@
     <data name="Overview_WeeklyExpenses" xml:space="preserve">
         <value>Weekly Expenses</value>
     </data>
+    <data name="OverView_SpendingType_Main" xml:space="preserve">
+        <value>Main</value>
+    </data>
+    <data name="Overview_SpendingType_Secondary" xml:space="preserve">
+        <value>Secondary</value>
+    </data>
+    <data name="Overview_SpendingType_Saved" xml:space="preserve">
+        <value>Saved</value>
+    </data>
+    <data name="Overview_Income" xml:space="preserve">
+        <value>Income</value>
+    </data>
+    <data name="Overview_Expense" xml:space="preserve">
+        <value>Expense</value>
+    </data>
 </root>

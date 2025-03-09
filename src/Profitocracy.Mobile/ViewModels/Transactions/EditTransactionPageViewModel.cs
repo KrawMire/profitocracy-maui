@@ -261,9 +261,9 @@ public class EditTransactionPageViewModel : BaseNotifyObject
 
         IsIncome = isIncomeTransaction;
         IsExpense = !isIncomeTransaction;
-        IsMain = transaction.SpendingType == Core.Domain.Model.Transactions.ValueObjects.SpendingType.Main;
-        IsSecondary = transaction.SpendingType == Core.Domain.Model.Transactions.ValueObjects.SpendingType.Secondary;
-        IsSaved = transaction.SpendingType == Core.Domain.Model.Transactions.ValueObjects.SpendingType.Saved;
+        IsMain = transaction.SpendingType == Core.Domain.Model.Shared.ValueObjects.SpendingType.Main;
+        IsSecondary = transaction.SpendingType == Core.Domain.Model.Shared.ValueObjects.SpendingType.Secondary;
+        IsSaved = transaction.SpendingType == Core.Domain.Model.Shared.ValueObjects.SpendingType.Saved;
         
         TransactionType = (int)transaction.Type;
         SpendingType = isIncomeTransaction ? null : (int?)transaction.SpendingType;

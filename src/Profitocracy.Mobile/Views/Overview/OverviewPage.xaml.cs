@@ -12,4 +12,12 @@ public partial class OverviewPage : BaseContentPage
         InitializeComponent();
         BindingContext = _viewModel = viewModel;
     }
+
+    private void OverviewPage_OnNavigatedTo(object? sender, NavigatedToEventArgs e)
+    {
+        ProcessAction(async () =>
+        {
+            await _viewModel.Initialize();
+        });
+    }
 }

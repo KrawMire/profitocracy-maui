@@ -9,7 +9,8 @@
              x:Class="Profitocracy.Mobile.Views.Overview.OverviewPage"
              x:DataType="viewmodel:OverviewPageViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-             Title="{x:Static resx:AppResources.Pages_Overview}">
+             Title="{x:Static resx:AppResources.Pages_Overview}"
+             NavigatedTo="OverviewPage_OnNavigatedTo">
     <ScrollView VerticalScrollBarVisibility="Never">
         <StackLayout Padding="8,16">
             <Picker />
@@ -19,7 +20,7 @@
                     <Label Text="{x:Static resx:AppResources.Overview_CategoriesExpenses}"
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding CategoriesExpenses}"
-                                        XAxes="{Binding CategoriesExpensesNames}"
+                                        XAxes="{Binding CategoriesExpensesLabels}"
                                         HeightRequest="320"/>
                 </StackLayout>
             </Border>
@@ -58,6 +59,7 @@
                     <Label Text="{x:Static resx:AppResources.Overview_CategoriesPlannedAndActual}"
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding PlannedAndActualCategoriesAmounts}"
+                                        XAxes="{Binding PlannedAndActualCategoriesAmountsLabels}"
                                         HeightRequest="160"/>
                 </StackLayout>
             </Border>

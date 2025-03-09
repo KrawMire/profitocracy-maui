@@ -303,4 +303,19 @@
     <data name="Overview_WeeklyExpenses" xml:space="preserve">
         <value>Недельные расходы</value>
     </data>
+    <data name="OverView_SpendingType_Main" xml:space="preserve">
+        <value>Основные</value>
+    </data>
+    <data name="Overview_SpendingType_Saved" xml:space="preserve">
+        <value>Отложенные</value>
+    </data>
+    <data name="Overview_SpendingType_Secondary" xml:space="preserve">
+        <value>Второстепенные</value>
+    </data>
+    <data name="Overview_Expense" xml:space="preserve">
+        <value>Расходы</value>
+    </data>
+    <data name="Overview_Income" xml:space="preserve">
+        <value>Доход</value>
+    </data>
 </root>

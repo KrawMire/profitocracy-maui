@@ -614,5 +614,35 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("Overview_WeeklyExpenses", resourceCulture);
             }
         }
+        
+        internal static string OverView_SpendingType_Main {
+            get {
+                return ResourceManager.GetString("OverView_SpendingType_Main", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_SpendingType_Secondary {
+            get {
+                return ResourceManager.GetString("Overview_SpendingType_Secondary", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_SpendingType_Saved {
+            get {
+                return ResourceManager.GetString("Overview_SpendingType_Saved", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_Income {
+            get {
+                return ResourceManager.GetString("Overview_Income", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_Expense {
+            get {
+                return ResourceManager.GetString("Overview_Expense", resourceCulture);
+            }
+        }
     }
 }

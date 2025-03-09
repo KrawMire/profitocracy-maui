@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Core.Specifications;
 using Profitocracy.Mobile.Abstractions;
