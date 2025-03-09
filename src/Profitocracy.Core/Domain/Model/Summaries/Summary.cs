@@ -9,11 +9,14 @@ namespace Profitocracy.Core.Domain.Model.Summaries;
 
 public class Summary : AggregateRoot<Guid>
 {
+    private const int DaysInWeek = 7;
+    
     private readonly ICollection<Transaction> _transactions;
     private readonly IDictionary<Guid, Category> _categories;
     private readonly int _daysInPeriod;
-    private readonly int _weeksInPeriod;
     private readonly SummaryCalculationType _calcType;
+    private readonly Dictionary<DateTime, decimal> _expensesByDay;
+    private readonly Dictionary<DateTime, decimal> _expensesByWeek;
     
     internal Summary(
         ICollection<Transaction> transactions,
@@ -27,22 +30,22 @@ public class Summary : AggregateRoot<Guid>
             throw new ArgumentException("Date from must be less than date to.");
         }
         
+        DateFrom = dateFrom;
+        DateTo = dateTo;
+        
         _transactions = transactions;
         
-        var period = dateTo - dateFrom;
-        var monthsPeriod = dateTo.Month - dateFrom.Month;
+        var period = DateTo - DateFrom;
 
         _daysInPeriod = period.Days;
-        _weeksInPeriod = period.Days / 7;
-        _calcType = monthsPeriod <= 1 
-            ? SummaryCalculationType.ForMonth
-            : monthsPeriod <= 3
-            ? SummaryCalculationType.ForThreeMonths
-            : SummaryCalculationType.ForSixMonths;
+        _calcType = calcType;
         
         DailyAverage = 0;
         TotalIncome = 0;
         TotalExpenses = 0;
+        
+        _expensesByDay = new Dictionary<DateTime, decimal>();
+        _expensesByWeek = new Dictionary<DateTime, decimal>();
         
         CategoryExpenseExpectations = new Dictionary<Guid, CategoryExpenseExpectation>();
         CategoryExpenses = new Dictionary<Guid, CategoryExpense>();
@@ -67,6 +70,9 @@ public class Summary : AggregateRoot<Guid>
         }
     }
 
+    public DateTime DateFrom { get; }
+    public DateTime DateTo { get; }
+    
     public decimal TotalIncome { get; private set; }
     public decimal TotalExpenses { get; private set; }
     public decimal DailyAverage { get; private set; }
@@ -79,18 +85,49 @@ public class Summary : AggregateRoot<Guid>
     
     public void CalculateSummary()
     {
+        foreach (var transaction in _transactions)
+        {
+            HandleTransaction(transaction);
+        }
+        
         if (_calcType == SummaryCalculationType.ForMonth)
         {
             DailyExpenses = new List<DailyExpense>();
+
+            for (var i = 0; i < _daysInPeriod; i++)
+            {
+                var currentDay = DateFrom.AddDays(i).Date;
+                DailyExpenses.Add(new DailyExpense
+                {
+                    Date = currentDay,
+                    Amount = _expensesByDay.GetValueOrDefault(currentDay, 0)
+                });
+            }
         }
         else
         {
             WeeklyExpenses = new List<WeeklyExpense>();
-        }
 
-        foreach (var transaction in _transactions)
-        {
-            HandleTransaction(transaction);
+            for (var i = 0; i < _daysInPeriod; i++)
+            {
+                var currentDay = DateFrom.AddDays(i).Date;
+
+                if (!_expensesByWeek.TryGetValue(currentDay, out var weekExpense))
+                {
+                    continue;
+                }
+                
+                var dayOfWeek = (int)currentDay.DayOfWeek;
+                var weekStart = currentDay.AddDays(-dayOfWeek);
+                var weekEnd = currentDay.AddDays(DaysInWeek - dayOfWeek);
+                
+                WeeklyExpenses.Add(new WeeklyExpense
+                {
+                    DateFrom = weekStart,
+                    DateTo = weekEnd,
+                    Amount = weekExpense
+                });
+            }
         }
     }
 
@@ -125,6 +162,20 @@ public class Summary : AggregateRoot<Guid>
     {
         TotalExpenses += transaction.Amount;
 
+        if (_calcType == SummaryCalculationType.ForMonth)
+        {
+            _expensesByDay.TryAdd(transaction.Timestamp.Date, 0);
+            _expensesByDay[transaction.Timestamp.Date] += transaction.Amount;
+        }
+        else
+        {
+            var transactionDayOfWeek = (int)transaction.Timestamp.DayOfWeek;
+            var weekStart = transaction.Timestamp.AddDays(-transactionDayOfWeek);
+            
+            _expensesByWeek.TryAdd(weekStart.Date, 0);
+            _expensesByWeek[weekStart.Date] += transaction.Amount;
+        }
+        
         if (transaction.SpendingType is null)
         {
             throw new ArgumentNullException(nameof(transaction), "Spending type of expense transaction is null");

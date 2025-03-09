@@ -74,6 +74,7 @@
                     <Label Text="{x:Static resx:AppResources.Overview_DailyExpenses}"
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding DailyExpenses}"
+                                        XAxes="{Binding DailyExpensesLabels}"
                                         HeightRequest="320"/>
                 </StackLayout>
             </Border>
@@ -85,6 +86,7 @@
                     <Label Text="{x:Static resx:AppResources.Overview_WeeklyExpenses}"
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding WeeklyExpenses}"
+                                        XAxes="{Binding WeeklyExpensesLabels}"
                                         HeightRequest="320"/>
                 </StackLayout>
             </Border>

@@ -190,6 +190,7 @@ public class OverviewPageViewModel : BaseNotifyObject
         _totalExpense.Clear();
         _plannedCategoriesExpenses.Clear();
         _actualCategoriesExpenses.Clear();
+        _plannedCategoriesExpensesLabels.Clear();
         _dailyExpensesValues.Clear();
         _dailyExpensesLabelsValues.Clear();
         _weeklyExpensesValues.Clear();
