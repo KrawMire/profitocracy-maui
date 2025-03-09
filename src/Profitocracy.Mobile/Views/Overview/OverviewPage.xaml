@@ -13,7 +13,10 @@
              NavigatedTo="OverviewPage_OnNavigatedTo">
     <ScrollView VerticalScrollBarVisibility="Never">
         <StackLayout Padding="8,16">
-            <Picker />
+            <Picker x:Name="CalculationTypePicker"
+                    SelectedItem="{Binding SelectedDisplayCalculationType}"
+                    ItemDisplayBinding="{Binding DisplayName}"
+                    SelectedIndexChanged="CalculationTypePicker_OnSelectedIndexChanged"/>
             <Border Style="{StaticResource ExpenseCard}"
                     Margin="0,16,0,0">
                 <StackLayout>
@@ -65,11 +68,23 @@
             </Border>
             
             <Border Style="{StaticResource ExpenseCard}"
-                    Margin="0, 16, 0, 0">
+                    Margin="0, 16, 0, 0"
+                    IsVisible="{Binding IsShowDailyExpenses}">
                 <StackLayout>
                     <Label Text="{x:Static resx:AppResources.Overview_DailyExpenses}"
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding DailyExpenses}"
+                                        HeightRequest="320"/>
+                </StackLayout>
+            </Border>
+            
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0, 16, 0, 0"
+                    IsVisible="{Binding IsShowWeeklyExpenses}">
+                <StackLayout>
+                    <Label Text="{x:Static resx:AppResources.Overview_WeeklyExpenses}"
+                           Style="{StaticResource SettingsGroupTitle}"/>
+                    <lvc:CartesianChart Series="{Binding WeeklyExpenses}"
                                         HeightRequest="320"/>
                 </StackLayout>
             </Border>

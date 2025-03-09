@@ -318,4 +318,13 @@
     <data name="Overview_Income" xml:space="preserve">
         <value>Доход</value>
     </data>
+    <data name="Overview_ForMonth" xml:space="preserve">
+        <value>За текущий месяц</value>
+    </data>
+    <data name="Overview_ForSixMonths" xml:space="preserve">
+        <value>За шесть месяцев</value>
+    </data>
+    <data name="Overview_ForThreeMonths" xml:space="preserve">
+        <value>За три месяца</value>
+    </data>
 </root>

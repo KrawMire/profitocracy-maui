@@ -11,6 +11,7 @@ public partial class OverviewPage : BaseContentPage
     {
         InitializeComponent();
         BindingContext = _viewModel = viewModel;
+        CalculationTypePicker.ItemsSource = _viewModel.DisplayCalculationTypes;
     }
 
     private void OverviewPage_OnNavigatedTo(object? sender, NavigatedToEventArgs e)
@@ -18,6 +19,15 @@ public partial class OverviewPage : BaseContentPage
         ProcessAction(async () =>
         {
             await _viewModel.Initialize();
+            CalculationTypePicker.SelectedItem = _viewModel.SelectedDisplayCalculationType;
+        });
+    }
+
+    private void CalculationTypePicker_OnSelectedIndexChanged(object? sender, EventArgs e)
+    {
+        ProcessAction(async () =>
+        {
+            await _viewModel.Initialize(true);
         });
     }
 }

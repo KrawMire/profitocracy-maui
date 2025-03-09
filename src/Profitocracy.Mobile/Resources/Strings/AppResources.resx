@@ -318,4 +318,13 @@
     <data name="Overview_Expense" xml:space="preserve">
         <value>Expense</value>
     </data>
+    <data name="Overview_ForMonth" xml:space="preserve">
+        <value>For the current month</value>
+    </data>
+    <data name="Overview_ForThreeMonths" xml:space="preserve">
+        <value>For three months</value>
+    </data>
+    <data name="Overview_ForSixMonths" xml:space="preserve">
+        <value>For six months</value>
+    </data>
 </root>

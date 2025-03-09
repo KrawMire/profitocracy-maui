@@ -644,5 +644,23 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("Overview_Expense", resourceCulture);
             }
         }
+        
+        internal static string Overview_ForMonth {
+            get {
+                return ResourceManager.GetString("Overview_ForMonth", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_ForThreeMonths {
+            get {
+                return ResourceManager.GetString("Overview_ForThreeMonths", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_ForSixMonths {
+            get {
+                return ResourceManager.GetString("Overview_ForSixMonths", resourceCulture);
+            }
+        }
     }
 }

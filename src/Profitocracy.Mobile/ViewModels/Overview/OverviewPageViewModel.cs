@@ -5,6 +5,7 @@ using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
 using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 using Profitocracy.Core.Domain.Model.Summaries;
+using Profitocracy.Core.Domain.Model.Summaries.ValueObjects;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Resources.Strings;
 
@@ -25,11 +26,19 @@ public class OverviewPageViewModel : BaseNotifyObject
     private readonly ObservableCollection<string> _plannedCategoriesExpensesLabels = [];
     private readonly ObservableCollection<decimal> _actualCategoriesExpenses = [];
     private readonly ObservableCollection<decimal> _dailyExpensesValues = [];
+    private readonly ObservableCollection<string> _dailyExpensesLabelsValues = [];
     private readonly ObservableCollection<decimal> _weeklyExpensesValues = [];
+    private readonly ObservableCollection<string> _weeklyExpensesLabelsValues = [];
+    
+    private SummaryCalculationDisplayType _selectedDisplayCalculationType;
+    private bool _isShowDailyExpenses;
+    private bool _isShowWeeklyExpenses;
     
     public OverviewPageViewModel(ICalculationService calculationService)
     {
         _calculationService = calculationService;
+        _isShowDailyExpenses = false;
+        _isShowWeeklyExpenses = false;
 
         CategoriesExpenses =
         [
@@ -98,6 +107,11 @@ public class OverviewPageViewModel : BaseNotifyObject
                 GeometryStroke = null
             }
         ];
+        
+        DailyExpensesLabels =
+        [
+            new Axis { Labels = _dailyExpensesLabelsValues }
+        ];
 
         WeeklyExpenses =
         [
@@ -109,6 +123,11 @@ public class OverviewPageViewModel : BaseNotifyObject
                 GeometryStroke = null
             }
         ];
+        
+        WeeklyExpensesLabels =
+        [
+            new Axis { Labels = _weeklyExpensesLabelsValues }
+        ];
     }
     
     public ISeries[] CategoriesExpenses { get; set; }
@@ -118,20 +137,43 @@ public class OverviewPageViewModel : BaseNotifyObject
     public ISeries[] PlannedAndActualCategoriesAmounts { get; set; }
     public Axis[] PlannedAndActualCategoriesAmountsLabels { get; set; }
     public ISeries[] DailyExpenses { get; set; }
+    public Axis[] DailyExpensesLabels { get; set; }
     public ISeries[] WeeklyExpenses { get; set; }
+    public Axis[] WeeklyExpensesLabels { get; set; }
 
-    public async Task Initialize()
+    public ObservableCollection<SummaryCalculationDisplayType> DisplayCalculationTypes { get; } =
+    [
+        new(SummaryCalculationType.ForMonth, AppResources.Overview_ForMonth),
+        new(SummaryCalculationType.ForThreeMonths, AppResources.Overview_ForThreeMonths),
+        new(SummaryCalculationType.ForSixMonths, AppResources.Overview_ForSixMonths)
+    ];
+    
+    public SummaryCalculationDisplayType SelectedDisplayCalculationType
     {
-        var currentDay = DateTime.Now;
-        var dateFrom = new DateTime(currentDay.Year, currentDay.Month, 1);
-        var dateTo = new DateTime(
-            currentDay.Year, 
-            currentDay.Month, 
-            day: DateTime.DaysInMonth(
-                currentDay.Year, 
-                currentDay.Month));
+        get => _selectedDisplayCalculationType;
+        set => SetProperty(ref _selectedDisplayCalculationType, value);
+    }
+
+    public bool IsShowDailyExpenses
+    {
+        get => _isShowDailyExpenses;
+        set => SetProperty(ref _isShowDailyExpenses, value);
+    }
+
+    public bool IsShowWeeklyExpenses
+    {
+        get => _isShowWeeklyExpenses;
+        set => SetProperty(ref _isShowWeeklyExpenses, value);
+    }
+
+    public async Task Initialize(bool calcTypeChanged = false)
+    {
+        if (!calcTypeChanged)
+        {
+            SelectedDisplayCalculationType = DisplayCalculationTypes[0];
+        }
         
-        var summary = await _calculationService.GetSummaryForPeriod(dateFrom, dateTo);
+        var summary = await _calculationService.GetSummaryForPeriod(_selectedDisplayCalculationType.CalculationType);
         
         InvalidateSeries();
         DistributeSummary(summary);
@@ -149,7 +191,9 @@ public class OverviewPageViewModel : BaseNotifyObject
         _plannedCategoriesExpenses.Clear();
         _actualCategoriesExpenses.Clear();
         _dailyExpensesValues.Clear();
+        _dailyExpensesLabelsValues.Clear();
         _weeklyExpensesValues.Clear();
+        _weeklyExpensesLabelsValues.Clear();
     }
 
     private void DistributeSummary(Summary summary)
@@ -173,5 +217,52 @@ public class OverviewPageViewModel : BaseNotifyObject
             _actualCategoriesExpenses.Add(categoryExpectation.ActualAmount);
             _plannedCategoriesExpensesLabels.Add(categoryExpectation.CategoryName);
         }
+
+        if (_selectedDisplayCalculationType.CalculationType == SummaryCalculationType.ForMonth)
+        {
+            IsShowDailyExpenses = true;
+            IsShowWeeklyExpenses = false;
+            
+            if (summary.DailyExpenses is null)
+            {
+                return;
+            }
+            
+            foreach (var dailyExpense in summary.DailyExpenses)
+            {
+                _dailyExpensesValues.Add(dailyExpense.Amount);
+                _dailyExpensesLabelsValues.Add(dailyExpense.Date.ToString("dd.MM"));
+            }
+        }
+        else
+        {
+            IsShowDailyExpenses = false;
+            IsShowWeeklyExpenses = true;
+            
+            if (summary.WeeklyExpenses is null)
+            {
+                return;
+            }
+            
+            foreach (var weeklyExpense in summary.WeeklyExpenses)
+            {
+                var dateStr = $"{weeklyExpense.DateFrom.Date:dd.MM} - {weeklyExpense.DateTo.Date:dd.MM}";
+                
+                _weeklyExpensesValues.Add(weeklyExpense.Amount);
+                _weeklyExpensesLabelsValues.Add(dateStr);
+            }
+        }
+    }
+
+    public class SummaryCalculationDisplayType
+    {
+        public SummaryCalculationDisplayType(SummaryCalculationType type, string displayName)
+        {
+            CalculationType = type;
+            DisplayName = displayName;
+        }
+        
+        public SummaryCalculationType CalculationType { get; }
+        public string DisplayName { get; }
     }
 }
