@@ -1,3 +1,4 @@
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 
 namespace Profitocracy.Core.Specifications;

@@ -5,6 +5,7 @@
        xmlns:transactions="clr-namespace:Profitocracy.Mobile.Views.Transactions"
        xmlns:home="clr-namespace:Profitocracy.Mobile.Views.Home"
        xmlns:settings="clr-namespace:Profitocracy.Mobile.Views.Settings"
+       xmlns:overview="clr-namespace:Profitocracy.Mobile.Views.Overview"
        x:Class="Profitocracy.Mobile.AppShell"
        Loaded="AppShell_OnLoaded">
     <TabBar>
@@ -13,6 +14,9 @@
         </Tab>
         <Tab Title="{x:Static resx:AppResources.Pages_Transactions}" Icon="transactions.png">
             <ShellContent ContentTemplate="{DataTemplate transactions:TransactionsPage}"/>
+        </Tab>
+        <Tab Title="{x:Static resx:AppResources.Pages_Overview}" Icon="chart.png">
+            <ShellContent ContentTemplate="{DataTemplate overview:OverviewPage}"/>
         </Tab>
         <Tab Title="{x:Static resx:AppResources.Pages_Settings}" Icon="settings.png">
             <ShellContent ContentTemplate="{DataTemplate settings:SettingsPage}"/>

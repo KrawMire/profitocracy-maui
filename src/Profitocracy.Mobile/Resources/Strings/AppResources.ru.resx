@@ -282,4 +282,49 @@
     <data name="Currencies_EuropeanEuro" xml:space="preserve">
         <value>Европейский евро</value>
     </data>
+    <data name="Pages_Overview" xml:space="preserve">
+        <value>Сводка</value>
+    </data>
+    <data name="Overview_CategoriesExpenses" xml:space="preserve">
+        <value>Расходы по категориям</value>
+    </data>
+    <data name="Overview_CategoriesPlannedAndActual" xml:space="preserve">
+        <value>Ожидаемые и фактические расходы по категориям</value>
+    </data>
+    <data name="Overview_DailyExpenses" xml:space="preserve">
+        <value>Дневные расходы</value>
+    </data>
+    <data name="Overview_IncomeExpense" xml:space="preserve">
+        <value>Доходы и расходы</value>
+    </data>
+    <data name="Overview_SpendingTypes" xml:space="preserve">
+        <value>Расходы по типам</value>
+    </data>
+    <data name="Overview_WeeklyExpenses" xml:space="preserve">
+        <value>Недельные расходы</value>
+    </data>
+    <data name="OverView_SpendingType_Main" xml:space="preserve">
+        <value>Основные</value>
+    </data>
+    <data name="Overview_SpendingType_Saved" xml:space="preserve">
+        <value>Отложенные</value>
+    </data>
+    <data name="Overview_SpendingType_Secondary" xml:space="preserve">
+        <value>Второстепенные</value>
+    </data>
+    <data name="Overview_Expense" xml:space="preserve">
+        <value>Расходы</value>
+    </data>
+    <data name="Overview_Income" xml:space="preserve">
+        <value>Доход</value>
+    </data>
+    <data name="Overview_ForMonth" xml:space="preserve">
+        <value>За текущий месяц</value>
+    </data>
+    <data name="Overview_ForSixMonths" xml:space="preserve">
+        <value>За шесть месяцев</value>
+    </data>
+    <data name="Overview_ForThreeMonths" xml:space="preserve">
+        <value>За три месяца</value>
+    </data>
 </root>

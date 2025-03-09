@@ -1,4 +1,4 @@
-using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.ViewModels.Transactions;
 

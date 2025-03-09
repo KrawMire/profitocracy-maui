@@ -1,6 +1,8 @@
 using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Profiles;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
+using Profitocracy.Core.Domain.Model.Summaries;
+using Profitocracy.Core.Domain.Model.Summaries.ValueObjects;
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Core.Specifications;
@@ -98,5 +100,39 @@ internal class CalculationService : ICalculationService
 		
 		// Supposed to be executed a maximum of 2 times
 		return await PopulateAndProcessProfile(updatedProfile);
+	}
+
+	/// <inheritdoc />
+	public async Task<Summary> GetSummaryForPeriod(SummaryCalculationType calcType)
+	{
+		var profile = await _profileRepository.GetCurrentProfile();
+
+		if (profile is null)
+		{
+			throw new InvalidOperationException("Current profile was not found");
+		}
+		
+		var currentDate = DateTime.Now;
+		var dateTo = new DateTime(
+			currentDate.Year, 
+			currentDate.Month, 
+			day: DateTime.DaysInMonth(
+				currentDate.Year, 
+				currentDate.Month));
+
+		var dateFrom = calcType switch
+		{
+			SummaryCalculationType.ForMonth => new DateTime(currentDate.Year, currentDate.Month, 1),
+			SummaryCalculationType.ForThreeMonths => new DateTime(currentDate.Year, currentDate.Month, 1).AddMonths(-3),
+			_ => new DateTime(currentDate.Year, currentDate.Month, 1).AddMonths(-6) 
+		};
+		
+		var categories = await _categoryRepository.GetAllByProfileId(profile.Id);
+		var transactions = await _transactionRepository.GetForPeriod(profile.Id, dateFrom, dateTo);
+		var summary = new Summary(transactions, categories, calcType, dateFrom, dateTo);
+		
+		summary.CalculateSummary();
+		
+		return summary;
 	}
 }

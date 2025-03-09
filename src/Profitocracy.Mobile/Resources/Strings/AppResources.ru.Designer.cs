@@ -572,5 +572,95 @@ namespace Profitocracy.Mobile.Resources.Strings {
                 return ResourceManager.GetString("Currencies_EuropeanEuro", resourceCulture);
             }
         }
+        
+        internal static string Pages_Overview {
+            get {
+                return ResourceManager.GetString("Pages_Overview", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_CategoriesExpenses {
+            get {
+                return ResourceManager.GetString("Overview_CategoriesExpenses", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_CategoriesPlannedAndActual {
+            get {
+                return ResourceManager.GetString("Overview_CategoriesPlannedAndActual", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_DailyExpenses {
+            get {
+                return ResourceManager.GetString("Overview_DailyExpenses", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_IncomeExpense {
+            get {
+                return ResourceManager.GetString("Overview_IncomeExpense", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_SpendingTypes {
+            get {
+                return ResourceManager.GetString("Overview_SpendingTypes", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_WeeklyExpenses {
+            get {
+                return ResourceManager.GetString("Overview_WeeklyExpenses", resourceCulture);
+            }
+        }
+        
+        internal static string OverView_SpendingType_Main {
+            get {
+                return ResourceManager.GetString("OverView_SpendingType_Main", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_SpendingType_Saved {
+            get {
+                return ResourceManager.GetString("Overview_SpendingType_Saved", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_SpendingType_Secondary {
+            get {
+                return ResourceManager.GetString("Overview_SpendingType_Secondary", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_Expense {
+            get {
+                return ResourceManager.GetString("Overview_Expense", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_Income {
+            get {
+                return ResourceManager.GetString("Overview_Income", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_ForMonth {
+            get {
+                return ResourceManager.GetString("Overview_ForMonth", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_ForSixMonths {
+            get {
+                return ResourceManager.GetString("Overview_ForSixMonths", resourceCulture);
+            }
+        }
+        
+        internal static string Overview_ForThreeMonths {
+            get {
+                return ResourceManager.GetString("Overview_ForThreeMonths", resourceCulture);
+            }
+        }
     }
 }

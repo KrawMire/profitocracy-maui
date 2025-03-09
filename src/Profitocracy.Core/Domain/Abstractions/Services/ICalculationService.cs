@@ -1,4 +1,6 @@
 using Profitocracy.Core.Domain.Model.Profiles;
+using Profitocracy.Core.Domain.Model.Summaries;
+using Profitocracy.Core.Domain.Model.Summaries.ValueObjects;
 
 namespace Profitocracy.Core.Domain.Abstractions.Services;
 
@@ -13,4 +15,12 @@ public interface ICalculationService
 	/// </summary>
 	/// <returns>Current profile</returns>
 	Task<Profile?> GetCurrentProfile();
+
+	/// <summary>
+	/// Calculates a summary for the specified date range.
+	/// </summary>
+	/// <param name="dateFrom">The start date of the period.</param>
+	/// <param name="dateTo">The end date of the period.</param>
+	/// <returns>Summary containing transaction and category data for the period.</returns>
+	Task<Summary> GetSummaryForPeriod(SummaryCalculationType calcType);
 }
