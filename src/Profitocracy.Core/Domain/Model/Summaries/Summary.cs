@@ -15,9 +15,10 @@ public class Summary : AggregateRoot<Guid>
     private readonly int _weeksInPeriod;
     private readonly SummaryCalculationType _calcType;
     
-    public Summary(
+    internal Summary(
         ICollection<Transaction> transactions,
         ICollection<Category> categories,
+        SummaryCalculationType calcType,
         DateTime dateFrom,
         DateTime dateTo) : base(Guid.NewGuid())
     {
