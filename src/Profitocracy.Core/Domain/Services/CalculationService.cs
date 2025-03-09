@@ -1,6 +1,7 @@
 using Profitocracy.Core.Domain.Abstractions.Services;
 using Profitocracy.Core.Domain.Model.Profiles;
 using Profitocracy.Core.Domain.Model.Profiles.Entities;
+using Profitocracy.Core.Domain.Model.Summaries;
 using Profitocracy.Core.Domain.Model.Transactions.ValueObjects;
 using Profitocracy.Core.Persistence;
 using Profitocracy.Core.Specifications;
@@ -98,5 +99,23 @@ internal class CalculationService : ICalculationService
 		
 		// Supposed to be executed a maximum of 2 times
 		return await PopulateAndProcessProfile(updatedProfile);
+	}
+
+	/// <inheritdoc />
+	public async Task<Summary> GetSummaryForPeriod(DateTime dateFrom, DateTime dateTo)
+	{
+		var profile = await _profileRepository.GetCurrentProfile();
+
+		if (profile is null)
+		{
+			throw new InvalidOperationException("Current profile was not found");
+		}
+		
+		var categories = await _categoryRepository.GetAllByProfileId(profile.Id);
+		var transactions = await _transactionRepository.GetForPeriod(profile.Id, dateFrom, dateTo);
+		var summary = new Summary(transactions, categories, dateFrom, dateTo);
+		summary.CalculateSummary();
+		
+		return summary;
 	}
 }
