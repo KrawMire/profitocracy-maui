@@ -24,37 +24,32 @@
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding CategoriesExpenses}"
                                         XAxes="{Binding CategoriesExpensesLabels}"
-                                        HeightRequest="320"/>
+                                        HeightRequest="320"
+                                        TooltipPosition="Top"/>
                 </StackLayout>
             </Border>
             
-            <Grid Margin="0,16,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="8"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                
-                <Border Grid.Column="0" 
-                        Style="{StaticResource ExpenseCard}">
-                    <StackLayout>
-                        <Label Text="{x:Static resx:AppResources.Overview_SpendingTypes}"
-                               Style="{StaticResource SettingsGroupTitle}"/>
-                        <lvc:PieChart Series="{Binding SpendingTypeDistribution}"
-                                      HeightRequest="160"/>
-                    </StackLayout>
-                </Border>
-                
-                <Border Grid.Column="2" 
-                        Style="{StaticResource ExpenseCard}">
-                    <StackLayout>
-                        <Label Text="{x:Static resx:AppResources.Overview_IncomeExpense}"
-                               Style="{StaticResource SettingsGroupTitle}"/>
-                        <lvc:PieChart Series="{Binding IncomeAndExpense}"
-                                      HeightRequest="160"/>
-                    </StackLayout>
-                </Border>
-            </Grid>
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0, 16, 0, 0">
+                <StackLayout>
+                    <Label Text="{x:Static resx:AppResources.Overview_SpendingTypes}"
+                           Style="{StaticResource SettingsGroupTitle}"/>
+                    <lvc:PieChart Series="{Binding SpendingTypeDistribution}"
+                                  HeightRequest="160"
+                                  TooltipPosition="Top"/>
+                </StackLayout>
+            </Border>
+            
+            <Border Style="{StaticResource ExpenseCard}"
+                    Margin="0, 16, 0, 0">
+                <StackLayout>
+                    <Label Text="{x:Static resx:AppResources.Overview_IncomeExpense}"
+                           Style="{StaticResource SettingsGroupTitle}"/>
+                    <lvc:PieChart Series="{Binding IncomeAndExpense}"
+                                  HeightRequest="160"
+                                  TooltipPosition="Top"/>
+                </StackLayout>
+            </Border>
             
             <Border Style="{StaticResource ExpenseCard}"
                     Margin="0, 16, 0, 0">
@@ -63,7 +58,8 @@
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding PlannedAndActualCategoriesAmounts}"
                                         XAxes="{Binding PlannedAndActualCategoriesAmountsLabels}"
-                                        HeightRequest="160"/>
+                                        HeightRequest="320"
+                                        TooltipPosition="Top"/>
                 </StackLayout>
             </Border>
             
@@ -75,7 +71,8 @@
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding DailyExpenses}"
                                         XAxes="{Binding DailyExpensesLabels}"
-                                        HeightRequest="320"/>
+                                        HeightRequest="320"
+                                        TooltipPosition="Top"/>
                 </StackLayout>
             </Border>
             
@@ -87,7 +84,8 @@
                            Style="{StaticResource SettingsGroupTitle}"/>
                     <lvc:CartesianChart Series="{Binding WeeklyExpenses}"
                                         XAxes="{Binding WeeklyExpensesLabels}"
-                                        HeightRequest="320"/>
+                                        HeightRequest="320"
+                                        TooltipPosition="Top"/>
                 </StackLayout>
             </Border>
         </StackLayout>
