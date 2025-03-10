@@ -1,4 +1,5 @@
 ﻿using LiveChartsCore.SkiaSharpView.Maui;
+using Microsoft.Extensions.Logging;
 using Profitocracy.Core;
 using Profitocracy.Infrastructure;
 using Profitocracy.Mobile.ViewModels.Categories;
