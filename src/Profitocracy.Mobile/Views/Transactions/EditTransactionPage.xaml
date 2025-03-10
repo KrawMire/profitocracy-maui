@@ -12,7 +12,7 @@
                               Padding="16"
                               HideSoftInputOnTapped="True">
     <Grid VerticalOptions="Fill"
-          RowDefinitions="auto,auto,auto,*,auto">
+          RowDefinitions="auto,auto,*,auto">
         <FlexLayout Grid.Row="0"
                     JustifyContent="SpaceBetween">
             <Label Style="{StaticResource PageTitle}"
@@ -279,7 +279,7 @@
                 </StackLayout>
             </StackLayout>
         </ScrollView>
-        <Button Grid.Row="4"
+        <Button Grid.Row="3"
                 Text="{x:Static resx:AppResources.AddTransaction_SaveTransaction}"
                 VerticalOptions="End"
                 Clicked="EditTransactionButton_OnClicked"/>
