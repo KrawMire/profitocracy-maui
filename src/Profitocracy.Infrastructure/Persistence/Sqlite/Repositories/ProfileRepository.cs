@@ -61,6 +61,33 @@ internal class ProfileRepository : IProfileRepository
 		return profile?.Id;
 	}
 
+	public async Task<List<Profile>> GetAllProfiles()
+	{
+		await _dbConnection.Init();
+
+		var profiles = await _dbConnection.Database
+			.Table<ProfileModel>()
+			.ToListAsync();
+
+		return profiles
+			.Select(_mapper.MapToDomain)
+			.ToList();
+	}
+
+	public async Task<Profile?> GetProfileById(Guid id)
+	{
+		await _dbConnection.Init();
+		
+		var profile = await _dbConnection.Database
+			.Table<ProfileModel>()
+			.Where(p => p.Id == id)
+			.FirstOrDefaultAsync();
+
+		return profile is null 
+			? null 
+			: _mapper.MapToDomain(profile);
+	}
+
 	public async Task<Profile?> GetCurrentProfile()
 	{
 		await _dbConnection.Init();

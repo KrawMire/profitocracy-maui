@@ -9,6 +9,7 @@ public static class CoreRegistry
     public static IServiceCollection RegisterCoreServices(this IServiceCollection services)
     {
         return services
+            .AddTransient<IProfileService, ProfileService>()
             .AddTransient<ICalculationService, CalculationService>()
             .AddTransient<ICategoryService, CategoryService>();
     } 
