@@ -10,7 +10,8 @@
                               x:DataType="viewmodel:TransactionsPageViewModel"
                               Title="{x:Static resx:AppResources.Pages_Transactions}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-                              NavigatedTo="TransactionsPage_NavigatedTo">
+                              NavigatedTo="TransactionsPage_NavigatedTo"
+                              HideSoftInputOnTapped="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

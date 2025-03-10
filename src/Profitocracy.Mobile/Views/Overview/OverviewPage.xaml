@@ -10,7 +10,8 @@
              x:DataType="viewmodel:OverviewPageViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
              Title="{x:Static resx:AppResources.Pages_Overview}"
-             NavigatedTo="OverviewPage_OnNavigatedTo">
+             NavigatedTo="OverviewPage_OnNavigatedTo"
+             HideSoftInputOnTapped="True">
     <ScrollView VerticalScrollBarVisibility="Never">
         <StackLayout Padding="8,16">
             <Picker x:Name="CalculationTypePicker"

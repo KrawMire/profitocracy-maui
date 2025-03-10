@@ -8,7 +8,8 @@
                               xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Transactions"
                               x:Class="Profitocracy.Mobile.Views.Transactions.FilteredTransactionsPage"
                               x:DataType="viewmodel:FilteredTransactionsPageViewModel"
-                              Shell.PresentationMode="ModalAnimated">
+                              Shell.PresentationMode="ModalAnimated"
+                              HideSoftInputOnTapped="True">
     <abstractions:BaseContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

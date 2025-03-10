@@ -9,7 +9,8 @@
                               x:DataType="viewmodel:EditExpenseCategoryPageViewModel"
                               Padding="16"
                               Shell.PresentationMode="ModalAnimated"
-                              Loaded="EditExpenseCategoryPage_OnLoaded">
+                              Loaded="EditExpenseCategoryPage_OnLoaded"
+                              HideSoftInputOnTapped="True">
     <abstractions:BaseContentPage.Content>
         <Grid VerticalOptions="Fill"
               RowDefinitions="auto,*,auto">

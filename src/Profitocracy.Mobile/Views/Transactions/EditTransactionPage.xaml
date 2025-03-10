@@ -9,12 +9,12 @@
                               x:DataType="viewmodel:EditTransactionPageViewModel"
                               Loaded="EditTransactionPage_OnLoaded"
                               Shell.PresentationMode="ModalAnimated"
-                              Padding="16">
+                              Padding="16"
+                              HideSoftInputOnTapped="True">
     <ScrollView>
-        <Grid VerticalOptions="Fill"
-              RowDefinitions="auto,auto,*,auto">
-            <FlexLayout Grid.Row="0"
-                        JustifyContent="SpaceBetween">
+        <Grid VerticalOptions="Fill">
+            <StackLayout>
+                <FlexLayout JustifyContent="SpaceBetween">
                 <Label Style="{StaticResource PageTitle}"
                        Text="{x:Static resx:AppResources.Pages_NewTransaction}"/>    
                 <Border Style="{StaticResource CloseButton}"
@@ -279,8 +279,8 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <Button Grid.Row="3"
-                    Text="{x:Static resx:AppResources.AddTransaction_SaveTransaction}"
+            </StackLayout>
+            <Button Text="{x:Static resx:AppResources.AddTransaction_SaveTransaction}"
                     VerticalOptions="End"
                     Clicked="EditTransactionButton_OnClicked"/>
         </Grid>

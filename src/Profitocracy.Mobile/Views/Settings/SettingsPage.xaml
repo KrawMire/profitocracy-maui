@@ -6,7 +6,8 @@
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               x:Class="Profitocracy.Mobile.Views.Settings.SettingsPage"
                               Title="{x:Static resx:AppResources.Pages_Settings}"
-                              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+                              HideSoftInputOnTapped="True">
     <ScrollView Padding="16"
                 VerticalScrollBarVisibility="Never">
         <StackLayout>
