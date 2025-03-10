@@ -33,6 +33,7 @@
                                             <VerticalStackLayout VerticalOptions="Center" 
                                                                  Width="16">
                                                 <Border BackgroundColor="{StaticResource InfoBlue}"
+                                                        StrokeThickness="0"
                                                         Padding="16">
                                                     <Border.StrokeShape>
                                                         <RoundRectangle CornerRadius="40"/>
