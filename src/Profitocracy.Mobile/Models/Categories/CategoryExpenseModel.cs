@@ -6,7 +6,8 @@ public record CategoryExpenseModel(
     decimal ActualAmount,
     bool IsShowRatio,
     decimal? PlannedAmount,
-    float? Ratio)
+    float? Ratio,
+    string? CurrencySymbol)
 {
     public bool IsNotShowRatio => !IsShowRatio;
 };

@@ -13,7 +13,20 @@ public interface IProfileRepository
 	/// </summary>
 	/// <returns>ID of the current profile if exists, otherwise, null</returns>
 	Task<Guid?> GetCurrentProfileId();
-	
+
+	/// <summary>
+	/// Retrieve a list of all profiles.
+	/// </summary>
+	/// <returns>A list containing all profiles.</returns>
+	Task<List<Profile>> GetAllProfiles();
+
+	/// <summary>
+	/// Retrieves a profile by its unique identifier.
+	/// </summary>
+	/// <param name="id">The unique identifier of the profile to retrieve.</param>
+	/// <returns>The profile with the specified identifier if found; otherwise, null.</returns>
+	Task<Profile?> GetProfileById(Guid id);
+
 	/// <summary>
 	/// Get current active profile
 	/// </summary>

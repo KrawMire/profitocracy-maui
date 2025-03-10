@@ -666,4 +666,25 @@
         <Setter Property="Padding" Value="16,12"/>
         <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
     </Style>
+    
+    <!-- Profiles Settings Page -->
+    <Style TargetType="Border" x:Key="ProfileCard">
+        <Setter Property="Padding" Value="18"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightContent}, Dark={StaticResource DarkContent}}"/>
+    </Style>
+    
+    <Style TargetType="Border" x:Key="CurrentProfileCard">
+        <Setter Property="Padding" Value="18"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryLight}, Dark={StaticResource SecondaryDark}}"/>
+    </Style>
+    
+    <Style TargetType="Label" x:Key="CurrentProfileCardName">
+        <Setter Property="FontFamily" Value="OpenSansSemibold"/>
+        <Setter Property="TextColor" Value="{StaticResource SpecialPrimaryText}"/>
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
 </ResourceDictionary>

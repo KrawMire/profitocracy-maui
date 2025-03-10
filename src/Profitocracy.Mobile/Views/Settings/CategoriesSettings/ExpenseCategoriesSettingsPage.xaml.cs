@@ -46,7 +46,7 @@ public partial class ExpenseCategoriesSettingsPage : BaseContentPage
 
 			if (category?.Id is null)
 			{
-				throw new ArgumentNullException(AppResources.CommonError_FindCategoryToDelete);
+				throw new ArgumentNullException(AppResources.CommonError_FindCategoryToEdit);
 			}
 			
 			await OpenEditCategoryPage((Guid)category.Id);

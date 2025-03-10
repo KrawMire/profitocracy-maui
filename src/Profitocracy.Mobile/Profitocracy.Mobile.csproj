@@ -15,8 +15,8 @@
         <ApplicationTitle>Profitocracy</ApplicationTitle>
         <ApplicationId>com.krawmire.profitocracy</ApplicationId>
         
-        <ApplicationVersion>23</ApplicationVersion>
-        <ApplicationDisplayVersion>1.7.0</ApplicationDisplayVersion>
+        <ApplicationVersion>25</ApplicationVersion>
+        <ApplicationDisplayVersion>1.8.1</ApplicationDisplayVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">

@@ -1,6 +1,6 @@
 ﻿using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Constants;
-using Profitocracy.Mobile.Views.Setup;
+using Profitocracy.Mobile.Views.Settings.ProfilesSettings;
 
 namespace Profitocracy.Mobile;
 
@@ -12,7 +12,7 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 		
-		Routing.RegisterRoute(RoutesConstants.SetupPage, typeof(SetupPage));
+		Routing.RegisterRoute(RoutesConstants.SetupPage, typeof(EditProfilePage));
 		_profileRepository = profileRepository;
 	}
 

@@ -5,7 +5,7 @@ using Profitocracy.Core.Domain.Model.Profiles.Entities;
 using Profitocracy.Core.Domain.Model.Profiles.ValueObjects;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Models.Categories;
-using Profitocracy.Mobile.Models.Profile;
+using Profitocracy.Mobile.Models.Profiles;
 using Profitocracy.Mobile.Utils;
 
 namespace Profitocracy.Mobile.ViewModels.Home;
@@ -13,115 +13,116 @@ namespace Profitocracy.Mobile.ViewModels.Home;
 public class HomePageViewModel : BaseNotifyObject
 {
     private string _profileName = string.Empty;
-    
-    private decimal _balance;
-    private decimal _totalActualAmount;
-    private decimal _totalPlannedAmount;
-    private decimal _todayActualAmount;
-    private decimal _todayPlannedAmount;
-    private decimal _balanceForTomorrow;
-    private decimal _mainActualAmount;
-    private decimal _mainPlannedAmount;
-    private decimal _secondaryActualAmount;
-    private decimal _secondaryPlannedAmount;
-    private decimal _savedActualAmount;
-    private decimal _savedPlannedAmount;
-    
+
+    private string _balance;
+    private string _totalActualAmount;
+    private string _totalPlannedAmount;
+    private string _todayActualAmount;
+    private string _todayPlannedAmount;
+    private string _balanceForTomorrow;
+    private string _mainActualAmount;
+    private string _mainPlannedAmount;
+    private string _secondaryActualAmount;
+    private string _secondaryPlannedAmount;
+    private string _savedActualAmount;
+    private string _savedPlannedAmount;
+
     private float _totalBalanceRatio;
     private float _todayBalanceRatio;
     private float _mainExpensesRatio;
     private float _secondaryExpensesRatio;
     private float _savedRatio;
-    
+
+    private string _profileCurrency = string.Empty;
     private string _dateFrom = string.Empty;
     private string _dateTo = string.Empty;
 
     private bool _isDisplayNoCategories;
     private bool _isRefreshing = true;
     private bool _isShowSavedAmounts;
-    
+
     private readonly ICalculationService _calculationService;
 
     public Guid ProfileId { get; private set; }
-    
+
     public string ProfileName
     {
         get => _profileName;
         set => SetProperty(ref _profileName, value);
     }
-    
-    public decimal Balance
+
+    public string Balance
     {
         get => _balance;
         set => SetProperty(ref _balance, value);
     }
-    
-    public decimal TotalActualAmount
+
+    public string TotalActualAmount
     {
         get => _totalActualAmount;
         set => SetProperty(ref _totalActualAmount, value);
     }
-    
-    public decimal TotalPlannedAmount
+
+    public string TotalPlannedAmount
     {
         get => _totalPlannedAmount;
         set => SetProperty(ref _totalPlannedAmount, value);
     }
-    
-    public decimal TodayActualAmount
+
+    public string TodayActualAmount
     {
         get => _todayActualAmount;
         set => SetProperty(ref _todayActualAmount, value);
     }
-    
-    public decimal TodayPlannedAmount
+
+    public string TodayPlannedAmount
     {
         get => _todayPlannedAmount;
         set => SetProperty(ref _todayPlannedAmount, value);
     }
 
-    public decimal BalanceForTomorrow
+    public string BalanceForTomorrow
     {
         get => _balanceForTomorrow;
         set => SetProperty(ref _balanceForTomorrow, value);
     }
-    
-    public decimal MainActualAmount
+
+    public string MainActualAmount
     {
         get => _mainActualAmount;
         set => SetProperty(ref _mainActualAmount, value);
     }
-    
-    public decimal MainPlannedAmount
+
+    public string MainPlannedAmount
     {
         get => _mainPlannedAmount;
         set => SetProperty(ref _mainPlannedAmount, value);
     }
-    
-    public decimal SecondaryActualAmount
+
+    public string SecondaryActualAmount
     {
         get => _secondaryActualAmount;
         set => SetProperty(ref _secondaryActualAmount, value);
     }
-    
-    public decimal SecondaryPlannedAmount
+
+    public string SecondaryPlannedAmount
     {
         get => _secondaryPlannedAmount;
         set => SetProperty(ref _secondaryPlannedAmount, value);
     }
-    
-    public decimal SavedActualAmount
+
+    public string SavedActualAmount
     {
         get => _savedActualAmount;
         set => SetProperty(ref _savedActualAmount, value);
     }
-    
-    public decimal SavedPlannedAmount
+
+    public string SavedPlannedAmount
     {
         get => _savedPlannedAmount;
         set => SetProperty(ref _savedPlannedAmount, value);
     }
-    
+
     public float TotalBalanceRatio
     {
         get => _totalBalanceRatio;
@@ -163,7 +164,7 @@ public class HomePageViewModel : BaseNotifyObject
         get => _dateTo;
         private set => SetProperty(ref _dateTo, value);
     }
-    
+
     public bool IsDisplayNoCategories
     {
         get => _isDisplayNoCategories;
@@ -182,7 +183,7 @@ public class HomePageViewModel : BaseNotifyObject
         set => SetProperty(ref _isShowSavedAmounts, value);
     }
     
-    public ICommand RefreshCommand { get; private set; }
+public ICommand RefreshCommand { get; private set; }
     
     public readonly ObservableCollection<SavedAmountModel> SavedAmounts = [];
     public readonly ObservableCollection<CategoryExpenseModel> CategoriesExpenses = [];
@@ -218,9 +219,11 @@ public class HomePageViewModel : BaseNotifyObject
 
         ProfileId = profile.Id;
         ProfileName = profile.Name;
-        Balance = NumberUtils.RoundDecimal(profile.Balance);
+        Balance = NumberUtils.RoundDecimalMoney(profile.Balance, _profileCurrency);
         DateFrom = profile.BillingPeriod.DateFrom.ToShortDateString();
         DateTo = profile.BillingPeriod.DateTo.ToShortDateString();
+        
+        _profileCurrency = profile.Settings.Currency.Symbol;
         
         InitializeExpenses(profile.Expenses);
         CategoriesExpenses.Clear();
@@ -249,17 +252,17 @@ public class HomePageViewModel : BaseNotifyObject
 
     private void InitializeExpenses(ProfileExpenses expenses)
     {
-        TotalActualAmount = NumberUtils.RoundDecimal(expenses.TotalBalance.ActualAmount);
-        TotalPlannedAmount = NumberUtils.RoundDecimal(expenses.TotalBalance.PlannedAmount);
-        TodayActualAmount = NumberUtils.RoundDecimal(expenses.TodayBalance.ActualAmount);
-        TodayPlannedAmount = NumberUtils.RoundDecimal(expenses.TodayBalance.PlannedAmount);
-        BalanceForTomorrow = NumberUtils.RoundDecimal(expenses.TomorrowBalance);
-        MainActualAmount = NumberUtils.RoundDecimal(expenses.Main.ActualAmount);
-        MainPlannedAmount = NumberUtils.RoundDecimal(expenses.Main.PlannedAmount);
-        SecondaryActualAmount = NumberUtils.RoundDecimal(expenses.Secondary.ActualAmount);
-        SecondaryPlannedAmount = NumberUtils.RoundDecimal(expenses.Secondary.PlannedAmount);
-        SavedActualAmount = NumberUtils.RoundDecimal(expenses.Saved.ActualAmount);
-        SavedPlannedAmount = NumberUtils.RoundDecimal(expenses.Saved.PlannedAmount);
+        TotalActualAmount = NumberUtils.RoundDecimalMoney(expenses.TotalBalance.ActualAmount, _profileCurrency);
+        TotalPlannedAmount = NumberUtils.RoundDecimalMoney(expenses.TotalBalance.PlannedAmount, _profileCurrency);
+        TodayActualAmount = NumberUtils.RoundDecimalMoney(expenses.TodayBalance.ActualAmount, _profileCurrency);
+        TodayPlannedAmount = NumberUtils.RoundDecimalMoney(expenses.TodayBalance.PlannedAmount, _profileCurrency);
+        BalanceForTomorrow = NumberUtils.RoundDecimalMoney(expenses.TomorrowBalance, _profileCurrency);
+        MainActualAmount = NumberUtils.RoundDecimalMoney(expenses.Main.ActualAmount, _profileCurrency);
+        MainPlannedAmount = NumberUtils.RoundDecimalMoney(expenses.Main.PlannedAmount, _profileCurrency);
+        SecondaryActualAmount = NumberUtils.RoundDecimalMoney(expenses.Secondary.ActualAmount, _profileCurrency);
+        SecondaryPlannedAmount = NumberUtils.RoundDecimalMoney(expenses.Secondary.PlannedAmount, _profileCurrency);
+        SavedActualAmount = NumberUtils.RoundDecimalMoney(expenses.Saved.ActualAmount, _profileCurrency);
+        SavedPlannedAmount = NumberUtils.RoundDecimalMoney(expenses.Saved.PlannedAmount, _profileCurrency);
         
         InitializeExpenseRatios(expenses);
     }
@@ -294,7 +297,8 @@ public class HomePageViewModel : BaseNotifyObject
                 ActualAmount: NumberUtils.RoundDecimal(category.ActualAmount),
                 IsShowRatio: showRatio,
                 PlannedAmount: plannedAmount,
-                Ratio: ratio);
+                Ratio: ratio,
+                _profileCurrency);
             
             CategoriesExpenses.Add(categoryExpense);
         }

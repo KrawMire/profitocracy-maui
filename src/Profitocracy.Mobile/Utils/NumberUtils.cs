@@ -1,3 +1,5 @@
+using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
+
 namespace Profitocracy.Mobile.Utils;
 
 /// <summary>
@@ -15,6 +17,19 @@ public static class NumberUtils
         => num is null 
             ? decimal.Zero 
             : Math.Round((decimal)num, decimals);
+
+    /// <summary>
+    /// Rounds the given decimal to a specified number of decimals and formats it as currency with a symbol.
+    /// </summary>
+    /// <param name="num">The decimal number to round.</param>
+    /// <param name="currencySymbol">The symbol of the currency to prepend to the formatted number. If null, the default currency symbol is used.</param>
+    /// <returns>A string representation of the rounded number prefixed with the currency symbol.</returns>
+    public static string RoundDecimalMoney(decimal? num, string? currencySymbol)
+    {
+        currencySymbol ??= Currency.AvailableCurrencies.Usd.Symbol;
+
+        return $"{currencySymbol}{RoundDecimal(num)}";
+    }
 
     /// <summary>
     /// Get ratio between two decimal numbers.

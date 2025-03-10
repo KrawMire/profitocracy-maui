@@ -5,15 +5,15 @@ using Profitocracy.Infrastructure;
 using Profitocracy.Mobile.ViewModels.Categories;
 using Profitocracy.Mobile.ViewModels.Home;
 using Profitocracy.Mobile.ViewModels.Overview;
+using Profitocracy.Mobile.ViewModels.Profiles;
 using Profitocracy.Mobile.ViewModels.Settings;
-using Profitocracy.Mobile.ViewModels.Setup;
 using Profitocracy.Mobile.ViewModels.Transactions;
 using Profitocracy.Mobile.Views.Home;
 using Profitocracy.Mobile.Views.Overview;
 using Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 using Profitocracy.Mobile.Views.Settings.LanguageSettings;
+using Profitocracy.Mobile.Views.Settings.ProfilesSettings;
 using Profitocracy.Mobile.Views.Settings.ThemeSettings;
-using Profitocracy.Mobile.Views.Setup;
 using Profitocracy.Mobile.Views.Transactions;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
@@ -69,7 +69,6 @@ public static class MauiProgram
 	{
 		_ = mauiAppBuilder.Services
 			.AddTransient<HomePageViewModel>()
-			.AddTransient<SetupPageViewModel>()
 			.AddTransient<EditTransactionPageViewModel>()
 			.AddTransient<FilteredTransactionsPageViewModel>()
 			.AddTransient<TransactionsPageViewModel>()
@@ -77,6 +76,8 @@ public static class MauiProgram
 			.AddTransient<EditExpenseCategoryPageViewModel>()
 			.AddTransient<OverviewPageViewModel>()
 			.AddTransient<LanguageSettingsViewModel>()
+			.AddTransient<ProfileSettingsPageViewModel>()
+			.AddTransient<EditProfilePageViewModel>()
 			.AddTransient<ThemeSettingsPageViewModel>();
 		
 		return mauiAppBuilder;
@@ -86,13 +87,14 @@ public static class MauiProgram
 	{
 		_ = mauiAppBuilder.Services
 			.AddSingleton<HomePage>()
-			.AddSingleton<SetupPage>()
 			.AddSingleton<TransactionsPage>()
 			.AddTransient<FilteredTransactionsPage>()
 			.AddTransient<EditTransactionPage>()
 			.AddTransient<ExpenseCategoriesSettingsPage>()
 			.AddTransient<EditExpenseCategoryPage>()
 			.AddTransient<OverviewPage>()
+			.AddTransient<ProfilesSettingsPage>()
+			.AddTransient<EditProfilePage>()
 			.AddTransient<ThemeSettingsPage>()
 			.AddTransient<LanguageSettingsPage>();
 		

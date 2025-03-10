@@ -1,7 +1,7 @@
 using Profitocracy.Core.Domain.Model.Shared.ValueObjects;
 using Profitocracy.Mobile.Services;
 
-namespace Profitocracy.Mobile.Models.Profile;
+namespace Profitocracy.Mobile.Models.Profiles;
 
 public class SavedAmountModel
 {

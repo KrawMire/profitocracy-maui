@@ -128,7 +128,7 @@ public class Profile : AggregateRoot<Guid>
 	/// <summary>
 	/// Is this profile currently using by user
 	/// </summary>
-	public bool IsCurrent { get; }
+	public bool IsCurrent { get; set; }
 
 	/// <summary>
 	/// This field is used to correctly calculate money for today.

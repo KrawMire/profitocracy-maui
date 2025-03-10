@@ -45,9 +45,9 @@ namespace Profitocracy.Mobile.Resources.Strings {
             }
         }
         
-        internal static string Setup_FirstProfile {
+        internal static string EditProfile_Profile {
             get {
-                return ResourceManager.GetString("Setup_FirstProfile", resourceCulture);
+                return ResourceManager.GetString("EditProfile_Profile", resourceCulture);
             }
         }
         
@@ -117,21 +117,21 @@ namespace Profitocracy.Mobile.Resources.Strings {
             }
         }
         
-        internal static string Setup_GoToExpenses {
+        internal static string EditProfile_SaveProfile {
             get {
-                return ResourceManager.GetString("Setup_GoToExpenses", resourceCulture);
+                return ResourceManager.GetString("EditProfile_SaveProfile", resourceCulture);
             }
         }
         
-        internal static string Setup_InitialBalance {
+        internal static string EditProfile_InitialBalance {
             get {
-                return ResourceManager.GetString("Setup_InitialBalance", resourceCulture);
+                return ResourceManager.GetString("EditProfile_InitialBalance", resourceCulture);
             }
         }
         
-        internal static string Setup_ProfileName {
+        internal static string EditProfile_ProfileName {
             get {
-                return ResourceManager.GetString("Setup_ProfileName", resourceCulture);
+                return ResourceManager.GetString("EditProfile_ProfileName", resourceCulture);
             }
         }
         
@@ -660,6 +660,42 @@ namespace Profitocracy.Mobile.Resources.Strings {
         internal static string Overview_ForThreeMonths {
             get {
                 return ResourceManager.GetString("Overview_ForThreeMonths", resourceCulture);
+            }
+        }
+        
+        internal static string Pages_Profiles {
+            get {
+                return ResourceManager.GetString("Pages_Profiles", resourceCulture);
+            }
+        }
+        
+        internal static string CommonError_GetProfileById {
+            get {
+                return ResourceManager.GetString("CommonError_GetProfileById", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileSettings_ChangeAlert_Ok {
+            get {
+                return ResourceManager.GetString("ProfileSettings_ChangeAlert_Ok", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileSettings_ChangeAlert_Title {
+            get {
+                return ResourceManager.GetString("ProfileSettings_ChangeAlert_Title", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileSettings_ChangeAlert_Cancel {
+            get {
+                return ResourceManager.GetString("ProfileSettings_ChangeAlert_Cancel", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileSettings_ChangeAlert_Desription {
+            get {
+                return ResourceManager.GetString("ProfileSettings_ChangeAlert_Desription", resourceCulture);
             }
         }
     }
