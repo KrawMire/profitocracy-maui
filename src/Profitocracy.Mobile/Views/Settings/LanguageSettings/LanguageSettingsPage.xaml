@@ -9,7 +9,8 @@
                               x:DataType="viewmodel:LanguageSettingsViewModel"
                               Title="{x:Static resx:AppResources.Pages_Language}"
                               Loaded="LanguageSettingsPage_OnLoaded"
-                              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
+                              HideSoftInputOnTapped="True">
     <abstractions:BaseContentPage.Content>
         <ScrollView Padding="16"
                 VerticalScrollBarVisibility="Never">

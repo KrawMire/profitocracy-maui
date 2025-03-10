@@ -11,7 +11,8 @@
                               Title="{x:Static resx:AppResources.Pages_Profiles}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                               NavigatedTo="UpdateProfilesList"
-                              Padding="8,0,8,0">
+                              Padding="8,0,8,0"
+                              HideSoftInputOnTapped="True">
     <abstractions:BaseContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -32,6 +33,7 @@
                                             <VerticalStackLayout VerticalOptions="Center" 
                                                                  Width="16">
                                                 <Border BackgroundColor="{StaticResource InfoBlue}"
+                                                        StrokeThickness="0"
                                                         Padding="16">
                                                     <Border.StrokeShape>
                                                         <RoundRectangle CornerRadius="40"/>

@@ -11,7 +11,8 @@
                               Title="{x:Static resx:AppResources.Pages_Categories}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
                               NavigatedTo="UpdateCategoriesList"
-                              Padding="8">
+                              Padding="8"
+                              HideSoftInputOnTapped="True">
     <abstractions:BaseContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -31,6 +32,7 @@
                                             <VerticalStackLayout VerticalOptions="Center" 
                                                                  Width="16">
                                                 <Border BackgroundColor="{StaticResource DangerRed}"
+                                                        StrokeThickness="0"
                                                         Padding="16">
                                                     <Border.StrokeShape>
                                                         <RoundRectangle CornerRadius="40"/>
@@ -46,6 +48,7 @@
                                             <VerticalStackLayout VerticalOptions="Center" 
                                                                  Width="16">
                                                 <Border BackgroundColor="{StaticResource InfoBlue}"
+                                                        StrokeThickness="0"
                                                         Padding="16">
                                                     <Border.StrokeShape>
                                                         <RoundRectangle CornerRadius="40"/>

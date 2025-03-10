@@ -37,8 +37,16 @@ public class TransactionModel
             var amount = IsMultiCurrency 
                 ? DestinationCurrency + ((decimal)DestinationAmount!).ToString(CultureInfo.CurrentCulture) 
                 : Amount.ToString(CultureInfo.CurrentCulture);
-            
-            return Type == 0 
+
+            if (Type == 0)
+            {
+                // In case of multi currency transaction we take from saved, so "-" is used
+                return IsMultiCurrency ? $"-{amount}" : $"+{amount}";
+            }
+
+            // In case of expense, if it's saving transaction,
+            // we take from profile balance and put it to saved amount
+            return SpendingType == 2 
                 ? $"+{amount}" 
                 : $"-{amount}";
         }

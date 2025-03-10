@@ -1,3 +1,5 @@
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.ViewModels.Overview;
 
@@ -18,6 +20,22 @@ public partial class OverviewPage : BaseContentPage
     {
         ProcessAction(async () =>
         {
+            var currentTheme = Application.Current?.RequestedTheme;
+            if (currentTheme is not null)
+            {
+                LiveCharts.Configure(settings =>
+                {
+                    if (currentTheme == AppTheme.Dark)
+                    {
+                        settings.AddDarkTheme();
+                    }
+                    else
+                    {
+                        settings.AddLightTheme();
+                    }
+                });
+            }
+            
             await _viewModel.Initialize();
             CalculationTypePicker.SelectedItem = _viewModel.SelectedDisplayCalculationType;
         });

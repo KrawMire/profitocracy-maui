@@ -123,10 +123,25 @@ public class EditTransactionPageViewModel : BaseNotifyObject
     public bool IsMultiCurrency
     {
         get => _isMultiCurrency;
-        set => SetProperty(ref _isMultiCurrency, value);
+        set
+        {
+            if (_isMultiCurrency == value)
+            {
+                return;
+            }
+
+            _isMultiCurrency = value;
+            
+            if (!_isMultiCurrency)
+            {
+                SpendingType = 0;
+            }
+            
+            OnPropertyChanged();
+        }
     }
 
-    
+
     public int TransactionType
     {
         get => _transactionType;
@@ -180,6 +195,7 @@ public class EditTransactionPageViewModel : BaseNotifyObject
                     IsMain = false;
                     IsSecondary = false;
                     IsSaved = true;
+                    IsMultiCurrency = true;
                     break;
                 default:
                     IsMain = true;
@@ -307,7 +323,7 @@ public class EditTransactionPageViewModel : BaseNotifyObject
     {
         _amount = _amount.Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
         
-        if (!decimal.TryParse(_amount, out var amount))
+        if (!decimal.TryParse(_amount, CultureInfo.InvariantCulture, out var amount))
         {
             throw new InvalidCastException(AppResources.CommonError_AmountNumber);
         }
@@ -359,7 +375,7 @@ public class EditTransactionPageViewModel : BaseNotifyObject
     {
         _destinationAmount = _destinationAmount.Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
         
-        if (!decimal.TryParse(_destinationAmount, out var destinationAmount))
+        if (!decimal.TryParse(_destinationAmount, CultureInfo.InvariantCulture, out var destinationAmount))
         {
             throw new InvalidCastException(AppResources.CommonError_OriginalCurrencyAmountNumber);
         }

@@ -11,7 +11,8 @@
                               ios:Page.ModalPresentationStyle="FullScreen"
                               Shell.PresentationMode="ModalAnimated"
                               Loaded="EditProfilePage_OnLoaded"
-                              Padding="16">
+                              Padding="16"
+                              HideSoftInputOnTapped="True">
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False" 
                             IsEnabled="False" />

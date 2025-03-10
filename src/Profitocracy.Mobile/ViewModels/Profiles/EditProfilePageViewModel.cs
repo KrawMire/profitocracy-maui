@@ -89,7 +89,7 @@ public class EditProfilePageViewModel : BaseNotifyObject
             ",", 
             CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
         
-        if (!decimal.TryParse(_initialBalance, out var numValue))
+        if (!decimal.TryParse(_initialBalance, CultureInfo.InvariantCulture, out var numValue))
         {
             throw new InvalidCastException(AppResources.CommonError_BalanceNumber);
         }

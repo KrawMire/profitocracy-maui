@@ -11,7 +11,8 @@
                               x:DataType="viewmodel:HomePageViewModel"
                               Title="{x:Static resx:AppResources.Pages_Home}"
                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"
-                              NavigatedTo="HomePage_OnNavigated">
+                              NavigatedTo="HomePage_OnNavigated"
+                              HideSoftInputOnTapped="True">
     <RefreshView IsRefreshing="{Binding IsRefreshing}"
                  Command="{Binding RefreshCommand}">
         <ScrollView VerticalScrollBarVisibility="Never">
