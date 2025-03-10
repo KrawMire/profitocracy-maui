@@ -5,7 +5,7 @@ using Profitocracy.Core.Persistence;
 using Profitocracy.Mobile.Abstractions;
 using Profitocracy.Mobile.Constants;
 using Profitocracy.Mobile.Services;
-using Profitocracy.Mobile.Views.Setup;
+using Profitocracy.Mobile.Views.Settings.ProfilesSettings;
 
 namespace Profitocracy.Mobile;
 
@@ -17,7 +17,7 @@ public partial class AppInit : BaseContentPage
     {
         InitializeComponent();
         
-        Routing.RegisterRoute(RoutesConstants.SetupPage, typeof(SetupPage));
+        Routing.RegisterRoute(RoutesConstants.SetupPage, typeof(EditProfilePage));
         _settingsRepository = settingsRepository;
     }
     

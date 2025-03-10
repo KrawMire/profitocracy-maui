@@ -18,8 +18,8 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Setup_FirstProfile" xml:space="preserve">
-        <value>First profile</value>
+    <data name="EditProfile_Profile" xml:space="preserve">
+        <value>Profile</value>
     </data>
     <data name="Pages_Home" xml:space="preserve">
         <value>Home</value>
@@ -54,14 +54,14 @@
     <data name="Home_NoCategories" xml:space="preserve">
         <value>There is no categories</value>
     </data>
-    <data name="Setup_ProfileName" xml:space="preserve">
+    <data name="EditProfile_ProfileName" xml:space="preserve">
         <value>Profile name</value>
     </data>
-    <data name="Setup_InitialBalance" xml:space="preserve">
+    <data name="EditProfile_InitialBalance" xml:space="preserve">
         <value>Initial balance</value>
     </data>
-    <data name="Setup_GoToExpenses" xml:space="preserve">
-        <value>Go to expenses</value>
+    <data name="EditProfile_SaveProfile" xml:space="preserve">
+        <value>Save profile</value>
     </data>
     <data name="Pages_Transactions" xml:space="preserve">
         <value>Transactions</value>
@@ -326,5 +326,23 @@
     </data>
     <data name="Overview_ForSixMonths" xml:space="preserve">
         <value>For six months</value>
+    </data>
+    <data name="Pages_Profiles" xml:space="preserve">
+        <value>Profiles</value>
+    </data>
+    <data name="CommonError_GetProfileById" xml:space="preserve">
+        <value>Cannot find profile with specified ID</value>
+    </data>
+    <data name="ProfileSettings_ChangeAlert_Title" xml:space="preserve">
+        <value>Change current profile</value>
+    </data>
+    <data name="ProfileSettings_ChangeAlert_Desription" xml:space="preserve">
+        <value>Are you sure you want to set profile "{0}" current?</value>
+    </data>
+    <data name="ProfileSettings_ChangeAlert_Ok" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="ProfileSettings_ChangeAlert_Cancel" xml:space="preserve">
+        <value>Cancel</value>
     </data>
 </root>

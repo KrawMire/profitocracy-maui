@@ -4,9 +4,9 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:resx="clr-namespace:Profitocracy.Mobile.Resources.Strings"
                               xmlns:categories="clr-namespace:Profitocracy.Mobile.Models.Categories"
-                              xmlns:profile="clr-namespace:Profitocracy.Mobile.Models.Profile"
                               xmlns:abstractions="clr-namespace:Profitocracy.Mobile.Abstractions"
                               xmlns:viewmodel="clr-namespace:Profitocracy.Mobile.ViewModels.Home"
+                              xmlns:profile="clr-namespace:Profitocracy.Mobile.Models.Profiles"
                               x:Class="Profitocracy.Mobile.Views.Home.HomePage"
                               x:DataType="viewmodel:HomePageViewModel"
                               Title="{x:Static resx:AppResources.Pages_Home}"
@@ -206,10 +206,22 @@
                                                          Progress="{Binding Ratio}" 
                                                          Margin="0, 8,0,0"/>
                                             <FlexLayout JustifyContent="SpaceBetween">
-                                                <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                                       Text="{Binding ActualAmount}" />
-                                                <Label Style="{StaticResource ExpenseCardProgressValue}"
-                                                       Text="{Binding PlannedAmount}"/>
+                                                <Label Style="{StaticResource ExpenseCardProgressValue}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}{1}">
+                                                            <Binding Path="CurrencySymbol"/>
+                                                            <Binding Path="ActualAmount"/>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
+                                                <Label Style="{StaticResource ExpenseCardProgressValue}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0}{1}">
+                                                            <Binding Path="CurrencySymbol"/>
+                                                            <Binding Path="PlannedAmount"/>
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                </Label>
                                             </FlexLayout>
                                         </StackLayout>
                                         
@@ -218,8 +230,14 @@
                                                     IsVisible="{Binding IsNotShowRatio}">
                                             <Label Style="{StaticResource ExpenseCardSubtitle}"
                                                    Text="{Binding Name}"/>
-                                            <Label Style="{StaticResource ExpenseCardSubtitle}"
-                                                   Text="{Binding ActualAmount}"/>
+                                            <Label Style="{StaticResource ExpenseCardSubtitle}">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0}{1}">
+                                                        <Binding Path="CurrencySymbol"/>
+                                                        <Binding Path="ActualAmount"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
                                         </FlexLayout>
                                     </StackLayout>
                                 </DataTemplate>

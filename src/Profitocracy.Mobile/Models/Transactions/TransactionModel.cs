@@ -6,7 +6,7 @@ namespace Profitocracy.Mobile.Models.Transactions;
 
 public class TransactionModel
 {
-    private readonly string[] _spendingTypes =
+    private static readonly string[] SpendingTypes =
     [
         AppResources.Transactions_Main,
         AppResources.Transactions_Secondary,
@@ -28,7 +28,7 @@ public class TransactionModel
 
     public bool IsIncome => SpendingType is null or -1;
     
-    public string DisplaySpendingType => IsIncome ? _spendingTypes[3] : _spendingTypes[(int)SpendingType!];
+    public string DisplaySpendingType => IsIncome ? SpendingTypes[3] : SpendingTypes[(int)SpendingType!];
 
     public string DisplayAmount
     {

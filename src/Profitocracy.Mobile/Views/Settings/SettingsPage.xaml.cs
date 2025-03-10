@@ -1,7 +1,7 @@
 using Profitocracy.Mobile.Abstractions;
-using Profitocracy.Mobile.Resources.Strings;
 using Profitocracy.Mobile.Views.Settings.CategoriesSettings;
 using Profitocracy.Mobile.Views.Settings.LanguageSettings;
+using Profitocracy.Mobile.Views.Settings.ProfilesSettings;
 using Profitocracy.Mobile.Views.Settings.ThemeSettings;
 
 namespace Profitocracy.Mobile.Views.Settings;
@@ -15,10 +15,15 @@ public partial class SettingsPage : BaseContentPage
 
 	private void ProfilesButton_OnClicked(object? sender, TappedEventArgs e)
 	{
-		DisplayAlert(
-			AppResources.InfoAlert_FeatureNotAvailable_Title, 
-			AppResources.InfoAlert_FeatureNotAvailable_Message,
-			AppResources.InfoAlert_FeatureNotAvailable_Ok);
+		ProcessAction(async () =>
+		{
+			var profilesPage = Handler?.MauiContext?.Services.GetService<ProfilesSettingsPage>();
+
+			if (profilesPage is not null)
+			{
+				await Navigation.PushAsync(profilesPage);
+			}
+		});
 	}
 	
 	private void CategoriesButton_OnClicked(object? sender, EventArgs e)
