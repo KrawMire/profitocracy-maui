@@ -75,49 +75,34 @@ I want to publish Profitocracy to a Google Play Store and Apple App Store, but i
 
 ## Android
 
-To install Profitocracy to an Android device, go to [latest release](https://github.com/KrawMire/profitocracy-maui/releases/latest) and install an attached *.apk* file. 
+To install Profitocracy to an Android device, go to the [latest release](https://github.com/KrawMire/profitocracy-maui/releases/latest) and install an attached *.apk* file. 
 Then click on it and follow the instructions.
 
 > If you want to try out a specific version of Profitocracy, go to 
 > [the list of releases](https://github.com/KrawMire/profitocracy-maui/releases) 
 > and select the version you would like to install.
 
+## iOS
+
+> [!IMPORTANT]
+> Unfortunately, Profitocracy is not available in App Store yet, therefore, it is not available on iOS. But I hope it will be published there as soon as possible.
+
 # Gettings Started
 
 All the steps were recorded on iOS device, but it is also correct for Android and other operating systems.
 There we will look at all the steps to set up **Profitocracy** for comfortable use.
 
-## 1. First Launch
-
-After the first launch of the **Profitocracy** you will be moved to **Setup** screen 
-to create your first profile and specify initial balance.
-
-<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/first_launch.gif" width="250" />
-
-## 2. Appearance
-
-At **Settings** screen you can change application theme (*Light/Dark/System*) and select
-a language (*English/Russian*).
-
-<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/theme_lang.gif" width="250" />
-
-## 3. Creation and Setting Up Categories
-
-First you need to do after your first profile creation is to 
-create needed spending categories and specify their planned amounts.
-
-<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/categories.gif" width="250" />
-
-## 4. Transaction Creation
-
-The application is fully set up and now you are able to create transaction. Let's do it!
-
-<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/transactions.gif" width="250" />
-
-## 5. Viewing Transactions by Spending Type and Category
-
-On **Home** screen you can tap at spending type name or a category 
-name to look at the list of transactions.
-
-<img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/filtered_transactions.gif" width="250" />
+| Description                                                                                                                                    | Screen Recording                                                                                                                 |
+|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| 1. **Creating Your First Profile**. Learn how to set up your first profile when launching the app for the first time.                          | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/1_first_profile.gif" />        |
+| 2. **Adding a Second Profile**. Discover how to create and manage an another profile directly from the settings page.                          | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/2_second_profile.gif" />       |
+| 3. **Switching Profiles**. See how to set the second profile as the current active one for personalized budget tracking.                       | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/3_set_current_profile.gif" />  |
+| 4. **Editing a Profile**. Learn how to update or modify an existing profile with ease.                                                         | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/4_profile_edit.gif" />         |
+| 5. **Creating Spending Categories**. Walk through the process of creating your first two spending categories to organize expenses effectively. | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/5_first_category.gif" />       |
+| 6. **Editing a Category**. Watch how to edit an existing category to refine your financial organization.                                       | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/6_edit_category.gif" />        |
+| 7. **Creating a Main Spending Transaction**. See how to add a new transaction with the Main spending type.                                     | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/7_main_transaction.gif" />     |
+| 8. **Saving in a Different Currency (EUR)**. Learn how to create a saving transaction in EUR for managing multi-currency budgets.              | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/8_saving_transaction.gif" />   |
+| 9. **Recording Income Transactions**. Walk through the steps for adding an income transaction to track earnings.                               | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/9_income.gif" />               |
+| 10. **Handling Withdrawals from Savings (EUR)**. Watch how to create a transaction for withdrawing funds from savings in EUR.                  | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/10_withdraw.gif" />            |
+| 11. **Visualizing Expenses with Charts**. Explore the overview page to see how expenses are visualized through insightful and detailed charts. | <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/getting_started/11_overview.gif" />            |
 
