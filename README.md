@@ -2,6 +2,21 @@
   <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/banners/main_banner.png" alt="Title image" />
 </p>
 
+Welcome to the source code of **Profitocracy**. 
+
+**Profitocracy** is a powerful budget management app designed to help users track their expenses effortlessly while following the 50-30-20 budgeting rule.
+
+# Key Features of Profitocracy
+
+- 💰 **Track Your Expenses**. Stay on top of your finances by organizing your spending effortlessly using the [50-30-20 rule](#503020rule).
+- 📊 **Customize Spending Categories**. Create, set budgets, and easily monitor your spending in personalized categories.
+- 📅 **Monthly Budget Planning**. Automatically generate a tailored budget to make every month stress-free.
+- 🔒 **Complete Data Privacy**. Rest assured that your data is secure, Profitocracy does not share your information with third parties. Everything is stored locally on your device.
+- 🌍 **Multi-Currency Support**. Track expenses in different currencies with seamless conversion for global users.
+- 📈 **Visualize Your Spending with Charts**. Gain clear insights into your expenses with beautifully crafted charts and graphs.
+- 👥 **Multiple Profiles**. Manage separate budgets or accounts for different individuals or purposes all within one app.
+- 💻 **Open-Source**. Profitocracy is open-source, ensuring transparency and the support of a thriving community for constant improvements.
+
 <p align="left">
     <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/banners/transactions_banner.png" alt="Transactions" width="150"/>
     <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/banners/categories_banner.png" alt="Categories" width="150"/>
@@ -10,18 +25,6 @@
     <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/banners/theme_banner.png" alt="Theme" width="150"/>
     <img src="https://raw.githubusercontent.com/KrawMire/profitocracy/dev/docs/assets/banners/multicurrency_banner.png" alt="Multi-Currency" width="150"/>
 </p>
-
-# Introduction
-
-**Profitocracy** is a budget control mobile application that helps
-people to track their expenses following 50-30-20 rule.
-
-## Key Features of Profitocracy
-
-- 💰 **Track your expenses by following [50-30-20 rule](#503020rule);**
-- 📊 **Create, set limits and track your own spending categories;**
-- 📅 **Automatically plan your budget for the month;**
-- 🔒 **Profitocracy does not send your data to third parties. All your data is stored on your device.**
 
 ## Supported Platforms
 
