@@ -43,28 +43,37 @@ life a little nicer and the final 20% toward paying down debt and/or adding to y
 
 ### 💼 Profile
 
-Profile is an entity that tracks all of your expenses in a single place. 
-It also calculates amounts for main, secondary and saving expenses, your 
-every day expenses and expenses by categories.
+A **Profile** represents all your financial activity in one place. It tracks your expenses and calculates amounts for primary, secondary, and savings expenses. Additionally, it provides insights into your daily spending as well as categorized expenses for better organization.
 
 ### 🧾 Transaction
 
-Transaction is a unit of moving funds. It could be an income (salary, for example) or expense (food, apartments) operation.
-If it is expense operation your will need to specify the type of this expense - main, secondary or saving, - and its amount.
-Optionally, you can specify also spending category (`None` by default), description and date of this transaction.
+A **Transaction** is an operation that moves funds. It can either be an **income** (e.g., your salary) or an **expense** (e.g., groceries, rent). For expense transactions, you’ll need to specify:
+- The **type** of expense: primary, secondary, or savings.
+- The **amount** spent.
 
-### 💵 Actual amount and planned amount of expenses
+You can also optionally provide additional details such as:
+- **Spending category** (default is "None").
+- **Description** of the transaction.
+- **Date** of the operation.
 
-Almost everything that you can see at Home screen is an expense. Expense, in terms of Profitocracy, is an entity with
-two values: *actual amount* and *plannedAmount*. Actual amount is your actual amount of spending of any type or category.
-Planned amount is a planned by Profitocracy amount of money that you should not go beyond for every category or type.
+### 💵 Actual and Planned Amounts of Expenses
+
+In Profitocracy, most of the data displayed on the **Home Screen** revolves around expenses. An **expense** is represented by two key values:
+- **Actual Amount:** The real amount of money spent for a specific type or category.
+- **Planned Amount:** The amount Profitocracy suggests as your spending limit for each category or type.
+
+This balance between actual and planned amounts helps you stay in control of your financial goals.
 
 ### 📊 Category
 
-Category is a special aggregation unit for your transactions. You can specify its name and planned amount for a month 
-while creation process at **Settings** screen. Then you will be able to track them at **Home** screen. If you have not
-specified planned amount for the category, Profitocracy will just calculate and show you the total amount of expenses 
-for the category while current month.
+A **Category** is a grouping tool for your transactions. Each category can be customized with:
+- A **name** (e.g., Food, Entertainment).
+- An optional **planned amount** for the month (set during creation on the **Settings Screen**).
+
+Once created, you can track your category-wise spending on the **Home Screen.**
+
+- If a planned amount is set, Profitocracy compares your spending against it for better tracking.
+- If no planned amount is defined, the app simply displays the total expenses for the category during the ongoing month.
 
 # Installation
 
