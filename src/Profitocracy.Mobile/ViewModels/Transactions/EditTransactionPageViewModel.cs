@@ -17,6 +17,15 @@ namespace Profitocracy.Mobile.ViewModels.Transactions;
 
 public class EditTransactionPageViewModel : BaseNotifyObject
 {
+    /// <summary>
+    /// Keys of the amount keypad besides the digits
+    /// </summary>
+    public const string DecimalKey = ".";
+    public const string BackspaceKey = "back";
+
+    private const int MaxDigits = 8;
+    private const int MaxDecimals = 2;
+
     private readonly IProfileRepository _profileRepository;
     private readonly ITransactionRepository _transactionRepository;
     private readonly ICategoryRepository _categoryRepository;
@@ -29,11 +38,13 @@ public class EditTransactionPageViewModel : BaseNotifyObject
     };
 
     private Guid? _transactionId;
+    private Currency _profileCurrency = Currency.AvailableCurrencies.DefaultCurrency;
+    private string _profileName = string.Empty;
 
     private DateTime _timestamp = DateTime.Now;
     private TimeSpan _time = DateTime.Now.TimeOfDay;
-    private string _amount = string.Empty;
-    private string _destinationAmount = string.Empty;
+    private string _amount = "0";
+    private string _destinationAmount = "0";
 
     private Currency _selectedCurrency;
     private string? _description;
@@ -47,6 +58,7 @@ public class EditTransactionPageViewModel : BaseNotifyObject
     private bool _isSaved;
 
     private bool _isMultiCurrency;
+    private bool _isEditingProfileAmount;
     private RecurringTransactionIntervalModel? _selectedInterval;
 
     public EditTransactionPageViewModel(
@@ -82,18 +94,30 @@ public class EditTransactionPageViewModel : BaseNotifyObject
 
     public ObservableCollection<Currency> AvailableCurrencies { get; } = [];
     public ObservableCollection<CategoryModel> AvailableCategories { get; } = [];
+    public ObservableCollection<CategoryChipModel> CategoryChips { get; } = [];
     public List<RecurringTransactionIntervalModel> AvailableIntervals { get; } = [.. Enum.GetValues<RecurringTransactionInterval>().Cast<RecurringTransactionInterval>().Select(RecurringTransactionIntervalModel.FromDomain)];
     public CategoryModel? Category { get; set; }
+
+    public Currency ProfileCurrency => _profileCurrency;
+
     public RecurringTransactionIntervalModel? SelectedInterval
     {
         get => _selectedInterval;
-        set => SetProperty(ref _selectedInterval, value);
+        set
+        {
+            SetProperty(ref _selectedInterval, value);
+            OnPropertyChanged(nameof(IntervalText));
+        }
     }
 
     public Currency SelectedCurrency
     {
         get => _selectedCurrency;
-        set => SetProperty(ref _selectedCurrency, value);
+        set
+        {
+            SetProperty(ref _selectedCurrency, value);
+            OnAmountsChanged();
+        }
     }
 
     public Guid TransactionId
@@ -101,10 +125,18 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         set => _transactionId = value;
     }
 
+    public string Title => _transactionId is null
+        ? AppResources.NewTransaction_Title
+        : AppResources.NewTransaction_EditTitle;
+
     public bool IsIncome
     {
         get => _isIncome;
-        set => SetProperty(ref _isIncome, value);
+        set
+        {
+            SetProperty(ref _isIncome, value);
+            OnPropertyChanged(nameof(IncomeHint));
+        }
     }
 
     public bool IsExpense
@@ -134,9 +166,19 @@ public class EditTransactionPageViewModel : BaseNotifyObject
     public bool IsMultiCurrency
     {
         get => _isMultiCurrency;
-        set => SetProperty(ref _isMultiCurrency, value);
-    }
+        set
+        {
+            SetProperty(ref _isMultiCurrency, value);
 
+            if (!value)
+            {
+                _isEditingProfileAmount = false;
+            }
+
+            OnPropertyChanged(nameof(IncomeHint));
+            OnAmountsChanged();
+        }
+    }
 
     public int TransactionType
     {
@@ -203,28 +245,50 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         }
     }
 
+    /// <summary>
+    /// Amount in the currency of the profile, typed with the keypad (invariant culture).
+    /// </summary>
     public string Amount
     {
         get => _amount;
-        set => SetProperty(ref _amount, value);
+        set
+        {
+            SetProperty(ref _amount, value);
+            OnAmountsChanged();
+        }
     }
 
+    /// <summary>
+    /// Amount in the other currency of a multi-currency transaction (invariant culture).
+    /// </summary>
     public string DestinationAmount
     {
         get => _destinationAmount;
-        set => SetProperty(ref _destinationAmount, value);
+        set
+        {
+            SetProperty(ref _destinationAmount, value);
+            OnAmountsChanged();
+        }
     }
 
     public DateTime Timestamp
     {
         get => _timestamp;
-        set => SetProperty(ref _timestamp, value);
+        set
+        {
+            SetProperty(ref _timestamp, value);
+            OnPropertyChanged(nameof(DateText));
+        }
     }
 
     public TimeSpan Time
     {
         get => _time;
-        set => SetProperty(ref _time, value);
+        set
+        {
+            SetProperty(ref _time, value);
+            OnPropertyChanged(nameof(TimeText));
+        }
     }
 
     public string Description
@@ -237,19 +301,108 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         }
     }
 
+    /// <summary>
+    /// Currency button on the note, e.g. "USD → EUR" for a multi-currency transaction.
+    /// </summary>
+    public string CurrencyText => IsMultiCurrency
+        ? $"{SelectedCurrency.Code} → {_profileCurrency.Code}"
+        : _profileCurrency.Code;
+
+    /// <summary>
+    /// Exchange rate that follows from the two typed amounts, e.g. "1 USD = 0.9567".
+    /// </summary>
+    public string RateText
+    {
+        get
+        {
+            if (!IsMultiCurrency
+                || !NumberUtils.TryParseDecimal(_amount, out var amount)
+                || !NumberUtils.TryParseDecimal(_destinationAmount, out var destination)
+                || amount <= 0
+                || destination <= 0)
+            {
+                return string.Empty;
+            }
+
+            var rate = Math.Round(amount / destination, 4);
+
+            return string.Format(
+                AppResources.NewTransaction_Rate,
+                SelectedCurrency.Code,
+                rate.ToString("0.####", CultureInfo.CurrentCulture));
+        }
+    }
+
+    /// <summary>
+    /// The big amount on the note: the one the keypad types into.
+    /// </summary>
+    public string HeroAmount => IsMultiCurrency && !_isEditingProfileAmount
+        ? FormatTyped(_destinationAmount, SelectedCurrency.Symbol)
+        : FormatTyped(_amount, _profileCurrency.Symbol);
+
+    /// <summary>
+    /// The other side of a multi-currency transaction, tapping it moves the keypad there.
+    /// </summary>
+    public string ConvertedText
+    {
+        get
+        {
+            if (!IsMultiCurrency)
+            {
+                return string.Empty;
+            }
+
+            if (_isEditingProfileAmount)
+            {
+                return string.Format(
+                    AppResources.NewTransaction_InProfile,
+                    FormatTyped(_destinationAmount, SelectedCurrency.Symbol),
+                    SelectedCurrency.Code);
+            }
+
+            return NumberUtils.TryParseDecimal(_amount, out var amount) && amount > 0
+                ? string.Format(AppResources.NewTransaction_InProfile, FormatTyped(_amount, _profileCurrency.Symbol), _profileName)
+                : string.Format(AppResources.NewTransaction_EnterProfileAmount, _profileCurrency.Code);
+        }
+    }
+
+    public string SaveText => string.Format(
+        AppResources.NewTransaction_Save,
+        NumberUtils.TryParseDecimal(_amount, out var amount)
+            ? NumberUtils.FormatMoney(amount, _profileCurrency.Symbol)
+            : NumberUtils.FormatMoney(0, _profileCurrency.Symbol));
+
+    public string IncomeHint => IsMultiCurrency
+        ? string.Format(AppResources.NewTransaction_WithdrawHint, SelectedCurrency.Code)
+        : AppResources.NewTransaction_IncomeHint;
+
+    public string DateText => _timestamp.Date == DateTime.Today
+        ? AppResources.Common_Today
+        : _timestamp.ToString("d MMM", CultureInfo.CurrentCulture);
+
+    public string TimeText => DateTime.Today.Add(_time).ToString("t", CultureInfo.CurrentCulture);
+
+    public string IntervalText => SelectedInterval is null || SelectedInterval.Value <= 0
+        ? AppResources.NewTransaction_NoRepeat
+        : SelectedInterval.Name;
+
     public async Task Initialize()
     {
-        var profileId = await _profileRepository.GetCurrentProfileId();
+        var profile = await _profileRepository.GetCurrentProfile();
 
-        if (profileId is null)
+        if (profile is null)
         {
             throw new Exception(AppResources.CommonError_GetCurrentProfile);
         }
 
-        SelectedCurrency = AvailableCurrencies[0];
+        _profileCurrency = profile.Settings.Currency;
+        _profileName = profile.Name;
 
-        var categories = await _categoryRepository.GetAllByProfileId((Guid)profileId);
+        SelectedCurrency = AvailableCurrencies.FirstOrDefault(c => c != _profileCurrency) ?? AvailableCurrencies[0];
 
+        var categories = await _categoryRepository.GetAllByProfileId(profile.Id);
+
+        AvailableCategories.Clear();
         AvailableCategories.Add(NoneCategory);
 
         foreach (var category in categories)
@@ -261,6 +414,133 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         {
             await InitializeEditableTransaction();
         }
+
+        CategoryChips.Clear();
+
+        foreach (var category in AvailableCategories)
+        {
+            CategoryChips.Add(new CategoryChipModel
+            {
+                Category = category,
+                Name = category == NoneCategory ? AppResources.NewTransaction_NoCategory : category.Name,
+                IsSelected = category == (Category ?? NoneCategory),
+            });
+        }
+
+        OnPropertyChanged(nameof(Title));
+        OnPropertyChanged(nameof(CurrencyText));
+        OnAmountsChanged();
+    }
+
+    public void SelectCategory(CategoryChipModel chip)
+    {
+        Category = chip.Category == NoneCategory ? null : chip.Category;
+
+        foreach (var categoryChip in CategoryChips)
+        {
+            categoryChip.IsSelected = categoryChip == chip;
+        }
+    }
+
+    /// <summary>
+    /// Chooses the currency the money was paid in. The currency of the profile
+    /// makes a regular transaction, any other one makes a multi-currency transaction.
+    /// </summary>
+    public void SelectCurrency(Currency currency)
+    {
+        if (currency == _profileCurrency)
+        {
+            IsMultiCurrency = false;
+        }
+        else
+        {
+            SelectedCurrency = currency;
+            IsMultiCurrency = true;
+        }
+
+        OnPropertyChanged(nameof(CurrencyText));
+    }
+
+    /// <summary>
+    /// Moves the keypad between the two amounts of a multi-currency transaction.
+    /// </summary>
+    public void SwitchEditedAmount()
+    {
+        if (!IsMultiCurrency)
+        {
+            return;
+        }
+
+        _isEditingProfileAmount = !_isEditingProfileAmount;
+        OnAmountsChanged();
+    }
+
+    /// <summary>
+    /// Applies a keypad key to the edited amount: a digit, <see cref="DecimalKey"/> or <see cref="BackspaceKey"/>.
+    /// </summary>
+    public void ApplyKey(string key)
+    {
+        var isProfileAmount = !IsMultiCurrency || _isEditingProfileAmount;
+        var value = isProfileAmount ? _amount : _destinationAmount;
+
+        value = key switch
+        {
+            BackspaceKey => value.Length > 1 ? value[..^1] : "0",
+            DecimalKey => value.Contains(DecimalKey) ? value : value + DecimalKey,
+            _ => AppendDigit(value, key)
+        };
+
+        if (isProfileAmount)
+        {
+            Amount = value;
+        }
+        else
+        {
+            DestinationAmount = value;
+        }
+    }
+
+    private static string AppendDigit(string value, string digit)
+    {
+        var parts = value.Split(DecimalKey);
+
+        if (parts.Length > 1 && parts[1].Length >= MaxDecimals)
+        {
+            return value;
+        }
+
+        if (value.Replace(DecimalKey, string.Empty).Length >= MaxDigits)
+        {
+            return value;
+        }
+
+        return value == "0" ? digit : value + digit;
+    }
+
+    /// <summary>
+    /// Formats an amount that is being typed: group separators for
+    /// the integer part, the decimals exactly as typed, e.g. "€1,234.5".
+    /// </summary>
+    private static string FormatTyped(string value, string symbol)
+    {
+        var parts = value.Split(DecimalKey);
+        var integer = long.TryParse(parts[0], NumberStyles.None, CultureInfo.InvariantCulture, out var number)
+            ? number.ToString("N0", CultureInfo.CurrentCulture)
+            : "0";
+
+        return parts.Length > 1
+            ? $"{symbol}{integer}{CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator}{parts[1]}"
+            : $"{symbol}{integer}";
+    }
+
+    private void OnAmountsChanged()
+    {
+        OnPropertyChanged(nameof(HeroAmount));
+        OnPropertyChanged(nameof(ConvertedText));
+        OnPropertyChanged(nameof(RateText));
+        OnPropertyChanged(nameof(SaveText));
+        OnPropertyChanged(nameof(CurrencyText));
+        OnPropertyChanged(nameof(IncomeHint));
     }
 
     private async Task InitializeEditableTransaction()
@@ -284,7 +564,7 @@ public class EditTransactionPageViewModel : BaseNotifyObject
 
         TransactionType = (int)transaction.Type;
         SpendingType = isIncomeTransaction ? null : (int?)transaction.SpendingType;
-        Amount = transaction.Amount.ToString(CultureInfo.CurrentCulture);
+        Amount = FormatForKeypad(transaction.Amount);
         Timestamp = transaction.Timestamp;
         Time = transaction.Timestamp.TimeOfDay;
         Description = transaction.Description!;
@@ -296,9 +576,9 @@ public class EditTransactionPageViewModel : BaseNotifyObject
 
         if (transaction is MultiCurrencyTransaction multiCurrencyTransaction)
         {
-            IsMultiCurrency = true;
             SelectedCurrency = multiCurrencyTransaction.DestinationCurrency;
-            DestinationAmount = multiCurrencyTransaction.DestinationAmount.ToString(CultureInfo.CurrentCulture);
+            DestinationAmount = FormatForKeypad(multiCurrencyTransaction.DestinationAmount);
+            IsMultiCurrency = true;
         }
 
         if (transaction.RecurringTransactionInfo is not null &&
@@ -307,6 +587,9 @@ public class EditTransactionPageViewModel : BaseNotifyObject
             SelectedInterval = AvailableIntervals.FirstOrDefault(i => i.Value == (short)transaction.RecurringTransactionInfo.Interval);
         }
     }
+
+    private static string FormatForKeypad(decimal amount)
+        => Math.Round(amount, MaxDecimals).ToString("0.##", CultureInfo.InvariantCulture);
 
     public Task SaveTransaction()
     {
@@ -329,9 +612,7 @@ public class EditTransactionPageViewModel : BaseNotifyObject
 
     private async Task<Transaction> BuildTransaction(Guid? transactionId)
     {
-        _amount = _amount.Replace(",", CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator);
-
-        if (!NumberUtils.TryParseDecimal(_amount, out var amount))
+        if (!NumberUtils.TryParseDecimal(_amount, out var amount) || amount <= 0)
         {
             throw new InvalidCastException(AppResources.CommonError_AmountNumber);
         }
@@ -396,7 +677,7 @@ public class EditTransactionPageViewModel : BaseNotifyObject
         TransactionCategory? category,
         RecurringTransactionInfo? recurringTransactionInfo)
     {
-        if (!NumberUtils.TryParseDecimal(_destinationAmount, out var destinationAmount))
+        if (!NumberUtils.TryParseDecimal(_destinationAmount, out var destinationAmount) || destinationAmount <= 0)
         {
             throw new InvalidCastException(AppResources.CommonError_OriginalCurrencyAmountNumber);
         }
