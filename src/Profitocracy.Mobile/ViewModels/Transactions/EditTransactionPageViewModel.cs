@@ -612,7 +612,11 @@ public class EditTransactionPageViewModel : BaseNotifyObject
 
     private async Task<Transaction> BuildTransaction(Guid? transactionId)
     {
-        if (!NumberUtils.TryParseDecimal(_amount, out var amount) || amount <= 0)
+        var isWithdrawal = IsMultiCurrency && _transactionType == 0;
+
+        if (!NumberUtils.TryParseDecimal(_amount, out var amount)
+            || amount < 0
+            || (amount == 0 && !isWithdrawal))
         {
             throw new InvalidCastException(AppResources.CommonError_AmountNumber);
         }
